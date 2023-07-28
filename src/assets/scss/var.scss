@@ -1,0 +1,33 @@
+/* 项目中全局样式变量配置文件，所有scss变量配置到这里 */
+
+// 主题色
+$v-color-primary: #0062c7;
+// 黑色
+$v-color-black: #000000;
+// 成功
+$v-color-success: #64D50B;
+// 警告
+$v-color-warning: #e6a23c;
+// 危险
+$v-color-danger: #FF0000;
+// 错误
+$v-color-error: #FF0000;
+// 信息
+$v-color-info: #909399;
+// 背景色
+$v-color-backgroud: #F6F7FB;
+
+/* 
+ * 尺寸
+ */
+// 默认
+$v-size-default: 36px;
+// 中号
+$v-size-medium: 30px;
+// 小号
+$v-size-small: 24px;
+// 迷你
+$v-size-mini: 20px;
+//浏览器大小配置 table组件 一行显示3个还是4个
+$minwidth:100px;
+$maxwidth:1800px

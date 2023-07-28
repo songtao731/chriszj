@@ -1,0 +1,16 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  chriszj:
+    specifier: ^1.0.7
+    version: 1.0.7
+
+packages:
+
+  /chriszj@1.0.7:
+    resolution: {integrity: sha512-0uT9vOtVx0O3tXN86D0cp5gzYNg+9Gep4l5VdwyMjepvQcuUq2aa4SDbMG9YT+xG0PK12GyC8bjO9VRU1f29xQ==}
+    dev: false

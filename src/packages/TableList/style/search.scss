@@ -1,0 +1,81 @@
+@import "@/assets/scss/var.scss";
+
+.chris-table-search {
+  display: flex;
+
+  .chris-table-search-btns {
+    width: 300px;
+  }
+
+  .chris-table-search-form.active {
+    height: 50px;
+    overflow: hidden;
+  }
+
+  .chris-table-search-form {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    .el-input,
+    .el-select,
+    .el-cascader {
+      width: 100%;
+    }
+
+    .el-form-item {
+      padding-right: 20px;
+
+      .el-form-item__label {
+        width: 80px;
+      }
+
+      .el-form-item {
+        width: 100%;
+        padding-right: 0;
+
+        .el-form-item__label {
+          padding: 0 4px;
+        }
+      }
+
+      .el-form-item-active {
+        .el-form-item__label {
+          width: 8px;
+          margin-left: 6px;
+        }
+      }
+    }
+
+    .el-form-item-min {
+      .item-content {
+        flex: 1;
+      }
+
+      span {
+        margin: 0 2px;
+      }
+    }
+  }
+}
+
+.paginaton {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: $minwidth) {
+  .el-form-item {
+    width: 33.33%;
+    margin-bottom: 20px;
+  }
+}
+
+// 中屏一行显示5个 写到下面会覆盖掉上面的样式
+@media screen and (min-width: $maxwidth) {
+  .el-form-item {
+    width: 25%;
+    margin-bottom: 20px;
+  }
+}
