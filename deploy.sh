@@ -13,8 +13,7 @@ git init
 git add -A
 git commit -m 'deploy'
 
-# 如果发布到 https://<USERNAME>.github.io/<REPO>
-#git push -f https://github.com/songtao731/chris-ui.git
-git push -f https://songtao731.github.io
+# 如果发布到 https://<USERNAME>.github.io/<REPO1>
+git push -f https://github.com/songtao731/chriszj.git
 
 cd -

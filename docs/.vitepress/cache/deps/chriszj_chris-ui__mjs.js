@@ -19,7 +19,6 @@ import {
   getCurrentScope,
   guardReactiveProps,
   h,
-  init_vue_runtime_esm_bundler,
   inject,
   isRef,
   mergeProps,
@@ -66,11 +65,10 @@ import {
   withDirectives,
   withKeys,
   withModifiers
-} from "./chunk-WLQVLJR5.js";
-import "./chunk-ROME4SDB.js";
+} from "./chunk-254DOEZA.js";
+import "./chunk-UXIASGQL.js";
 
 // node_modules/.pnpm/chriszj@1.0.5/node_modules/chriszj/chris-ui.mjs
-init_vue_runtime_esm_bundler();
 var tu = (e) => !e.getAttribute("aria-owns");
 var nu = (e, t, n) => {
   const { parentNode: r } = e;

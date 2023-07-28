@@ -1,5 +1,5 @@
 <template>
-  <TableList v-bind="bind" ref="oneTable"> </TableList>
+  <TableList v-bind="bind" ref="oneTable" @selection-change="handleSelectionChange" highlight-current-row   @current-change="handleCurrentChange"> </TableList>
 </template>
 
 <script setup lang="ts">
@@ -101,12 +101,29 @@ const bind = useTable({
       },
     },
     {
-      type: "primary",
       content: "获取查询条件",
       onClick: () => {
         console.log("获取成功", oneTable.value.params.newFormData);
       },
     },
+    {
+      type: "success",
+      content: "清空多选",
+      onClick: () => {
+        
+        console.log("清空成功",oneTable.value.tableRef.clearSelection());
+      },
+    },
+    {
+      type: "waring",
+      content: "单选",
+      onClick: () => {
+        console.log("清空成功");
+      },
+    },
+
+            //  
+
   ],
 
 
@@ -186,8 +203,32 @@ const bind = useTable({
         prop: ["minNumber", "maxNumber"],
       },
     },
+    {
+       label:'操作',
+       buttons:[
+        {
+          type:'primary',
+          content:"单选",
+          click(row){
+
+              console.log(row,'22')
+          }
+        }
+       ]
+    }
   ],
 });
+//单选
+let currentRow = ref();
+const handleCurrentChange = (val) => {
+console.log(val,'我是单选')
+  currentRow.value = val;
+};
+const multipleSelection = ref([])
+const handleSelectionChange = (val) => {
+  console.log(val,'我是多选')
+  multipleSelection.value = val
+}
 
  
 </script>

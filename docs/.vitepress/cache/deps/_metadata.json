@@ -1,62 +1,56 @@
 {
-  "hash": "491283a1",
-  "browserHash": "27894885",
+  "hash": "12ec8d14",
+  "browserHash": "d01a5f67",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/vue@3.3.4/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "73942d69",
+      "fileHash": "adef2ec6",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "6e713f2d",
+      "fileHash": "6ca34c09",
       "needsInterop": false
     },
     "element-plus": {
       "src": "../../../../node_modules/.pnpm/element-plus@2.3.8_vue@3.3.4/node_modules/element-plus/es/index.mjs",
       "file": "element-plus.js",
-      "fileHash": "b69c0e27",
+      "fileHash": "28dd75d2",
       "needsInterop": false
     },
     "@element-plus/icons-vue": {
       "src": "../../../../node_modules/.pnpm/@element-plus+icons-vue@2.1.0_vue@3.3.4/node_modules/@element-plus/icons-vue/dist/index.js",
       "file": "@element-plus_icons-vue.js",
-      "fileHash": "4fdde651",
+      "fileHash": "a28fa485",
       "needsInterop": false
     },
     "@vueuse/core": {
       "src": "../../../../node_modules/.pnpm/@vueuse+core@9.13.0_vue@3.3.4/node_modules/@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "5e50e1c4",
+      "fileHash": "1fc0e6ba",
       "needsInterop": false
-    },
-    "chriszj": {
-      "src": "../../../../node_modules/.pnpm/chriszj@1.0.5/node_modules/chriszj/chris-ui.umd.js",
-      "file": "chriszj.js",
-      "fileHash": "261341a7",
-      "needsInterop": true
     },
     "chriszj/chris-ui.mjs": {
       "src": "../../../../node_modules/.pnpm/chriszj@1.0.5/node_modules/chriszj/chris-ui.mjs",
       "file": "chriszj_chris-ui__mjs.js",
-      "fileHash": "2242417d",
+      "fileHash": "96e494f2",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-R5UTLQ63": {
-      "file": "chunk-R5UTLQ63.js"
+    "chunk-BYJV2AHC": {
+      "file": "chunk-BYJV2AHC.js"
     },
-    "chunk-QZZFRAKQ": {
-      "file": "chunk-QZZFRAKQ.js"
+    "chunk-3TGX3EMO": {
+      "file": "chunk-3TGX3EMO.js"
     },
-    "chunk-WLQVLJR5": {
-      "file": "chunk-WLQVLJR5.js"
+    "chunk-254DOEZA": {
+      "file": "chunk-254DOEZA.js"
     },
-    "chunk-ROME4SDB": {
-      "file": "chunk-ROME4SDB.js"
+    "chunk-UXIASGQL": {
+      "file": "chunk-UXIASGQL.js"
     }
   }
 }
