@@ -12,6 +12,7 @@ import path from "path";
 //解决setup语法 名称的问题
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 // https://vitejs.dev/config/
+import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   plugins: [
@@ -24,6 +25,9 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     VueSetupExtend(),
+    dts({
+      include:'src/packages'
+    })
   ],
   resolve: {
     alias: {
@@ -31,7 +35,7 @@ export default defineConfig({
     },
   },
   build: {
-		outDir: "chris-ui", //输出文件名称
+		outDir: "dist", //输出文件名称
 		lib: {
 			entry: path.resolve(__dirname, "./src/packages/index.ts"), //指定组件编译入口文件
 			name: "chris-ui",

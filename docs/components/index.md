@@ -19,21 +19,16 @@ npm  install chriszj
 
 ```js
 // main.ts
-import TuiPlus from '@wocwin/t-ui-plus'
-import '@wocwin/t-ui-plus/lib/style.css'
+import Chriszj from "chriszj";
+import "chriszj/style.css";
 const app = createApp(App)
-app.use(TuiPlus)
+app.use(Chriszj)
 app.mount('#app')
 ```
 
 
 
 
-### 若需要t-ui-plus集成的Element-plus支持 Volar 类型提示(1.1.12版本支持)
->#### 注意：不安装及注册`element-plus`直接使用那么当前的`element-plus`版本是`@2.2.18`
-```js
-// 需要在使用的项目中安装element-plus(不需要注册，也能在项目中全局使用)
-npm install element-plus
 
 ```
 ### docs文档结构目录

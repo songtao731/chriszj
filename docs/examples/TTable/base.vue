@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { useTable } from "chriszj/chris-ui.mjs";
-
+import { chris } from "chriszj/chris-ui.mjs";
+//实际使用是 import { chris } from "chriszj";
 const tableData = [
   {
     date: "2016-05-02",
@@ -23,7 +23,7 @@ const tableData = [
   },
 ];
 
-const bind = useTable({
+const bind = chris.useTable({
   data: tableData,
   index:{             //不传会走默认值'序号'
       label:"测试索引",

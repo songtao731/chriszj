@@ -3,7 +3,6 @@ import type { ElTooltipProps } from "@element-plus";
 
 import { NewTableColumn } from "./TableColumnItem";
 import { NewTable } from "./TableNew";
-import type { NewTableCtx } from "./TableNew";
 
 type ComponentSize = "large" | "default" | "small";
 
@@ -179,7 +178,7 @@ export const TableProps = {
     type: Array as PropType<DefaultRow[]>,
     default: () => [],
   },
-  ref: String,
+  ref: [String,Function],
   columns: Array<NewTableColumn<any>>,
   size: String,
   width: [String, Number],

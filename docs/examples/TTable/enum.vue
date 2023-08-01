@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { useTable } from "chriszj/chris-ui.mjs";
-
+import { chris } from "chriszj/chris-ui.mjs";
+//实际使用是 import { chris } from "chriszj";
 import { ref, computed } from "vue";
 
 const tableData = {
@@ -69,7 +69,7 @@ const request = (params) => {
     }, 100);
   });
 };
-const bind = useTable({
+const bind = chris.useTable({
   request: (params) => request({ ...params, a: 1 }),
   columns: [
     {

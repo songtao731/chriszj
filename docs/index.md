@@ -1,12 +1,12 @@
 ---
 layout: home
 
-title: S-ui-plus
+title: Chris-ui-plus
 # titleTemplate: 选项卡描述
 editLink: true
 lastUpdated: true
 hero:
-  name: S-ui-plus
+  name: Chris-ui-plus
   text: vue3基础组件
   tagline: Vue3 中基于Element-plus二次封装基础组件文档
   image:
@@ -18,7 +18,7 @@ hero:
       link: /components/
     - theme: brand
       text: 组件预览
-      link: /components/TSelect/base.md
+      link: /components/TTable/base.md
 features:
   - icon: 🔨
     title: 实际项目
@@ -41,7 +41,7 @@ features:
   <a href="https://gitee.com/wocwin/t-ui-plus/stargazers" target="_blank">
     <img src="https://gitee.com/wocwin/t-ui-plus/badge/star.svg?theme=dark" alt="t-ui-plus">
   </a>
-  <a href="https://github.com/wocwin/t-ui-plus/stargazers" target="_blank">
+  <a href="https://github.com/songtao731/chriszj/stargazers" target="_blank">
     <img src="https://img.shields.io/github/stars/wocwin/t-ui-plus.svg" alt="t-ui-plus">
   </a>
    <a href="https://www.npmjs.com/package/@wocwin/t-ui-plus" target="_blank">

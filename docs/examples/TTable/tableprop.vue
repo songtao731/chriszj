@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { useTable } from "chriszj/chris-ui.mjs";
-
+import { chris } from "chriszj/chris-ui.mjs";
+//实际使用是 import { chris } from "chriszj";
 import { ref, computed } from "vue";
 
 const tableData = {
@@ -88,7 +88,7 @@ const request = (params) => {
   });
 };
 const  oneTable=ref()
-const bind = useTable({
+const bind = chris.useTable({
   request: (params) => request({ ...params, a: 1 }),
   buttons: [
     {
@@ -113,16 +113,7 @@ const bind = useTable({
         
         console.log("清空成功",oneTable.value.tableRef.clearSelection());
       },
-    },
-    {
-      type: "waring",
-      content: "单选",
-      onClick: () => {
-        console.log("清空成功");
-      },
-    },
-
-            //  
+    }
 
   ],
 

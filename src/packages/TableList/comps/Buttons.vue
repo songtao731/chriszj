@@ -21,6 +21,7 @@ const buttonList = props.buttons;
 <style scoped lang="scss">
 .chris-buttons{
   text-align: right;
+  margin-bottom: 20px;
 }
 
 </style>

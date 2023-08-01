@@ -9,8 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import { useTable } from "chriszj/chris-ui.mjs";
-
+import { chris } from "chriszj/chris-ui.mjs";
+//实际使用是 import { chris } from "chriszj";
 
 const tableData = [
   {
@@ -30,7 +30,7 @@ const tableData = [
   },
 ];
 
-const bind = useTable({
+const bind = chris.useTable({
   data: tableData,
   columns: [
     {

@@ -1,69 +1,72 @@
 <template>
-  <slot name="topheader"> </slot>
+  <div class="chris-table">
+    <slot name="topheader"> </slot>
 
-  <Search
-    ref="searchRef"
-    :filter="filterList"
-    :searchSize="props.searchSize"
-    :labelPosition="props.labelPosition"
-    :searchData="props.searchData"
-    @getParams="getParams"
-    @resetFn="resetFn"
-  >
-    <template #search>
-      <slot name="search"> </slot>
-    </template>
-  </Search>
-  <slot name="centerheader"> </slot>
-
-  <Buttons :buttons="props.buttons"> </Buttons>
-  <ElTable
-    v-bind="props"
-    :data="dataList"
-    style="width: 100%"
-    v-on="tableEvents"
-    ref="tableRef"
-    class="chris-table"
-  >
-    <template #empty>
-      <slot name="empty"></slot>
-    </template>
-    <template #append>
-      <slot name="append"></slot>
-    </template>
-    <ElTableColumn
-      type="index"
-      :index="indexMethod"
-      :label="typeof props.index === 'object' && props.index.label"
-      :width="typeof props.index === 'object' && props.index.width"
-      v-if="typeof props.index === 'boolean' ? props.index : !props.index.hide"
+    <Search
+      ref="searchRef"
+      :filter="filterList"
+      :searchSize="props.searchSize"
+      :labelPosition="props.labelPosition"
+      :searchData="props.searchData"
+      @getParams="getParams"
+      @resetFn="resetFn"
     >
-    </ElTableColumn>
-    <TableColumn
-      v-for="(item, index) in filterColumns"
-      :key="index"
-      v-bind="item"
-    >
-      <template v-if="item.header" #header="scope">
-        <slot name="header" v-bind="scope" />
+      <template #search>
+        <slot name="search"> </slot>
       </template>
-      <template v-if="item.slotName" #default="scope">
-        <slot :name="item.slotName" v-bind="scope" />
-      </template>
-    </TableColumn>
-  </ElTable>
+    </Search>
+    <slot name="centerheader"> </slot>
 
-  <Pagination
-    v-show="total > 0 && props.pagination"
-    :total="total"
-    @getPage="getPage"
-    :currentPage="currentPage"
-    :pageSize="pageSize"
-    :pageSizes="props.pageSizes"
-    ref="pagination"
-    :layout="props.layout"
-  />
-  <slot name="footer"> </slot>
+    <Buttons :buttons="props.buttons"> </Buttons>
+    <ElTable
+      v-bind="props"
+      :data="dataList"
+      style="width: 100%"
+      v-on="tableEvents"
+      ref="tableRef"
+    >
+      <template #empty>
+        <slot name="empty"></slot>
+      </template>
+      <template #append>
+        <slot name="append"></slot>
+      </template>
+      <ElTableColumn
+        type="index"
+        :index="indexMethod"
+        :label="typeof props.index === 'object' && props.index.label"
+        :width="typeof props.index === 'object' && props.index.width"
+        v-if="
+          typeof props.index === 'boolean' ? props.index : !props.index.hide
+        "
+      >
+      </ElTableColumn>
+      <TableColumn
+        v-for="(item, index) in filterColumns"
+        :key="index"
+        v-bind="item"
+      >
+        <template v-if="item.header" #header="scope">
+          <slot name="header" v-bind="scope" />
+        </template>
+        <template v-if="item.slotName" #default="scope">
+          <slot :name="item.slotName" v-bind="scope" />
+        </template>
+      </TableColumn>
+    </ElTable>
+
+    <Pagination
+      v-show="total > 0 && props.pagination"
+      :total="total"
+      @getPage="getPage"
+      :currentPage="currentPage"
+      :pageSize="pageSize"
+      :pageSizes="props.pageSizes"
+      ref="pagination"
+      :layout="props.layout"
+    />
+    <slot name="footer"> </slot>
+  </div>
 </template>
 <script setup lang="ts">
 import { ElTable } from "element-plus";
@@ -153,7 +156,6 @@ columns!
 const pagination = ref();
 //点击查询 查询事件
 const getParams = (data: any) => {
-  pagination.value.currentPage = 1;
   currentPage.value = 1;
   getDataList(data);
 };
@@ -194,5 +196,6 @@ export default {
 <style scoped lang="scss">
 .chris-table {
   margin: 20px 0;
+  padding: 0 20px;
 }
 </style>

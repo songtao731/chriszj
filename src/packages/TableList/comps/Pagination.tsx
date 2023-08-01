@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, ref, watch, watchEffect } from 'vue';
 import { ElPagination } from 'element-plus';
 import '../style/search.scss';
 
@@ -6,7 +6,7 @@ export default defineComponent({
   name: 'pagination',
   inheritAttrs: true,
   emits: ['getPage'],
-  props: ['total','layout','pageSizes'],
+  props: ['total','layout','pageSizes','currentPage'],
   setup(props, { emit }) {
     const total = ref(0);
 
@@ -21,6 +21,9 @@ export default defineComponent({
       currentPage.value = val;
       emit('getPage', { pageSize, currentPage });
     };
+    watchEffect(()=>{
+      currentPage.value=props.currentPage
+    })
 
     return {
       handleCurrentChange,

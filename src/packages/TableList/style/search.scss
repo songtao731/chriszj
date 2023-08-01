@@ -5,6 +5,7 @@
 
   .chris-table-search-btns {
     width: 300px;
+    text-align: right;
   }
 
   .chris-table-search-form.active {
@@ -63,6 +64,7 @@
 .paginaton {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
 @media screen and (min-width: $minwidth) {

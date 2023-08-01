@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { useTable } from "chriszj/chris-ui.mjs";
-
+import { chris } from "chriszj/chris-ui.mjs";
+//实际使用是 import { chris } from "chriszj";
 const tableData = {
   data: {
     rows: [
@@ -36,7 +36,7 @@ console.log(params)
   }, 100);
 })
 }
-const bind = useTable({
+const bind = chris.useTable({
   request:(params)=>request({...params,a:1}),
   //模拟给后端传递参数 分页默认值是pageNum,pageSize
   //这里打印出的是 {pageNum: 1, pageSize: 10, a: 1}

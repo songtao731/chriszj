@@ -4,6 +4,7 @@ import {
   effectScope,
   getCurrentInstance,
   getCurrentScope,
+  init_vue_runtime_esm_bundler,
   inject,
   isReactive,
   isReadonly,
@@ -28,9 +29,11 @@ import {
   version,
   watch,
   watchEffect
-} from "./chunk-254DOEZA.js";
+} from "./chunk-WLQVLJR5.js";
 
 // node_modules/.pnpm/vue-demi@0.14.5_vue@3.3.4/node_modules/vue-demi/lib/index.mjs
+init_vue_runtime_esm_bundler();
+init_vue_runtime_esm_bundler();
 var isVue2 = false;
 var isVue3 = true;
 function set(target, key, val) {
@@ -8249,4 +8252,4 @@ export {
   useWindowScroll,
   useWindowSize
 };
-//# sourceMappingURL=chunk-3TGX3EMO.js.map
+//# sourceMappingURL=chunk-QZZFRAKQ.js.map
