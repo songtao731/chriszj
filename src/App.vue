@@ -1,46 +1,493 @@
 <template>
-  <!-- <TableList v-bind="bind"> </TableList> -->
-  2
+  <div class="about">
 
+    
+    <TableList v-bind="bind" @resetFn="resetFn" ref="oneTable" show-summary :summaryMethod="getSummaries">
+      <template #topheader> 最上部</template>
+      <template #centerheader> 中间 </template>
+      <template #footer> 尾部 </template>
+
+      <template #append> </template>
+      <template #header="scope">
+        <span style="color: red">
+          {{ scope.$index }}
+        </span>
+      </template>
+      <template #age="scope">
+        <span style="color: red">
+          {{ scope.row.promoter }}
+        </span>
+      </template>
+      <template #search>
+        <el-form-item label="活动区域" prop="region">
+          <el-select
+            v-model="ruleForm.region"
+            placeholder="请选择活动区域"
+            @change="getForm"
+            clearable
+          >
+            <el-option
+              v-for="item in data"
+              :key="item"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="活动区域2" prop="region">
+          <el-select
+            v-model="ruleForm.region2"
+            placeholder="请选择活动区域"
+            clearable
+          >
+            <el-option
+              v-for="item in data12"
+              :key="item"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+      </template>
+    </TableList>
+
+    <TableList v-bind="bind2" @resetFn="resetFn" >
+ 
+    </TableList>
+  </div>
 </template>
 
 <script setup lang="ts">
-// import { chris } from "chriszj/chris-ui.mjs";
-//实际使用是 import { chris } from "chriszj";
-// const data = [
-//   {
-//     name: "开始看",
-//     age: "33",
-//     price: 1000221,
-//     date: "1689065097440",
-//     dateTime: "1689065097440",
-//     emun: "1",
-//   },
-//   { name: "算了算了了", age: "29", price: 8382.272, emun: "2" },
-//   { name: "金额", age: "29", price: 0, emun: "3" },
-// ];
+
+import { chris } from "chriszj";
 
 
-// const bind = chris.useTable({
-//   data: data,
-//   columns: [
-//   {
-//       label: "身价",
-//       prop: "requestId",
-//       formatType: "priceChinese",
-//       filter: {
-//         type: "dateRange",
-//         prop: ["sTime", "eTime"],
-//       },
-//     },
-//     {
-//       label: "日期送水",
-//       prop: "date",
-//       width: "120",
-//       filter: "input",
-//     },
-//   ]
+
+import { ref, computed, nextTick } from "vue";
+import { entertainApplicationAddList, travelAddList ,useMockList} from "@/api/index";
+// console.log(TableList,useTable,'BVaann')
+
+const oneTable = ref();
+const ruleForm = ref({
+  region: "",
+  region2: "",
+  region3: ""
+
+});
+const data12 = ref();
+const getForm = (val) => {
+  console.log(val, 123);
+  ruleForm.value.region2 = "";
+
+  setTimeout(() => {
+    data12.value = [
+      { label: "前端2", value: "1" },
+      { label: "后端3", value: "2" },
+      { label: "运维3", value: "3" },
+    ];
+  }, 2000);
+};
+
+const resetFn = () => {
+  console.log(222)
+  Object.keys(ruleForm.value).forEach((el: any) => {
+    ruleForm.value[el] = "";
+  });
+};
+
+const tableData = [
+  {
+    date: "2016-05-02",
+    name: "王小虎",
+    address: "上海市普陀区金沙江路 1518 弄",
+  },
+  {
+    date: "2016-05-04",
+    name: "王小虎",
+    address: "上海市普陀区金沙江路 1517 弄",
+  },
+  {
+    date: "2016-05-01",
+    name: "王小虎",
+    address: "上海市普陀区金沙江路 1519 弄",
+  },
+  {
+    date: "2016-05-03",
+    name: "王小虎",
+    address: "上海市普陀区金沙江路 1516 弄",
+  },
+];
+
+// travelReimbursementAddList({
+//   pageNum: 1,
+//   pageSize: 10,
 // });
 
- 
+const data = ref();
+const data2 = ref();
+
+const fn = () => {
+  setTimeout(() => {
+    data.value = [
+      { label: "前端", value: "1" },
+      { label: "后端", value: "2" },
+      { label: "运维", value: "3" },
+    ];
+    data2.value = [
+      {
+        value: "zhinan",
+        label: "指南",
+        children: [
+          {
+            value: "layout",
+            label: "Layout 布局",
+          },
+          {
+            value: "color",
+            label: "Color 色彩",
+          },
+          {
+            value: "typography",
+            label: "Typography 字体",
+          },
+          {
+            value: "icon",
+            label: "Icon 图标",
+          },
+          {
+            value: "button",
+            label: "Button 按钮",
+          },
+        ],
+      },
+    ];
+  }, 30);
+};
+fn();
+
+console.log(chris,'chrischris')
+const bind = chris.useTable({
+  searchData: ruleForm,
+
+   request: (params) => entertainApplicationAddList({ ...params }),
+   index:{
+    width:'200'
+   },
+  parseData: (row) => {
+    return row.map((el: any) => {
+      return {
+        company: el.principal,
+        ...el,
+      };
+    });
+  },
+  buttons: [
+    {
+      type: "primary",
+      content: "新增",
+      onClick: () => {
+     //   oneTable.value.tableRef.refresh()
+
+        console.log("操作成功",oneTable.value.refresh());
+      },
+    },
+    {
+      type: "success",
+      content: "删除",
+      onClick: () => {
+        console.log("删除操作成功");
+      },
+    },
+  ],
+  // data: [
+  //   {
+  //     name: "开始看",
+  //     age: "33",
+  //     price: 1000221,
+  //     date: "1689065097440",
+  //     dateTime: "1689065097440",
+  //     emun: "1",
+  //   },
+  //   { name: "算了算了了", age: "29", price: 8382.272, emun: "2" },
+  //   { name: "金额", age: "29", price: 0, emun: "3" },
+  // ],
+  columns: [
+    {
+      type: "selection",
+      width:'200px'
+    
+    },
+    {
+      label: "姓名",
+      prop: "company",
+      formatter(row, column, cellValue, index) {
+        return cellValue + index;
+      },
+      filter: {
+        type: "input",
+        placeholder: "流程编号/申请人",
+        prop: "processNoPromoter",
+        label: "姓名",
+      },
+      
+    },
+    {
+      label: "年龄送水",
+      prop: "promoter",
+      slotName: "age",
+      sortable: true,
+      value: ["zhinan", "typography"],
+      filter: {
+        type: "cascader",
+        prop: ["one", "two", "three"],
+        options: computed(() => data2.value),
+      },
+    },
+    {
+      label: "身价",
+      prop: "place",
+
+      filter: {
+        type: "dateRange",
+        prop: ["sTime", "eTime"],
+      },
+    },
+    {
+      label: "日期送水",
+      prop: "date",
+      width: "120",
+      filter: "input",
+    },
+    {
+      label: "千分位上",
+      prop: "updateTime",
+      formatter(row, column, cellValue, index) {
+        return cellValue && cellValue.split(" ")[0];
+      },
+      filter: {
+        prop: ["min", "max"],
+        type: "inputrange",
+      },
+    },
+    {
+      label: "时间",
+      prop: "applicationTime",
+      formatType: "dateTime",
+      filter: {
+        type: "date",
+        hide: true,
+      },
+    },
+    {
+      label: "枚举",
+      prop: "status",
+      dictData: computed(() => data.value),
+      filter: {
+        type: "select",
+        options: computed(() => data.value),
+      },
+      buttons: [
+        {
+          content: "新增",
+          link: true,
+          type: "primary",
+          click(rows) {
+            console.log(rows, "新增");
+          },
+        },
+        {
+          content: "删除",
+          link: true,
+          type: "success",
+          icon:'Delete',
+          click(row) {
+            console.log("删除", oneTable.value.params.newFormData);
+            //  oneTable.value.tableRef.setCurrentRow(row);
+          },
+        },
+      ],
+    },
+  ],
+});
+
+let currentRow = ref();
+const handleCurrentChange = (val) => {
+  console.log(val, "kkkk");
+  currentRow.value = val;
+};
+
+console.log(bind, "使用组件的页面", data, oneTable);
+
+const tableData2 = {
+  code: 200,
+  total:10,
+  data: [
+    {
+      date: "2016-05-02",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1518 弄",
+      time:'1690440269140',
+      money:1283218381.345
+    },
+    {
+      date: "2016-05-04",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1517 弄",
+    },
+    {
+      date: "2016-05-01",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1519 弄",
+    },
+    {
+      date: "2016-05-03",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1516 弄",
+    },    {
+      date: "2016-05-04",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1517 弄",
+    },
+    {
+      date: "2016-05-01",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1519 弄",
+    },
+    {
+      date: "2016-05-03",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1516 弄",
+    },    {
+      date: "2016-05-04",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1517 弄",
+    },
+    {
+      date: "2016-05-01",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1519 弄",
+    },
+    {
+      date: "2016-05-03",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1516 弄",
+    },
+    {
+      date: "2016-05-04",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1517 弄",
+    },
+    {
+      date: "2016-05-01",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1519 弄",
+    },
+    {
+      date: "2016-05-03",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1516 弄",
+    },
+  ],
+};
+
+var promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(tableData2);
+  }, 10);
+});
+const bind2 = chris.useTable({
+  request: () => promise,
+  path: "data",
+  toTalPath:'total',
+  columns: [
+    {
+      prop: "name",
+      label: "姓名",
+      filter:{
+        type:'dateRange',
+        
+      },
+      header:true
+    },
+    {
+      prop:'time',
+      label:'时间',
+      formatType:'date',
+      filter:'input'
+      
+    },
+    {
+      prop:'time',
+      label:'时间',
+      formatType:'date',
+      filter:'input'
+      
+    },
+    {
+
+      label:'金钱',
+      formatType:'price',
+      buttons: [
+        {
+          content: "新增",
+          link: true,
+          type: "primary",
+          click(rows) {
+            console.log(rows, "新增");
+          },
+        },
+        {
+          content: "删除",
+          link: true,
+          type: "success",
+          icon:'Delete',
+          click(row) {
+            console.log("删除", row);
+            //  oneTable.value.tableRef.setCurrentRow(row);
+          },
+        },
+      ],
+      
+    }
+    
+  ],
+});
+
+const getSummaries = (param) => {
+  const { columns, data } = param
+  const sums: string[] = []
+  columns.forEach((column, index) => {
+    if (index === 0) {
+      sums[index] = 'Total Cost'
+      return
+    }
+    const values = data.map((item) => Number(item[column.property]))
+    if (!values.every((value) => Number.isNaN(value))) {
+      sums[index] = `$ ${values.reduce((prev, curr) => {
+        const value = Number(curr)
+        if (!Number.isNaN(value)) {
+          return prev + curr
+        } else {
+          return prev
+        }
+      }, 0)}`
+    } else {
+      sums[index] = '--'
+    }
+  })
+
+  return sums
+}
+
+console.log(oneTable,'oneTable')
 </script>
+
+<style>
+/* @media (min-width: 1024px) {
+  .about {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+} */
+</style>

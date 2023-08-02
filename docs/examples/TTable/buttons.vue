@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { chris } from "chriszj/chris-ui.mjs";
+import { chris } from "chriszj";
 //实际使用是 import { chris } from "chriszj";
 
 const tableData = [

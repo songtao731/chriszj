@@ -15,6 +15,7 @@ export { TableList,TableLists,chris };
 
 const component = [TableList,TableLists];
 
+
 const install = {
 	install(App:App) {
 		component.forEach((item) => {

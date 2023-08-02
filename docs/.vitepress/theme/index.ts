@@ -12,6 +12,9 @@ import { VPDemo } from '../vitepress'
 //import TuiPlus from '../../../packages'
 import TuiPlus from '../../../src/packages'
 
+import Chriszj from '../../../src/packages'
+import "../../../src/packages/TableList/style/search.scss";
+
 import '../../public/css/index.css'
 
 export default {
@@ -27,7 +30,7 @@ export default {
       ctx.app.component(key, component)
     }
     // 全局注册基础组件
-   ctx.app.use(ElementPlus).use(TuiPlus)
+   ctx.app.use(ElementPlus).use(Chriszj)
 
     ctx.app.component('Demo', VPDemo)
   },

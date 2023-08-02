@@ -15,6 +15,19 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig({
+  base: './',
+  server: {
+    open: false,//启动项目自动弹出浏览器
+    hmr: true, //开启热加载
+    proxy: {
+      "/api": {
+        target: 'https://zyn.zhidianjh.com',
+        changeOrigin: true,
+        rewrite: (path:any) => path.replace(/^\/api/, "/api")
+    },
+    },
+ 
+  },
   plugins: [
     vue(),
     vueJsx(),

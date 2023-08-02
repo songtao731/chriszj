@@ -30,6 +30,8 @@ export default defineConfig({
           text: '常用组件',
           items: [
             { text: 'Table组件', link: '/components/TTable/base.md' },
+            { text: 'Tables组件', link: '/components/TTables/base.md' },
+
           ],
         }
       ],

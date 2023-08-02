@@ -1,62 +1,56 @@
 {
-  "hash": "e8af6e9b",
-  "browserHash": "246b09ac",
+  "hash": "73c7fbf3",
+  "browserHash": "6596205b",
   "optimized": {
     "vue": {
-      "src": "../../../../node_modules/.pnpm/vue@3.3.4/node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "e09b45b1",
+      "fileHash": "41beaca7",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
-      "src": "../../../../node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/index.js",
+      "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "87edb307",
+      "fileHash": "044d06d5",
       "needsInterop": false
     },
     "element-plus": {
-      "src": "../../../../node_modules/.pnpm/element-plus@2.3.8_vue@3.3.4/node_modules/element-plus/es/index.mjs",
+      "src": "../../../../node_modules/element-plus/es/index.mjs",
       "file": "element-plus.js",
-      "fileHash": "1230d86a",
+      "fileHash": "030ed028",
       "needsInterop": false
     },
     "@element-plus/icons-vue": {
-      "src": "../../../../node_modules/.pnpm/@element-plus+icons-vue@2.1.0_vue@3.3.4/node_modules/@element-plus/icons-vue/dist/index.js",
+      "src": "../../../../node_modules/@element-plus/icons-vue/dist/index.js",
       "file": "@element-plus_icons-vue.js",
-      "fileHash": "0324b37a",
+      "fileHash": "7ba1d0b4",
       "needsInterop": false
     },
     "@vueuse/core": {
-      "src": "../../../../node_modules/.pnpm/@vueuse+core@9.13.0_vue@3.3.4/node_modules/@vueuse/core/index.mjs",
+      "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "1ed73694",
+      "fileHash": "1957f00d",
       "needsInterop": false
     },
     "chriszj": {
-      "src": "../../../../node_modules/.pnpm/chriszj@1.0.9/node_modules/chriszj/chris-ui.umd.js",
+      "src": "../../../../node_modules/chriszj/chris-ui.mjs",
       "file": "chriszj.js",
-      "fileHash": "0c4ca33d",
-      "needsInterop": true
-    },
-    "chriszj/chris-ui.mjs": {
-      "src": "../../../../node_modules/.pnpm/chriszj@1.0.9/node_modules/chriszj/chris-ui.mjs",
-      "file": "chriszj_chris-ui__mjs.js",
-      "fileHash": "21618768",
+      "fileHash": "2c2cf7dd",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-QZZFRAKQ": {
-      "file": "chunk-QZZFRAKQ.js"
+    "chunk-PEZMLLGD": {
+      "file": "chunk-PEZMLLGD.js"
     },
-    "chunk-R5UTLQ63": {
-      "file": "chunk-R5UTLQ63.js"
+    "chunk-HPDQDT7C": {
+      "file": "chunk-HPDQDT7C.js"
     },
-    "chunk-WLQVLJR5": {
-      "file": "chunk-WLQVLJR5.js"
+    "chunk-IYO332YY": {
+      "file": "chunk-IYO332YY.js"
     },
-    "chunk-ROME4SDB": {
-      "file": "chunk-ROME4SDB.js"
+    "chunk-UXIASGQL": {
+      "file": "chunk-UXIASGQL.js"
     }
   }
 }
