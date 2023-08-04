@@ -33,6 +33,7 @@ export default defineComponent({
     const screenWidth = ref();
     const isShow = ref(false);
     const showName = ref("展开");
+    const selwidth=ref()
     //判断是否展示 展开按钮
     const getNum = (width: number, num: number) => {
       if (width > +variables.maxwidth.replace(/[^\d]/gi, "")) {
@@ -44,7 +45,10 @@ export default defineComponent({
     //获取屏幕可视化宽度
     onMounted(() => {
 
-      screenWidth.value = document.body.clientWidth;
+     
+     
+   //   screenWidth.value = document.body.clientWidth;
+      screenWidth.value = document.querySelector('.chris-table-search')?.clientWidth
       const searchDataLength=slots?.search()[0].children?.length as number||0;
       getNum(screenWidth.value, searchList.value.length+searchDataLength);
       //实时改变浏览器宽度和高度
@@ -130,10 +134,11 @@ export default defineComponent({
       showName,
       changeName,
       slots,
+      selwidth
     });
     return () => (
       <>
-        <div class="chris-table-search">
+        <div ref='selwidth' class="chris-table-search">
           <ElForm
             model={formData}
             ref={searchFormRef}

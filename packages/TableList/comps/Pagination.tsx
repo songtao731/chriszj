@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch, watchEffect } from 'vue';
+import { defineComponent, ref, watchEffect } from 'vue';
 import { ElPagination } from 'element-plus';
 import '../style/search.scss';
 
@@ -30,7 +30,8 @@ export default defineComponent({
       handleSizeChange,
       pageSize,
       currentPage,
-      props
+      props,
+      total
     };
   },
   render() {

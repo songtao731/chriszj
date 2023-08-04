@@ -59,13 +59,13 @@
 
 <script setup lang="ts">
 
-import { chris } from "chriszj";
+import { chris} from "chriszj";
 
 
 
 import { ref, computed, nextTick } from "vue";
 import { entertainApplicationAddList, travelAddList ,useMockList} from "@/api/index";
-// console.log(TableList,useTable,'BVaann')
+
 
 const oneTable = ref();
 const ruleForm = ref({
@@ -165,7 +165,6 @@ const fn = () => {
 };
 fn();
 
-console.log(chris,'chrischris')
 const bind = chris.useTable({
   searchData: ruleForm,
 

@@ -19,11 +19,11 @@
 
     <Buttons :buttons="props.buttons"> </Buttons>
     <ElTable
-      v-bind="props"
       :data="dataList"
       style="width: 100%"
       v-on="tableEvents"
       ref="tableRef"
+      
     >
       <template #empty>
         <slot name="empty"></slot>
@@ -71,15 +71,15 @@
 <script setup lang="ts">
 import { ElTable } from "element-plus";
 import { computed, ref, onMounted, toRefs, unref, defineExpose } from "vue";
-import TableColumn from "./comps/TableColumn.vue";
-import Search from "./comps/SearchTsx";
-import Pagination from "./comps/Pagination";
-import Buttons from "./comps/Buttons.vue";
+import TableColumn from "./TableColumn.vue";
+import Search from "./SearchTsx";
+import Pagination from "./Pagination";
+import Buttons from "./Buttons.vue";
 
-import type { Filter } from "./comps/TableColumnItem";
+import type { Filter } from "./TableColumnItem";
 
-import { vepTableEmits, TableProps } from "./comps/Table";
-import { getPath } from "./utils/index";
+import { vepTableEmits, TableProps } from "./Table";
+import { getPath } from "../utils/index";
 //表格所有事件
 const emit = defineEmits({ ...vepTableEmits, resetFn: () => {} });
 //表格属性

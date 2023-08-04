@@ -1,8 +1,10 @@
 import type { TableColumnCtx } from "element-plus/es/components/table/src/table-column/defaults";
-import type { ElTooltipProps } from "@element-plus";
+
 
 import { NewTableColumn } from "./TableColumnItem";
 import { NewTable } from "./TableNew";
+import { Sort,TreeNode } from "./Pride";
+
 
 type ComponentSize = "large" | "default" | "small";
 
@@ -13,6 +15,11 @@ import type {
   Ref,
   VNode,
 } from "vue";
+import TableLayout from "element-plus/es/components/table/src/table-layout";
+import { Store } from "element-plus/es/components/table/src/store";
+import { ElTooltipProps } from "element-plus/es/components";
+
+
 
 export type DefaultRow = any;
 
@@ -43,7 +50,7 @@ type RenderExpanded<T> = ({
   row,
   $index,
   store,
-  expanded: boolean,
+  expanded,
 }: RIS<T>) => VNode;
 
 interface Table<T> extends ComponentInternalInstance {
@@ -80,12 +87,7 @@ type CellStyle<T> =
       columnIndex: number;
     }) => CSSProperties);
 
-interface Sort {
-  prop: string;
-  order: "ascending" | "descending";
-  init?: any;
-  silent?: any;
-}
+
 
 type TableOverflowTooltipOptions = Partial<
   Pick<
@@ -102,14 +104,7 @@ type TableOverflowTooltipOptions = Partial<
     // | 'transition'
   >
 >;
-interface TreeNode {
-  expanded?: boolean;
-  loading?: boolean;
-  noLazyChildren?: boolean;
-  indent?: number;
-  level?: number;
-  display?: boolean;
-}
+
 
 export interface TableProps<T> {
   data: T[];
@@ -180,7 +175,7 @@ export const TableProps = {
   },
   ref: [String,Function],
   columns: Array<NewTableColumn<any>>,
-  size: String,
+  size: String as PropType<TableProps<DefaultRow>["size"]>,
   width: [String, Number],
   height: [String, Number],
   maxHeight: [String, Number],

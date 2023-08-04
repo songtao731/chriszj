@@ -45,15 +45,15 @@
     </el-tabs>
   </div>
 </template>
-<script setup lang="ts" name="TableLists">
-import { vepTableEmits, TableProps } from "../TableList/comps/Table";
-import { TabsProps } from "./comps/TabsProps";
-import { TableLists } from "./comps/Tables";
+<script setup lang="ts">
+import { vepTableEmits, TableProps } from "../../TableList/comps/Table";
+import { TabsProps,tabsRefs } from "../comps/TabsProps";
+import { TableLists } from "../comps/Tables";
 
 import { ComputedRef, mergeProps, watchEffect } from "vue";
 
 import { computed, ref, onMounted, toRefs, unref, defineExpose } from "vue";
-import TableList from "../TableList/TableList.vue";
+import TableList from "../../TableList/comps/index.vue";
 
 
 const props = defineProps({ ...TableLists, ...TabsProps });
@@ -88,9 +88,7 @@ const activeName = ref(tabsProps.value.activeName);
 
 const tableProps = ref({});
 
-interface tabsRefs {
-  [key: string]: any;
-}
+
 const tabsRefs: tabsRefs = ref({});
 //清空查询条件
 const resetFn = () => {
@@ -111,7 +109,7 @@ defineExpose({
 </script>
 <script lang="ts">
 export default {
-  name: "TableLists",
+  name:'TableLists'
 };
 </script>
 

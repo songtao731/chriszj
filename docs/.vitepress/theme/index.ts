@@ -10,10 +10,10 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import { VPDemo } from '../vitepress'
 // 基于element-plus二次封装基础组件
 //import TuiPlus from '../../../packages'
-import TuiPlus from '../../../src/packages'
+import TuiPlus from '../../../packages'
 
-import Chriszj from '../../../src/packages'
-import "../../../src/packages/TableList/style/search.scss";
+import Chriszj from '../../../packages'
+import "../../../packages/TableList/style/search.scss";
 
 import '../../public/css/index.css'
 

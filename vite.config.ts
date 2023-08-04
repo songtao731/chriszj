@@ -9,10 +9,9 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import path from "path";
-//解决setup语法 名称的问题
-import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 // https://vitejs.dev/config/
 import dts from 'vite-plugin-dts'
+import viteCompression from 'vite-plugin-compression' // 静态资源压缩
 
 export default defineConfig({
   base: './',
@@ -30,16 +29,21 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    dts(),
     vueJsx(),
+    viteCompression({
+      verbose: true,
+      disable: false, // 不禁用压缩
+      deleteOriginFile: false, // 压缩后是否删除原文件
+      threshold: 10240, // 压缩前最小文件大小
+      algorithm: 'gzip', // 压缩算法
+      ext: '.gz', // 文件类型
+    }),
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),
     Components({
       resolvers: [ElementPlusResolver()],
-    }),
-    VueSetupExtend(),
-    dts({
-      include:'src/packages'
     })
   ],
   resolve: {
@@ -48,11 +52,11 @@ export default defineConfig({
     },
   },
   build: {
-		outDir: "dist", //输出文件名称
+		outDir: "lib", //输出文件名称
 		lib: {
-			entry: path.resolve(__dirname, "./src/packages/index.ts"), //指定组件编译入口文件
+			entry: path.resolve(__dirname, "./packages/index.ts"), //指定组件编译入口文件
 			name: "chris-ui",
-			fileName: "chris-ui",
+			fileName:'chris-ui',
 		}, //库编译模式配置
 		rollupOptions: {
 			// 确保外部化处理那些你不想打包进库的依赖
@@ -63,6 +67,7 @@ export default defineConfig({
 					vue: "Vue",
 				},
 			},
+      treeshake:false
 		}, // rollup打包配置
 	},
   css: {
