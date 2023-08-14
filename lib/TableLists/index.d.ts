@@ -357,7 +357,7 @@ declare const TableLists: ({
             onCurrentChange?: ((currentRow: any, oldCurrentRow: any) => any) | undefined;
             onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
         }, {
-            tableRef: tabsRefs;
+            tableRef: import("./comps/TabsProps").tabsRefs;
         }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
             resetFn: () => void;
             select: (selection: any[], row: any) => boolean;
@@ -666,7 +666,7 @@ declare const TableLists: ({
         onCurrentChange?: ((currentRow: any, oldCurrentRow: any) => any) | undefined;
         onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
     } & import("vue").ShallowUnwrapRef<{
-        tableRef: tabsRefs;
+        tableRef: import("./comps/TabsProps").tabsRefs;
     }> & {} & import("vue").ComponentCustomProperties & {};
     __isFragment?: undefined;
     __isTeleport?: undefined;
@@ -925,7 +925,7 @@ declare const TableLists: ({
     onCurrentChange?: ((currentRow: any, oldCurrentRow: any) => any) | undefined;
     onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
 }, {
-    tableRef: tabsRefs;
+    tableRef: import("./comps/TabsProps").tabsRefs;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     resetFn: () => void;
     select: (selection: any[], row: any) => boolean;

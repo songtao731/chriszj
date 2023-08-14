@@ -52,7 +52,7 @@ import { TableLists } from "../comps/Tables";
 
 import { ComputedRef, mergeProps, watchEffect } from "vue";
 
-import { computed, ref, onMounted, toRefs, unref, defineExpose } from "vue";
+import { computed, ref, defineExpose } from "vue";
 import TableList from "../../TableList/comps/index.vue";
 
 

@@ -30,8 +30,7 @@ export default defineComponent({
       handleSizeChange,
       pageSize,
       currentPage,
-      props,
-      total
+      props
     };
   },
   render() {

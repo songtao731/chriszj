@@ -1346,12 +1346,12 @@ check-error@^1.0.2:
   optionalDependencies:
     fsevents "~2.3.2"
 
-chriszj@^1.1.8:
-  version "1.1.8"
-  resolved "https://registry.npmjs.org/chriszj/-/chriszj-1.1.8.tgz"
-  integrity sha512-b70r1dJ0c0UApa9/0/sqm2EGXMC+OzlU3WDdPFU2tEMt6CaXlHIbhCtBPPxTXOoijKJIW7NkEn01u6lEUk9X3g==
+chriszj@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.npmjs.org/chriszj/-/chriszj-1.4.4.tgz#66affc47c09e2560f5fc3a853fe244582c1c971e"
+  integrity sha512-8lUYCumUr1wSXGiegvuvbWW5gaw0NVQhXgMYhAOj/IPwgUHsDZNY3eUgdin95DZYaADXm6OgpRVZ9dKhiBYsLQ==
   dependencies:
-    chriszj "^1.1.8"
+    chriszj "^1.4.4"
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -3318,6 +3318,13 @@ vue-demi@*, vue-demi@>=0.14.5:
   version "0.14.5"
   resolved "https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.5.tgz"
   integrity sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==
+
+vue-router@4.2.4:
+  version "4.2.4"
+  resolved "https://registry.npmjs.org/vue-router/-/vue-router-4.2.4.tgz#382467a7e2923e6a85f015d081e1508052c191b9"
+  integrity sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ==
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
 
 vue-template-compiler@^2.7.14:
   version "2.7.14"

@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/st/.nvm/versions/node/v16.16.0/bin/node /Users/st/.nvm/versions/node/v16.16.0/bin/yarn add Volar
+  /Users/st/.nvm/versions/node/v16.16.0/bin/node /Users/st/.nvm/versions/node/v16.16.0/bin/yarn add vue-router
 
 PATH: 
   /usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/st/.nvm/versions/node/v16.16.0/bin:/usr/local/sbin
@@ -14,30 +14,19 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.npmjs.org/Volar: Not found
-      at Request.params.callback [as _callback] (/Users/st/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:66145:18)
-      at Request.self.callback (/Users/st/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:140890:22)
-      at Request.emit (node:events:527:28)
-      at Request.<anonymous> (/Users/st/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:141862:10)
-      at Request.emit (node:events:527:28)
-      at IncomingMessage.<anonymous> (/Users/st/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:141784:12)
-      at Object.onceWrapper (node:events:641:28)
-      at IncomingMessage.emit (node:events:539:35)
-      at endReadableNT (node:internal/streams/readable:1345:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  Error: ENOENT: no such file or directory, copyfile '/Users/st/Library/Caches/Yarn/v6/npm-minimatch-3.1.2-integrity/node_modules/minimatch/LICENSE' -> '/Users/st/vite/buildio/node_modules/npm-run-all/node_modules/minimatch/LICENSE'
 
 npm manifest: 
   {
     "name": "build",
     "version": "0.0.0",
-    "private": true,
-    "main": "/dist/chris-ui.mjs",
-    "module": "/dist/chris-ui.mjs",
+    "private": false,
+    "main": "/lib/chris-ui.js",
     "type": "module",
-    "types": "/dist/index.d.ts",
+    "types": "/lib/index.d.ts",
     "scripts": {
       "dev": "vite",
-      "build": "run-p build-only",
+      "build": "run-p  build-only",
       "preview": "vite preview",
       "test:unit": "vitest",
       "build-only": "vite build",

@@ -59,3 +59,6 @@ export const TabsProps = {
     },
   },
 };
+export interface tabsRefs {
+  [key: string]: any;
+}

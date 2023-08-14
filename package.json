@@ -14,13 +14,13 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "deploy": "./deploy.sh"
+    "docs": "./deploy.sh"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "axios": "^1.4.0",
     "chalk": "4.1.2",
-    "chriszj": "^1.1.8",
+    "chriszj": "^1.4.4",
     "consola": "^3.2.3",
     "element-plus": "^2.3.8",
     "escape-html": "^1.0.3",
@@ -31,7 +31,8 @@
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vitepress": "^1.0.0-beta.6",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-router": "4.2.4"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.0",

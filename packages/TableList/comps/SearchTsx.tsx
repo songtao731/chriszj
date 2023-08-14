@@ -33,29 +33,36 @@ export default defineComponent({
     const screenWidth = ref();
     const isShow = ref(false);
     const showName = ref("展开");
-    const selwidth=ref()
+    //可视搜索条件宽度大于1500就展示4个
+    const isShowMax = ref(false);
+
     //判断是否展示 展开按钮
     const getNum = (width: number, num: number) => {
+      isShowMax.value = width > 1500;
+
       if (width > +variables.maxwidth.replace(/[^\d]/gi, "")) {
         isShow.value = num > 4;
       } else {
+        console.log("nm");
         isShow.value = num > 3;
       }
     };
     //获取屏幕可视化宽度
     onMounted(() => {
-
-     
-     
-   //   screenWidth.value = document.body.clientWidth;
-      screenWidth.value = document.querySelector('.chris-table-search')?.clientWidth
-      const searchDataLength=slots?.search()[0].children?.length as number||0;
-      getNum(screenWidth.value, searchList.value.length+searchDataLength);
+      //   screenWidth.value = document.body.clientWidth;
+      screenWidth.value = document.querySelector(
+        ".chris-table-search"
+      )?.clientWidth;
+      const searchDataLength =
+        (slots?.search()[0].children?.length as number) || 0;
+      getNum(screenWidth.value, searchList.value.length + searchDataLength);
       //实时改变浏览器宽度和高度
       window.onresize = () => {
         return (() => {
-          screenWidth.value = document.body.clientWidth;
-          getNum(screenWidth.value, searchList.value.length+searchDataLength);
+          screenWidth.value = document.querySelector(
+            ".chris-table-search"
+          )?.clientWidth;
+          getNum(screenWidth.value, searchList.value.length + searchDataLength);
         })();
       };
     });
@@ -100,12 +107,15 @@ export default defineComponent({
           newFormData.value[el] = formData[el] || null;
         }
       });
-          //添加自定义搜索条件
-      if(props.searchData){
-        newFormData.value=Object.assign(newFormData.value,unref(props.searchData))
+      //添加自定义搜索条件
+      if (props.searchData) {
+        newFormData.value = Object.assign(
+          newFormData.value,
+          unref(props.searchData)
+        );
       }
 
-      emit("getParams", { ...newFormData.value});
+      emit("getParams", { ...newFormData.value });
     };
     const searchForm = ref();
     const searchFormRef = ref();
@@ -134,11 +144,11 @@ export default defineComponent({
       showName,
       changeName,
       slots,
-      selwidth
+      isShowMax,
     });
     return () => (
       <>
-        <div ref='selwidth' class="chris-table-search">
+        <div class="chris-table-search">
           <ElForm
             model={formData}
             ref={searchFormRef}
@@ -146,8 +156,8 @@ export default defineComponent({
             class={[
               {
                 active: showName.value === "展开",
-
                 "chris-table-search-form": true,
+                max: isShowMax.value,
               },
             ]}
           >

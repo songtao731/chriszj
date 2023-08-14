@@ -1,5 +1,6 @@
 import TableList from "./TableList";
-import Ups from "./Up";
+import TableLists from "./TableLists";
+import Tupload from "./Tupload";
 import { App } from "vue";
 declare const chris: {
     useTable: (args: import("./TableList").Args) => import("./TableList").Args;
@@ -22,7 +23,7 @@ declare const chris: {
         table: (parms: any) => import("./TableList").Args;
     };
 };
-export { TableList, Ups, chris };
+export { TableList, TableLists, Tupload, chris };
 declare const install: {
     install(App: App<any>): void;
 };

@@ -14,15 +14,22 @@
     "lib": ["esnext", "dom"],
     "baseUrl": "./",
     "paths": {
+      "$": [
+        "packages/*"
+      ],
+      "$/*": [
+        "packages/*"
+      ],
       "@": [
-        "packages"
+        "src/*"
       ],
       "@/*": [
-        "packages/*"
+        "src/*"
       ]
     },
     "jsxImportSource":"vue",
-    "declaration": false
+    "types": ["chriszj/components"]
+
     
   },
   "include": [
@@ -30,10 +37,7 @@
     "packages/**/*.d.ts",
     "packages/**/*.tsx",
     "packages/**/*.vue",
-    "packages/*.d.ts",
-    "*.ts"
-
-    
+    "packages/*.d.ts"    
   ],
   "exclude": [
     "node_modules"

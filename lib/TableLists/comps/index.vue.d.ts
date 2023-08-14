@@ -1,3 +1,4 @@
+import { tabsRefs } from "../comps/TabsProps";
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     tabs: {
         type: ObjectConstructor;

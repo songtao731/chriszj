@@ -67,17 +67,27 @@
   margin-top: 20px;
 }
 
-@media screen and (min-width: $minwidth) {
-  .el-form-item {
-    width: 33.33%;
-    margin-bottom: 20px;
+// @media screen and (min-width: $minwidth) {
+//   .el-form-item {
+//     width: 33.33%;
+//     margin-bottom: 20px;
+//   }
+// }
+
+// // 中屏一行显示5个 写到下面会覆盖掉上面的样式
+// @media screen and (min-width: $maxwidth) {
+//   .el-form-item {
+//     width: 25%;
+//     margin-bottom: 20px;
+//   }
+// }
+
+.chris-table-search-form.max {
+  .el-form-item.max {
+    width: 25%;
   }
 }
-
-// 中屏一行显示5个 写到下面会覆盖掉上面的样式
-@media screen and (min-width: $maxwidth) {
-  .el-form-item {
-    width: 25%;
-    margin-bottom: 20px;
-  }
+.el-form-item {
+  width: 33.33%;
+  margin-bottom: 20px;
 }

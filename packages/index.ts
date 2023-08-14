@@ -1,21 +1,19 @@
-
-
 import TableList from "./TableList";
-import { useTable } from "./TableList/comps/useTable";
 import TableLists from "./TableLists";
-import Ups from "./Up";
+import Tupload from "./Tupload";
 
+import { useTable } from "./TableList/comps/useTable";
 import { useTables } from "./TableLists/comps/useTables";
 
 import { App } from "vue";
 const chris = {
   useTable,
-  useTables
+  useTables,
 };
 // 按需引入
-export { TableList,Ups, chris };
+export { TableList, TableLists, Tupload, chris };
 
-const component = [TableList,TableLists,Ups];
+const component = [TableList, TableLists, Tupload];
 
 const install = {
   install(App: App) {

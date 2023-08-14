@@ -60,3 +60,6 @@ export declare const TabsProps: {
         };
     };
 };
+export interface tabsRefs {
+    [key: string]: any;
+}
