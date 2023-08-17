@@ -96,10 +96,10 @@ request.interceptors.response.use(
         return data;
       } else {
 
-        return Promise.reject(data.msg);
+      //  return Promise.reject(data.msg);
       }
     } else {
-      return Promise.reject("接口请求错误");
+      // return Promise.reject("接口请求错误");
     }
   },
   (error) => {

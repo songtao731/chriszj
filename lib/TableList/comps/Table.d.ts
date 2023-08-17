@@ -210,7 +210,10 @@ export declare const TableProps: {
     headerCellStyle: PropType<CellStyle<any> | undefined>;
     highlightCurrentRow: BooleanConstructor;
     currentRowKey: (StringConstructor | NumberConstructor)[];
-    emptyText: StringConstructor;
+    emptyText: {
+        type: StringConstructor;
+        default: string;
+    };
     expandRowKeys: PropType<any[] | undefined>;
     defaultExpandAll: BooleanConstructor;
     defaultSort: PropType<Sort | undefined>;

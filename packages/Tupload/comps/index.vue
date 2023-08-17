@@ -1,51 +1,59 @@
 <template>
-  <PictureCard
-    v-if="props.listType === 'picture-card'"
-    v-bind="props"
-    :on-exceed="onExceed"
-    :before-upload="beforeAvatarUpload"
-    :on-success="onSuccess"
-    ref="pictureCardRef"
-    v-model:fileList="fileList"
-  >
-  </PictureCard>
-  <PicturText
-    v-if="props.listType === 'text'"
-    v-bind="props"
-    :on-exceed="onExceed"
-    :before-upload="beforeAvatarUpload"
-    :on-success="onSuccess"
-    ref="pictureCardRef"
-    v-model:fileList="fileList"
-  >
-    <slot></slot>
-    <slot name="file"> </slot> <slot name="tip"> </slot>
-    <slot name="trigger"> </slot>
-  </PicturText>
-  <PictureUpload
-    v-if="props.listType === 'picture'"
-    v-bind="props"
-    :on-exceed="onExceed"
-    :before-upload="beforeAvatarUpload"
-    :on-success="onSuccess"
-    ref="pictureCardRef"
-    v-model:fileList="fileList"
-  >
-    <slot></slot>
-    <slot name="file"> </slot> <slot name="tip"> </slot>
-    <slot name="trigger"> </slot>
-  </PictureUpload>
+
+    <PictureCard
+      v-if="props.listType === 'picture-card'"
+      v-bind="props"
+      :on-exceed="onExceed"
+      :before-upload="beforeAvatarUpload"
+      :on-success="onSuccess"
+      ref="pictureCardRef"
+      v-model:fileList="fileList"
+    >
+    </PictureCard>
+    <PicturText
+      v-if="props.listType === 'text'"
+      v-bind="props"
+      :on-exceed="onExceed"
+      :before-upload="beforeAvatarUpload"
+      :on-success="onSuccess"
+      ref="pictureCardRef"
+      v-model:fileList="fileList"
+    >
+      <slot></slot>
+      <slot name="file"> </slot> <slot name="tip"> </slot>
+      <slot name="trigger"> </slot>
+    </PicturText>
+    <PictureUpload
+      v-if="props.listType === 'picture'"
+      v-bind="props"
+      :on-exceed="onExceed"
+      :before-upload="beforeAvatarUpload"
+      :on-success="onSuccess"
+      ref="pictureCardRef"
+      v-model:fileList="fileList"
+    >
+      <slot></slot>
+      <slot name="file"> </slot> <slot name="tip"> </slot>
+      <slot name="trigger"> </slot>
+    </PictureUpload>
 </template>
 <script lang="ts" setup>
 import PictureCard from "./Picture-card.vue";
 import PicturText from "./Text.vue";
 import PictureUpload from "./Picture.vue";
 
-
 import { uploadProps } from "./upload";
+
 import { ref, computed } from "vue";
-import { ElMessage, UploadFile, UploadFiles, UploadProps } from "element-plus";
+import {
+  ElMessage,
+  UploadFile,
+  UploadProps,
+  UploadUserFile,
+} from "element-plus";
 const props = defineProps(uploadProps);
+
+
 const emit = defineEmits(["update:fileList"]);
 
 const pictureCardRef = ref();
@@ -86,7 +94,7 @@ const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
   }
 };
 
-const onExceed = (files: File[], uploadFiles: UploadFiles) => {
+const onExceed = (files: File[], uploadFiles: UploadUserFile[]) => {
   if (props.onExceed.length) {
     props.onExceed(files, uploadFiles);
   } else {

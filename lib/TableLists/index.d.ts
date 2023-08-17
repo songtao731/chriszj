@@ -270,7 +270,10 @@ declare const TableLists: ({
                     }) => import("vue").CSSProperties)) | undefined>;
                     highlightCurrentRow: BooleanConstructor;
                     currentRowKey: (StringConstructor | NumberConstructor)[];
-                    emptyText: StringConstructor;
+                    emptyText: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                     expandRowKeys: import("vue").PropType<any[] | undefined>;
                     defaultExpandAll: BooleanConstructor;
                     defaultSort: import("vue").PropType<import("../TableList/comps/Pride").Sort | undefined>;
@@ -579,7 +582,10 @@ declare const TableLists: ({
                 }) => import("vue").CSSProperties)) | undefined>;
                 highlightCurrentRow: BooleanConstructor;
                 currentRowKey: (StringConstructor | NumberConstructor)[];
-                emptyText: StringConstructor;
+                emptyText: {
+                    type: StringConstructor;
+                    default: string;
+                };
                 expandRowKeys: import("vue").PropType<any[] | undefined>;
                 defaultExpandAll: BooleanConstructor;
                 defaultSort: import("vue").PropType<import("../TableList/comps/Pride").Sort | undefined>;
@@ -838,7 +844,10 @@ declare const TableLists: ({
             }) => import("vue").CSSProperties)) | undefined>;
             highlightCurrentRow: BooleanConstructor;
             currentRowKey: (StringConstructor | NumberConstructor)[];
-            emptyText: StringConstructor;
+            emptyText: {
+                type: StringConstructor;
+                default: string;
+            };
             expandRowKeys: import("vue").PropType<any[] | undefined>;
             defaultExpandAll: BooleanConstructor;
             defaultSort: import("vue").PropType<import("../TableList/comps/Pride").Sort | undefined>;

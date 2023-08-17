@@ -1,6 +1,8 @@
 import TableList from "./TableList";
 import TableLists from "./TableLists";
 import Tupload from "./Tupload";
+import Timgs from "./Timgs";
+import Tform from "./Tform";
 import { App } from "vue";
 declare const chris: {
     useTable: (args: import("./TableList").Args) => import("./TableList").Args;
@@ -22,8 +24,9 @@ declare const chris: {
         };
         table: (parms: any) => import("./TableList").Args;
     };
+    useForm: (args: import("./Tform/comp/useForm").Args) => import("./Tform/comp/useForm").Args;
 };
-export { TableList, TableLists, Tupload, chris };
+export { TableList, TableLists, Tupload, Timgs, Tform, chris };
 declare const install: {
     install(App: App<any>): void;
 };

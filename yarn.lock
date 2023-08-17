@@ -1346,12 +1346,12 @@ check-error@^1.0.2:
   optionalDependencies:
     fsevents "~2.3.2"
 
-chriszj@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.npmjs.org/chriszj/-/chriszj-1.4.4.tgz#66affc47c09e2560f5fc3a853fe244582c1c971e"
-  integrity sha512-8lUYCumUr1wSXGiegvuvbWW5gaw0NVQhXgMYhAOj/IPwgUHsDZNY3eUgdin95DZYaADXm6OgpRVZ9dKhiBYsLQ==
+chriszj@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.npmjs.org/chriszj/-/chriszj-1.5.3.tgz#881c9028757f6b3114c4cbd645fccf30ecd6430f"
+  integrity sha512-dS2eT06WYHXj6VH/hdAPpTePek1KfY7TTDl8DexMxQWmW2BU6r0zu7qyTfcFs4xiTHWjSeOr/4i5G9q7B3/IbA==
   dependencies:
-    chriszj "^1.4.4"
+    chriszj "^1.5.3"
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -1523,10 +1523,10 @@ electron-to-chromium@^1.4.431:
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.470.tgz"
   integrity sha512-zZM48Lmy2FKWgqyvsX9XK+J6FfP7aCDUFLmgooLJzA7v1agCs/sxSoBpTIwDLhmbhpx9yJIxj2INig/ncjJRqg==
 
-element-plus@^2.3.8:
-  version "2.3.8"
-  resolved "https://registry.npmjs.org/element-plus/-/element-plus-2.3.8.tgz"
-  integrity sha512-yHQR0/tG2LvPkpGUt7Te/hPmP2XW/BytBNUbx+EFO54VnGCOE3upmQcVffNp1PLgwg9sthYDXontUWpnpmLPJw==
+element-plus@^2.3.9:
+  version "2.3.9"
+  resolved "https://registry.npmjs.org/element-plus/-/element-plus-2.3.9.tgz#4a3363c62e6cc9b0a2f40f4df5aaa7b6feb4e6e4"
+  integrity sha512-TIOLnPl4cnoCPXqK3QYh+jpkthUBQnAM21O7o3Lhbse8v9pfrRXRTaBJtoEKnYNa8GZ4lZptUfH0PeZgDCNLUg==
   dependencies:
     "@ctrl/tinycolor" "^3.4.1"
     "@element-plus/icons-vue" "^2.0.6"

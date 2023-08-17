@@ -1,18 +1,18 @@
-import { UploadFile, UploadFiles } from "element-plus";
+import { UploadFile, UploadUserFile } from "element-plus";
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     beforeUpload: {
         type: import("vue").PropType<(rawFile: import("element-plus").UploadRawFile) => import("element-plus/es/utils").Awaitable<boolean | void | Blob | File | null | undefined>>;
         default: () => void;
     };
     beforeRemove: {
-        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: UploadFiles) => import("element-plus/es/utils").Awaitable<boolean>>;
+        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => import("element-plus/es/utils").Awaitable<boolean>>;
     };
     onRemove: {
-        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: UploadFiles) => void>;
+        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void>;
         default: () => void;
     };
     onChange: {
-        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: UploadFiles) => void>;
+        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void>;
         default: () => void;
     };
     onPreview: {
@@ -20,19 +20,19 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: () => void;
     };
     onSuccess: {
-        type: import("vue").PropType<(response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => void>;
+        type: import("vue").PropType<(response: any, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void>;
         default: () => void;
     };
     onProgress: {
-        type: import("vue").PropType<(evt: import("element-plus").UploadProgressEvent, uploadFile: UploadFile, uploadFiles: UploadFiles) => void>;
+        type: import("vue").PropType<(evt: import("element-plus").UploadProgressEvent, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void>;
         default: () => void;
     };
     onError: {
-        type: import("vue").PropType<(error: Error, uploadFile: UploadFile, uploadFiles: UploadFiles) => void>;
+        type: import("vue").PropType<(error: Error, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void>;
         default: () => void;
     };
     onExceed: {
-        type: import("vue").PropType<(files: File[], uploadFiles: import("element-plus").UploadUserFile[]) => void>;
+        type: import("vue").PropType<(files: File[], uploadFiles: UploadUserFile[]) => void>;
         default: () => void;
     };
     action: {
@@ -80,7 +80,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: boolean;
     };
     fileList: {
-        type: import("vue").PropType<import("element-plus").UploadUserFile[]>;
+        type: import("vue").PropType<UploadUserFile[]>;
         default: () => [];
     };
     listType: {
@@ -96,21 +96,21 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     size: NumberConstructor;
 }, {
     pictureCardRef: import("vue").Ref<any>;
-    fileList: import("vue").WritableComputedRef<import("element-plus").UploadUserFile[]>;
+    fileList: import("vue").WritableComputedRef<UploadUserFile[]>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:fileList"[], "update:fileList", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     beforeUpload: {
         type: import("vue").PropType<(rawFile: import("element-plus").UploadRawFile) => import("element-plus/es/utils").Awaitable<boolean | void | Blob | File | null | undefined>>;
         default: () => void;
     };
     beforeRemove: {
-        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: UploadFiles) => import("element-plus/es/utils").Awaitable<boolean>>;
+        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => import("element-plus/es/utils").Awaitable<boolean>>;
     };
     onRemove: {
-        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: UploadFiles) => void>;
+        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void>;
         default: () => void;
     };
     onChange: {
-        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: UploadFiles) => void>;
+        type: import("vue").PropType<(uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void>;
         default: () => void;
     };
     onPreview: {
@@ -118,19 +118,19 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: () => void;
     };
     onSuccess: {
-        type: import("vue").PropType<(response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => void>;
+        type: import("vue").PropType<(response: any, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void>;
         default: () => void;
     };
     onProgress: {
-        type: import("vue").PropType<(evt: import("element-plus").UploadProgressEvent, uploadFile: UploadFile, uploadFiles: UploadFiles) => void>;
+        type: import("vue").PropType<(evt: import("element-plus").UploadProgressEvent, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void>;
         default: () => void;
     };
     onError: {
-        type: import("vue").PropType<(error: Error, uploadFile: UploadFile, uploadFiles: UploadFiles) => void>;
+        type: import("vue").PropType<(error: Error, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void>;
         default: () => void;
     };
     onExceed: {
-        type: import("vue").PropType<(files: File[], uploadFiles: import("element-plus").UploadUserFile[]) => void>;
+        type: import("vue").PropType<(files: File[], uploadFiles: UploadUserFile[]) => void>;
         default: () => void;
     };
     action: {
@@ -178,7 +178,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: boolean;
     };
     fileList: {
-        type: import("vue").PropType<import("element-plus").UploadUserFile[]>;
+        type: import("vue").PropType<UploadUserFile[]>;
         default: () => [];
     };
     listType: {
@@ -199,16 +199,16 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     disabled: boolean;
     data: Record<string, any>;
     name: string;
-    onChange: (uploadFile: UploadFile, uploadFiles: UploadFiles) => void;
-    onError: (error: Error, uploadFile: UploadFile, uploadFiles: UploadFiles) => void;
-    onProgress: (evt: import("element-plus").UploadProgressEvent, uploadFile: UploadFile, uploadFiles: UploadFiles) => void;
+    onChange: (uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
+    onError: (error: Error, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
+    onProgress: (evt: import("element-plus").UploadProgressEvent, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     multiple: boolean;
-    fileList: import("element-plus").UploadUserFile[];
-    onRemove: (uploadFile: UploadFile, uploadFiles: UploadFiles) => void;
+    fileList: UploadUserFile[];
+    onRemove: (uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     beforeUpload: (rawFile: import("element-plus").UploadRawFile) => import("element-plus/es/utils").Awaitable<boolean | void | Blob | File | null | undefined>;
     onPreview: (uploadFile: UploadFile) => void;
-    onSuccess: (response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => void;
-    onExceed: (files: File[], uploadFiles: import("element-plus").UploadUserFile[]) => void;
+    onSuccess: (response: any, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
+    onExceed: (files: File[], uploadFiles: UploadUserFile[]) => void;
     action: string;
     method: string;
     drag: boolean;

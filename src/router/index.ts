@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/upload',
       name: 'upload',
       component: () => import('../views/Upload.vue')
+    },
+    {
+      path: '/form',
+      name: 'upload',
+      component: () => import('../views/Form.vue')
     }
   ]
 })

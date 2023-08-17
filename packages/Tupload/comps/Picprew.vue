@@ -1,13 +1,5 @@
 <template>
-  <el-image
-    :src="url"
-    :zoom-rate="1.2"
-    :preview-src-list="srcList"
-    :initial-index="4"
-    fit="fill"
-    :lazy="true"
-    ref="imgPrew"
-  >
+  <el-image :zoom-rate="1.2" :initial-index="4" fit="fill" :src="url" :preview-src-list="srcList" ref="imgPrew">
   </el-image>
   <span class="el-upload-list__item-actions">
     <span
@@ -30,6 +22,7 @@
       percentage &&
       percentage > 0 &&
       percentage < 100 &&
+      props.file &&
       props.file.status === 'uploading'
     "
     :percentage="percentage"
@@ -55,11 +48,9 @@ const url = ref("");
 const srcList = ref<string[]>([]);
 //图片Ref
 const imgPrew = ref();
-type fileType = {
-  file: UploadFile & { loadProgress: number };
-  fileList?: { url: string }[];
-};
-const props = defineProps<fileType>();
+
+const props = defineProps(["file"]);
+
 const emit = defineEmits(["remove", "download"]);
 
 //图片预览的触发事件
@@ -67,13 +58,10 @@ const handlePictureCardPreview = () => {
   imgPrew.value.$el.children[0].click();
 };
 //上传的进度条
-const percentage = computed(() => props.file.percentage);
+const percentage = computed(() => props.file && props.file.percentage);
 
-if (props.fileList?.length) {
-  srcList.value = props.fileList.map((el: { url: string }) => el.url);
-} else {
-  srcList.value.push(props.file.url || "");
-}
+srcList.value.push((props.file && props.file.url) || "");
+
 //上传的文件类型
 const FileIconMapping: { [key: string]: string } = {
   empty: FileEmpty,
@@ -87,27 +75,30 @@ const FileIconMapping: { [key: string]: string } = {
   rar: FileRar,
 };
 //获取文件类型
-const getUrl = (filename: UploadFile) => {
+const getUrl = (
+  filename: (UploadFile & { loadProgress: number }) | undefined
+) => {
   let url = "";
   let urlType = "";
   let isImg = false;
+  if (filename) {
+    if (/blob:/.test(filename.url || "")) {
+      urlType = (filename.name && filename.name.split(".").pop()) || "";
 
-  if (/blob:/.test(filename.url || "")) {
-    urlType = (filename.name && filename.name.split(".").pop()) || "";
-
-    if (/png|jpg|jpeg|bmp/gi.test(urlType)) {
-      url = filename.url || "";
-      isImg = true;
-    } else {
-      url = FileIconMapping[urlType];
-    }
-  } else if (/https?:/.test(filename.url || "")) {
-    urlType = (filename.url && filename.url.split(".").pop()) || "";
-    if (/png|jpg|jpeg|bmp/gi.test(urlType)) {
-      url = filename.url || "";
-      isImg = true;
-    } else {
-      url = FileIconMapping[urlType];
+      if (/png|jpg|jpeg|bmp/gi.test(urlType)) {
+        url = filename.url || "";
+        isImg = true;
+      } else {
+        url = FileIconMapping[urlType];
+      }
+    } else if (/https?:/.test(filename.url || "")) {
+      urlType = (filename.url && filename.url.split(".").pop()) || "";
+      if (/png|jpg|jpeg|bmp/gi.test(urlType)) {
+        url = filename.url || "";
+        isImg = true;
+      } else {
+        url = FileIconMapping[urlType];
+      }
     }
   }
 

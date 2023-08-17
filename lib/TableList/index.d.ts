@@ -13,6 +13,7 @@ declare const TableList: ({
             } | undefined;
             searchSize?: string | undefined;
             labelPosition?: string | undefined;
+            emptyText?: string | undefined;
             pagination?: boolean | undefined;
             layout?: string | undefined;
             pageSizes?: unknown[] | undefined;
@@ -139,7 +140,6 @@ declare const TableList: ({
             readonly load?: ((row: any, treeNode: import("./comps/Pride").TreeNode, resolve: (data: any[]) => void) => void) | undefined;
             readonly searchData?: Record<string, any> | undefined;
             onResetFn?: (() => any) | undefined;
-            readonly emptyText?: string | undefined;
             onExpandChange?: ((row: any, expanded: boolean | any[]) => any) | undefined;
             readonly pageSize?: string | undefined;
             onQuery?: ((options: {
@@ -324,7 +324,10 @@ declare const TableList: ({
             }) => import("vue").CSSProperties)) | undefined>;
             highlightCurrentRow: BooleanConstructor;
             currentRowKey: (StringConstructor | NumberConstructor)[];
-            emptyText: StringConstructor;
+            emptyText: {
+                type: StringConstructor;
+                default: string;
+            };
             expandRowKeys: import("vue").PropType<any[] | undefined>;
             defaultExpandAll: BooleanConstructor;
             defaultSort: import("vue").PropType<import("./comps/Pride").Sort | undefined>;
@@ -454,6 +457,7 @@ declare const TableList: ({
             } | undefined;
             searchSize: string;
             labelPosition: string;
+            emptyText: string;
             pagination: boolean;
             layout: string;
             pageSizes: unknown[];
@@ -612,7 +616,10 @@ declare const TableList: ({
         }) => import("vue").CSSProperties)) | undefined>;
         highlightCurrentRow: BooleanConstructor;
         currentRowKey: (StringConstructor | NumberConstructor)[];
-        emptyText: StringConstructor;
+        emptyText: {
+            type: StringConstructor;
+            default: string;
+        };
         expandRowKeys: import("vue").PropType<any[] | undefined>;
         defaultExpandAll: BooleanConstructor;
         defaultSort: import("vue").PropType<import("./comps/Pride").Sort | undefined>;
@@ -826,7 +833,10 @@ declare const TableList: ({
     }) => import("vue").CSSProperties)) | undefined>;
     highlightCurrentRow: BooleanConstructor;
     currentRowKey: (StringConstructor | NumberConstructor)[];
-    emptyText: StringConstructor;
+    emptyText: {
+        type: StringConstructor;
+        default: string;
+    };
     expandRowKeys: import("vue").PropType<any[] | undefined>;
     defaultExpandAll: BooleanConstructor;
     defaultSort: import("vue").PropType<import("./comps/Pride").Sort | undefined>;
@@ -956,6 +966,7 @@ declare const TableList: ({
     } | undefined;
     searchSize: string;
     labelPosition: string;
+    emptyText: string;
     pagination: boolean;
     layout: string;
     pageSizes: unknown[];

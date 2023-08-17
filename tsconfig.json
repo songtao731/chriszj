@@ -38,7 +38,7 @@
     "packages/**/*.tsx",
     "packages/**/*.vue",
     "packages/*.d.ts"    
-  ],
+, "packages/Tform/comp/form-itemTsx.tsx"  ],
   "exclude": [
     "node_modules"
   ],

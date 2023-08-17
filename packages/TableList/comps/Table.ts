@@ -220,7 +220,10 @@ export const TableProps = {
   >,
   highlightCurrentRow: Boolean,
   currentRowKey: [String, Number],
-  emptyText: String,
+  emptyText:{
+    type:String,
+    default:"暂无数据"
+  },
   expandRowKeys: Array as PropType<TableProps<DefaultRow>["expandRowKeys"]>,
   defaultExpandAll: Boolean,
   defaultSort: Object as PropType<TableProps<DefaultRow>["defaultSort"]>,

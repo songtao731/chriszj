@@ -77,7 +77,7 @@
 /* pre{
   background: transparent;
 } */
-.VPSidebar{
+ .VPSidebar{
   padding-left: 20px !important;
   width: 200px !important;
 }
@@ -88,10 +88,11 @@
 .VPContent .container{
    margin-left: 0 !important;
 }
-.VPContent .container .content-container{
+
+/* .VPContent .container .aside{
+ display: none;
+} */
+/* .VPContent .container .content-container{
   width: 1802px !important;
   max-width: inherit !important
-}
-.VPContent .container .aside{
- display: none;
-}
+} */

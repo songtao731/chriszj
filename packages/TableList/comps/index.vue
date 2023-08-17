@@ -26,7 +26,10 @@
       
     >
       <template #empty>
-        <slot name="empty"></slot>
+        <slot name="empty">
+
+      暂无数据
+        </slot>
       </template>
       <template #append>
         <slot name="append"></slot>
@@ -114,7 +117,7 @@ const currentPage = ref(1);
 const pageSize = ref(10);
 
 //表格的数据
-const dataList = ref();
+const dataList = ref<any[]>([]);
 //初始化数目
 const total = ref(0);
 //初始化获取数据格式

@@ -13,7 +13,9 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/upload">upload</RouterLink>
+        <RouterLink to="/upload">upload2</RouterLink>
+        <RouterLink to="/form">form</RouterLink>
+
       
 
       

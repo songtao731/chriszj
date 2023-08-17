@@ -1,15 +1,22 @@
 <template>
   <div class="about">
-    <div>
-      11122
-    </div>
+    <div>11122</div>
 
-    <TableList v-bind="bind" @resetFn="resetFn" ref="oneTable" show-summary :summaryMethod="getSummaries">
+    <TableList
+      v-bind="bind"
+      @resetFn="resetFn"
+      ref="oneTable"
+      show-summary
+      :summaryMethod="getSummaries"
+   
+    >
       <template #topheader> 最上部</template>
       <template #centerheader> 中间 </template>
       <template #footer> 尾部 </template>
 
       <template #append> </template>
+
+
       <template #header="scope">
         <span style="color: red">
           {{ scope.$index }}
@@ -53,32 +60,26 @@
       </template>
     </TableList>
 
-    <TableList v-bind="bind2" @resetFn="resetFn" >
- 
-    </TableList>
-
-
-  
+    <TableList v-bind="bind2" @resetFn="resetFn"> </TableList>
   </div>
 </template>
 
 <script setup lang="ts">
-
-import { chris, TableList, TableLists,Tupload } from "chriszj";
-
-
+import { chris, TableList, TableLists, Tupload } from "../../packages/index";
 
 import { ref, computed, nextTick } from "vue";
-import { entertainApplicationAddList, travelAddList ,useMockList} from "@/api/index";
+import {
+  entertainApplicationAddList,
+  travelAddList,
+  useMockList,
+} from "@/api/index";
 import { ElButton } from "element-plus";
-
 
 const oneTable = ref();
 const ruleForm = ref({
   region: "",
   region2: "",
-  region3: ""
-
+  region3: "",
 });
 const data12 = ref();
 const getForm = (val) => {
@@ -95,7 +96,7 @@ const getForm = (val) => {
 };
 
 const resetFn = () => {
-  console.log(222)
+  console.log(222);
   Object.keys(ruleForm.value).forEach((el: any) => {
     ruleForm.value[el] = "";
   });
@@ -174,7 +175,7 @@ fn();
 const bind = chris.useTable({
   searchData: ruleForm,
 
-   request: (params) => entertainApplicationAddList({ ...params }),
+  request: (params) => entertainApplicationAddList({ ...params }),
   parseData: (row) => {
     return row.map((el: any) => {
       return {
@@ -188,9 +189,9 @@ const bind = chris.useTable({
       type: "primary",
       content: "新增",
       onClick: () => {
-     //   oneTable.value.tableRef.refresh()
+        //   oneTable.value.tableRef.refresh()
 
-        console.log("操作成功",oneTable.value.refresh());
+        console.log("操作成功", oneTable.value.refresh());
       },
     },
     {
@@ -216,8 +217,7 @@ const bind = chris.useTable({
   columns: [
     {
       type: "selection",
-      width:'200px'
-    
+      width: "200px",
     },
     {
       label: "姓名",
@@ -231,7 +231,6 @@ const bind = chris.useTable({
         prop: "processNoPromoter",
         label: "姓名",
       },
-      
     },
     {
       label: "年龄送水",
@@ -301,7 +300,7 @@ const bind = chris.useTable({
           content: "删除",
           link: true,
           type: "success",
-          icon:'Delete',
+          icon: "Delete",
           click(row) {
             console.log("删除", oneTable.value.params.newFormData);
             //  oneTable.value.tableRef.setCurrentRow(row);
@@ -322,14 +321,14 @@ console.log(bind, "使用组件的页面", data, oneTable);
 
 const tableData2 = {
   code: 200,
-  total:10,
+  total: 10,
   data: [
     {
       date: "2016-05-02",
       name: "王小虎",
       address: "上海市普陀区金沙江路 1518 弄",
-      time:'1690440269140',
-      money:1283218381.345
+      time: "1690440269140",
+      money: 1283218381.345,
     },
     {
       date: "2016-05-04",
@@ -345,7 +344,8 @@ const tableData2 = {
       date: "2016-05-03",
       name: "王小虎",
       address: "上海市普陀区金沙江路 1516 弄",
-    },    {
+    },
+    {
       date: "2016-05-04",
       name: "王小虎",
       address: "上海市普陀区金沙江路 1517 弄",
@@ -359,7 +359,8 @@ const tableData2 = {
       date: "2016-05-03",
       name: "王小虎",
       address: "上海市普陀区金沙江路 1516 弄",
-    },    {
+    },
+    {
       date: "2016-05-04",
       name: "王小虎",
       address: "上海市普陀区金沙江路 1517 弄",
@@ -400,35 +401,31 @@ var promise = new Promise((resolve, reject) => {
 const bind2 = chris.useTable({
   request: () => promise,
   path: "data",
-  toTalPath:'total',
+  toTalPath: "total",
   columns: [
     {
       prop: "name",
       label: "姓名",
-      filter:{
-        type:'dateRange',
-        
+      filter: {
+        type: "dateRange",
       },
-      header:true
+      header: true,
     },
     {
-      prop:'time',
-      label:'时间',
-      formatType:'date',
-      filter:'input'
-      
+      prop: "time",
+      label: "时间",
+      formatType: "date",
+      filter: "input",
     },
     {
-      prop:'time',
-      label:'时间',
-      formatType:'date',
-      filter:'input'
-      
+      prop: "time",
+      label: "时间",
+      formatType: "date",
+      filter: "input",
     },
     {
-
-      label:'金钱',
-      formatType:'price',
+      label: "金钱",
+      formatType: "price",
       buttons: [
         {
           content: "新增",
@@ -442,46 +439,44 @@ const bind2 = chris.useTable({
           content: "删除",
           link: true,
           type: "success",
-          icon:'Delete',
+          icon: "Delete",
           click(row) {
             console.log("删除", row);
             //  oneTable.value.tableRef.setCurrentRow(row);
           },
         },
       ],
-      
-    }
-    
+    },
   ],
 });
 
 const getSummaries = (param) => {
-  const { columns, data } = param
-  const sums: string[] = []
+  const { columns, data } = param;
+  const sums: string[] = [];
   columns.forEach((column, index) => {
     if (index === 0) {
-      sums[index] = 'Total Cost'
-      return
+      sums[index] = "Total Cost";
+      return;
     }
-    const values = data.map((item) => Number(item[column.property]))
+    const values = data.map((item) => Number(item[column.property]));
     if (!values.every((value) => Number.isNaN(value))) {
       sums[index] = `$ ${values.reduce((prev, curr) => {
-        const value = Number(curr)
+        const value = Number(curr);
         if (!Number.isNaN(value)) {
-          return prev + curr
+          return prev + curr;
         } else {
-          return prev
+          return prev;
         }
-      }, 0)}`
+      }, 0)}`;
     } else {
-      sums[index] = '--'
+      sums[index] = "--";
     }
-  })
+  });
 
-  return sums
-}
+  return sums;
+};
 
-console.log(oneTable,'oneTable')
+console.log(oneTable, "oneTable");
 </script>
 
 <style>
@@ -489,8 +484,7 @@ console.log(oneTable,'oneTable')
 
 } */
 .about {
-
-    /* display: flex;
+  /* display: flex;
     align-items: center; */
-  }
+}
 </style>
