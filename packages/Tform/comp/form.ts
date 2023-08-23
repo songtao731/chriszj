@@ -60,7 +60,7 @@ export const formProps = buildProps({
    */
   labelWidth: {
     type: [String, Number],
-    default: '',
+    default: '110px',
   },
   /**
    * @description Suffix of the label.

@@ -15,14 +15,14 @@ dependencies:
     specifier: 4.1.2
     version: 4.1.2
   chriszj:
-    specifier: ^1.1.8
-    version: 1.1.8
+    specifier: ^1.5.3
+    version: 1.5.3
   consola:
     specifier: ^3.2.3
     version: 3.2.3
   element-plus:
-    specifier: ^2.3.8
-    version: 2.3.8(vue@3.3.4)
+    specifier: ^2.3.9
+    version: 2.3.9(vue@3.3.4)
   escape-html:
     specifier: ^1.0.3
     version: 1.0.3
@@ -50,6 +50,9 @@ dependencies:
   vue:
     specifier: ^3.3.4
     version: 3.3.4
+  vue-router:
+    specifier: 4.2.4
+    version: 4.2.4(vue@3.3.4)
 
 devDependencies:
   '@tsconfig/node18':
@@ -1577,8 +1580,8 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
 
-  /chriszj@1.1.8:
-    resolution: {integrity: sha512-b70r1dJ0c0UApa9/0/sqm2EGXMC+OzlU3WDdPFU2tEMt6CaXlHIbhCtBPPxTXOoijKJIW7NkEn01u6lEUk9X3g==}
+  /chriszj@1.5.3:
+    resolution: {integrity: sha512-dS2eT06WYHXj6VH/hdAPpTePek1KfY7TTDl8DexMxQWmW2BU6r0zu7qyTfcFs4xiTHWjSeOr/4i5G9q7B3/IbA==}
     dev: false
 
   /color-convert@1.9.3:
@@ -1744,8 +1747,8 @@ packages:
     resolution: {integrity: sha512-GpmGRC1vTl60w/k6YpQ18pSiqnmr0j3un//5TV1idPi6aheNfkT1Ye71tMEabWyNDO6sBMgAR+95Eb0eUUr1tA==}
     dev: true
 
-  /element-plus@2.3.8(vue@3.3.4):
-    resolution: {integrity: sha512-yHQR0/tG2LvPkpGUt7Te/hPmP2XW/BytBNUbx+EFO54VnGCOE3upmQcVffNp1PLgwg9sthYDXontUWpnpmLPJw==}
+  /element-plus@2.3.9(vue@3.3.4):
+    resolution: {integrity: sha512-TIOLnPl4cnoCPXqK3QYh+jpkthUBQnAM21O7o3Lhbse8v9pfrRXRTaBJtoEKnYNa8GZ4lZptUfH0PeZgDCNLUg==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
@@ -3600,6 +3603,15 @@ packages:
         optional: true
     dependencies:
       vue: 3.3.4
+
+  /vue-router@4.2.4(vue@3.3.4):
+    resolution: {integrity: sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.5.0
+      vue: 3.3.4
+    dev: false
 
   /vue-template-compiler@2.7.14:
     resolution: {integrity: sha512-zyA5Y3ArvVG0NacJDkkzJuPQDF8RFeRlzV2vLeSnhSpieO6LK2OVbdLPi5MPPs09Ii+gMO8nY4S3iKQxBxDmWQ==}

@@ -12,3 +12,61 @@ export const handleDownload = (file: Partial<UploadFile>) => {
   //移除a标签
   link.remove();
 };
+interface RuleRequired {
+  required: boolean;
+}
+interface RuleLength {
+  min: number;
+  max: number;
+}
+interface RulePattern {
+  pattern: string | RegExp;
+}
+interface RuleBase {
+  /** 错误提示 */
+  message?: string;
+  /**
+   * @default 'blur'
+   */
+  trigger?: "change" | "blur" | "click" | "focus";
+}
+interface RuleCalidator{
+
+  validator:()=>void
+}
+export type RuleObject = RuleBase & (RuleRequired | RuleLength | RulePattern|RuleCalidator);
+export class RuleCreater {
+  rules: RuleObject[] = [];
+  required(required: boolean, message: string,trigger:RuleBase['trigger']='blur') {
+    this.rules.push({
+      required,
+      message,
+      trigger
+    });
+    return this;
+  }
+  range(min: number, max: number, message: string,trigger:RuleBase['trigger']='blur') {
+    this.rules.push({
+      min,
+      max,
+      message,
+      trigger
+    });
+    return this;
+  }
+  pattern(pattern: string | RegExp, message: string,trigger:RuleBase['trigger']='blur') {
+    this.rules.push({
+      pattern: pattern,
+      message,
+      trigger
+    });
+    return this;
+  }
+  validator(validator:any,trigger:RuleBase['trigger']='blur'){
+    this.rules.push({
+      validator,
+      trigger
+    })
+    return this
+  }
+}

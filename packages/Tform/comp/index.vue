@@ -2,9 +2,6 @@
   <div class="Tform">
     <div class="Tform-header">
       <div class="Tform-title">
-   
-         
-
         <slot name="title">
           {{ props.title }}
         </slot>
@@ -13,39 +10,29 @@
         <slot name="buttons"> </slot>
       </div>
     </div>
-    <FormDesc v-bind="props">
-
+    <FormDesc v-bind="props" ref="formRef">
+      <!-- <template v-for="items in dataList" #[items.slotName]="{ scope }">
+        <slot :name="items.slotName" :scope="scope" v-if="items.slotName" />
+      </template> -->
     </FormDesc>
-
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, reactive, computed, provide } from "vue";
+import { ref, computed, unref } from "vue";
 import FormDesc from "./form-itemTsx";
 import { formProps } from "./form";
-import { newForm } from "./newForm";
 
 const props = defineProps(formProps);
-
-console.log(props, 12312);
-// const form = computed(() => {
-//   const obj: { [key: string]: any } = {};
-//   props.dataList.forEach((el) => {
-//     obj[el.prop] = el.value;
-//   });
-//   return obj;
+const formRef = ref();
+// const dataList = computed(() => {
+//   const propDataList = unref(props.dataList);
+//   if (propDataList.length) {
+//     return propDataList.filter((el) => el.slotName);
+//   }
 // });
-
-
-const rules = reactive({
-  name: [
-    { required: true, message: "Please input Activity name", trigger: "blur" },
-  ],
+defineExpose({
+  form: formRef,
 });
-// provide(
-//   "dataList",
-//   computed(() => props.dataList)
-// );
 </script>
 
 <script lang="ts">
@@ -64,6 +51,10 @@ export default {
       font-size: 16px;
       font-weight: 700;
     }
+  }
+  :deep(.el-form-item),
+  :deep(.el-select) {
+    width: 100%;
   }
 }
 </style>

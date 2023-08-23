@@ -1,5 +1,6 @@
+import { MainPackage } from "../../BaseComps/index";
 import { PropType } from "vue";
-import { dataItem, direction, size } from "./useForm";
+import { dataItem, size } from "./useForm";
 
 export const newForm = {
   title: {
@@ -10,10 +11,6 @@ export const newForm = {
     type: Array as PropType<dataItem[]>,
     default: () => [],
   },
-  direction: {
-    type: String as PropType<direction>,
-    default: "horizontal",
-  },
   size: {
     type: String as PropType<size>,
     default: "default",
@@ -23,11 +20,24 @@ export const newForm = {
     default:false
   },
   column:{
-    type:Number,
+    type:[Number,String],
     default:2
   },
-  extra:{
+  gutter:{
+     type:Number,
+     default:20
+  },
+  closePlaceholder:{
+    type:Boolean,
+    default:false
+  },
+  buttons:{
+    type: Array as PropType<MainPackage['button'][]>,
+    default:()=>[]
+  },
+  buttonsAlign:{
     type:String,
-    default:''
-  }
+    default:'center'
+  },
+  
 };

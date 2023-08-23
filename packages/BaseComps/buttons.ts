@@ -1,7 +1,7 @@
 import {
   definePropType,
   iconPropType,
-} from "../../../node_modules/element-plus/es/utils";
+} from "../../node_modules/element-plus/es/utils";
 import { Component } from "@vue/runtime-dom";
 import { buttonNativeTypes } from "element-plus";
 import { Loading } from "@element-plus/icons-vue";

@@ -5,22 +5,22 @@ import Timgs from "./Timgs";
 import Tform from "./Tform";
 
 
-
 import { useTable } from "./TableList/comps/useTable";
 import { useTables } from "./TableLists/comps/useTables";
 import { useForm } from "./Tform/comp/useForm";
-
+import {RuleCreater} from './utils/index'
 
 import { App } from "vue";
 const chris = {
   useTable,
   useTables,
-  useForm
+  useForm,
+  RuleCreater:RuleCreater
 };
 // 按需引入
-export { TableList, TableLists, Tupload,Timgs,Tform, chris };
+export { TableList, TableLists, Tupload, Timgs, Tform, chris };
 
-const component = [TableList, TableLists, Tupload,Timgs,Tform];
+const component = [TableList, TableLists, Tupload, Timgs, Tform];
 
 const install = {
   install(App: App) {
