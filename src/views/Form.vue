@@ -139,11 +139,13 @@ const validatePass2 = (rule: any, value: any, callback: any) => {
   }
 };
 
+let id=0
 const bind = computed(() => {
   console.log("我变了");
   return chris.useForm({
     title: "测试表单",
-    column: 3,
+    column: "3",
+    labelWidth: "140px",
     dataList: [
       {
         label: "姓名速速速度:",
@@ -171,6 +173,7 @@ const bind = computed(() => {
             console.log(val);
             isHide.value = val == 1 ? true : false;
           },
+          filterable: true,
         },
         rules: chris.rulesFn().required(true, "请选择性别"),
       },
@@ -219,6 +222,38 @@ const bind = computed(() => {
         rules: chris.rulesFn().required(true, "请输入日期时间"),
         date: {
           type: "datetimerange",
+        },
+      },
+      {
+        label: "次级联动:",
+        type: "cascader",
+        prop: "cascader",
+        rules: chris.rulesFn().required(true, "请选择联级"),
+        cascader: {
+          options: [
+            {
+              value: "resource",
+              label: "Resource",
+              children: [
+                {
+                  value: "axure",
+                  label: "Axure Components",
+                },
+                {
+                  value: "sketch",
+                  label: "Sketch Templates",
+                },
+                {
+                  value: "docs",
+                  label: "Design Documentation",
+                },
+              ],
+            },
+          ],
+          filterable: true,
+          onChange(val) {
+            console.log(val);
+          },
         },
       },
     ],

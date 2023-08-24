@@ -3,7 +3,7 @@ import { ArgumentsType } from "@vueuse/core";
 export type direction = "vertical" | "horizonta";
 export type size = "large" | "default" | "small";
 export type column = "1" | "2" | "3" | "4";
-export type typeEnum = "input" | "select" | "space" | "custom"|"date";
+export type typeEnum = "input" | "select" | "space" | "custom"|"date"|"cascader";
 export type opstionsItem = {
   label: string;
   value: string;
@@ -48,6 +48,7 @@ export type dataItem = {
   select?: MainPackage["select"];
   date?:MainPackage['date']
   dateTime?:MainPackage['dateTime']
+  cascader?:MainPackage['cascader']
 };
 
 export interface Args {

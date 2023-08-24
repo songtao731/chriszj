@@ -234,17 +234,22 @@ export default defineComponent({
                       break;
                     case "cascader":
                       element = (
-                        <ElFormItem label={`${el.label}:`}>
-                          <ElCascader
-                            class="item-content"
-                            clearable={true}
-                            options={el.options}
-                            show-all-levels={el.showAllLevels}
-                            v-model={formData[el.prop]}
-                            props={el.props}
-                            placeholder={`请选择${el.placeholder}`}
-                          ></ElCascader>
-                        </ElFormItem>
+                        <ElCol span={el.nospan}>
+                          <ElFormItem {...el} rules={el.rules?.rules}>
+                            <ElCascader
+                            
+                              clearable={true}
+                              class="wid100"
+                              v-model={formData[el.prop as string]}
+                              placeholder={changePlaceHolderFn(
+                                props.closePlaceholder,
+                                el.showPlaceholder,
+                                "请选择" + el.placeholder
+                              )}
+                              {...el.cascader}
+                            ></ElCascader>
+                          </ElFormItem>
+                        </ElCol>
                       );
                       break;
                     case "dateRange":
