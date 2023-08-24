@@ -6,13 +6,14 @@ import router from "./router";
 
 import chriszj from "chriszj";
 import "chriszj/style.css";
+//import './assets/tailMain.css'
 
 import Schema from "async-validator";
 // 设置报错提示信息
 Schema.messages.required = () => {
-  return "该项为必填项22";
+  return "该项为必填项";
 };
-
+// import 'uno.css'
 import { createApp } from "vue";
 import App from "./App.vue";
 

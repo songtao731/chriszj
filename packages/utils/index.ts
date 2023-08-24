@@ -12,6 +12,7 @@ export const handleDownload = (file: Partial<UploadFile>) => {
   //移除a标签
   link.remove();
 };
+
 interface RuleRequired {
   required: boolean;
 }
@@ -30,43 +31,108 @@ interface RuleBase {
    */
   trigger?: "change" | "blur" | "click" | "focus";
 }
-interface RuleCalidator{
-
-  validator:()=>void
+interface RuleCalidator {
+  validator: () => void;
 }
-export type RuleObject = RuleBase & (RuleRequired | RuleLength | RulePattern|RuleCalidator);
+export type RuleObject = RuleBase &
+  (RuleRequired | RuleLength | RulePattern | RuleCalidator);
 export class RuleCreater {
   rules: RuleObject[] = [];
-  required(required: boolean, message: string,trigger:RuleBase['trigger']='blur') {
+  required(
+    required: boolean,
+    message: string,
+    trigger: RuleBase["trigger"] = "blur"
+  ) {
     this.rules.push({
       required,
       message,
-      trigger
+      trigger,
     });
     return this;
   }
-  range(min: number, max: number, message: string,trigger:RuleBase['trigger']='blur') {
+  range(
+    min: number,
+    max: number,
+    message: string,
+    trigger: RuleBase["trigger"] = "blur"
+  ) {
     this.rules.push({
       min,
       max,
       message,
-      trigger
+      trigger,
     });
     return this;
   }
-  pattern(pattern: string | RegExp, message: string,trigger:RuleBase['trigger']='blur') {
+  pattern(
+    pattern: string | RegExp,
+    message: string,
+    trigger: RuleBase["trigger"] = "blur"
+  ) {
     this.rules.push({
       pattern: pattern,
       message,
-      trigger
+      trigger,
     });
     return this;
   }
-  validator(validator:any,trigger:RuleBase['trigger']='blur'){
+  validator(validator: any, trigger: RuleBase["trigger"] = "blur") {
     this.rules.push({
       validator,
-      trigger
-    })
-    return this
+      trigger,
+    });
+    return this;
   }
 }
+export const rulesFn = function () {
+  const rules: RuleObject[] = [];
+  const _self = {
+    rules,
+    required(
+      required: boolean,
+      message?: string,
+      trigger: RuleBase["trigger"] = "blur"
+    ) {
+      rules.push({
+        required,
+        message,
+        trigger,
+      });
+      return _self;
+    },
+    range(
+      min: number,
+      max: number,
+      message: string,
+      trigger: RuleBase["trigger"] = "blur"
+    ) {
+      rules.push({
+        min,
+        max,
+        message,
+        trigger,
+      });
+      return _self;
+    },
+    pattern(
+      pattern: string | RegExp,
+      message: string,
+      trigger: RuleBase["trigger"] = "blur"
+    ) {
+      rules.push({
+        pattern: pattern,
+        message,
+        trigger,
+      });
+      return _self;
+    },
+    validator(validator: any, trigger: RuleBase["trigger"] = "blur") {
+      rules.push({
+        validator,
+        trigger,
+      });
+      return _self;
+    },
+  };
+  return _self;
+};

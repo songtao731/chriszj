@@ -25,6 +25,7 @@ import {
 } from "element-plus";
 import { formProps } from "./form";
 import { dataItem } from "../../Tform/comp/useForm";
+import "../../style/index.scss";
 
 export default defineComponent({
   props: formProps,
@@ -48,65 +49,61 @@ export default defineComponent({
         case "custom":
           formData[el.prop as string] = "";
           break;
+        default:
+          formData[el.prop as string] = "";
       }
     };
     const dataList = computed(() => {
-      // switch ("" + column) {
-      //   case "1":
-      //     props.dataList.forEach((el) => {
-      //       el.nospan = 24;
-      //     });
-      //     break;
-      //   case "2":
-      //     props.dataList.forEach((el) => {
-      //       el.nospan = (el.span && +el.span * 12) || 12;
-      //     });
-      //     break;
-      //   case "3":
-      //     props.dataList.forEach((el) => {
-      //       el.nospan = (el.span && +el.span * 8) || 8;
-      //     });
-      //     break;
-      // }
-      // if (props.dataList.length) {
-      //   props.dataList.forEach((el) => {
-      //     //初始化值 只走一遍
-      //     if (isBclick) {
-      //       resetFn(el);
-      //     }
-      //     //处理栅格布局
-      //     el.nospan = el.nospan && el.nospan > 24 ? 24 : el.nospan;
-      //     el.placeholder = el.placeholder
-      //       ? el.placeholder
-      //       : el.label && el.label.replace(":", "");
+      switch ("" + column) {
+        case "1":
+          props.dataList.forEach((el) => {
+            el.nospan = 24;
+          });
+          break;
+        case "2":
+          props.dataList.forEach((el) => {
+            el.nospan = (el.span && +el.span * 12) || 12;
+          });
+          break;
+        case "3":
+          props.dataList.forEach((el) => {
+            el.nospan = (el.span && +el.span * 8) || 8;
+          });
+          break;
+      }
+      if (props.dataList.length) {
+        props.dataList.forEach((el) => {
+          //初始化值 只走一遍
+          if (isBclick) {
+            resetFn(el);
+          }
+          //处理栅格布局
+          el.nospan = el.nospan && el.nospan > 24 ? 24 : el.nospan;
+          el.placeholder = el.placeholder
+            ? el.placeholder
+            : el.label && el.label.replace(":", "");
 
-      //     if (el.value || el.value === 0) {
-      //       formData[el.prop as string] = el.value;
-      //     }
+          if (el.value || el.value === 0) {
+            formData[el.prop as string] = el.value;
+          }
 
-      //     //深度隐藏 清楚数据
-      //     if (el.deepHide) {
-      //       formData[el.prop as string] = "";
-      //     }
-      //   });
-      //   isBclick = false;
-      // }
+          //深度隐藏 清楚数据
+          if (el.deepHide) {
+            formData[el.prop as string] = "";
+          }
+        });
+        isBclick = false;
+      }
 
       console.log("数据驱动", formData);
 
       return unref(props.dataList);
     });
 
-    watch(props, (newData, oldData) => {
-
-    console.log(newData,oldData,'props')
-    }, {immediate: true, deep: true})
     const buttons = computed(() => unref(props.buttons));
 
     //获取屏幕可视化宽度
-    onMounted(() => {
-
-    });
+    onMounted(() => {});
     //操作placeholder展示
     const changePlaceHolderFn = (
       outPlaceholder?: boolean,
@@ -167,7 +164,6 @@ export default defineComponent({
                             rules={el.rules?.rules}
                           >
                             <ElInput
-                              class="item-content"
                               clearable={true}
                               v-model={formData[el.prop as string]}
                               placeholder={changePlaceHolderFn(
@@ -186,9 +182,8 @@ export default defineComponent({
                     case "select":
                       element = (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el}>
+                          <ElFormItem {...el} rules={el.rules?.rules}>
                             <ElSelect
-                              class="item-content select"
                               clearable={true}
                               v-model={formData[el.prop as string]}
                               placeholder={changePlaceHolderFn(
@@ -199,16 +194,40 @@ export default defineComponent({
                               {...el.select}
                             >
                               {Array.isArray(unref(el.options)) &&
-                                unref(el.options).map((el: any, index: any) => {
-                                  return (
-                                    <ElOption
-                                      key={index}
-                                      label={el.label}
-                                      value={el.value}
-                                    />
-                                  );
-                                })}
+                                unref(el.options).map(
+                                  (ele: any, index: any) => {
+                                    return (
+                                      <ElOption
+                                        key={index}
+                                        label={ele.label}
+                                        value={
+                                          el.select?.values ? ele : ele.value
+                                        }
+                                      />
+                                    );
+                                  }
+                                )}
                             </ElSelect>
+                          </ElFormItem>
+                        </ElCol>
+                      );
+                      break;
+                    case "date":
+                      element = (
+                        <ElCol span={el.nospan}>
+                          <ElFormItem {...el} rules={el.rules?.rules}>
+                            <ElDatePicker
+                              clearable={true}
+                              class="wid100"
+                              v-model={formData[el.prop as string]}
+                              value-format="YYYY-MM-DD"
+                              placeholder={changePlaceHolderFn(
+                                props.closePlaceholder,
+                                el.showPlaceholder,
+                                "请选择" + el.placeholder
+                              )}
+                              {...el.date}
+                            ></ElDatePicker>
                           </ElFormItem>
                         </ElCol>
                       );
@@ -225,35 +244,6 @@ export default defineComponent({
                             props={el.props}
                             placeholder={`请选择${el.placeholder}`}
                           ></ElCascader>
-                        </ElFormItem>
-                      );
-                      break;
-                    case "date":
-                      element = (
-                        <ElFormItem label={`${el.label}:`}>
-                          <ElDatePicker
-                            class="item-content"
-                            clearable={true}
-                            v-model={formData[el.prop]}
-                            props={el.props}
-                            placeholder={`请选择${el.placeholder}`}
-                            value-format="YYYY-MM-DD"
-                          ></ElDatePicker>
-                        </ElFormItem>
-                      );
-                      break;
-                    case "dateTime":
-                      element = (
-                        <ElFormItem label={`${el.label}:`}>
-                          <ElDatePicker
-                            class="item-content"
-                            clearable={true}
-                            v-model={formData[el.prop]}
-                            props={el.props}
-                            placeholder={`请选择${el.placeholder}`}
-                            type="datetime"
-                            value-format="YYYY-MM-DD HH:mm:ss"
-                          ></ElDatePicker>
                         </ElFormItem>
                       );
                       break;

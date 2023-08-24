@@ -1,6 +1,7 @@
 import { Component } from "vue";
+import { SelectNewPorps } from "./selectNews";
 
-export interface SelectPorps {
+export interface SelectPorps extends SelectNewPorps {
   disabled?: boolean;
   multiple?: boolean;
   valueKey?: string;
@@ -34,7 +35,7 @@ export interface SelectPorps {
   fitInputWidth?: boolean;
   suffixIcon?: string | Component;
   suffixTransition?: boolean;
-  tagType?: string;
+  tagType?: "success" | "warning" | "info" | "danger";
   validateEvent?: boolean;
   placement?:
     | "top"
@@ -50,7 +51,6 @@ export interface SelectPorps {
     | "right-start"
     | "right-end";
   maxCollapseTags?: number;
-
   onChange?: <T>(x?: T) => void;
   onFocus?: <T>(x?: T) => void;
   onBlur?: <T>(x?: T) => void;

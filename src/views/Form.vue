@@ -6,43 +6,31 @@
       <el-button type="primary">Operation</el-button>
     </template>
     <template #zdy="{ scope }">
-      <el-input v-model.number="scope.inputValue" placeholder="Please input" />
+      <ElInput v-model.number="scope.inputValue" placeholder="Please input">
+      </ElInput>
     </template>
   </Tform>
-  <el-input type="textarea" v-model="cc" :focus="dd" :showWordLimit="true">
-  </el-input>
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from "vue";
+import { ElInput } from "element-plus";
+import { computed, reactive, Ref, ref, toRef } from "vue";
 import { chris, Tform } from "../../packages/index";
 import { dataItem } from "../../packages/Tform/comp/useForm";
 const tForm = ref();
 let bb: any = ref([]);
-let cc = ref("");
-const dd = (a, b) => {
-  console.log(a, b);
-};
-const ishide = ref(false);
-
-const getVal = (val) => {
-  console.log(val, 21313);
-};
-
-const formData = reactive({
-  input: "",
-});
 
 setTimeout(() => {
   bb.value = [
-    { label: "男", value: "1" },
-    { label: "女", value: "2" },
+    { label: "男", value: "1", id: 1 },
+    { label: "女", value: "2", id: 2 },
   ];
-  ishide.value=true
+  // ishide.value=true
 }, 1);
 
-let aa = ref<dataItem[]>([]);
+let aa: Ref<dataItem[]> = ref([]);
 
+const isHide = ref<boolean>(false);
 setTimeout(() => {
   aa.value = [
     {
@@ -55,9 +43,7 @@ setTimeout(() => {
         suffixIcon: "Calendar",
         showPassword: true,
       },
-      rules: new chris.RuleCreater()
-        .required(true, "琴行输入年龄")
-        .validator(checkAge),
+      rules: chris.rulesFn().required(true, "琴行输入年龄").validator(checkAge),
     },
 
     {
@@ -68,8 +54,10 @@ setTimeout(() => {
       select: {
         onChange: (val) => {
           console.log(val);
-          ishide.value = val == 1 ? true : false;
+          isHide.value = val == 1 ? true : false;
         },
+        values: true,
+        valueKey: "id",
       },
     },
     {
@@ -79,20 +67,20 @@ setTimeout(() => {
       label: "身高:",
       prop: "hi",
       type: "input",
-      hide: ishide.value,
-      rules: new chris.RuleCreater().range(1, 2, "送水").required(true, "ss"),
+      rules: chris.rulesFn().range(1, 2, "送水").required(true, "ss"),
+      hide: isHide,
     },
     {
       label: "体总:",
       prop: "pass",
       type: "input",
-      rules: new chris.RuleCreater().validator(validatePass),
+      rules: chris.rulesFn().validator(validatePass),
     },
     {
       label: "收入:",
       prop: "checkPass",
       type: "input",
-      rules: new chris.RuleCreater().validator(validatePass2),
+      rules: chris.rulesFn().validator(validatePass2),
     },
     {
       label: "自定义输入框:",
@@ -100,6 +88,17 @@ setTimeout(() => {
       slotName: "zdy",
       type: "custom",
       rules: new chris.RuleCreater().required(true, "ss"),
+    },
+    {
+      label: "Date:",
+      prop: "date",
+      type: "date",
+      rules: chris.rulesFn().required(true, "请输入日期"),
+      date: {
+        type: "daterange",
+        startPlaceholder: "1",
+        endPlaceholder: "2",
+      },
     },
   ];
 }, 100);
@@ -121,7 +120,7 @@ const checkAge = (rule: any, value: any, callback: any) => {
 };
 const validatePass = (rule: any, value: any, callback: any) => {
   if (!value) {
-    callback(new Error("Please input the password"));
+    callback(new Error("请输入体重"));
   } else {
     if (!tForm.value.form.formData.checkPass) {
       if (!tForm.value.form) return;
@@ -141,72 +140,90 @@ const validatePass2 = (rule: any, value: any, callback: any) => {
 };
 
 const bind = computed(() => {
-  console.log('我变了')
+  console.log("我变了");
   return chris.useForm({
     title: "测试表单",
     column: 3,
-    // dataList: [
-    //   {
-    //     label: "姓名速速速度:",
-    //     prop: "name",
-    //     type: "input",
-    //     value:'zhangsan',
+    dataList: [
+      {
+        label: "姓名速速速度:",
+        prop: "name",
+        type: "input",
+        input: {
+          showWordLimit: true,
+          maxlength: 10,
+          suffixIcon: "Calendar",
+          showPassword: true,
+        },
+        rules: chris
+          .rulesFn()
+          .required(true, "琴行输入年龄")
+          .validator(checkAge),
+      },
 
-    //     input: {
-    //       showWordLimit: true,
-    //       maxlength: 10,
-    //       suffixIcon: "Calendar",
-    //       showPassword: true,
-    //     },
-    //     rules: new chris.RuleCreater()
-    //       .required(true, "琴行输入年龄")
-    //       .validator(checkAge),
-
-    //   },
-
-    //   {
-    //     label: "性别:",
-    //     prop: "sex",
-    //     type: "select",
-    //     options: bb.value,
-    //     select: {
-    //       onChange: (val) => {
-    //         console.log(val);
-    //         ishide.value = val == 1 ? true : false;
-    //       },
-    //     },
-    //   },
-    //   {
-    //     type: "space",
-    //   },
-    //   {
-    //     label: "身高:",
-    //     prop: "hi",
-    //     type: "input",
-    //     hide: ishide.value,
-    //     rules: new chris.RuleCreater().range(1, 2, "送水").required(true, "ss"),
-    //   },
-    //   {
-    //     label: "体总:",
-    //     prop: "pass",
-    //     type: "input",
-    //     rules: new chris.RuleCreater().validator(validatePass),
-    //   },
-    //   {
-    //     label: "收入:",
-    //     prop: "checkPass",
-    //     type: "input",
-    //     rules: new chris.RuleCreater().validator(validatePass2),
-    //   },
-    //   {
-    //     label: "自定义输入框:",
-    //     prop: "inputValue",
-    //     slotName: "zdy",
-    //     type: "custom",
-    //     rules: new chris.RuleCreater().required(true, "ss"),
-    //   },
-    // ],
-    dataList:aa.value,
+      {
+        label: "性别:",
+        prop: "sex",
+        type: "select",
+        options: bb.value,
+        select: {
+          onChange: (val) => {
+            console.log(val);
+            isHide.value = val == 1 ? true : false;
+          },
+        },
+        rules: chris.rulesFn().required(true, "请选择性别"),
+      },
+      {
+        type: "space",
+      },
+      {
+        label: "身高:",
+        prop: "hi",
+        type: "input",
+        rules: chris.rulesFn().range(1, 2, "送水").required(true, "请输入身高"),
+        hide: isHide.value,
+      },
+      {
+        label: "体总:",
+        prop: "pass",
+        type: "input",
+        rules: chris.rulesFn().validator(validatePass).required(true),
+      },
+      {
+        label: "收入:",
+        prop: "checkPass",
+        type: "input",
+        rules: chris.rulesFn().validator(validatePass2),
+      },
+      {
+        label: "自定义输入框:",
+        prop: "inputValue",
+        slotName: "zdy",
+        type: "custom",
+        rules: chris.rulesFn().required(true),
+      },
+      {
+        label: "Date:",
+        prop: "date",
+        type: "date",
+        rules: chris.rulesFn().required(true, "请输入日期"),
+        date: {
+          type: "date",
+        },
+      },
+      {
+        label: "DateTime:",
+        prop: "dateTime",
+        type: "date",
+        rules: chris.rulesFn().required(true, "请输入日期时间"),
+        date: {
+          type: "datetimerange",
+        },
+      },
+    ],
+    // dataList: aa.value,
+    statusIcon: true,
     buttons: [
       {
         content: "提交",

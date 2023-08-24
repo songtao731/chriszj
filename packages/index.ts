@@ -8,14 +8,15 @@ import Tform from "./Tform";
 import { useTable } from "./TableList/comps/useTable";
 import { useTables } from "./TableLists/comps/useTables";
 import { useForm } from "./Tform/comp/useForm";
-import {RuleCreater} from './utils/index'
+import {RuleCreater,rulesFn} from './utils/index'
 
 import { App } from "vue";
 const chris = {
   useTable,
   useTables,
   useForm,
-  RuleCreater:RuleCreater
+  RuleCreater,
+  rulesFn
 };
 // 按需引入
 export { TableList, TableLists, Tupload, Timgs, Tform, chris };

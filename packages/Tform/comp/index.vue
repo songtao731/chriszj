@@ -11,9 +11,9 @@
       </div>
     </div>
     <FormDesc v-bind="props" ref="formRef">
-      <!-- <template v-for="items in dataList" #[items.slotName]="{ scope }">
+      <template v-for="items in dataList" #[items.slotName]="{ scope }">
         <slot :name="items.slotName" :scope="scope" v-if="items.slotName" />
-      </template> -->
+      </template>
     </FormDesc>
   </div>
 </template>
@@ -24,12 +24,12 @@ import { formProps } from "./form";
 
 const props = defineProps(formProps);
 const formRef = ref();
-// const dataList = computed(() => {
-//   const propDataList = unref(props.dataList);
-//   if (propDataList.length) {
-//     return propDataList.filter((el) => el.slotName);
-//   }
-// });
+const dataList = computed(() => {
+  const propDataList = unref(props.dataList);
+  if (propDataList.length) {
+    return propDataList.filter((el) => el.slotName);
+  }
+});
 defineExpose({
   form: formRef,
 });
