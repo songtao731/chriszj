@@ -82,7 +82,7 @@ import Buttons from "./Buttons.vue";
 import type { Filter } from "./TableColumnItem";
 
 import { vepTableEmits, TableProps } from "./Table";
-import { getPath } from "../utils/index";
+import { getPath, getTotalPath } from "../utils/index";
 //表格所有事件
 const emit = defineEmits({ ...vepTableEmits, resetFn: () => {} });
 //表格属性
@@ -135,7 +135,8 @@ const getDataList = async (data?: any) => {
 
   dataList.value = getPath(res, path);
 
-  total.value = getPath(res, toTalPath);
+  total.value = getTotalPath(res, toTalPath);
+
 
   if (props.parseData) {
     dataList.value = props.parseData(dataList.value);

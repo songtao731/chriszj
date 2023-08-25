@@ -200,7 +200,6 @@ declare const _default: import("vue").DefineComponent<{
     onError: (error: Error, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     onProgress: (evt: import("element-plus").UploadProgressEvent, uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     multiple: boolean;
-    fileList: import("element-plus").UploadUserFile[];
     onRemove: (uploadFile: UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     beforeUpload: (rawFile: import("element-plus").UploadRawFile) => import("element-plus/es/utils").Awaitable<boolean | void | Blob | File | null | undefined>;
     onPreview: (uploadFile: UploadFile) => void;
@@ -213,6 +212,7 @@ declare const _default: import("vue").DefineComponent<{
     showFileList: boolean;
     accept: string;
     autoUpload: boolean;
+    fileList: import("element-plus").UploadUserFile[];
     listType: "text" | "picture" | "picture-card";
     httpRequest: import("element-plus").UploadRequestHandler;
 }, {}>;

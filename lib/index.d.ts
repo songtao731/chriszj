@@ -25,6 +25,13 @@ declare const chris: {
         table: (parms: any) => import("./TableList").Args;
     };
     useForm: (args: import("./Tform/comp/useForm").Args) => import("./Tform/comp/useForm").Args;
+    rulesFn: () => {
+        rules: import("./utils/index").RuleObject[];
+        required(required: boolean, message?: string | undefined, trigger?: "click" | "focus" | "blur" | "change" | undefined): any;
+        range(min: number, max: number, message: string, trigger?: "click" | "focus" | "blur" | "change" | undefined): any;
+        pattern(pattern: string | RegExp, message: string, trigger?: "click" | "focus" | "blur" | "change" | undefined): any;
+        validator(validator: any, trigger?: "click" | "focus" | "blur" | "change" | undefined): any;
+    };
 };
 export { TableList, TableLists, Tupload, Timgs, Tform, chris };
 declare const install: {

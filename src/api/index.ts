@@ -18,7 +18,7 @@ export const travelAddList = (data: any) => {
 //招待申请列表
 export const entertainApplicationAddList = (data: any) => {
   return axios({
-    url: `/financial-center-business/entertainApplication/getBasePage`,
+    url: `/gateway/financial/pay/collectionList/claim/list`,
     method: "get",
     params: data,
   });

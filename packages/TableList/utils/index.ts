@@ -11,3 +11,15 @@ export const getPath = (value: any, path: string) => {
   });
   return value;
 };
+export const getTotalPath = (value: any, path: string) => {
+  if (!value) {
+    return 0
+  }
+  const arr = path.split(".");
+
+  arr.forEach((el: any) => {
+    value = value[el];
+  });
+
+  return value;
+};

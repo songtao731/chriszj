@@ -3,10 +3,11 @@ declare const Tform: ({
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: {
-            size?: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size))[], unknown, unknown> | undefined;
+            size?: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size))[], unknown, unknown> | undefined;
             disabled?: boolean | undefined;
+            buttons?: import("../BaseComps/buttons").ButtonProps[] | undefined;
             title?: string | undefined;
-            column?: number | undefined;
+            column?: import("element-plus/es/utils").EpPropMergeType<(StringConstructor | NumberConstructor)[], unknown, unknown> | undefined;
             labelPosition?: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "left" | "top" | "right", unknown> | undefined;
             requireAsteriskPosition?: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "left" | "right", unknown> | undefined;
             labelWidth?: import("element-plus/es/utils").EpPropMergeType<readonly [StringConstructor, NumberConstructor], unknown, unknown> | undefined;
@@ -20,8 +21,9 @@ declare const Tform: ({
             scrollToError?: boolean | undefined;
             border?: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown> | undefined;
             dataList?: import("./comp/useForm").dataItem[] | undefined;
-            direction?: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction) | ((new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction))[], unknown, unknown> | undefined;
-            extra?: string | undefined;
+            gutter?: number | undefined;
+            closePlaceholder?: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown> | undefined;
+            buttonsAlign?: string | undefined;
             key?: string | number | symbol | undefined;
             style?: unknown;
             ref?: import("vue").VNodeRef | undefined;
@@ -93,7 +95,7 @@ declare const Tform: ({
             };
             labelPosition: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "left" | "top" | "right", unknown, "right", boolean>;
             requireAsteriskPosition: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "left" | "right", unknown, "left", boolean>;
-            labelWidth: import("element-plus/es/utils").EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, "", boolean>;
+            labelWidth: import("element-plus/es/utils").EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, "110px", boolean>;
             labelSuffix: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
             inline: BooleanConstructor;
             inlineMessage: BooleanConstructor;
@@ -110,17 +112,22 @@ declare const Tform: ({
             };
             title: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
             dataList: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => import("./comp/useForm").dataItem[]) | (() => import("./comp/useForm").dataItem[]) | ((new (...args: any[]) => import("./comp/useForm").dataItem[]) | (() => import("./comp/useForm").dataItem[]))[], unknown, unknown, () => never[], boolean>;
-            direction: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction) | ((new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction))[], unknown, unknown, string, boolean>;
-            size: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size))[], unknown, unknown, string, boolean>;
+            size: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size))[], unknown, unknown, string, boolean>;
             border: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
-            column: import("element-plus/es/utils").EpPropFinalized<NumberConstructor, unknown, unknown, number, boolean>;
-            extra: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
+            column: import("element-plus/es/utils").EpPropFinalized<(StringConstructor | NumberConstructor)[], unknown, unknown, number, boolean>;
+            gutter: import("element-plus/es/utils").EpPropFinalized<NumberConstructor, unknown, unknown, number, boolean>;
+            closePlaceholder: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
+            buttons: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => import("../BaseComps/buttons").ButtonProps[]) | (() => import("../BaseComps/buttons").ButtonProps[]) | ((new (...args: any[]) => import("../BaseComps/buttons").ButtonProps[]) | (() => import("../BaseComps/buttons").ButtonProps[]))[], unknown, unknown, () => never[], boolean>;
+            buttonsAlign: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
             disabled: BooleanConstructor;
-        }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
-            size: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size))[], unknown, unknown>;
+        }>>, {
+            form: import("vue").Ref<any>;
+        }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
+            size: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size))[], unknown, unknown>;
             disabled: boolean;
+            buttons: import("../BaseComps/buttons").ButtonProps[];
             title: string;
-            column: number;
+            column: import("element-plus/es/utils").EpPropMergeType<(StringConstructor | NumberConstructor)[], unknown, unknown>;
             labelPosition: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "left" | "top" | "right", unknown>;
             requireAsteriskPosition: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "left" | "right", unknown>;
             labelWidth: import("element-plus/es/utils").EpPropMergeType<readonly [StringConstructor, NumberConstructor], unknown, unknown>;
@@ -134,8 +141,9 @@ declare const Tform: ({
             scrollToError: boolean;
             border: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
             dataList: import("./comp/useForm").dataItem[];
-            direction: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction) | ((new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction))[], unknown, unknown>;
-            extra: string;
+            gutter: number;
+            closePlaceholder: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+            buttonsAlign: string;
         }, {}, string, {}> & {
             beforeCreate?: ((() => void) | (() => void)[]) | undefined;
             created?: ((() => void) | (() => void)[]) | undefined;
@@ -166,7 +174,7 @@ declare const Tform: ({
         };
         labelPosition: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "left" | "top" | "right", unknown, "right", boolean>;
         requireAsteriskPosition: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "left" | "right", unknown, "left", boolean>;
-        labelWidth: import("element-plus/es/utils").EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, "", boolean>;
+        labelWidth: import("element-plus/es/utils").EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, "110px", boolean>;
         labelSuffix: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
         inline: BooleanConstructor;
         inlineMessage: BooleanConstructor;
@@ -183,13 +191,17 @@ declare const Tform: ({
         };
         title: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
         dataList: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => import("./comp/useForm").dataItem[]) | (() => import("./comp/useForm").dataItem[]) | ((new (...args: any[]) => import("./comp/useForm").dataItem[]) | (() => import("./comp/useForm").dataItem[]))[], unknown, unknown, () => never[], boolean>;
-        direction: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction) | ((new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction))[], unknown, unknown, string, boolean>;
-        size: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size))[], unknown, unknown, string, boolean>;
+        size: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size))[], unknown, unknown, string, boolean>;
         border: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
-        column: import("element-plus/es/utils").EpPropFinalized<NumberConstructor, unknown, unknown, number, boolean>;
-        extra: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
+        column: import("element-plus/es/utils").EpPropFinalized<(StringConstructor | NumberConstructor)[], unknown, unknown, number, boolean>;
+        gutter: import("element-plus/es/utils").EpPropFinalized<NumberConstructor, unknown, unknown, number, boolean>;
+        closePlaceholder: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
+        buttons: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => import("../BaseComps/buttons").ButtonProps[]) | (() => import("../BaseComps/buttons").ButtonProps[]) | ((new (...args: any[]) => import("../BaseComps/buttons").ButtonProps[]) | (() => import("../BaseComps/buttons").ButtonProps[]))[], unknown, unknown, () => never[], boolean>;
+        buttonsAlign: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
         disabled: BooleanConstructor;
-    }>> & import("vue").ShallowUnwrapRef<{}> & {} & import("vue").ComponentCustomProperties & {};
+    }>> & import("vue").ShallowUnwrapRef<{
+        form: import("vue").Ref<any>;
+    }> & {} & import("vue").ComponentCustomProperties & {};
     __isFragment?: undefined;
     __isTeleport?: undefined;
     __isSuspense?: undefined;
@@ -203,7 +215,7 @@ declare const Tform: ({
     };
     labelPosition: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "left" | "top" | "right", unknown, "right", boolean>;
     requireAsteriskPosition: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "left" | "right", unknown, "left", boolean>;
-    labelWidth: import("element-plus/es/utils").EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, "", boolean>;
+    labelWidth: import("element-plus/es/utils").EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, "110px", boolean>;
     labelSuffix: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
     inline: BooleanConstructor;
     inlineMessage: BooleanConstructor;
@@ -220,17 +232,22 @@ declare const Tform: ({
     };
     title: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
     dataList: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => import("./comp/useForm").dataItem[]) | (() => import("./comp/useForm").dataItem[]) | ((new (...args: any[]) => import("./comp/useForm").dataItem[]) | (() => import("./comp/useForm").dataItem[]))[], unknown, unknown, () => never[], boolean>;
-    direction: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction) | ((new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction))[], unknown, unknown, string, boolean>;
-    size: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size))[], unknown, unknown, string, boolean>;
+    size: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size))[], unknown, unknown, string, boolean>;
     border: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
-    column: import("element-plus/es/utils").EpPropFinalized<NumberConstructor, unknown, unknown, number, boolean>;
-    extra: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
+    column: import("element-plus/es/utils").EpPropFinalized<(StringConstructor | NumberConstructor)[], unknown, unknown, number, boolean>;
+    gutter: import("element-plus/es/utils").EpPropFinalized<NumberConstructor, unknown, unknown, number, boolean>;
+    closePlaceholder: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
+    buttons: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => import("../BaseComps/buttons").ButtonProps[]) | (() => import("../BaseComps/buttons").ButtonProps[]) | ((new (...args: any[]) => import("../BaseComps/buttons").ButtonProps[]) | (() => import("../BaseComps/buttons").ButtonProps[]))[], unknown, unknown, () => never[], boolean>;
+    buttonsAlign: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
     disabled: BooleanConstructor;
-}>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
-    size: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "small" | "large") | (() => import("./comp/useForm").size))[], unknown, unknown>;
+}>>, {
+    form: import("vue").Ref<any>;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
+    size: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size) | ((new (...args: any[]) => "default" | "large" | "small") | (() => import("./comp/useForm").size))[], unknown, unknown>;
     disabled: boolean;
+    buttons: import("../BaseComps/buttons").ButtonProps[];
     title: string;
-    column: number;
+    column: import("element-plus/es/utils").EpPropMergeType<(StringConstructor | NumberConstructor)[], unknown, unknown>;
     labelPosition: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "left" | "top" | "right", unknown>;
     requireAsteriskPosition: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "left" | "right", unknown>;
     labelWidth: import("element-plus/es/utils").EpPropMergeType<readonly [StringConstructor, NumberConstructor], unknown, unknown>;
@@ -244,12 +261,15 @@ declare const Tform: ({
     scrollToError: boolean;
     border: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
     dataList: import("./comp/useForm").dataItem[];
-    direction: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction) | ((new (...args: any[]) => "vertical" | "horizonta") | (() => import("./comp/useForm").direction))[], unknown, unknown>;
-    extra: string;
+    gutter: number;
+    closePlaceholder: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+    buttonsAlign: string;
 }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
-    $slots: {
-        extra?(_: {}): any;
+    $slots: Partial<Record<string, (_: {
+        scope: any;
+    }) => any>> & {
         title?(_: {}): any;
+        buttons?(_: {}): any;
     };
 }) & import("vue").Plugin) & Record<string, any>;
 export default Tform;

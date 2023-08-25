@@ -54,7 +54,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         of<T_4>(...items: T_4[]): T_4[];
         readonly [Symbol.species]: ArrayConstructor;
     };
-    size: import("vue").PropType<("default" | "small" | "large") | undefined>;
+    size: import("vue").PropType<("default" | "large" | "small") | undefined>;
     width: (StringConstructor | NumberConstructor)[];
     height: (StringConstructor | NumberConstructor)[];
     maxHeight: (StringConstructor | NumberConstructor)[];
@@ -267,7 +267,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         of<T_4>(...items: T_4[]): T_4[];
         readonly [Symbol.species]: ArrayConstructor;
     };
-    size: import("vue").PropType<("default" | "small" | "large") | undefined>;
+    size: import("vue").PropType<("default" | "large" | "small") | undefined>;
     width: (StringConstructor | NumberConstructor)[];
     height: (StringConstructor | NumberConstructor)[];
     maxHeight: (StringConstructor | NumberConstructor)[];

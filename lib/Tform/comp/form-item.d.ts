@@ -31,7 +31,7 @@ export declare const formItemProps: {
     readonly inlineMessage: import("element-plus/es/utils/vue/props/types").EpPropFinalized<readonly [StringConstructor, BooleanConstructor], unknown, unknown, "", boolean>;
     readonly showMessage: import("element-plus/es/utils/vue/props/types").EpPropFinalized<BooleanConstructor, unknown, unknown, true, boolean>;
     readonly size: {
-        readonly type: import("vue").PropType<import("element-plus/es/utils/vue/props/types").EpPropMergeType<StringConstructor, "" | "default" | "small" | "large", unknown>>;
+        readonly type: import("vue").PropType<import("element-plus/es/utils/vue/props/types").EpPropMergeType<StringConstructor, "" | "default" | "large" | "small", unknown>>;
         readonly required: false;
         readonly validator: ((val: unknown) => boolean) | undefined;
         __epPropKey: true;

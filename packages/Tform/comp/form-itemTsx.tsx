@@ -22,10 +22,19 @@ import {
   ElIcon,
   ElRow,
   ElCol,
+  ElCheckbox,
+  ElCheckboxGroup,
+  ElRadio,
+  ElRadioGroup,
+  ElRate,
 } from "element-plus";
 import { formProps } from "./form";
 import { dataItem } from "../../Tform/comp/useForm";
 import "../../style/index.scss";
+import { CheckBoxItem } from "../../BaseComps/checkBox";
+import { RadioItem } from "../../BaseComps/radio";
+
+import { Tupload } from "../../index";
 
 export default defineComponent({
   props: formProps,
@@ -43,11 +52,14 @@ export default defineComponent({
 
     const resetFn = (el: dataItem) => {
       switch (el.type) {
-        case "input":
-          formData[el.prop as string] = "";
+        case "checkBox":
+          formData[el.prop as string] = [];
           break;
-        case "custom":
-          formData[el.prop as string] = "";
+        case "rate":
+          formData[el.prop as string] = 0;
+          break;
+        case "upload":
+          formData[el.prop as string] = [];
           break;
         default:
           formData[el.prop as string] = "";
@@ -68,6 +80,11 @@ export default defineComponent({
         case "3":
           props.dataList.forEach((el) => {
             el.nospan = (el.span && +el.span * 8) || 8;
+          });
+          break;
+        case "4":
+          props.dataList.forEach((el) => {
+            el.nospan = (el.span && +el.span * 6) || 6;
           });
           break;
       }
@@ -237,9 +254,8 @@ export default defineComponent({
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             <ElCascader
-                            
                               clearable={true}
-                              class="wid100"
+                              class="w-full"
                               v-model={formData[el.prop as string]}
                               placeholder={changePlaceHolderFn(
                                 props.closePlaceholder,
@@ -252,82 +268,70 @@ export default defineComponent({
                         </ElCol>
                       );
                       break;
-                    case "dateRange":
+                    case "checkBox":
                       element = (
-                        <ElFormItem label={`${el.label}:`}>
-                          <ElDatePicker
-                            class="item-content"
+                        <ElCol span={el.nospan}>
+                          <ElFormItem {...el} rules={el.rules?.rules}>
+                            <ElCheckboxGroup
+                              v-model={formData[el.prop as string]}
+                              {...el.checkBox}
+                            >
+                              {unref(el!.checkBox!.options).length &&
+                                unref(el!.checkBox!.options).map(
+                                  (ele: CheckBoxItem, index: any) => {
+                                    return (
+                                      <ElCheckbox {...ele} label={ele.value}>
+                                        {ele.label}
+                                      </ElCheckbox>
+                                    );
+                                  }
+                                )}
+                            </ElCheckboxGroup>
+                          </ElFormItem>
+                        </ElCol>
+                      );
+                      break;
+                    case "radio":
+                      element = (
+                        <ElCol span={el.nospan}>
+                          <ElFormItem {...el} rules={el.rules?.rules}>
+                            <ElRadioGroup
+                              v-model={formData[el.prop as string]}
+                              {...el.checkBox}
+                            >
+                              {unref(el!.radio!.options).length &&
+                                unref(el!.radio!.options).map(
+                                  (ele: RadioItem, index: any) => {
+                                    return (
+                                      <ElRadio {...ele} label={ele.value}>
+                                        {ele.label}
+                                      </ElRadio>
+                                    );
+                                  }
+                                )}
+                            </ElRadioGroup>
+                          </ElFormItem>
+                        </ElCol>
+                      );
+                      break;
+                    case "rate":
+                      element = (
+                        <ElFormItem {...el} rules={el.rules?.rules}>
+                          <ElRate
+                            v-model={formData[el.prop as string]}
                             clearable={true}
-                            v-model={formData[el.prop]}
-                            props={el.props}
-                            start-placeholder={`${
-                              Array.isArray(el.placeholder)
-                                ? el.placeholder[0]
-                                : "起始日期"
-                            }`}
-                            end-placeholder={`${
-                              Array.isArray(el.placeholder)
-                                ? el.placeholder[1]
-                                : "结束日期"
-                            }`}
-                            type="daterange"
-                            value-format="YYYY-MM-DD"
-                          ></ElDatePicker>
+                            {...el.rate}
+                          ></ElRate>
                         </ElFormItem>
                       );
                       break;
-                    case "dateTimeRange":
+                    case "upload":
                       element = (
-                        <ElFormItem label={`${el.label}:`}>
-                          <ElDatePicker
-                            class="item-content"
-                            clearable={true}
-                            v-model={formData[el.prop]}
-                            props={el.props}
-                            start-placeholder={`${
-                              Array.isArray(el.placeholder)
-                                ? el.placeholder[0]
-                                : "起始日期"
-                            }`}
-                            end-placeholder={`${
-                              Array.isArray(el.placeholder)
-                                ? el.placeholder[1]
-                                : "结束日期"
-                            }`}
-                            type="datetimerange"
-                            value-format="YYYY-MM-DD HH:mm:ss"
-                          ></ElDatePicker>
-                        </ElFormItem>
-                      );
-                      break;
-                    case "inputrange":
-                      element = (
-                        <ElFormItem
-                          label={`${el.label}:`}
-                          class="el-form-item-min"
-                        >
-                          <ElInput
-                            class="item-content"
-                            clearable={true}
-                            v-model={formData[el.prop[0]]}
-                            placeholder={`${
-                              Array.isArray(el.placeholder)
-                                ? el.placeholder[0]
-                                : "最小值"
-                            }`}
-                          />
-
-                          <span>-</span>
-                          <ElInput
-                            class="item-content"
-                            clearable={true}
-                            v-model={formData[el.prop[1]]}
-                            placeholder={`${
-                              Array.isArray(el.placeholder)
-                                ? el.placeholder[1]
-                                : "最大值"
-                            }`}
-                          />
+                        <ElFormItem {...el} rules={el.rules?.rules}>
+                          <Tupload
+                            v-model:fileList={formData[el.prop as string]}
+                            {...el.upload}
+                          ></Tupload>
                         </ElFormItem>
                       );
                       break;

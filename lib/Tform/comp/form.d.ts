@@ -2,7 +2,7 @@ import type { ExtractPropTypes } from 'vue';
 import type { FormItemProp } from './form-item';
 declare const formMetaProps: {
     readonly size: {
-        readonly type: import("vue").PropType<import("element-plus/es/utils/vue/props/types").EpPropMergeType<StringConstructor, "" | "default" | "small" | "large", unknown>>;
+        readonly type: import("vue").PropType<import("element-plus/es/utils/vue/props/types").EpPropMergeType<StringConstructor, "" | "default" | "large" | "small", unknown>>;
         readonly required: false;
         readonly validator: ((val: unknown) => boolean) | undefined;
         __epPropKey: true;
@@ -19,7 +19,7 @@ export declare const formProps: {
     };
     readonly labelPosition: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, "left" | "top" | "right", unknown, "right", boolean>;
     readonly requireAsteriskPosition: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, "left" | "right", unknown, "left", boolean>;
-    readonly labelWidth: import("element-plus/es/utils/vue/props/types").EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, "", boolean>;
+    readonly labelWidth: import("element-plus/es/utils/vue/props/types").EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, "110px", boolean>;
     readonly labelSuffix: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
     readonly inline: BooleanConstructor;
     readonly inlineMessage: BooleanConstructor;
@@ -36,11 +36,13 @@ export declare const formProps: {
     };
     readonly title: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
     readonly dataList: import("element-plus/es/utils/vue/props/types").EpPropFinalized<(new (...args: any[]) => import("./useForm").dataItem[]) | (() => import("./useForm").dataItem[]) | ((new (...args: any[]) => import("./useForm").dataItem[]) | (() => import("./useForm").dataItem[]))[], unknown, unknown, () => never[], boolean>;
-    readonly direction: import("element-plus/es/utils/vue/props/types").EpPropFinalized<(new (...args: any[]) => "vertical" | "horizonta") | (() => import("./useForm").direction) | ((new (...args: any[]) => "vertical" | "horizonta") | (() => import("./useForm").direction))[], unknown, unknown, string, boolean>;
-    readonly size: import("element-plus/es/utils/vue/props/types").EpPropFinalized<(new (...args: any[]) => "default" | "small" | "large") | (() => import("./useForm").size) | ((new (...args: any[]) => "default" | "small" | "large") | (() => import("./useForm").size))[], unknown, unknown, string, boolean>;
+    readonly size: import("element-plus/es/utils/vue/props/types").EpPropFinalized<(new (...args: any[]) => "default" | "large" | "small") | (() => import("./useForm").size) | ((new (...args: any[]) => "default" | "large" | "small") | (() => import("./useForm").size))[], unknown, unknown, string, boolean>;
     readonly border: import("element-plus/es/utils/vue/props/types").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
-    readonly column: import("element-plus/es/utils/vue/props/types").EpPropFinalized<NumberConstructor, unknown, unknown, number, boolean>;
-    readonly extra: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
+    readonly column: import("element-plus/es/utils/vue/props/types").EpPropFinalized<(StringConstructor | NumberConstructor)[], unknown, unknown, number, boolean>;
+    readonly gutter: import("element-plus/es/utils/vue/props/types").EpPropFinalized<NumberConstructor, unknown, unknown, number, boolean>;
+    readonly closePlaceholder: import("element-plus/es/utils/vue/props/types").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
+    readonly buttons: import("element-plus/es/utils/vue/props/types").EpPropFinalized<(new (...args: any[]) => import("../../BaseComps/buttons").ButtonProps[]) | (() => import("../../BaseComps/buttons").ButtonProps[]) | ((new (...args: any[]) => import("../../BaseComps/buttons").ButtonProps[]) | (() => import("../../BaseComps/buttons").ButtonProps[]))[], unknown, unknown, () => never[], boolean>;
+    readonly buttonsAlign: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
     readonly disabled: BooleanConstructor;
 };
 export type FormProps = ExtractPropTypes<typeof formProps>;

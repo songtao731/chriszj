@@ -30,7 +30,7 @@ declare const TableList: ({
             tableLayout?: ("fixed" | "auto") | undefined;
             scrollbarAlwaysOn?: boolean | undefined;
             flexible?: boolean | undefined;
-            readonly size?: ("default" | "small" | "large") | undefined;
+            readonly size?: ("default" | "large" | "small") | undefined;
             readonly buttons?: import("./comps/Button").ButtonProps[] | undefined;
             readonly width?: string | number | undefined;
             readonly showOverflowTooltip?: boolean | Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined;
@@ -258,7 +258,7 @@ declare const TableList: ({
                 of<T_4>(...items: T_4[]): T_4[];
                 readonly [Symbol.species]: ArrayConstructor;
             };
-            size: import("vue").PropType<("default" | "small" | "large") | undefined>;
+            size: import("vue").PropType<("default" | "large" | "small") | undefined>;
             width: (StringConstructor | NumberConstructor)[];
             height: (StringConstructor | NumberConstructor)[];
             maxHeight: (StringConstructor | NumberConstructor)[];
@@ -550,7 +550,7 @@ declare const TableList: ({
             of<T_4>(...items: T_4[]): T_4[];
             readonly [Symbol.species]: ArrayConstructor;
         };
-        size: import("vue").PropType<("default" | "small" | "large") | undefined>;
+        size: import("vue").PropType<("default" | "large" | "small") | undefined>;
         width: (StringConstructor | NumberConstructor)[];
         height: (StringConstructor | NumberConstructor)[];
         maxHeight: (StringConstructor | NumberConstructor)[];
@@ -767,7 +767,7 @@ declare const TableList: ({
         of<T_4>(...items: T_4[]): T_4[];
         readonly [Symbol.species]: ArrayConstructor;
     };
-    size: import("vue").PropType<("default" | "small" | "large") | undefined>;
+    size: import("vue").PropType<("default" | "large" | "small") | undefined>;
     width: (StringConstructor | NumberConstructor)[];
     height: (StringConstructor | NumberConstructor)[];
     maxHeight: (StringConstructor | NumberConstructor)[];

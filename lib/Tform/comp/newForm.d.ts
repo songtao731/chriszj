@@ -1,5 +1,5 @@
 import { PropType } from "vue";
-import { dataItem, direction, size } from "./useForm";
+import { dataItem, size } from "./useForm";
 export declare const newForm: {
     title: {
         type: StringConstructor;
@@ -8,10 +8,6 @@ export declare const newForm: {
     dataList: {
         type: PropType<dataItem[]>;
         default: () => never[];
-    };
-    direction: {
-        type: PropType<direction>;
-        default: string;
     };
     size: {
         type: PropType<size>;
@@ -22,10 +18,22 @@ export declare const newForm: {
         default: boolean;
     };
     column: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: number;
+    };
+    gutter: {
         type: NumberConstructor;
         default: number;
     };
-    extra: {
+    closePlaceholder: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    buttons: {
+        type: PropType<import("../../BaseComps/buttons").ButtonProps[]>;
+        default: () => never[];
+    };
+    buttonsAlign: {
         type: StringConstructor;
         default: string;
     };

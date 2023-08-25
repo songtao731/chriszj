@@ -3,7 +3,7 @@ import { ArgumentsType } from "@vueuse/core";
 export type direction = "vertical" | "horizonta";
 export type size = "large" | "default" | "small";
 export type column = "1" | "2" | "3" | "4";
-export type typeEnum = "input" | "select" | "space" | "custom"|"date"|"cascader";
+export type typeEnum = "input" | "select" | "space" | "custom"|"date"|"cascader"|"checkBox"|"radio"|"rate"|"upload"
 export type opstionsItem = {
   label: string;
   value: string;
@@ -46,9 +46,20 @@ export type dataItem = {
   input?: MainPackage["input"];
   //select选择器的属性
   select?: MainPackage["select"];
+  //日期
   date?:MainPackage['date']
-  dateTime?:MainPackage['dateTime']
+  // dateTime?:MainPackage['dateTime']
+  //次级选择
   cascader?:MainPackage['cascader']
+  //多选
+  checkBox?:MainPackage['checkbox']
+  //单选
+  radio?:MainPackage['radio']
+  //评分
+  rate?:MainPackage['rate']
+  //上传
+  upload?:MainPackage['upload']
+
 };
 
 export interface Args {

@@ -17,6 +17,11 @@ import { ElInput } from "element-plus";
 import { computed, reactive, Ref, ref, toRef } from "vue";
 import { chris, Tform } from "../../packages/index";
 import { dataItem } from "../../packages/Tform/comp/useForm";
+
+import {entertainApplicationAddList  } from "@/api/index";
+
+const url =
+  "https://gateway-uat.zhidabl.com" + "/finance-file/fast/file/upload";
 const tForm = ref();
 let bb: any = ref([]);
 
@@ -26,7 +31,7 @@ setTimeout(() => {
     { label: "女", value: "2", id: 2 },
   ];
   // ishide.value=true
-}, 1);
+}, 1000);
 
 let aa: Ref<dataItem[]> = ref([]);
 
@@ -87,7 +92,7 @@ setTimeout(() => {
       prop: "inputValue",
       slotName: "zdy",
       type: "custom",
-      rules: new chris.RuleCreater().required(true, "ss"),
+      rules: chris.rulesFn().required(true, "ss"),
     },
     {
       label: "Date:",
@@ -138,13 +143,21 @@ const validatePass2 = (rule: any, value: any, callback: any) => {
     callback();
   }
 };
+const checkRate = (rule: any, value: any, callback: any) => {
+  if (!value) {
+    callback(new Error("请输入体重"));
 
-let id=0
+  }
+
+
+}
+
+let id = 0;
 const bind = computed(() => {
   console.log("我变了");
   return chris.useForm({
     title: "测试表单",
-    column: "3",
+    column: "4",
     labelWidth: "140px",
     dataList: [
       {
@@ -256,6 +269,77 @@ const bind = computed(() => {
           },
         },
       },
+      {
+        label: "职业",
+        type: "checkBox",
+        prop: "check",
+        rules: chris.rulesFn().required(true, "请选择职业"),
+        checkBox: {
+          options: [
+            {
+              label: "前端",
+              value: "1",
+            },
+            {
+              label: "后端",
+              value: "2",
+            },
+            {
+              label: "测试",
+              value: "3",
+            },
+          ],
+        },
+      },
+      {
+        label: "行业",
+        type: "radio",
+        prop: "radio",
+        rules: chris.rulesFn().required(true, "请选择行业"),
+        radio: {
+          options: [
+            {
+              label: "金融",
+              value: "1",
+            },
+            {
+              label: "It",
+              value: "2",
+            },
+            {
+              label: "教育",
+              value: "3",
+            },
+          ],
+        },
+      },
+      {
+        label: "评分",
+        type: 'rate',
+        prop: 'rate',
+        rules: chris.rulesFn().required(true, '请打分').validator(checkRate),
+        rate: {
+          texts: ['oops', 'disappointed', 'normal', 'good', 'great'],
+          showText: true,
+          allowHalf: true,
+          onChange(val) {
+            console.log(val, 'ra')
+          }
+        }
+      },
+      {
+        label: "上传",
+        type: 'upload',
+        prop: 'upload',
+        upload: {
+          action: url,
+          headers : {
+            "token": sessionStorage.token,
+          }
+        }
+
+      }
+
     ],
     // dataList: aa.value,
     statusIcon: true,

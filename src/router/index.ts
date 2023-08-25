@@ -21,7 +21,7 @@ const router = createRouter({
     },
     {
       path: '/form',
-      name: 'upload',
+      name: 'form',
       component: () => import('../views/Form.vue')
     }
   ]

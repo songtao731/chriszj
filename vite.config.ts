@@ -22,7 +22,7 @@ export default defineConfig({
       "/api": {
         target: 'https://zyn.zhidianjh.com',
         changeOrigin: true,
-        rewrite: (path:any) => path.replace(/^\/api/, "/api")
+        rewrite: (path:any) => path.replace(/^\/api/, "")
     },
     },
  
@@ -78,6 +78,12 @@ export default defineConfig({
     modules: {
       // 连字符会被转为大小写，且只会存在大小写
       localsConvention: 'camelCaseOnly'
+    },
+    postcss: {
+      plugins: [
+        require('tailwindcss'), 
+        require('autoprefixer')
+      ]
     },
     preprocessorOptions: {
       scss: {

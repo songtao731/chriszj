@@ -1,3 +1,7 @@
+
+
+import './tailwind.css'
+
 import "./assets/main.css";
 import "element-plus/dist/index.css";
 
@@ -13,7 +17,6 @@ import Schema from "async-validator";
 Schema.messages.required = () => {
   return "该项为必填项";
 };
-// import 'uno.css'
 import { createApp } from "vue";
 import App from "./App.vue";
 

@@ -102,17 +102,17 @@ declare const _default: import("vue").DefineComponent<{
 }>>, {
     fit: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown>;
     lazy: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+    zoomRate: number;
+    initialIndex: number;
     src: string;
     previewSrcList: string[];
-    initialIndex: number;
-    infinite: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    closeOnPressEscape: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    zoomRate: number;
-    hideOnClickModal: boolean;
-    previewTeleported: boolean;
     fileList: {
         name?: string | undefined;
         url: string;
     }[];
+    infinite: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+    closeOnPressEscape: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+    hideOnClickModal: boolean;
+    previewTeleported: boolean;
 }, {}>;
 export default _default;

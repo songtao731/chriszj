@@ -1,6 +1,4 @@
 <template>
-
-  22
   <Tupload v-model:file-list="fileList"> </Tupload>
   <Timgs :file-list="fileList2"> </Timgs>
   <el-button text @click="outerVisible = true">

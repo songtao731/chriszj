@@ -199,7 +199,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     onError: (error: Error, uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     onProgress: (evt: import("element-plus").UploadProgressEvent, uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     multiple: boolean;
-    fileList: import("element-plus").UploadUserFile[];
     onRemove: (uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     beforeUpload: (rawFile: import("element-plus").UploadRawFile) => import("element-plus/es/utils").Awaitable<boolean | void | Blob | File | null | undefined>;
     onPreview: (uploadFile: import("element-plus").UploadFile) => void;
@@ -212,6 +211,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     showFileList: boolean;
     accept: string;
     autoUpload: boolean;
+    fileList: import("element-plus").UploadUserFile[];
     listType: "text" | "picture" | "picture-card";
     httpRequest: import("element-plus").UploadRequestHandler;
 }, {}>, {

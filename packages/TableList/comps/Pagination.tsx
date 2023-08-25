@@ -8,8 +8,6 @@ export default defineComponent({
   emits: ['getPage'],
   props: ['total','layout','pageSizes','currentPage'],
   setup(props, { emit }) {
-    const total = ref(0);
-
     const currentPage = ref(1);
     const pageSize = ref(10);
     const handleSizeChange = (val: number): void => {
@@ -30,13 +28,12 @@ export default defineComponent({
       handleSizeChange,
       pageSize,
       currentPage,
-      props
+      props,
     };
   },
   render() {
     return (
       <div class="paginaton">
-
         <ElPagination
           onUpdate:current-page={this.handleCurrentChange}
           onUpdate:page-size={this.handleSizeChange}
@@ -44,7 +41,7 @@ export default defineComponent({
           pageSizes={this.props.pageSizes}
           pageSize={this.pageSize}
           layout={this.props.layout}
-          total={this.total}
+          total={+this.props.total}
         ></ElPagination>
       </div>
     );

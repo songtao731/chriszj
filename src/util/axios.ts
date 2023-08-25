@@ -35,7 +35,7 @@ const requestConfig: Config = {
   baseURL: '/api',
   timeout: 600000,
   headers: {
-    Authorization : `Bearer ${sessionStorage.getItem("token")}`
+    token : `${sessionStorage.getItem("token")}`
   }
 };
 
@@ -92,7 +92,7 @@ request.interceptors.response.use(
       if (!data.code) {
         return response
       }
-      if (data.code === 200) {
+      if (data.code) {
         return data;
       } else {
 
@@ -103,7 +103,7 @@ request.interceptors.response.use(
     }
   },
   (error) => {
-    console.error("error:", "-------", error.response);
+    console.error("error:", "-------", error);
     return Promise.reject("服务器异常");
     // window.location.reload()
   }

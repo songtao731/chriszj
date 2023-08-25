@@ -10,7 +10,7 @@
         <slot name="buttons"> </slot>
       </div>
     </div>
-    <FormDesc v-bind="props" ref="formRef">
+    <FormDesc v-bind="props" ref="formRef" >
       <template v-for="items in dataList" #[items.slotName]="{ scope }">
         <slot :name="items.slotName" :scope="scope" v-if="items.slotName" />
       </template>
