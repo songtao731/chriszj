@@ -1,6 +1,13 @@
 <template>
-  <Tupload v-model:file-list="fileList"> </Tupload>
-  <Timgs :file-list="fileList2"> </Timgs>
+  <Tupload v-model:file-list="fileList" list-type="text">
+
+  
+  </Tupload> 
+
+
+ <!-- <Timgs :file-list="fileList2"> </Timgs>
+
+
   <el-button text @click="outerVisible = true">
     open the outer Dialog
   </el-button>
@@ -22,14 +29,14 @@
         </el-button>
       </div>
     </template>
-  </el-dialog>
+  </el-dialog>  -->
 
-  <ElButton @click="aa"> aa </ElButton>
+<ElButton @click="aa"> aa </ElButton>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { Tupload } from "chriszj";
+import { Tupload} from "../../packages/index";
 
 import { UploadUserFile } from "element-plus";
 
@@ -78,4 +85,5 @@ const aa = () => {
 };
 const outerVisible = ref(false);
 const innerVisible = ref(false);
+console.log(99)
 </script>

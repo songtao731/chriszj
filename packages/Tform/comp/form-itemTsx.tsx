@@ -66,30 +66,35 @@ export default defineComponent({
       }
     };
     const dataList = computed(() => {
+      console.log("数据驱动", formData);
+
+      return unref(props.dataList);
+    });
+    watchEffect(() => {
       switch ("" + column) {
         case "1":
-          props.dataList.forEach((el) => {
+          dataList.value.forEach((el) => {
             el.nospan = 24;
           });
           break;
         case "2":
-          props.dataList.forEach((el) => {
+          dataList.value.forEach((el) => {
             el.nospan = (el.span && +el.span * 12) || 12;
           });
           break;
         case "3":
-          props.dataList.forEach((el) => {
+          dataList.value.forEach((el) => {
             el.nospan = (el.span && +el.span * 8) || 8;
           });
           break;
         case "4":
-          props.dataList.forEach((el) => {
+          dataList.value.forEach((el) => {
             el.nospan = (el.span && +el.span * 6) || 6;
           });
           break;
       }
-      if (props.dataList.length) {
-        props.dataList.forEach((el) => {
+      if (dataList.value.length) {
+        dataList.value.forEach((el) => {
           //初始化值 只走一遍
           if (isBclick) {
             resetFn(el);
@@ -111,10 +116,6 @@ export default defineComponent({
         });
         isBclick = false;
       }
-
-      console.log("数据驱动", formData);
-
-      return unref(props.dataList);
     });
 
     const buttons = computed(() => unref(props.buttons));
@@ -316,23 +317,27 @@ export default defineComponent({
                       break;
                     case "rate":
                       element = (
-                        <ElFormItem {...el} rules={el.rules?.rules}>
-                          <ElRate
-                            v-model={formData[el.prop as string]}
-                            clearable={true}
-                            {...el.rate}
-                          ></ElRate>
-                        </ElFormItem>
+                        <ElCol span={el.nospan}>
+                          <ElFormItem {...el} rules={el.rules?.rules}>
+                            <ElRate
+                              v-model={formData[el.prop as string]}
+                              clearable={true}
+                              {...el.rate}
+                            ></ElRate>
+                          </ElFormItem>
+                        </ElCol>
                       );
                       break;
                     case "upload":
                       element = (
-                        <ElFormItem {...el} rules={el.rules?.rules}>
-                          <Tupload
-                            v-model:fileList={formData[el.prop as string]}
-                            {...el.upload}
-                          ></Tupload>
-                        </ElFormItem>
+                        <ElCol span={el.nospan}>
+                          <ElFormItem {...el} rules={el.rules?.rules}>
+                            <Tupload
+                              v-model:fileList={formData[el.prop as string]}
+                              {...el.upload}
+                            ></Tupload>
+                          </ElFormItem>
+                        </ElCol>
                       );
                       break;
                   }

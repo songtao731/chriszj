@@ -20,11 +20,17 @@ Schema.messages.required = () => {
 import { createApp } from "vue";
 import App from "./App.vue";
 
+
+import ElUploadExtend from "../packages/Tupload/comps/extend";
+
+
+
+
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
-
+app.use(ElUploadExtend)
 app.use(chriszj);
 app.use(router);
 

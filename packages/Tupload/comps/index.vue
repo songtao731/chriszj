@@ -1,41 +1,28 @@
 <template>
+  <PictureCard v-if="props.listType === 'picture-card'" v-bind="props" :on-exceed="onExceed"
+    :before-upload="beforeAvatarUpload" :on-success="onSuccess" ref="pictureCardRef" v-model:fileList="fileList">
+  </PictureCard>
+  <PicturText v-if="props.listType === 'text'" v-bind="props" :on-exceed="onExceed" :before-upload="beforeAvatarUpload"
+    :on-success="onSuccess" ref="pictureCardRef" v-model:fileList="fileList" class="w-full">
+    <slot>
+      <el-button type="primary" class="min-w-[6em]">上传</el-button>
 
-    <PictureCard
-      v-if="props.listType === 'picture-card'"
-      v-bind="props"
-      :on-exceed="onExceed"
-      :before-upload="beforeAvatarUpload"
-      :on-success="onSuccess"
-      ref="pictureCardRef"
-      v-model:fileList="fileList"
-    >
-    </PictureCard>
-    <PicturText
-      v-if="props.listType === 'text'"
-      v-bind="props"
-      :on-exceed="onExceed"
-      :before-upload="beforeAvatarUpload"
-      :on-success="onSuccess"
-      ref="pictureCardRef"
-      v-model:fileList="fileList"
-    >
-      <slot></slot>
-      <slot name="file"> </slot> <slot name="tip"> </slot>
-      <slot name="trigger"> </slot>
-    </PicturText>
-    <PictureUpload
-      v-if="props.listType === 'picture'"
-      v-bind="props"
-      :on-exceed="onExceed"
-      :before-upload="beforeAvatarUpload"
-      :on-success="onSuccess"
-      ref="pictureCardRef"
-      v-model:fileList="fileList"
-    >
-      <slot></slot>
-      <slot name="file"> </slot> <slot name="tip"> </slot>
-      <slot name="trigger"> </slot>
-    </PictureUpload>
+
+    </slot>
+    <slot name="file"> </slot>
+    <slot name="tip"> </slot>
+    <slot name="trigger"> </slot>
+  </PicturText>
+  <PictureUpload v-if="props.listType === 'picture'" v-bind="props" :on-exceed="onExceed"
+    :before-upload="beforeAvatarUpload" :on-success="onSuccess" ref="pictureCardRef" v-model:fileList="fileList"
+    class="w-full">
+    <slot>
+      <el-button type="primary" class=" min-w-[6em]" >上传</el-button>
+    </slot>
+    <slot name="file"> </slot>
+    <slot name="tip"> </slot>
+    <slot name="trigger"> </slot>
+  </PictureUpload>
 </template>
 <script lang="ts" setup>
 import PictureCard from "./Picture-card.vue";
@@ -68,6 +55,7 @@ const fileList = computed({
   },
 });
 
+console.log(props, 12321)
 const onSuccess = (
   response: any,
   uploadFile: UploadFile,

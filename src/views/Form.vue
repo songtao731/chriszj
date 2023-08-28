@@ -1,5 +1,5 @@
 <template>
-  <Tform v-bind="bind" ref="tForm">
+  <Tform v-bind="bind" ref="tForm" class="aa">
     <template #title> </template>
     <template #buttons>
       <el-button type="primary">Operation</el-button>
@@ -18,7 +18,7 @@ import { computed, reactive, Ref, ref, toRef } from "vue";
 import { chris, Tform } from "../../packages/index";
 import { dataItem } from "../../packages/Tform/comp/useForm";
 
-import {entertainApplicationAddList  } from "@/api/index";
+import { entertainApplicationAddList } from "@/api/index";
 
 const url =
   "https://gateway-uat.zhidabl.com" + "/finance-file/fast/file/upload";
@@ -145,11 +145,15 @@ const validatePass2 = (rule: any, value: any, callback: any) => {
 };
 const checkRate = (rule: any, value: any, callback: any) => {
   if (!value) {
-    callback(new Error("请输入体重"));
-
+    callback(new Error("请选择评分"));
   }
+}
+const checkUpload = (rule: any, value: any, callback: any) => {
 
-
+  console.log(value, 'vallal')
+  if (!value.length) {
+    callback(new Error("请上传"));
+  }
 }
 
 let id = 0;
@@ -331,11 +335,21 @@ const bind = computed(() => {
         label: "上传",
         type: 'upload',
         prop: 'upload',
+        rules: chris.rulesFn().validator(checkUpload).required(true),
         upload: {
-          action: url,
-          headers : {
+          action: '/api/gateway/financial/pay/collectionList/claim/list',
+          headers: {
             "token": sessionStorage.token,
-          }
+          },
+          fileList: [{
+            name: "food.jpeg",
+            url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+          },
+          {
+            name: "",
+            url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+          },]
+
         }
 
       }

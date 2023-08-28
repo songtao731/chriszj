@@ -123,4 +123,5 @@ export const uploadProps = {
     type: definePropType<UploadHooks["onExceed"]>(Function),
     default: NOOP,
   },
+  class:String
 };
