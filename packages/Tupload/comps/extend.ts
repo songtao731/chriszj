@@ -1,5 +1,5 @@
  import { ElUpload } from "element-plus";
- import { withInstall } from '../../withInstall'
+
 
  import { App, createApp } from "vue";
 

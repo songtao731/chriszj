@@ -7,6 +7,10 @@ import { CheckBoxProps } from "./checkBox";
 import { RadioProps } from "./radio";
 import { RateProps } from "./rate";
 import { UploadBaseProps } from "./upload";
+import { SwitchProps } from "./switch";
+import { SliderProps } from "./slider";
+
+
 
 
 export interface MainPackage {
@@ -19,4 +23,6 @@ export interface MainPackage {
   radio: RadioProps;
   rate: RateProps;
   upload:UploadBaseProps
+  switch:SwitchProps
+  slider:SliderProps
 }

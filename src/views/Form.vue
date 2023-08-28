@@ -6,7 +6,7 @@
       <el-button type="primary">Operation</el-button>
     </template>
     <template #zdy="{ scope }">
-      <ElInput v-model.number="scope.inputValue" placeholder="Please input">
+      <ElInput v-model.number="scope.pages" placeholder="Please input">
       </ElInput>
     </template>
   </Tform>
@@ -20,6 +20,8 @@ import { dataItem } from "../../packages/Tform/comp/useForm";
 
 import { entertainApplicationAddList } from "@/api/index";
 
+
+
 const url =
   "https://gateway-uat.zhidabl.com" + "/finance-file/fast/file/upload";
 const tForm = ref();
@@ -28,10 +30,10 @@ let bb: any = ref([]);
 setTimeout(() => {
   bb.value = [
     { label: "男", value: "1", id: 1 },
-    { label: "女", value: "2", id: 2 },
+    { label: "女", value: "0", id: 2 },
   ];
   // ishide.value=true
-}, 1000);
+}, 2000);
 
 let aa: Ref<dataItem[]> = ref([]);
 
@@ -72,7 +74,7 @@ setTimeout(() => {
       label: "身高:",
       prop: "hi",
       type: "input",
-      rules: chris.rulesFn().range(1, 2, "送水").required(true, "ss"),
+      rules: chris.rulesFn().range(0,1, "送水").required(true, "ss"),
       hide: isHide,
     },
     {
@@ -149,8 +151,6 @@ const checkRate = (rule: any, value: any, callback: any) => {
   }
 }
 const checkUpload = (rule: any, value: any, callback: any) => {
-
-  console.log(value, 'vallal')
   if (!value.length) {
     callback(new Error("请上传"));
   }
@@ -160,19 +160,21 @@ let id = 0;
 const bind = computed(() => {
   console.log("我变了");
   return chris.useForm({
+    request: (params) => entertainApplicationAddList({ ...params }),
     title: "测试表单",
-    column: "4",
+    column: "3",
     labelWidth: "140px",
     dataList: [
       {
         label: "姓名速速速度:",
-        prop: "name",
+        prop: "size",
         type: "input",
+        class: "inss",
+
         input: {
           showWordLimit: true,
           maxlength: 10,
           suffixIcon: "Calendar",
-          showPassword: true,
         },
         rules: chris
           .rulesFn()
@@ -182,7 +184,7 @@ const bind = computed(() => {
 
       {
         label: "性别:",
-        prop: "sex",
+        prop: "startRow",
         type: "select",
         options: bb.value,
         select: {
@@ -199,10 +201,10 @@ const bind = computed(() => {
       },
       {
         label: "身高:",
-        prop: "hi",
+        prop: "nextPage",
         type: "input",
-        rules: chris.rulesFn().range(1, 2, "送水").required(true, "请输入身高"),
-        hide: isHide.value,
+        rules: chris.rulesFn().range(0, 2, "请输入2到5位",'blur').required(true, "请输入身高"),
+        value: '1'
       },
       {
         label: "体总:",
@@ -218,7 +220,7 @@ const bind = computed(() => {
       },
       {
         label: "自定义输入框:",
-        prop: "inputValue",
+        prop: "pages",
         slotName: "zdy",
         type: "custom",
         rules: chris.rulesFn().required(true),
@@ -228,6 +230,8 @@ const bind = computed(() => {
         prop: "date",
         type: "date",
         rules: chris.rulesFn().required(true, "请输入日期"),
+        value:"2021-11-11",
+
         date: {
           type: "date",
         },
@@ -299,6 +303,7 @@ const bind = computed(() => {
         label: "行业",
         type: "radio",
         prop: "radio",
+        value: "1",
         rules: chris.rulesFn().required(true, "请选择行业"),
         radio: {
           options: [
@@ -341,14 +346,55 @@ const bind = computed(() => {
           headers: {
             "token": sessionStorage.token,
           },
-          fileList: [{
-            name: "food.jpeg",
-            url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+
+
+        }
+
+      },
+      {
+        label: '开关',
+        prop: 'switch',
+        rules: chris.rulesFn().required(true),
+        type: 'switch',
+        value: '100',
+        switch: {
+          onChange(val) {
+
+            console.log(val)
           },
-          {
-            name: "",
-            url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
-          },]
+          activeValue: '100',
+          inactiveValue: '8',
+
+
+        }
+
+      },
+      {
+        label: '滑块',
+        prop: 'slider',
+        rules: chris.rulesFn().required(true),
+        type: 'slider',
+        value: [30, 70],
+        class: "bb",
+        slider: {
+          onChange(val) {
+
+            console.log(val)
+          },
+          class: 'slider-demo-block',
+          range: true,
+          marks: {
+            0: '0°C',
+            8: '8°C',
+            37: '37°C',
+            50: {
+              style: {
+                color: '#1989FA',
+              },
+              label: '50%',
+            },
+          }
+
 
         }
 
@@ -384,3 +430,4 @@ const bind = computed(() => {
   });
 });
 </script>
+<style scoped lang="scss"></style>

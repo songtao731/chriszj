@@ -3,7 +3,19 @@ import { ArgumentsType } from "@vueuse/core";
 export type direction = "vertical" | "horizonta";
 export type size = "large" | "default" | "small";
 export type column = "1" | "2" | "3" | "4";
-export type typeEnum = "input" | "select" | "space" | "custom"|"date"|"cascader"|"checkBox"|"radio"|"rate"|"upload"
+export type typeEnum =
+  | "input"
+  | "select"
+  | "space"
+  | "custom"
+  | "date"
+  | "cascader"
+  | "checkBox"
+  | "radio"
+  | "rate"
+  | "upload"
+  | "switch"
+  | "slider";
 export type opstionsItem = {
   label: string;
   value: string;
@@ -41,33 +53,43 @@ export type dataItem = {
   rules?: any;
   //自定义
   slotName?: string;
+  //外标签class
+  class?: string;
 
   //input输入框的属性
   input?: MainPackage["input"];
   //select选择器的属性
   select?: MainPackage["select"];
   //日期
-  date?:MainPackage['date']
+  date?: MainPackage["date"];
   // dateTime?:MainPackage['dateTime']
   //次级选择
-  cascader?:MainPackage['cascader']
+  cascader?: MainPackage["cascader"];
   //多选
-  checkBox?:MainPackage['checkbox']
+  checkBox?: MainPackage["checkbox"];
   //单选
-  radio?:MainPackage['radio']
+  radio?: MainPackage["radio"];
   //评分
-  rate?:MainPackage['rate']
+  rate?: MainPackage["rate"];
   //上传
-  upload?:MainPackage['upload']
-
+  upload?: MainPackage["upload"];
+  //开关
+  switch?: MainPackage["switch"];
+  //滑块
+  slider?: MainPackage["slider"];
 };
 
 export interface Args {
+  //请求接口
+  request?: (...arg: any[]) => Promise<any> | {[key:string]:any};
+  //格式化数据
+  parseData?: (data: any) =>any;
+  //接口返回的数据结构 默认直接data下
+  path?: string;
   //标题
   title?: string;
   //数据
   dataList: dataItem[];
-  border?: boolean;
   //一行显示几个 默认2
   column?: column | number;
   //

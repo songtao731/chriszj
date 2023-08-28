@@ -1,5 +1,5 @@
 <template>
-  <Tupload v-model:file-list="fileList" list-type="text">
+  <Tupload v-model:file-list="fileList" list-type="text" :action="url">
 
   
   </Tupload> 
@@ -41,7 +41,7 @@ import { Tupload} from "../../packages/index";
 import { UploadUserFile } from "element-plus";
 
 const url =
-  "https://gateway-uat.zhidabl.com" + "/finance-file/fast/file/upload";
+  "/api/gateway/financial/pay/collectionList/claim/list";
 
 const headers = {
   "X-Usertoken": sessionStorage.token,

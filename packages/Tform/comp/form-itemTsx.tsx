@@ -27,6 +27,8 @@ import {
   ElRadio,
   ElRadioGroup,
   ElRate,
+  ElSwitch,
+  ElSlider,
 } from "element-plus";
 import { formProps } from "./form";
 import { dataItem } from "../../Tform/comp/useForm";
@@ -35,6 +37,7 @@ import { CheckBoxItem } from "../../BaseComps/checkBox";
 import { RadioItem } from "../../BaseComps/radio";
 
 import { Tupload } from "../../index";
+import { getPath } from "../../utils/index";
 
 export default defineComponent({
   props: formProps,
@@ -50,6 +53,26 @@ export default defineComponent({
     //初始化数据
     let isBclick = true;
 
+    let path = props.path || "data";
+    const getRes = ref();
+    const getDataList = async () => {
+      const res = await props.request!();
+      getRes.value = getPath(res, path);
+     // getRes.value.date = "2099-11-12";
+      Object.keys(formData).forEach((el) => {
+        if (getRes.value[el]) {
+          formData[el] = getRes.value[el];
+        }
+      });
+
+      if (props.parseData) {
+        let objData = props.parseData(formData);
+        Object.keys(objData).forEach((el) => {
+          formData[el] = objData[el];
+        });
+      }
+    };
+
     const resetFn = (el: dataItem) => {
       switch (el.type) {
         case "checkBox":
@@ -60,6 +83,13 @@ export default defineComponent({
           break;
         case "upload":
           formData[el.prop as string] = [];
+
+          break;
+        case "switch":
+          formData[el.prop as string] = true;
+          break;
+        case "slider":
+          formData[el.prop as string] = 0;
           break;
         default:
           formData[el.prop as string] = "";
@@ -67,7 +97,6 @@ export default defineComponent({
     };
     const dataList = computed(() => {
       console.log("数据驱动", formData);
-
       return unref(props.dataList);
     });
     watchEffect(() => {
@@ -93,6 +122,7 @@ export default defineComponent({
           });
           break;
       }
+
       if (dataList.value.length) {
         dataList.value.forEach((el) => {
           //初始化值 只走一遍
@@ -105,7 +135,7 @@ export default defineComponent({
             ? el.placeholder
             : el.label && el.label.replace(":", "");
 
-          if (el.value || el.value === 0) {
+          if ((el.value || el.value === 0) && !props.request) {
             formData[el.prop as string] = el.value;
           }
 
@@ -114,6 +144,7 @@ export default defineComponent({
             formData[el.prop as string] = "";
           }
         });
+
         isBclick = false;
       }
     });
@@ -121,7 +152,13 @@ export default defineComponent({
     const buttons = computed(() => unref(props.buttons));
 
     //获取屏幕可视化宽度
-    onMounted(() => {});
+    onMounted(() => {
+      console.log(typeof props.request);
+      if (typeof props.request === "function") {
+        props.request && getDataList();
+      }
+      // 在这里可以加判断 第一次进页面 不加载数据,暂时不处理这个逻辑
+    });
     //操作placeholder展示
     const changePlaceHolderFn = (
       outPlaceholder?: boolean,
@@ -336,6 +373,30 @@ export default defineComponent({
                               v-model:fileList={formData[el.prop as string]}
                               {...el.upload}
                             ></Tupload>
+                          </ElFormItem>
+                        </ElCol>
+                      );
+                      break;
+                    case "switch":
+                      element = (
+                        <ElCol span={el.nospan}>
+                          <ElFormItem {...el} rules={el.rules?.rules}>
+                            <ElSwitch
+                              v-model={formData[el.prop as string]}
+                              {...el.switch}
+                            ></ElSwitch>
+                          </ElFormItem>
+                        </ElCol>
+                      );
+                      break;
+                    case "slider":
+                      element = (
+                        <ElCol span={el.nospan}>
+                          <ElFormItem {...el} rules={el.rules?.rules}>
+                            <ElSlider
+                              v-model={formData[el.prop as string]}
+                              {...el.slider}
+                            ></ElSlider>
                           </ElFormItem>
                         </ElCol>
                       );

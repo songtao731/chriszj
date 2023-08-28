@@ -3,6 +3,11 @@ import { PropType } from "vue";
 import { dataItem, size } from "./useForm";
 
 export const newForm = {
+  request: Function,
+  parseData: Function,
+
+  path: String,
+
   title: {
     type: String,
     default: "",
@@ -15,29 +20,31 @@ export const newForm = {
     type: String as PropType<size>,
     default: "default",
   },
-  border:{
-    type:Boolean,
-    default:false
+  border: {
+    type: Boolean,
+    default: false,
   },
-  column:{
-    type:[Number,String],
-    default:2
+  column: {
+    type: [Number, String],
+    default: 2,
   },
-  gutter:{
-     type:Number,
-     default:20
+  gutter: {
+    type: Number,
+    default: 20,
   },
-  closePlaceholder:{
-    type:Boolean,
-    default:false
+  closePlaceholder: {
+    type: Boolean,
+    default: false,
   },
-  buttons:{
-    type: Array as PropType<MainPackage['button'][]>,
-    default:()=>[]
+  buttons: {
+    type: Array as PropType<MainPackage["button"][]>,
+    default: () => [],
   },
-  buttonsAlign:{
-    type:String,
-    default:'center'
+  buttonsAlign: {
+    type: String,
+    default: "center",
   },
-  
+  class: {
+    type: String,
+  },
 };

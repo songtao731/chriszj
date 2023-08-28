@@ -55,6 +55,6 @@ export interface UploadBaseProps {
   httpRequest?:(options: UploadRequestOptions) => XMLHttpRequest | Promise<unknown>
   disabled?:boolean
   limit?:number
-  fileList:UploadUserFile[]
+  fileList?:UploadUserFile[]
 
 }
