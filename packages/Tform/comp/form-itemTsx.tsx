@@ -102,6 +102,11 @@ export default defineComponent({
         case "slider":
           formData[el.prop as string] = 0;
           break;
+        case "range":
+          el.columns && (formData[el.columns[0].prop as string] = "");
+          el.columns && (formData[el.columns[1].prop as string] = "");
+
+          break;
         default:
           formData[el.prop as string] = "";
       }
@@ -221,12 +226,64 @@ export default defineComponent({
                                 "请输入" + el.placeholder
                               )}
                               {...el.input}
-
                             />
                           </ElFormItem>
                         </ElCol>
                       ) : (
                         ""
+                      );
+                      break;
+                    case "range":
+                      element = (
+                        <ElCol span={el.nospan}>
+                          {el.columns && (
+                            <ElFormItem label={el.label} {...el}>
+                              <ElCol span={11}>
+                                <ElFormItem
+                                  rules={el.columns[0].rules?.rules}
+                                  prop={el.columns[0].prop}
+                                >
+                                  <ElInput
+                                    clearable={true}
+                                    v-model={
+                                      formData[el.columns[0]!.prop as string]
+                                    }
+                                    placeholder={changePlaceHolderFn(
+                                      props.closePlaceholder,
+                                      el.showPlaceholder,
+                                      el.columns[0].placeholder
+                                    )}
+                                    {...el.columns[0]!.input}
+                                  />
+                                </ElFormItem>
+                              </ElCol>
+                              <ElCol class="text-center" span={2}>
+                                <span class="text-gray-500">-</span>
+                              </ElCol>
+                              <ElCol span={11}>
+                                <ElFormItem
+                                  rules={
+                                    el.columns && el.columns[1].rules?.rules
+                                  }
+                                  prop={el.columns && el.columns[1].prop}
+                                >
+                                  <ElInput
+                                    clearable={true}
+                                    v-model={
+                                      formData[el.columns[1]!.prop as string]
+                                    }
+                                    placeholder={changePlaceHolderFn(
+                                      props.closePlaceholder,
+                                      el.showPlaceholder,
+                                      el.columns[1].placeholder
+                                    )}
+                                    {...el.columns[1]!.input}
+                                  />
+                                </ElFormItem>
+                              </ElCol>
+                            </ElFormItem>
+                          )}
+                        </ElCol>
                       );
                       break;
                     case "select":

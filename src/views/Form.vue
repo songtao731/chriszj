@@ -77,7 +77,7 @@ const validatePass = (rule: any, value: any, callback: any) => {
 const validatePass2 = (rule: any, value: any, callback: any) => {
   if (!value) {
     callback(new Error("Please input the password again"));
-  } else if (value !== tForm.value.form.formData.pass) {
+  } else if (value !== tForm.value.form.formData.min) {
     callback(new Error("Two inputs don't match!"));
   } else {
     callback();
@@ -112,7 +112,7 @@ const bind = computed(() => {
     //  request:cc.value,
     request: (params) => entertainApplicationAddList({ a: 1 }),
     title: "测试表单",
-    column: 3,
+    column: 4,
     labelWidth: "140px",
     dataList: [
       {
@@ -133,7 +133,7 @@ const bind = computed(() => {
           showWordLimit: true,
           maxlength: 10,
           suffixIcon: "Calendar",
-          ref:startRef
+          ref: startRef
         },
         rules: chris
           .rulesFn()
@@ -312,7 +312,7 @@ const bind = computed(() => {
           headers: {
             token: sessionStorage.token,
           },
-          ref:startRef,
+          ref: startRef,
           onChange() {
             startRef.value.validate()
 
@@ -357,6 +357,30 @@ const bind = computed(() => {
           },
         },
       },
+      {
+        type: 'range',
+        label: "range",
+        required: true,
+        columns: [
+          {
+            prop: "min",
+            rules: chris.rulesFn().required(true, '最小值'),
+            placeholder: '请输入最小值',
+            input: {
+            }
+          },
+          {
+            prop: "max",
+            rules: chris.rulesFn().required(true, '最大值'),
+            placeholder: '请输入最大值',
+            input: {
+            }
+          }
+
+
+
+        ]
+      }
     ],
     // dataList: aa.value,
     statusIcon: true,

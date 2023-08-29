@@ -13,7 +13,8 @@ export type typeEnum =
   | "rate"
   | "upload"
   | "switch"
-  | "slider";
+  | "slider"
+  | "range";
 export type opstionsItem = {
   label: string;
   value: string;
@@ -55,6 +56,23 @@ export type dataItem = {
   slotName?: string;
   //外标签class
   class?: string;
+  //inputrange
+  columns?: [
+    {
+      prop: string;
+      rules?: any;
+      value?: any;
+      placeholder?: string;
+      input?: MainPackage["input"];
+    },
+    {
+      prop: string;
+      rules?: any;
+      value?: any;
+      placeholder?: string;
+      input?: MainPackage["input"];
+    }
+  ];
 
   //input输入框的属性
   input?: MainPackage["input"];

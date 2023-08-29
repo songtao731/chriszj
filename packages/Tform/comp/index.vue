@@ -1,6 +1,6 @@
 <template>
   <div class="Tform">
-    <div class="Tform-header">
+    <div class="Tform-header mb-[20px]">
       <div class="Tform-title">
         <slot name="title">
           {{ props.title }}
