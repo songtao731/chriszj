@@ -1,5 +1,6 @@
 import { Awaitable } from "@vueuse/core";
 import { UploadFile, UploadFiles, UploadProgressEvent, UploadRawFile, UploadRequestOptions, UploadUserFile } from "element-plus";
+import { Ref } from "vue";
 export interface UploadBaseProps {
     action: string;
     method?: string;
@@ -13,6 +14,7 @@ export interface UploadBaseProps {
     drag?: boolean;
     accept?: string;
     withCredentials?: boolean;
+    ref?: Ref<any>;
     onPreview?: (uploadFile: UploadFile) => void;
     onRemove?: (uploadFile: UploadFile, uploadFiles: UploadFiles) => void;
     onError?: (error: Error, uploadFile: UploadFile, uploadFiles: UploadFiles) => void;

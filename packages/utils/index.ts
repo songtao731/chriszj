@@ -141,18 +141,22 @@ export const rulesFn = function () {
 
 export const getPath = (value: any, path: string) => {
   if (!value) {
-    return {}
+    return {};
   }
   const arr = path.split(".");
 
   arr.forEach((el: any) => {
     value = value[el];
   });
+
+  if (value === null) {
+    value = {};
+  }
   return value;
 };
 export const getTotalPath = (value: any, path: string) => {
   if (!value) {
-    return 0
+    return 0;
   }
   const arr = path.split(".");
 

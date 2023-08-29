@@ -1,4 +1,5 @@
 import { Component } from "@vue/runtime-dom";
+import { Ref } from "vue";
 export type ButtonType = "default" | "primary" | "success" | "warning" | "info" | "danger" | "text" | "";
 export interface ButtonProps {
     size?: "large" | "default" | "small";
@@ -19,6 +20,7 @@ export interface ButtonProps {
     tag?: string | Component;
     color?: string;
     dark?: boolean;
+    ref?: Ref<any>;
     /**
      * 按钮内容
      */
@@ -37,7 +39,7 @@ export declare const ButtonTypeProps: {
     size: StringConstructor;
     type: StringConstructor;
     disabled: BooleanConstructor;
-    icon: import("@vue/runtime-core").PropType<string | Component<any, any, any, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions>>;
+    icon: import("vue").PropType<string | Component<any, any, any, import("vue").ComputedOptions, import("vue").MethodOptions>>;
     plain: BooleanConstructor;
     link: BooleanConstructor;
     round: BooleanConstructor;
@@ -53,13 +55,13 @@ export declare const ButtonTypeProps: {
     bg: BooleanConstructor;
     loading: BooleanConstructor;
     loadingIcon: {
-        type: import("@vue/runtime-core").PropType<string | Component<any, any, any, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions>>;
-        default: () => import("@vue/runtime-core").DefineComponent<{}, {}, {}, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").ComponentOptionsMixin, {}, string, import("@vue/runtime-core").VNodeProps & import("@vue/runtime-core").AllowedComponentProps & import("@vue/runtime-core").ComponentCustomProps, Readonly<import("@vue/runtime-core").ExtractPropTypes<{}>>, {}>;
+        type: import("vue").PropType<string | Component<any, any, any, import("vue").ComputedOptions, import("vue").MethodOptions>>;
+        default: () => import("vue").DefineComponent<{}, {}, {}, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
     };
     autofocus: BooleanConstructor;
     autoInsertSpaces: BooleanConstructor;
     tag: {
-        type: import("@vue/runtime-core").PropType<string | Component>;
+        type: import("vue").PropType<string | Component>;
         default: string;
     };
     /**

@@ -44,8 +44,6 @@ export default defineComponent({
   setup(props, { emit, expose, slots }) {
     const formData: any = reactive({});
     //filter:过滤条件,searchSize:查询条件框的大小 labelPosition:查询条件label的位置
-
-    console.log(props, "os", slots);
     const { column, gutter, request } = props;
 
     //初始化数据 对象的
@@ -63,15 +61,18 @@ export default defineComponent({
     //初始化函数的
     let path = props.path || "data";
     let isBclick = true;
-    const getRes = ref();
+
     const getDataList = async () => {
+      let objData:{[key:string]:any}={}
       if (typeof request === "function") {
         const res = await request!();
-        getRes.value = getPath(res, path);
+        objData  = getPath(res, path);
 
         Object.keys(formData).forEach((el) => {
-          if (getRes.value[el]) {
-            formData[el] = getRes.value[el];
+          
+          if (objData[el]) {
+            
+            formData[el] = objData[el];
           }
         });
 
@@ -85,6 +86,7 @@ export default defineComponent({
     };
     //设置默认值
     const resetFn = (el: dataItem) => {
+ 
       switch (el.type) {
         case "checkBox":
           formData[el.prop as string] = [];
@@ -105,11 +107,11 @@ export default defineComponent({
         case "range":
           el.columns && (formData[el.columns[0].prop as string] = "");
           el.columns && (formData[el.columns[1].prop as string] = "");
-
           break;
         default:
           formData[el.prop as string] = "";
       }
+      delete formData['undefined']
     };
     //获取循环的表单对象
     const dataList = computed(() => {

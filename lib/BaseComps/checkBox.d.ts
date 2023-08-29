@@ -1,3 +1,4 @@
+import { Ref } from "vue";
 export type CheckBoxItem = {
     label?: string | number;
     trueLabel?: string | number;
@@ -24,6 +25,7 @@ export interface CheckBoxProps {
     tag?: string;
     validateEvent?: boolean;
     options: CheckBoxItem[];
+    ref?: Ref<any>;
     onChange?: <T>(val: T) => void;
     onClear?: () => void;
 }

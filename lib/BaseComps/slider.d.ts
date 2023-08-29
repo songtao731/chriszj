@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'vue';
+import type { CSSProperties, Ref } from 'vue';
 interface Mark {
     style: CSSProperties;
     label: string;
@@ -29,6 +29,7 @@ export interface SliderProps {
     marks?: Marks;
     validateEvent?: boolean;
     class?: string;
+    ref?: Ref<any>;
     onChange?: <T>(val: T) => void;
     onInput?: <T>(val: T) => void;
     onClear?: () => void;

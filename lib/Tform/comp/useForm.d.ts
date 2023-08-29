@@ -1,14 +1,11 @@
 export type direction = "vertical" | "horizonta";
 export type size = "large" | "default" | "small";
 export type column = "1" | "2" | "3" | "4";
-export type typeEnum = "input" | "select" | "space" | "custom" | "date" | "cascader" | "checkBox" | "radio" | "rate" | "upload" | "switch" | "slider";
-export type opstionsItem = {
-    label: string;
-    value: string;
-};
+export type typeEnum = "input" | "select" | "space" | "custom" | "date" | "cascader" | "checkBox" | "radio" | "rate" | "upload" | "switch" | "slider" | "range";
 import { MainPackage } from "../../BaseComps/index";
-import { ComputedRef, Ref } from "vue";
+import { Ref } from "vue";
 export type dataItem = {
+    ref?: Ref<any>;
     label?: string;
     prop?: string;
     type: typeEnum;
@@ -19,12 +16,27 @@ export type dataItem = {
     required?: boolean;
     placeholder?: string;
     showPlaceholder?: boolean;
-    options?: opstionsItem[] | ComputedRef;
     hide?: boolean | Ref<boolean>;
     deepHide?: boolean | Ref<boolean>;
     rules?: any;
     slotName?: string;
     class?: string;
+    columns?: [
+        {
+            prop: string;
+            rules?: any;
+            value?: any;
+            placeholder?: string;
+            input?: MainPackage["input"];
+        },
+        {
+            prop: string;
+            rules?: any;
+            value?: any;
+            placeholder?: string;
+            input?: MainPackage["input"];
+        }
+    ];
     input?: MainPackage["input"];
     select?: MainPackage["select"];
     date?: MainPackage["date"];

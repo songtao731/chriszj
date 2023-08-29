@@ -1,7 +1,8 @@
-import { Component } from "vue";
+import { Component, Ref } from "vue";
 export interface RateProps {
     max?: number;
     disabled?: boolean;
+    ref?: Ref<any>;
     size?: "large" | "default" | "small";
     allowHalf?: boolean;
     lowThreshold?: number;

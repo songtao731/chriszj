@@ -13,13 +13,15 @@
 </template>
 
 <script setup lang="ts">
-import { ElInput } from "element-plus";
+
 import { computed, reactive, Ref, ref, toRef } from "vue";
 import { chris, Tform } from "../../packages/index";
+//import { chris, Tform } from "chriszj";
+
 import { dataItem } from "../../packages/Tform/comp/useForm";
 
 import { entertainApplicationAddList } from "@/api/index";
-import { ElLoading } from "element-plus";
+import { ElLoading, ElInput } from "element-plus";
 import { resolve } from "path";
 
 const url =
@@ -293,7 +295,7 @@ const bind = computed(() => {
           texts: ["oops", "disappointed", "normal", "good", "great"],
           showText: true,
           allowHalf: true,
-          onChange(val) {},
+          onChange(val) { },
         },
       },
       {
@@ -321,7 +323,7 @@ const bind = computed(() => {
         type: "switch",
         value: "100",
         switch: {
-          onChange(val) {},
+          onChange(val) { },
           activeValue: "100",
           inactiveValue: "8",
         },

@@ -10,6 +10,9 @@ import { useTables } from "./TableLists/comps/useTables";
 import { useForm } from "./Tform/comp/useForm";
 import { rulesFn } from "./utils/index";
 
+import './tailwind.css';
+import './preflight.css'
+
 import { App, createApp } from "vue";
 const chris = {
   useTable,
