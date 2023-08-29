@@ -9,7 +9,7 @@ import {
 } from "vue";
 import "../style/search.scss";
 //存的屏幕最小宽度
-import variables from "@/assets/scss/global.module.scss";
+import variables from "../../style/global.module.scss";
 import {
   ElButton,
   ElInput,
@@ -38,12 +38,11 @@ export default defineComponent({
 
     //判断是否展示 展开按钮
     const getNum = (width: number, num: number) => {
-      isShowMax.value = width > 1500;
+      isShowMax.value = width > +variables.maxwidth.replace(/[^\d]/gi, "");
 
       if (width > +variables.maxwidth.replace(/[^\d]/gi, "")) {
         isShow.value = num > 4;
       } else {
-        console.log("nm");
         isShow.value = num > 3;
       }
     };

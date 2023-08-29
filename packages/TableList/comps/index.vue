@@ -14,6 +14,11 @@
       <template #search>
         <slot name="search"> </slot>
       </template>
+      <!-- <template #search  #[items.slotName]="{ scope }">
+        <slot name="search" :scope="scope" > </slot>
+
+
+      </template> -->
     </Search>
     <slot name="centerheader"> </slot>
 

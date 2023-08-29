@@ -1,4 +1,4 @@
-@import "@/assets/scss/var.scss";
+@import "../../style/var.scss";
 
 .chris-table-search {
   display: flex;
@@ -83,7 +83,7 @@
 // }
 
 .chris-table-search-form.max {
-  .el-form-item.max {
+  .el-form-item {
     width: 25%;
   }
 }
