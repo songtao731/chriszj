@@ -3,7 +3,6 @@ import {
   reactive,
   ref,
   unref,
-  Ref,
   watchEffect,
   onMounted,
   computed,
@@ -19,7 +18,6 @@ import {
   ElOption,
   ElCascader,
   ElDatePicker,
-  ElIcon,
   ElRow,
   ElCol,
   ElCheckbox,
@@ -223,6 +221,7 @@ export default defineComponent({
                                 "请输入" + el.placeholder
                               )}
                               {...el.input}
+
                             />
                           </ElFormItem>
                         </ElCol>

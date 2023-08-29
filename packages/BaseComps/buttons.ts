@@ -5,6 +5,7 @@ import {
 import { Component } from "@vue/runtime-dom";
 import { buttonNativeTypes } from "element-plus";
 import { Loading } from "@element-plus/icons-vue";
+import { Ref } from "vue";
 
 export type ButtonType =
   | "default"
@@ -34,6 +35,8 @@ export interface ButtonProps {
   tag?: string | Component;
   color?: string;
   dark?: boolean;
+  ref?:Ref<any>
+
 
   /**
    * 按钮内容

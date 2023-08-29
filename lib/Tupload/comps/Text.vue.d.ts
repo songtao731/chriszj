@@ -34,6 +34,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<(files: File[], uploadFiles: import("element-plus").UploadUserFile[]) => void>;
         default: () => void;
     };
+    class: StringConstructor;
     action: {
         type: StringConstructor;
         default: string;
@@ -129,6 +130,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<(files: File[], uploadFiles: import("element-plus").UploadUserFile[]) => void>;
         default: () => void;
     };
+    class: StringConstructor;
     action: {
         type: StringConstructor;
         default: string;

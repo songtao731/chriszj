@@ -55,7 +55,6 @@ const fileList = computed({
   },
 });
 
-console.log(props, 12321)
 const onSuccess = (
   response: any,
   uploadFile: UploadFile,

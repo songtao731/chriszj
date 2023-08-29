@@ -1,7 +1,10 @@
 import { CascaderNode, CascaderProps, CascaderValue } from "element-plus";
+import { Ref } from "vue";
 
 export interface CascaderBaseProps {
   options?: Record<string, unknown>[];
+  ref?:Ref<any>
+
   props?: CascaderProps;
   size?: "large" | "default" | "small";
   placeholder?: string;

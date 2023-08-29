@@ -36,85 +36,16 @@ setTimeout(() => {
 }, 2000);
 
 let aa: Ref<dataItem[]> = ref([]);
-const cc=ref()
+const cc = ref()
 
 const isHide = ref<boolean>(false);
 setTimeout(() => {
-  aa.value = [
-    {
-      label: "姓名速速速度:",
-      prop: "name",
-      type: "input",
-      input: {
-        showWordLimit: true,
-        maxlength: 10,
-        suffixIcon: "Calendar",
-        showPassword: true,
-      },
-      rules: chris.rulesFn().required(true, "琴行输入年龄").validator(checkAge),
-    },
 
-    {
-      label: "性别:",
-      prop: "sex",
-      type: "select",
-      options: bb.value,
-      select: {
-        onChange: (val) => {
-          console.log(val);
-          isHide.value = val == 1 ? true : false;
-        },
-        values: true,
-        valueKey: "id",
-      },
-    },
-    {
-      type: "space",
-    },
-    {
-      label: "身高:",
-      prop: "hi",
-      type: "input",
-      rules: chris.rulesFn().range(0, 1, "送水").required(true, "ss"),
-      hide: isHide,
-    },
-    {
-      label: "体总:",
-      prop: "pass",
-      type: "input",
-      rules: chris.rulesFn().validator(validatePass),
-    },
-    {
-      label: "收入:",
-      prop: "checkPass",
-      type: "input",
-      rules: chris.rulesFn().validator(validatePass2),
-    },
-    {
-      label: "自定义输入框:",
-      prop: "inputValue",
-      slotName: "zdy",
-      type: "custom",
-      rules: chris.rulesFn().required(true, "ss"),
-    },
-    {
-      label: "Date:",
-      prop: "date",
-      type: "date",
-      rules: chris.rulesFn().required(true, "请输入日期"),
-      date: {
-        type: "daterange",
-        startPlaceholder: "1",
-        endPlaceholder: "2",
-      },
-    },
-  ];
-
-  cc.value={
-      size:1,
-      startRow:'1',
-      pages:'99'
-    }
+  cc.value = {
+    size: 1,
+    startRow: '1',
+    pages: '99'
+  }
 }, 100);
 
 const checkAge = (rule: any, value: any, callback: any) => {
@@ -169,27 +100,40 @@ const checkUpload = (rule: any, value: any, callback: any) => {
 
 let id = 0;
 
+const startRef = ref()
+const getStartRef = (el) => {
+  startRef.value = el
+}
+
 const bind = computed(() => {
   console.log("我变了");
 
   return chris.useForm({
-  //  request:cc.value,
-  request:(params)=>entertainApplicationAddList({a:1}),
+    //  request:cc.value,
+    request: (params) => entertainApplicationAddList({ a: 1 }),
     title: "测试表单",
     column: 3,
     labelWidth: "140px",
     dataList: [
       {
+        label: 're',
+        prop: 're',
+        type: 'input',
+        required: true,
+
+      },
+      {
         label: "姓名速速速度:",
         prop: "size",
         type: "input",
         class: "inss",
-        value:22,
+        value: 22,
 
         input: {
           showWordLimit: true,
           maxlength: 10,
           suffixIcon: "Calendar",
+          ref:startRef
         },
         rules: chris
           .rulesFn()
@@ -207,6 +151,8 @@ const bind = computed(() => {
             console.log(val);
             isHide.value = val == 1 ? true : false;
           },
+
+
           filterable: true,
         },
         rules: chris.rulesFn().required(true, "请选择性别"),
@@ -223,7 +169,7 @@ const bind = computed(() => {
           .range(0, 2, "请输入2到5位", "blur")
           .required(true, "请输入身高"),
         value: "1",
-        hide:isHide.value
+        hide: isHide.value
       },
       {
         label: "体总:",
@@ -345,13 +291,12 @@ const bind = computed(() => {
         label: "评分",
         type: "rate",
         prop: "rate",
-        rules: chris.rulesFn().required(true, "请打分"),
+        rules: chris.rulesFn().required(true, "请打分").validator(checkRate),
         rate: {
           texts: ["oops", "disappointed", "normal", "good", "great"],
           showText: true,
           allowHalf: true,
           onChange(val) {
-            console.log(val, "ra");
           },
         },
       },
@@ -360,11 +305,18 @@ const bind = computed(() => {
         type: "upload",
         prop: "upload",
         rules: chris.rulesFn().validator(checkUpload).required(true),
+        ref: startRef,
+
         upload: {
           action: "/api/gateway/financial/pay/collectionList/claim/list",
           headers: {
             token: sessionStorage.token,
           },
+          ref:startRef,
+          onChange() {
+            startRef.value.validate()
+
+          }
         },
       },
       {
@@ -375,7 +327,6 @@ const bind = computed(() => {
         value: "100",
         switch: {
           onChange(val) {
-            console.log(val);
           },
           activeValue: "100",
           inactiveValue: "8",
@@ -387,7 +338,6 @@ const bind = computed(() => {
         rules: chris.rulesFn().required(true),
         type: "slider",
         value: [30, 70],
-        class: "bb",
         slider: {
           onChange(val) {
             console.log(val);

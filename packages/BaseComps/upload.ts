@@ -8,6 +8,7 @@ import {
   UploadUserFile,
 } from "element-plus";
 import { UploadAjaxError } from "element-plus/es/components/upload/src/ajax";
+import { Ref } from "vue";
 
 export interface UploadBaseProps {
   action: string;
@@ -22,6 +23,8 @@ export interface UploadBaseProps {
   drag?: boolean;
   accept?: string;
   withCredentials?: boolean;
+  ref?:Ref<any>
+
 
   onPreview?: (uploadFile: UploadFile) => void;
   onRemove?: (uploadFile: UploadFile, uploadFiles: UploadFiles) => void;

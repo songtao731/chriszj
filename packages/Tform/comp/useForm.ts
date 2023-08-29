@@ -1,4 +1,3 @@
-
 export type direction = "vertical" | "horizonta";
 export type size = "large" | "default" | "small";
 export type column = "1" | "2" | "3" | "4";
@@ -24,6 +23,8 @@ import { MainPackage } from "../../BaseComps/index";
 import { ComputedRef, Ref } from "vue";
 
 export type dataItem = {
+  ref?: Ref<any>;
+
   //标签文本
   label?: string;
   //后端对应的参数
@@ -80,9 +81,9 @@ export type dataItem = {
 
 export interface Args {
   //请求接口
-  request?:( (...arg: any[]) => Promise<any>) | {[key:string]:any};
+  request?: ((...arg: any[]) => Promise<any>) | { [key: string]: any };
   //格式化数据
-  parseData?: (data: any) =>any;
+  parseData?: (data: any) => any;
   //接口返回的数据结构 默认直接data下
   path?: string;
   //标题

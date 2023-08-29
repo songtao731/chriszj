@@ -70,7 +70,7 @@ declare const Tupload: ({
             }>) => void) | ((vnode: import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
             }>) => void)[] | undefined;
-            class?: unknown;
+            class?: string | undefined;
             readonly beforeRemove?: ((uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => import("element-plus/es/utils").Awaitable<boolean>) | undefined;
             readonly headers?: Record<string, any> | Headers | undefined;
             readonly limit?: number | undefined;
@@ -125,6 +125,7 @@ declare const Tupload: ({
                 type: import("vue").PropType<(files: File[], uploadFiles: import("element-plus").UploadUserFile[]) => void>;
                 default: () => void;
             };
+            class: StringConstructor;
             action: {
                 type: StringConstructor;
                 default: string;
@@ -269,6 +270,7 @@ declare const Tupload: ({
             type: import("vue").PropType<(files: File[], uploadFiles: import("element-plus").UploadUserFile[]) => void>;
             default: () => void;
         };
+        class: StringConstructor;
         action: {
             type: StringConstructor;
             default: string;
@@ -373,6 +375,7 @@ declare const Tupload: ({
         type: import("vue").PropType<(files: File[], uploadFiles: import("element-plus").UploadUserFile[]) => void>;
         default: () => void;
     };
+    class: StringConstructor;
     action: {
         type: StringConstructor;
         default: string;

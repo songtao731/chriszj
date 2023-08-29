@@ -35,6 +35,7 @@ declare const _default: import("vue").DefineComponent<{
         type: import("vue").PropType<(files: File[], uploadFiles: import("element-plus").UploadUserFile[]) => void>;
         default: () => void;
     };
+    class: StringConstructor;
     action: {
         type: StringConstructor;
         default: string;
@@ -130,6 +131,7 @@ declare const _default: import("vue").DefineComponent<{
         type: import("vue").PropType<(files: File[], uploadFiles: import("element-plus").UploadUserFile[]) => void>;
         default: () => void;
     };
+    class: StringConstructor;
     action: {
         type: StringConstructor;
         default: string;

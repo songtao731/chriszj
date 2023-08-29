@@ -1,97 +1,187 @@
 import { dataItem } from "../../Tform/comp/useForm";
 declare const _default: import("vue").DefineComponent<{
-    readonly model: ObjectConstructor;
-    readonly rules: {
-        readonly type: import("vue").PropType<Partial<Record<string, import("element-plus/es/utils").Arrayable<import("./types").FormItemRule>>>>;
-        readonly required: false;
-        readonly validator: ((val: unknown) => boolean) | undefined;
-        __epPropKey: true;
+    model: ObjectConstructor;
+    rules: {
+        type: import("vue").PropType<Partial<Record<string, import("element-plus/es/utils").Arrayable<import("./types").FormItemRule>>>>;
     };
-    readonly labelPosition: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "left" | "top" | "right", unknown, "right", boolean>;
-    readonly requireAsteriskPosition: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "left" | "right", unknown, "left", boolean>;
-    readonly labelWidth: import("element-plus/es/utils").EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, "110px", boolean>;
-    readonly labelSuffix: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
-    readonly inline: BooleanConstructor;
-    readonly inlineMessage: BooleanConstructor;
-    readonly statusIcon: BooleanConstructor;
-    readonly showMessage: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, true, boolean>;
-    readonly validateOnRuleChange: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, true, boolean>;
-    readonly hideRequiredAsterisk: BooleanConstructor;
-    readonly scrollToError: BooleanConstructor;
-    readonly scrollIntoViewOptions: {
-        readonly type: import("vue").PropType<import("element-plus/es/utils").EpPropMergeType<readonly [ObjectConstructor, BooleanConstructor], unknown, unknown>>;
-        readonly required: false;
-        readonly validator: ((val: unknown) => boolean) | undefined;
-        __epPropKey: true;
+    labelPosition: {
+        type: import("vue").PropType<"left" | "top" | "right">;
+        default: string;
     };
-    readonly title: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
-    readonly dataList: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => dataItem[]) | (() => dataItem[]) | ((new (...args: any[]) => dataItem[]) | (() => dataItem[]))[], unknown, unknown, () => never[], boolean>;
-    readonly size: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "default" | "large" | "small") | (() => import("../../Tform/comp/useForm").size) | ((new (...args: any[]) => "default" | "large" | "small") | (() => import("../../Tform/comp/useForm").size))[], unknown, unknown, string, boolean>;
-    readonly border: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
-    readonly column: import("element-plus/es/utils").EpPropFinalized<(StringConstructor | NumberConstructor)[], unknown, unknown, number, boolean>;
-    readonly gutter: import("element-plus/es/utils").EpPropFinalized<NumberConstructor, unknown, unknown, number, boolean>;
-    readonly closePlaceholder: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
-    readonly buttons: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => import("../../BaseComps/buttons").ButtonProps[]) | (() => import("../../BaseComps/buttons").ButtonProps[]) | ((new (...args: any[]) => import("../../BaseComps/buttons").ButtonProps[]) | (() => import("../../BaseComps/buttons").ButtonProps[]))[], unknown, unknown, () => never[], boolean>;
-    readonly buttonsAlign: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
-    readonly disabled: BooleanConstructor;
+    requireAsteriskPosition: {
+        type: import("vue").PropType<"left" | "right">;
+        default: string;
+    };
+    labelWidth: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: string;
+    };
+    labelSuffix: {
+        type: StringConstructor;
+        default: string;
+    };
+    inline: BooleanConstructor;
+    inlineMessage: BooleanConstructor;
+    statusIcon: BooleanConstructor;
+    showMessage: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    validateOnRuleChange: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    hideRequiredAsterisk: BooleanConstructor;
+    scrollToError: BooleanConstructor;
+    scrollIntoViewOptions: {
+        type: (BooleanConstructor | ObjectConstructor)[];
+    };
+    request: (ObjectConstructor | FunctionConstructor)[];
+    parseData: FunctionConstructor;
+    path: StringConstructor;
+    title: {
+        type: StringConstructor;
+        default: string;
+    };
+    dataList: {
+        type: import("vue").PropType<dataItem[]>;
+        default: () => never[];
+    };
+    size: {
+        type: import("vue").PropType<import("../../Tform/comp/useForm").size>;
+        default: string;
+    };
+    border: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    column: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: number;
+    };
+    gutter: {
+        type: NumberConstructor;
+        default: number;
+    };
+    closePlaceholder: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    buttons: {
+        type: import("vue").PropType<import("../../BaseComps/buttons").ButtonProps[]>;
+        default: () => never[];
+    };
+    buttonsAlign: {
+        type: StringConstructor;
+        default: string;
+    };
+    class: {
+        type: StringConstructor;
+    };
+    disabled: BooleanConstructor;
 }, () => import("vue/jsx-runtime").JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "getParams"[], "getParams", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    readonly model: ObjectConstructor;
-    readonly rules: {
-        readonly type: import("vue").PropType<Partial<Record<string, import("element-plus/es/utils").Arrayable<import("./types").FormItemRule>>>>;
-        readonly required: false;
-        readonly validator: ((val: unknown) => boolean) | undefined;
-        __epPropKey: true;
+    model: ObjectConstructor;
+    rules: {
+        type: import("vue").PropType<Partial<Record<string, import("element-plus/es/utils").Arrayable<import("./types").FormItemRule>>>>;
     };
-    readonly labelPosition: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "left" | "top" | "right", unknown, "right", boolean>;
-    readonly requireAsteriskPosition: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "left" | "right", unknown, "left", boolean>;
-    readonly labelWidth: import("element-plus/es/utils").EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, "110px", boolean>;
-    readonly labelSuffix: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
-    readonly inline: BooleanConstructor;
-    readonly inlineMessage: BooleanConstructor;
-    readonly statusIcon: BooleanConstructor;
-    readonly showMessage: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, true, boolean>;
-    readonly validateOnRuleChange: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, true, boolean>;
-    readonly hideRequiredAsterisk: BooleanConstructor;
-    readonly scrollToError: BooleanConstructor;
-    readonly scrollIntoViewOptions: {
-        readonly type: import("vue").PropType<import("element-plus/es/utils").EpPropMergeType<readonly [ObjectConstructor, BooleanConstructor], unknown, unknown>>;
-        readonly required: false;
-        readonly validator: ((val: unknown) => boolean) | undefined;
-        __epPropKey: true;
+    labelPosition: {
+        type: import("vue").PropType<"left" | "top" | "right">;
+        default: string;
     };
-    readonly title: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
-    readonly dataList: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => dataItem[]) | (() => dataItem[]) | ((new (...args: any[]) => dataItem[]) | (() => dataItem[]))[], unknown, unknown, () => never[], boolean>;
-    readonly size: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => "default" | "large" | "small") | (() => import("../../Tform/comp/useForm").size) | ((new (...args: any[]) => "default" | "large" | "small") | (() => import("../../Tform/comp/useForm").size))[], unknown, unknown, string, boolean>;
-    readonly border: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
-    readonly column: import("element-plus/es/utils").EpPropFinalized<(StringConstructor | NumberConstructor)[], unknown, unknown, number, boolean>;
-    readonly gutter: import("element-plus/es/utils").EpPropFinalized<NumberConstructor, unknown, unknown, number, boolean>;
-    readonly closePlaceholder: import("element-plus/es/utils").EpPropFinalized<BooleanConstructor, unknown, unknown, boolean, boolean>;
-    readonly buttons: import("element-plus/es/utils").EpPropFinalized<(new (...args: any[]) => import("../../BaseComps/buttons").ButtonProps[]) | (() => import("../../BaseComps/buttons").ButtonProps[]) | ((new (...args: any[]) => import("../../BaseComps/buttons").ButtonProps[]) | (() => import("../../BaseComps/buttons").ButtonProps[]))[], unknown, unknown, () => never[], boolean>;
-    readonly buttonsAlign: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
-    readonly disabled: BooleanConstructor;
+    requireAsteriskPosition: {
+        type: import("vue").PropType<"left" | "right">;
+        default: string;
+    };
+    labelWidth: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: string;
+    };
+    labelSuffix: {
+        type: StringConstructor;
+        default: string;
+    };
+    inline: BooleanConstructor;
+    inlineMessage: BooleanConstructor;
+    statusIcon: BooleanConstructor;
+    showMessage: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    validateOnRuleChange: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    hideRequiredAsterisk: BooleanConstructor;
+    scrollToError: BooleanConstructor;
+    scrollIntoViewOptions: {
+        type: (BooleanConstructor | ObjectConstructor)[];
+    };
+    request: (ObjectConstructor | FunctionConstructor)[];
+    parseData: FunctionConstructor;
+    path: StringConstructor;
+    title: {
+        type: StringConstructor;
+        default: string;
+    };
+    dataList: {
+        type: import("vue").PropType<dataItem[]>;
+        default: () => never[];
+    };
+    size: {
+        type: import("vue").PropType<import("../../Tform/comp/useForm").size>;
+        default: string;
+    };
+    border: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    column: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: number;
+    };
+    gutter: {
+        type: NumberConstructor;
+        default: number;
+    };
+    closePlaceholder: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    buttons: {
+        type: import("vue").PropType<import("../../BaseComps/buttons").ButtonProps[]>;
+        default: () => never[];
+    };
+    buttonsAlign: {
+        type: StringConstructor;
+        default: string;
+    };
+    class: {
+        type: StringConstructor;
+    };
+    disabled: BooleanConstructor;
 }>> & {
     onGetParams?: ((...args: any[]) => any) | undefined;
 }, {
-    readonly size: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => "default" | "large" | "small") | (() => import("../../Tform/comp/useForm").size) | ((new (...args: any[]) => "default" | "large" | "small") | (() => import("../../Tform/comp/useForm").size))[], unknown, unknown>;
-    readonly disabled: boolean;
-    readonly buttons: import("../../BaseComps/buttons").ButtonProps[];
-    readonly title: string;
-    readonly column: import("element-plus/es/utils").EpPropMergeType<(StringConstructor | NumberConstructor)[], unknown, unknown>;
-    readonly labelPosition: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "left" | "top" | "right", unknown>;
-    readonly requireAsteriskPosition: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "left" | "right", unknown>;
-    readonly labelWidth: import("element-plus/es/utils").EpPropMergeType<readonly [StringConstructor, NumberConstructor], unknown, unknown>;
-    readonly labelSuffix: string;
-    readonly inline: boolean;
-    readonly inlineMessage: boolean;
-    readonly statusIcon: boolean;
-    readonly showMessage: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    readonly validateOnRuleChange: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    readonly hideRequiredAsterisk: boolean;
-    readonly scrollToError: boolean;
-    readonly border: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    readonly dataList: dataItem[];
-    readonly gutter: number;
-    readonly closePlaceholder: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    readonly buttonsAlign: string;
+    size: import("../../Tform/comp/useForm").size;
+    disabled: boolean;
+    buttons: import("../../BaseComps/buttons").ButtonProps[];
+    title: string;
+    column: string | number;
+    labelPosition: "left" | "top" | "right";
+    requireAsteriskPosition: "left" | "right";
+    labelWidth: string | number;
+    labelSuffix: string;
+    inline: boolean;
+    inlineMessage: boolean;
+    statusIcon: boolean;
+    showMessage: boolean;
+    validateOnRuleChange: boolean;
+    hideRequiredAsterisk: boolean;
+    scrollToError: boolean;
+    border: boolean;
+    dataList: dataItem[];
+    gutter: number;
+    closePlaceholder: boolean;
+    buttonsAlign: string;
 }, {}>;
 export default _default;

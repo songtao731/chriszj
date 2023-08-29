@@ -36,4 +36,6 @@ export declare const rulesFn: () => {
     pattern(pattern: string | RegExp, message: string, trigger?: RuleBase["trigger"]): any;
     validator(validator: any, trigger?: RuleBase["trigger"]): any;
 };
+export declare const getPath: (value: any, path: string) => any;
+export declare const getTotalPath: (value: any, path: string) => any;
 export {};

@@ -1,7 +1,7 @@
 export type direction = "vertical" | "horizonta";
 export type size = "large" | "default" | "small";
 export type column = "1" | "2" | "3" | "4";
-export type typeEnum = "input" | "select" | "space" | "custom" | "date" | "cascader" | "checkBox" | "radio" | "rate" | "upload";
+export type typeEnum = "input" | "select" | "space" | "custom" | "date" | "cascader" | "checkBox" | "radio" | "rate" | "upload" | "switch" | "slider";
 export type opstionsItem = {
     label: string;
     value: string;
@@ -24,19 +24,26 @@ export type dataItem = {
     deepHide?: boolean | Ref<boolean>;
     rules?: any;
     slotName?: string;
+    class?: string;
     input?: MainPackage["input"];
     select?: MainPackage["select"];
-    date?: MainPackage['date'];
-    cascader?: MainPackage['cascader'];
-    checkBox?: MainPackage['checkbox'];
-    radio?: MainPackage['radio'];
-    rate?: MainPackage['rate'];
-    upload?: MainPackage['upload'];
+    date?: MainPackage["date"];
+    cascader?: MainPackage["cascader"];
+    checkBox?: MainPackage["checkbox"];
+    radio?: MainPackage["radio"];
+    rate?: MainPackage["rate"];
+    upload?: MainPackage["upload"];
+    switch?: MainPackage["switch"];
+    slider?: MainPackage["slider"];
 };
 export interface Args {
+    request?: ((...arg: any[]) => Promise<any>) | {
+        [key: string]: any;
+    };
+    parseData?: (data: any) => any;
+    path?: string;
     title?: string;
     dataList: dataItem[];
-    border?: boolean;
     column?: column | number;
     labelPosition?: "left" | "right" | "top";
     size?: size;

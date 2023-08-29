@@ -1,9 +1,11 @@
-import { Component } from "vue";
+import { Component,Ref } from "vue";
 import { SelectNewPorps } from "./selectNews";
 
 export interface SelectPorps extends SelectNewPorps {
   disabled?: boolean;
   multiple?: boolean;
+  ref?:Ref<any>
+
   valueKey?: string;
   size?: "large" | "default" | "small";
   clearable?: boolean;

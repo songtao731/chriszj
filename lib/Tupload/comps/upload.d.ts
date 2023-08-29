@@ -110,6 +110,7 @@ export declare const uploadProps: {
         type: PropType<(files: File[], uploadFiles: UploadUserFile[]) => void>;
         default: () => void;
     };
+    class: StringConstructor;
     action: {
         type: StringConstructor;
         default: string;

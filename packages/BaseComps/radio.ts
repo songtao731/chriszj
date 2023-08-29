@@ -1,3 +1,5 @@
+import { Ref } from "vue";
+
 export type RadioItem = {
   label?: string | number;
   disabled?: boolean;
@@ -10,7 +12,9 @@ export type RadioItem = {
 
 export interface RadioProps {
   label?: string;
+  ref?:Ref<any>
   disabled?: boolean;
+
   size?: "large" | "default" | "small";
   textColor?: string;
   fill?: string;
@@ -20,4 +24,5 @@ export interface RadioProps {
   id?: string;
   onChange?: <T>(val: T) => void;
   onClear?: () => void;
+  
 }

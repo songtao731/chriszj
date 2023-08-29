@@ -1,6 +1,9 @@
 import { PropType } from "vue";
 import { dataItem, size } from "./useForm";
 export declare const newForm: {
+    request: (ObjectConstructor | FunctionConstructor)[];
+    parseData: FunctionConstructor;
+    path: StringConstructor;
     title: {
         type: StringConstructor;
         default: string;
@@ -36,5 +39,8 @@ export declare const newForm: {
     buttonsAlign: {
         type: StringConstructor;
         default: string;
+    };
+    class: {
+        type: StringConstructor;
     };
 };
