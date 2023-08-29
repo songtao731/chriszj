@@ -139,8 +139,12 @@ export default defineComponent({
           }
 
           //深度隐藏 清楚数据
+
           if (el.deepHide) {
             formData[el.prop as string] = "";
+
+            el.columns && (formData[el.columns[0].prop as string] = "");
+            el.columns && (formData[el.columns[1].prop as string] = "");
           }
         });
 
@@ -234,7 +238,7 @@ export default defineComponent({
                       );
                       break;
                     case "range":
-                      element = (
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           {el.columns && (
                             <ElFormItem label={el.label} {...el}>
@@ -284,6 +288,8 @@ export default defineComponent({
                             </ElFormItem>
                           )}
                         </ElCol>
+                      ) : (
+                        ""
                       );
                       break;
                     case "select":
@@ -300,8 +306,8 @@ export default defineComponent({
                               )}
                               {...el.select}
                             >
-                              {Array.isArray(unref(el.options)) &&
-                                unref(el.options).map(
+                              {el.select&&Array.isArray(unref(el.select.options)) &&
+                                unref(el.select.options).map(
                                   (ele: any, index: any) => {
                                     return (
                                       <ElOption

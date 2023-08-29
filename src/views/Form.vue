@@ -36,16 +36,15 @@ setTimeout(() => {
 }, 2000);
 
 let aa: Ref<dataItem[]> = ref([]);
-const cc = ref()
+const cc = ref();
 
 const isHide = ref<boolean>(false);
 setTimeout(() => {
-
   cc.value = {
     size: 1,
-    startRow: '1',
-    pages: '99'
-  }
+    startRow: "1",
+    pages: "99",
+  };
 }, 100);
 
 const checkAge = (rule: any, value: any, callback: any) => {
@@ -100,10 +99,10 @@ const checkUpload = (rule: any, value: any, callback: any) => {
 
 let id = 0;
 
-const startRef = ref()
+const startRef = ref();
 const getStartRef = (el) => {
-  startRef.value = el
-}
+  startRef.value = el;
+};
 
 const bind = computed(() => {
   console.log("我变了");
@@ -111,16 +110,20 @@ const bind = computed(() => {
   return chris.useForm({
     //  request:cc.value,
     request: (params) => entertainApplicationAddList({ a: 1 }),
+    parseData: (value) => {
+      return {
+        ...value,
+      };
+    },
     title: "测试表单",
     column: 4,
     labelWidth: "140px",
     dataList: [
       {
-        label: 're',
-        prop: 're',
-        type: 'input',
+        label: "re",
+        prop: "re",
+        type: "input",
         required: true,
-
       },
       {
         label: "姓名速速速度:",
@@ -133,11 +136,11 @@ const bind = computed(() => {
           showWordLimit: true,
           maxlength: 10,
           suffixIcon: "Calendar",
-          ref: startRef
+          ref: startRef,
         },
         rules: chris
           .rulesFn()
-          .required(true, "琴行输入年龄")
+          .required(true, "请输入年龄")
           .validator(checkAge),
       },
 
@@ -145,14 +148,8 @@ const bind = computed(() => {
         label: "性别:",
         prop: "startRow",
         type: "select",
-        options: bb.value,
         select: {
-          onChange: (val) => {
-            console.log(val);
-            isHide.value = val == 1 ? true : false;
-          },
-
-
+          options: bb.value,
           filterable: true,
         },
         rules: chris.rulesFn().required(true, "请选择性别"),
@@ -169,7 +166,7 @@ const bind = computed(() => {
           .range(0, 2, "请输入2到5位", "blur")
           .required(true, "请输入身高"),
         value: "1",
-        hide: isHide.value
+        hide: isHide.value,
       },
       {
         label: "体总:",
@@ -296,8 +293,7 @@ const bind = computed(() => {
           texts: ["oops", "disappointed", "normal", "good", "great"],
           showText: true,
           allowHalf: true,
-          onChange(val) {
-          },
+          onChange(val) {},
         },
       },
       {
@@ -314,9 +310,8 @@ const bind = computed(() => {
           },
           ref: startRef,
           onChange() {
-            startRef.value.validate()
-
-          }
+            startRef.value.validate();
+          },
         },
       },
       {
@@ -326,8 +321,7 @@ const bind = computed(() => {
         type: "switch",
         value: "100",
         switch: {
-          onChange(val) {
-          },
+          onChange(val) {},
           activeValue: "100",
           inactiveValue: "8",
         },
@@ -358,29 +352,25 @@ const bind = computed(() => {
         },
       },
       {
-        type: 'range',
+        type: "range",
         label: "range",
         required: true,
+        deepHide: isHide.value,
         columns: [
           {
             prop: "min",
-            rules: chris.rulesFn().required(true, '最小值'),
-            placeholder: '请输入最小值',
-            input: {
-            }
+            rules: chris.rulesFn().required(true, "最小值"),
+            placeholder: "请输入最小值",
+            input: {},
           },
           {
             prop: "max",
-            rules: chris.rulesFn().required(true, '最大值'),
-            placeholder: '请输入最大值',
-            input: {
-            }
-          }
-
-
-
-        ]
-      }
+            rules: chris.rulesFn().required(true, "最大值"),
+            placeholder: "请输入最大值",
+            input: {},
+          },
+        ],
+      },
     ],
     // dataList: aa.value,
     statusIcon: true,

@@ -15,10 +15,7 @@ export type typeEnum =
   | "switch"
   | "slider"
   | "range";
-export type opstionsItem = {
-  label: string;
-  value: string;
-};
+
 import { MainPackage } from "../../BaseComps/index";
 // import  { RuleCreater } from "../../utils/index";
 import { ComputedRef, Ref } from "vue";
@@ -44,8 +41,7 @@ export type dataItem = {
   required?: boolean;
   placeholder?: string;
   showPlaceholder?: boolean;
-  //select opstions
-  options?: opstionsItem[] | ComputedRef;
+
   //控制显示隐藏 但不清除数据
   hide?: boolean | Ref<boolean>;
   //控制显示隐藏 清除数据
