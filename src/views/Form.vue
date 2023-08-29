@@ -19,8 +19,8 @@ import { chris, Tform } from "../../packages/index";
 import { dataItem } from "../../packages/Tform/comp/useForm";
 
 import { entertainApplicationAddList } from "@/api/index";
-
-
+import { ElLoading } from "element-plus";
+import { resolve } from "path";
 
 const url =
   "https://gateway-uat.zhidabl.com" + "/finance-file/fast/file/upload";
@@ -36,6 +36,7 @@ setTimeout(() => {
 }, 2000);
 
 let aa: Ref<dataItem[]> = ref([]);
+const cc=ref()
 
 const isHide = ref<boolean>(false);
 setTimeout(() => {
@@ -74,7 +75,7 @@ setTimeout(() => {
       label: "身高:",
       prop: "hi",
       type: "input",
-      rules: chris.rulesFn().range(0,1, "送水").required(true, "ss"),
+      rules: chris.rulesFn().range(0, 1, "送水").required(true, "ss"),
       hide: isHide,
     },
     {
@@ -108,6 +109,12 @@ setTimeout(() => {
       },
     },
   ];
+
+  cc.value={
+      size:1,
+      startRow:'1',
+      pages:'99'
+    }
 }, 100);
 
 const checkAge = (rule: any, value: any, callback: any) => {
@@ -148,21 +155,28 @@ const validatePass2 = (rule: any, value: any, callback: any) => {
 const checkRate = (rule: any, value: any, callback: any) => {
   if (!value) {
     callback(new Error("请选择评分"));
+  } else {
+    callback();
   }
-}
+};
 const checkUpload = (rule: any, value: any, callback: any) => {
   if (!value.length) {
     callback(new Error("请上传"));
+  } else {
+    callback();
   }
-}
+};
 
 let id = 0;
+
 const bind = computed(() => {
   console.log("我变了");
+
   return chris.useForm({
-    request: (params) => entertainApplicationAddList({ ...params }),
+  //  request:cc.value,
+  request:(params)=>entertainApplicationAddList({a:1}),
     title: "测试表单",
-    column: "3",
+    column: 3,
     labelWidth: "140px",
     dataList: [
       {
@@ -170,6 +184,7 @@ const bind = computed(() => {
         prop: "size",
         type: "input",
         class: "inss",
+        value:22,
 
         input: {
           showWordLimit: true,
@@ -203,8 +218,12 @@ const bind = computed(() => {
         label: "身高:",
         prop: "nextPage",
         type: "input",
-        rules: chris.rulesFn().range(0, 2, "请输入2到5位",'blur').required(true, "请输入身高"),
-        value: '1'
+        rules: chris
+          .rulesFn()
+          .range(0, 2, "请输入2到5位", "blur")
+          .required(true, "请输入身高"),
+        value: "1",
+        hide:isHide.value
       },
       {
         label: "体总:",
@@ -230,7 +249,7 @@ const bind = computed(() => {
         prop: "date",
         type: "date",
         rules: chris.rulesFn().required(true, "请输入日期"),
-        value:"2021-11-11",
+        value: "2021-11-11",
 
         date: {
           type: "date",
@@ -324,82 +343,70 @@ const bind = computed(() => {
       },
       {
         label: "评分",
-        type: 'rate',
-        prop: 'rate',
-        rules: chris.rulesFn().required(true, '请打分').validator(checkRate),
+        type: "rate",
+        prop: "rate",
+        rules: chris.rulesFn().required(true, "请打分"),
         rate: {
-          texts: ['oops', 'disappointed', 'normal', 'good', 'great'],
+          texts: ["oops", "disappointed", "normal", "good", "great"],
           showText: true,
           allowHalf: true,
           onChange(val) {
-            console.log(val, 'ra')
-          }
-        }
+            console.log(val, "ra");
+          },
+        },
       },
       {
         label: "上传",
-        type: 'upload',
-        prop: 'upload',
+        type: "upload",
+        prop: "upload",
         rules: chris.rulesFn().validator(checkUpload).required(true),
         upload: {
-          action: '/api/gateway/financial/pay/collectionList/claim/list',
+          action: "/api/gateway/financial/pay/collectionList/claim/list",
           headers: {
-            "token": sessionStorage.token,
+            token: sessionStorage.token,
           },
-
-
-        }
-
+        },
       },
       {
-        label: '开关',
-        prop: 'switch',
+        label: "开关",
+        prop: "switch",
         rules: chris.rulesFn().required(true),
-        type: 'switch',
-        value: '100',
+        type: "switch",
+        value: "100",
         switch: {
           onChange(val) {
-
-            console.log(val)
+            console.log(val);
           },
-          activeValue: '100',
-          inactiveValue: '8',
-
-
-        }
-
+          activeValue: "100",
+          inactiveValue: "8",
+        },
       },
       {
-        label: '滑块',
-        prop: 'slider',
+        label: "滑块",
+        prop: "slider",
         rules: chris.rulesFn().required(true),
-        type: 'slider',
+        type: "slider",
         value: [30, 70],
         class: "bb",
         slider: {
           onChange(val) {
-
-            console.log(val)
+            console.log(val);
           },
-          class: 'slider-demo-block',
+          class: "slider-demo-block",
           range: true,
           marks: {
-            0: '0°C',
-            8: '8°C',
-            37: '37°C',
+            0: "0°C",
+            8: "8°C",
+            37: "37°C",
             50: {
               style: {
-                color: '#1989FA',
+                color: "#1989FA",
               },
-              label: '50%',
+              label: "50%",
             },
-          }
-
-
-        }
-
-      }
-
+          },
+        },
+      },
     ],
     // dataList: aa.value,
     statusIcon: true,
@@ -408,8 +415,14 @@ const bind = computed(() => {
         content: "提交",
         type: "primary",
         onClick() {
-          console.log(tForm.value.form.formData, "formdata");
+          console.log(
+            tForm.value.form.formData,
+            "formdata",
+            tForm.value.form.formRef.validate
+          );
           tForm.value.form.formRef.validate((valid) => {
+            console.log(valid);
+
             if (valid) {
               console.log("submit!");
             } else {

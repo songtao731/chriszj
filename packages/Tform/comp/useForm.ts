@@ -1,4 +1,3 @@
-import { ArgumentsType } from "@vueuse/core";
 
 export type direction = "vertical" | "horizonta";
 export type size = "large" | "default" | "small";
@@ -81,7 +80,7 @@ export type dataItem = {
 
 export interface Args {
   //请求接口
-  request?: (...arg: any[]) => Promise<any> | {[key:string]:any};
+  request?:( (...arg: any[]) => Promise<any>) | {[key:string]:any};
   //格式化数据
   parseData?: (data: any) =>any;
   //接口返回的数据结构 默认直接data下

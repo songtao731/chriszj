@@ -3,7 +3,7 @@ import { PropType } from "vue";
 import { dataItem, size } from "./useForm";
 
 export const newForm = {
-  request: Function,
+  request: [Object,Function],
   parseData: Function,
 
   path: String,

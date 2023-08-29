@@ -48,31 +48,44 @@ export default defineComponent({
     //filter:过滤条件,searchSize:查询条件框的大小 labelPosition:查询条件label的位置
 
     console.log(props, "os", slots);
-    const { column, gutter } = props;
+    const { column, gutter, request } = props;
 
-    //初始化数据
-    let isBclick = true;
-
-    let path = props.path || "data";
-    const getRes = ref();
-    const getDataList = async () => {
-      const res = await props.request!();
-      getRes.value = getPath(res, path);
-     // getRes.value.date = "2099-11-12";
-      Object.keys(formData).forEach((el) => {
-        if (getRes.value[el]) {
-          formData[el] = getRes.value[el];
-        }
-      });
-
-      if (props.parseData) {
-        let objData = props.parseData(formData);
-        Object.keys(objData).forEach((el) => {
-          formData[el] = objData[el];
+    //初始化数据 对象的
+    const requestObj = computed(() => unref(props.request));
+    watch(requestObj, (newObj: { [key: string]: any }) => {
+      if (typeof newObj === "object") {
+        Object.keys(formData).forEach((el) => {
+          if (newObj[el]) {
+            formData[el] = newObj[el];
+          }
         });
       }
-    };
+    });
 
+    //初始化函数的
+    let path = props.path || "data";
+    let isBclick = true;
+    const getRes = ref();
+    const getDataList = async () => {
+      if (typeof request === "function") {
+        const res = await request!();
+        getRes.value = getPath(res, path);
+
+        Object.keys(formData).forEach((el) => {
+          if (getRes.value[el]) {
+            formData[el] = getRes.value[el];
+          }
+        });
+
+        if (props.parseData) {
+          let objData = props.parseData(formData);
+          Object.keys(objData).forEach((el) => {
+            formData[el] = objData[el];
+          });
+        }
+      }
+    };
+    //设置默认值
     const resetFn = (el: dataItem) => {
       switch (el.type) {
         case "checkBox":
@@ -95,33 +108,16 @@ export default defineComponent({
           formData[el.prop as string] = "";
       }
     };
+    //获取循环的表单对象
     const dataList = computed(() => {
-      console.log("数据驱动", formData);
       return unref(props.dataList);
     });
+    //初始化表单对象的数据
     watchEffect(() => {
-      switch ("" + column) {
-        case "1":
-          dataList.value.forEach((el) => {
-            el.nospan = 24;
-          });
-          break;
-        case "2":
-          dataList.value.forEach((el) => {
-            el.nospan = (el.span && +el.span * 12) || 12;
-          });
-          break;
-        case "3":
-          dataList.value.forEach((el) => {
-            el.nospan = (el.span && +el.span * 8) || 8;
-          });
-          break;
-        case "4":
-          dataList.value.forEach((el) => {
-            el.nospan = (el.span && +el.span * 6) || 6;
-          });
-          break;
-      }
+      //接收转进来的栅格布局 数据转换24格
+      dataList.value.forEach((el) => {
+        el.nospan = (el.span && +el.span * (24 / +column)) || 24 / +column;
+      });
 
       if (dataList.value.length) {
         dataList.value.forEach((el) => {
@@ -153,10 +149,10 @@ export default defineComponent({
 
     //获取屏幕可视化宽度
     onMounted(() => {
-      console.log(typeof props.request);
       if (typeof props.request === "function") {
         props.request && getDataList();
       }
+
       // 在这里可以加判断 第一次进页面 不加载数据,暂时不处理这个逻辑
     });
     //操作placeholder展示

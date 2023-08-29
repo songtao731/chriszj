@@ -1,15 +1,15 @@
-import { componentSizes } from '../../../node_modules/element-plus/es/constants'
+import { componentSizes } from "../../../node_modules/element-plus/es/constants";
 import {
   buildProps,
   definePropType,
   isArray,
   isBoolean,
   isString,
-} from '../../../node_modules/element-plus/es/utils'
+} from "../../../node_modules/element-plus/es/utils";
 
-import type { ExtractPropTypes } from 'vue'
-import type { FormItemProp } from './form-item'
-import type { FormRules } from './types'
+import type { ExtractPropTypes, PropType } from "vue";
+import type { FormItemProp } from "./form-item";
+import type { FormRules } from "./types";
 import { newForm } from "./newForm";
 
 const formMetaProps = buildProps({
@@ -24,9 +24,9 @@ const formMetaProps = buildProps({
    * @description Whether to disable all components in this form. If set to `true`, it will override the `disabled` prop of the inner component.
    */
   disabled: Boolean,
-} as const)
+} as const);
 
-export const formProps = buildProps({
+export const formProps = {
   ...formMetaProps,
   ...newForm,
   /**
@@ -43,31 +43,30 @@ export const formProps = buildProps({
    * @description Position of label. If set to `'left'` or `'right'`, `label-width` prop is also required.
    */
   labelPosition: {
-    type: String,
-    values: ['left', 'right', 'top'],
-    default: 'right',
+    type: String as PropType<"left" | "right" | "top">,
+    default: "right",
   },
   /**
    * @description Position of asterisk.
    */
   requireAsteriskPosition: {
-    type: String,
-    values: ['left', 'right'],
-    default: 'left',
+    type: String as PropType<"left" | "right">,
+
+    default: "left",
   },
   /**
    * @description Width of label, e.g. `'50px'`. All its direct child form items will inherit this value. `auto` is supported.
    */
   labelWidth: {
     type: [String, Number],
-    default: '110px',
+    default: "110px",
   },
   /**
    * @description Suffix of the label.
    */
   labelSuffix: {
     type: String,
-    default: '',
+    default: "",
   },
   /**
    * @description Whether the form is inline.
@@ -109,14 +108,14 @@ export const formProps = buildProps({
   scrollIntoViewOptions: {
     type: [Object, Boolean],
   },
-} as const)
-export type FormProps = ExtractPropTypes<typeof formProps>
-export type FormMetaProps = ExtractPropTypes<typeof formMetaProps>
+};
+export type FormProps = ExtractPropTypes<typeof formProps>;
+export type FormMetaProps = ExtractPropTypes<typeof formMetaProps>;
 
 export const formEmits = {
   validate: (prop: FormItemProp, isValid: boolean, message: string) =>
     (isArray(prop) || isString(prop)) &&
     isBoolean(isValid) &&
     isString(message),
-}
-export type FormEmits = typeof formEmits
+};
+export type FormEmits = typeof formEmits;
