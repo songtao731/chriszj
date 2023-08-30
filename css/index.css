@@ -96,3 +96,22 @@
   width: 1802px !important;
   max-width: inherit !important
 } */
+/* 
+.Tform {
+  width: 100%;
+  .Tform-header {
+    display: flex;
+    justify-content: space-between;
+    .Tform-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+  :deep(.el-form-item),
+  :deep(.el-select) {
+    width: 100%;
+  }
+} */
+/* .el-form-item{
+  width: 100% !important;
+} */
