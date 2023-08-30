@@ -1383,12 +1383,12 @@ check-error@^1.0.2:
   optionalDependencies:
     fsevents "~2.3.2"
 
-chriszj@^1.5.5:
-  version "1.5.5"
-  resolved "https://registry.npmjs.org/chriszj/-/chriszj-1.5.5.tgz#f534eab437b1aca48ddc6ad460c23d6f2e99827c"
-  integrity sha512-XhelWofSTz2I+C68p2dt9MYe8VDMeRHEx8RLzdzr51REcH4jj2u8OjhcUFuAABoQrfAoQcAXEb1jlJxq+IXRDg==
+chriszj@^1.5.8:
+  version "1.5.8"
+  resolved "https://registry.npmjs.org/chriszj/-/chriszj-1.5.8.tgz#5d1a016fee284fe3414ff0e09f6f4db7068f8797"
+  integrity sha512-ag8tnn5rxOAR/5H3VbIK6aNTI3CZFFV0fNrsh/vXbdKNX6eHFE7CGz/nOjszsvhSJ4HM5VLspVwUGnXkdPHEAw==
   dependencies:
-    chriszj "^1.5.5"
+    chriszj "^1.5.8"
 
 color-convert@^1.9.0:
   version "1.9.3"

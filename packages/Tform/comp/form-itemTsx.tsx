@@ -206,14 +206,14 @@ export default defineComponent({
                       );
                       break;
                     case "custom":
-                      element = (
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             {slots[el.slotName] &&
                               slots[el.slotName]({ scope: formData })}
                           </ElFormItem>
                         </ElCol>
-                      );
+                      ):""
                       break;
                     case "input":
                       element = !(el.hide || el.deepHide) ? (
@@ -295,7 +295,7 @@ export default defineComponent({
                       );
                       break;
                     case "select":
-                      element = (
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             <ElSelect
@@ -325,10 +325,10 @@ export default defineComponent({
                             </ElSelect>
                           </ElFormItem>
                         </ElCol>
-                      );
+                      ):""
                       break;
                     case "date":
-                      element = (
+                      element =  !(el.hide || el.deepHide) ?(
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             <ElDatePicker
@@ -345,10 +345,10 @@ export default defineComponent({
                             ></ElDatePicker>
                           </ElFormItem>
                         </ElCol>
-                      );
+                      ):""
                       break;
                     case "cascader":
-                      element = (
+                      element =  !(el.hide || el.deepHide) ?(
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             <ElCascader
@@ -364,10 +364,10 @@ export default defineComponent({
                             ></ElCascader>
                           </ElFormItem>
                         </ElCol>
-                      );
+                      ):""
                       break;
                     case "checkBox":
-                      element = (
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             <ElCheckboxGroup
@@ -387,10 +387,10 @@ export default defineComponent({
                             </ElCheckboxGroup>
                           </ElFormItem>
                         </ElCol>
-                      );
+                      ):""
                       break;
                     case "radio":
-                      element = (
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             <ElRadioGroup
@@ -410,10 +410,10 @@ export default defineComponent({
                             </ElRadioGroup>
                           </ElFormItem>
                         </ElCol>
-                      );
+                      ):""
                       break;
                     case "rate":
-                      element = (
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             <ElRate
@@ -423,10 +423,10 @@ export default defineComponent({
                             ></ElRate>
                           </ElFormItem>
                         </ElCol>
-                      );
+                      ):""
                       break;
                     case "upload":
-                      element = (
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             <Tupload
@@ -435,10 +435,10 @@ export default defineComponent({
                             ></Tupload>
                           </ElFormItem>
                         </ElCol>
-                      );
+                      ):""
                       break;
                     case "switch":
-                      element = (
+                      element =  !(el.hide || el.deepHide) ?(
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             <ElSwitch
@@ -447,10 +447,10 @@ export default defineComponent({
                             ></ElSwitch>
                           </ElFormItem>
                         </ElCol>
-                      );
+                      ):""
                       break;
                     case "slider":
-                      element = (
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           <ElFormItem {...el} rules={el.rules?.rules}>
                             <ElSlider
@@ -459,7 +459,7 @@ export default defineComponent({
                             ></ElSlider>
                           </ElFormItem>
                         </ElCol>
-                      );
+                      ):""
                       break;
                   }
                   return element;

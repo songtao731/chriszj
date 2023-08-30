@@ -15,6 +15,10 @@
         <slot :name="items.slotName" :scope="scope" v-if="items.slotName" />
       </template>
     </FormDesc>
+
+      <slot name="footer">
+
+      </slot>
   </div>
 </template>
 <script lang="ts" setup>

@@ -187,6 +187,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
 }) => any>> & {
     title?(_: {}): any;
     buttons?(_: {}): any;
+    footer?(_: {}): any;
 }>;
 export default _default;
 type __VLS_WithTemplateSlots<T, S> = T & {

@@ -1,4 +1,4 @@
-import { Component, Ref } from "vue";
+import { Component } from "vue";
 export interface DatePickerPorps {
     readonly?: boolean;
     disabled?: boolean;
@@ -29,7 +29,7 @@ export interface DatePickerPorps {
     }>;
     cellClassName?: (Date: Date) => void;
     teleported?: boolean;
-    ref?: Ref<any>;
+    ref?: any;
     onChange?: <T>(val: T) => void;
     onFocus?: <T>(val: T) => void;
     onBlur?: <T>(val: T) => void;

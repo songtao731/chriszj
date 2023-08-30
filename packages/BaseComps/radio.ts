@@ -12,7 +12,7 @@ export type RadioItem = {
 
 export interface RadioProps {
   label?: string;
-  ref?:Ref<any>
+  ref?:any
   disabled?: boolean;
 
   size?: "large" | "default" | "small";

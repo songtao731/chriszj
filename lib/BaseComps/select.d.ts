@@ -3,6 +3,7 @@ import { SelectNewPorps } from "./selectNews";
 export type opstionsItem = {
     label: string;
     value: string;
+    [key: string]: any;
 };
 export interface SelectPorps extends SelectNewPorps {
     disabled?: boolean;

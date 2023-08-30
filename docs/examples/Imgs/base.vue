@@ -9,7 +9,6 @@
 <script></script>
 
 <script setup lang="ts">
- import {Tupload } from "chriszj";
 import { UploadUserFile } from "element-plus/es/components/upload/src/upload";
 import { ref } from "vue";
 

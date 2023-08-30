@@ -1,4 +1,4 @@
-import { Component, Ref } from "vue";
+import { Component } from "vue";
 export interface SwitchProps {
     disabled?: boolean;
     size?: "" | "large" | "default" | "small";
@@ -21,7 +21,7 @@ export interface SwitchProps {
     beforeChange?: () => Promise<boolean> | boolean;
     id?: string;
     tabindex?: string | number;
-    ref?: Ref<any>;
+    ref?: any;
     onChange?: <T>(val: T) => void;
     onClear?: () => void;
 }

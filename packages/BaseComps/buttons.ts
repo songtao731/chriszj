@@ -35,7 +35,7 @@ export interface ButtonProps {
   tag?: string | Component;
   color?: string;
   dark?: boolean;
-  ref?:Ref<any>
+  ref?:any
 
 
   /**

@@ -408,6 +408,7 @@ declare const Tform: ({
     }) => any>> & {
         title?(_: {}): any;
         buttons?(_: {}): any;
+        footer?(_: {}): any;
     };
 }) & import("vue").Plugin) & Record<string, any>;
 export default Tform;

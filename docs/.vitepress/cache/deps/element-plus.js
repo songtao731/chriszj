@@ -1252,7 +1252,7 @@ var _bem = (namespace, block, blockSuffix, element, modifier) => {
 };
 var namespaceContextKey = Symbol("namespaceContextKey");
 var useGetDerivedNamespace = (namespaceOverrides) => {
-  const derivedNamespace = namespaceOverrides || inject(namespaceContextKey, ref(defaultNamespace));
+  const derivedNamespace = namespaceOverrides || (getCurrentInstance() ? inject(namespaceContextKey, ref(defaultNamespace)) : ref(defaultNamespace));
   const namespace = computed2(() => {
     return unref(derivedNamespace) || defaultNamespace;
   });
@@ -2554,7 +2554,7 @@ var zIndex = ref(0);
 var defaultInitialZIndex = 2e3;
 var zIndexContextKey = Symbol("zIndexContextKey");
 var useZIndex = (zIndexOverrides) => {
-  const zIndexInjection = zIndexOverrides || inject(zIndexContextKey, void 0);
+  const zIndexInjection = zIndexOverrides || (getCurrentInstance() ? inject(zIndexContextKey, void 0) : void 0);
   const initialZIndex = computed2(() => {
     const zIndexFromInjection = unref(zIndexInjection);
     return isNumber(zIndexFromInjection) ? zIndexFromInjection : defaultInitialZIndex;
@@ -3589,7 +3589,6 @@ function useFocusController(target, { afterFocus, afterBlur } = {}) {
   };
   watch(wrapperRef, (el) => {
     if (el) {
-      el.setAttribute("role", "button");
       el.setAttribute("tabindex", "-1");
     }
   });
@@ -3729,7 +3728,7 @@ var ConfigProvider = defineComponent({
 var ElConfigProvider = withInstall(ConfigProvider);
 
 // node_modules/element-plus/es/version.mjs
-var version = "2.3.8";
+var version = "2.3.9";
 
 // node_modules/element-plus/es/make-installer.mjs
 var makeInstaller = (components = []) => {
@@ -7598,7 +7597,7 @@ var _sfc_main13 = defineComponent({
         if (!releasedEvent.defaultPrevented && (focusReason2.value == "keyboard" || !isFocusCausedByUserEvent() || trapContainer.contains(document.activeElement))) {
           tryFocus(lastFocusBeforeTrapped != null ? lastFocusBeforeTrapped : document.body);
         }
-        trapContainer.removeEventListener(FOCUS_AFTER_RELEASED, trapOnFocus);
+        trapContainer.removeEventListener(FOCUS_AFTER_RELEASED, releaseOnFocus);
         focusableStack.remove(focusLayer);
       }
     }
@@ -8449,10 +8448,11 @@ var _sfc_main17 = defineComponent({
         open.value = false;
       }
     });
-    const isFocusInsideContent = () => {
+    const isFocusInsideContent = (event) => {
       var _a, _b;
       const popperContent = (_b = (_a = contentRef.value) == null ? void 0 : _a.contentRef) == null ? void 0 : _b.popperContentRef;
-      return popperContent && popperContent.contains(document.activeElement);
+      const activeElement = (event == null ? void 0 : event.relatedTarget) || document.activeElement;
+      return popperContent && popperContent.contains(activeElement);
     };
     onDeactivated(() => open.value && hide2());
     expose({
@@ -8640,7 +8640,7 @@ var _sfc_main18 = defineComponent({
     const popperRef = ref();
     const listboxRef = ref();
     let readonly2 = false;
-    let ignoreFocusEvent2 = false;
+    let ignoreFocusEvent = false;
     const suggestions = ref([]);
     const highlightedIndex = ref(-1);
     const dropdownWidth = ref("");
@@ -8718,21 +8718,21 @@ var _sfc_main18 = defineComponent({
       emit(CHANGE_EVENT, value);
     };
     const handleFocus = (evt) => {
-      if (!ignoreFocusEvent2) {
+      if (!ignoreFocusEvent) {
         activated.value = true;
         emit("focus", evt);
         if (props.triggerOnFocus && !readonly2) {
           debouncedGetData(String(props.modelValue));
         }
       } else {
-        ignoreFocusEvent2 = false;
+        ignoreFocusEvent = false;
       }
     };
     const handleBlur = (evt) => {
       setTimeout(() => {
         var _a;
         if ((_a = popperRef.value) == null ? void 0 : _a.isFocusInsideContent()) {
-          ignoreFocusEvent2 = true;
+          ignoreFocusEvent = true;
           return;
         }
         activated.value && close2();
@@ -8843,6 +8843,7 @@ var _sfc_main18 = defineComponent({
         trigger: "click",
         transition: `${unref(ns).namespace.value}-zoom-in-top`,
         persistent: "",
+        role: "listbox",
         onBeforeShow: onSuggestionShow,
         onHide
       }, {
@@ -9312,7 +9313,6 @@ var _sfc_main23 = defineComponent({
     const instance = getCurrentInstance();
     const breadcrumbContext = inject(breadcrumbKey, void 0);
     const ns = useNamespace("breadcrumb");
-    const { separator, separatorIcon } = toRefs(breadcrumbContext);
     const router = instance.appContext.config.globalProperties.$router;
     const link = ref();
     const onClick = () => {
@@ -9321,6 +9321,7 @@ var _sfc_main23 = defineComponent({
       props.replace ? router.replace(props.to) : router.push(props.to);
     };
     return (_ctx, _cache) => {
+      var _a, _b;
       return openBlock(), createElementBlock("span", {
         class: normalizeClass(unref(ns).e("item"))
       }, [
@@ -9333,19 +9334,19 @@ var _sfc_main23 = defineComponent({
         }, [
           renderSlot(_ctx.$slots, "default")
         ], 2),
-        unref(separatorIcon) ? (openBlock(), createBlock(unref(ElIcon), {
+        ((_a = unref(breadcrumbContext)) == null ? void 0 : _a.separatorIcon) ? (openBlock(), createBlock(unref(ElIcon), {
           key: 0,
           class: normalizeClass(unref(ns).e("separator"))
         }, {
           default: withCtx(() => [
-            (openBlock(), createBlock(resolveDynamicComponent(unref(separatorIcon))))
+            (openBlock(), createBlock(resolveDynamicComponent(unref(breadcrumbContext).separatorIcon)))
           ]),
           _: 1
         }, 8, ["class"])) : (openBlock(), createElementBlock("span", {
           key: 1,
           class: normalizeClass(unref(ns).e("separator")),
           role: "presentation"
-        }, toDisplayString(unref(separator)), 3))
+        }, toDisplayString((_b = unref(breadcrumbContext)) == null ? void 0 : _b.separator), 3))
       ], 2);
     };
   }
@@ -10780,7 +10781,7 @@ var _sfc_main26 = defineComponent({
     const pickerActualVisible = ref(false);
     const valueOnOpen = ref(null);
     let hasJustTabExitedInput = false;
-    let ignoreFocusEvent2 = false;
+    let ignoreFocusEvent = false;
     const rangeInputKls = computed2(() => [
       nsDate.b("editor"),
       nsDate.bm("editor", props.type),
@@ -10852,12 +10853,12 @@ var _sfc_main26 = defineComponent({
     const focusOnInputBox = () => {
       focus(true, true);
       nextTick(() => {
-        ignoreFocusEvent2 = false;
+        ignoreFocusEvent = false;
       });
     };
     const onPick = (date5 = "", visible = false) => {
       if (!visible) {
-        ignoreFocusEvent2 = true;
+        ignoreFocusEvent = true;
       }
       pickerVisible.value = visible;
       let result;
@@ -10883,7 +10884,7 @@ var _sfc_main26 = defineComponent({
     const onHide = () => {
       pickerActualVisible.value = false;
       pickerVisible.value = false;
-      ignoreFocusEvent2 = false;
+      ignoreFocusEvent = false;
       emit("visible-change", false);
     };
     const handleOpen = () => {
@@ -10893,7 +10894,7 @@ var _sfc_main26 = defineComponent({
       pickerVisible.value = false;
     };
     const focus = (focusStartInput = true, isIgnoreFocusEvent = false) => {
-      ignoreFocusEvent2 = isIgnoreFocusEvent;
+      ignoreFocusEvent = isIgnoreFocusEvent;
       const [leftInput, rightInput] = unref(refInput);
       let input = leftInput;
       if (!focusStartInput && isRangeInput.value) {
@@ -10904,7 +10905,7 @@ var _sfc_main26 = defineComponent({
       }
     };
     const handleFocusInput = (e) => {
-      if (props.readonly || pickerDisabled.value || pickerVisible.value || ignoreFocusEvent2) {
+      if (props.readonly || pickerDisabled.value || pickerVisible.value || ignoreFocusEvent) {
         return;
       }
       pickerVisible.value = true;
@@ -15334,7 +15335,11 @@ var _sfc_main43 = defineComponent({
         expandingNode.value = null;
       }
       oldNodes.forEach((node) => node.doCheck(false));
-      newNodes.forEach((node) => node.doCheck(true));
+      if (props.props.multiple) {
+        reactive(newNodes).forEach((node) => node.doCheck(true));
+      } else {
+        newNodes.forEach((node) => node.doCheck(true));
+      }
       checkedNodes.value = newNodes;
       nextTick(scrollToExpandingNode);
     };
@@ -15984,15 +15989,22 @@ var _sfc_main45 = defineComponent({
         return;
       val ? handleFilter() : hideSuggestionPanel();
     };
+    const getInputInnerHeight = (inputInner) => Number.parseFloat(useCssVar(nsInput.cssVarName("input-height"), inputInner).value) - 2;
     watch(filtering, updatePopperPosition);
     watch([checkedNodes, isDisabled], calculatePresentTags);
     watch(presentTags, () => {
       nextTick(() => updateStyle());
     });
+    watch(realSize, async () => {
+      await nextTick();
+      const inputInner = input.value.input;
+      inputInitialHeight = getInputInnerHeight(inputInner) || inputInitialHeight;
+      updateStyle();
+    });
     watch(presentText, syncPresentTextValue, { immediate: true });
     onMounted(() => {
       const inputInner = input.value.input;
-      const inputInnerHeight = Number.parseFloat(useCssVar(nsInput.cssVarName("input-height"), inputInner).value) - 2;
+      const inputInnerHeight = getInputInnerHeight(inputInner);
       inputInitialHeight = inputInner.offsetHeight || inputInnerHeight;
       useResizeObserver(inputInner, updateStyle);
     });
@@ -16302,8 +16314,7 @@ var rowProps = buildProps({
   },
   align: {
     type: String,
-    values: RowAlign,
-    default: "top"
+    values: RowAlign
   }
 });
 
@@ -16332,7 +16343,7 @@ var _sfc_main47 = defineComponent({
     const rowKls = computed2(() => [
       ns.b(),
       ns.is(`justify-${props.justify}`, props.justify !== "start"),
-      ns.is(`align-${props.align}`, props.align !== "top")
+      ns.is(`align-${props.align}`, !!props.align)
     ]);
     return (_ctx, _cache) => {
       return openBlock(), createBlock(resolveDynamicComponent(_ctx.tag), {
@@ -16554,6 +16565,12 @@ var _sfc_main50 = defineComponent({
   ...__default__41,
   setup(__props) {
     const ns = useNamespace("collapse-transition");
+    const reset = (el) => {
+      el.style.maxHeight = "";
+      el.style.overflow = el.dataset.oldOverflow;
+      el.style.paddingTop = el.dataset.oldPaddingTop;
+      el.style.paddingBottom = el.dataset.oldPaddingBottom;
+    };
     const on2 = {
       beforeEnter(el) {
         if (!el.dataset)
@@ -16568,18 +16585,19 @@ var _sfc_main50 = defineComponent({
         el.dataset.oldOverflow = el.style.overflow;
         if (el.scrollHeight !== 0) {
           el.style.maxHeight = `${el.scrollHeight}px`;
-          el.style.paddingTop = el.dataset.oldPaddingTop;
-          el.style.paddingBottom = el.dataset.oldPaddingBottom;
         } else {
           el.style.maxHeight = 0;
-          el.style.paddingTop = el.dataset.oldPaddingTop;
-          el.style.paddingBottom = el.dataset.oldPaddingBottom;
         }
+        el.style.paddingTop = el.dataset.oldPaddingTop;
+        el.style.paddingBottom = el.dataset.oldPaddingBottom;
         el.style.overflow = "hidden";
       },
       afterEnter(el) {
         el.style.maxHeight = "";
         el.style.overflow = el.dataset.oldOverflow;
+      },
+      enterCancelled(el) {
+        reset(el);
       },
       beforeLeave(el) {
         if (!el.dataset)
@@ -16598,10 +16616,10 @@ var _sfc_main50 = defineComponent({
         }
       },
       afterLeave(el) {
-        el.style.maxHeight = "";
-        el.style.overflow = el.dataset.oldOverflow;
-        el.style.paddingTop = el.dataset.oldPaddingTop;
-        el.style.paddingBottom = el.dataset.oldPaddingBottom;
+        reset(el);
+      },
+      leaveCancelled(el) {
+        reset(el);
       }
     };
     return (_ctx, _cache) => {
@@ -19140,6 +19158,16 @@ var _sfc_main65 = defineComponent({
     const footerVisible = computed2(() => {
       return showTime.value || selectionMode.value === "dates";
     });
+    const disabledConfirm = computed2(() => {
+      if (!disabledDate2)
+        return false;
+      if (!props.parsedValue)
+        return true;
+      if (isArray(props.parsedValue)) {
+        return disabledDate2(props.parsedValue[0].toDate());
+      }
+      return disabledDate2(props.parsedValue.toDate());
+    });
     const onConfirm = () => {
       if (selectionMode.value === "dates") {
         emit(props.parsedValue);
@@ -19154,6 +19182,11 @@ var _sfc_main65 = defineComponent({
         emit(result);
       }
     };
+    const disabledNow = computed2(() => {
+      if (!disabledDate2)
+        return false;
+      return disabledDate2((0, import_dayjs11.default)().locale(lang.value).toDate());
+    });
     const changeToNow = () => {
       const now = (0, import_dayjs11.default)().locale(lang.value);
       const nowDate = now.toDate();
@@ -19576,26 +19609,28 @@ var _sfc_main65 = defineComponent({
             text: "",
             size: "small",
             class: normalizeClass(unref(ppNs).e("link-btn")),
+            disabled: unref(disabledNow),
             onClick: changeToNow
           }, {
             default: withCtx(() => [
               createTextVNode(toDisplayString(unref(t)("el.datepicker.now")), 1)
             ]),
             _: 1
-          }, 8, ["class"]), [
+          }, 8, ["class", "disabled"]), [
             [vShow, unref(selectionMode) !== "dates"]
           ]),
           createVNode(unref(ElButton), {
             plain: "",
             size: "small",
             class: normalizeClass(unref(ppNs).e("link-btn")),
+            disabled: unref(disabledConfirm),
             onClick: onConfirm
           }, {
             default: withCtx(() => [
               createTextVNode(toDisplayString(unref(t)("el.datepicker.confirm")), 1)
             ]),
             _: 1
-          }, 8, ["class"])
+          }, 8, ["class", "disabled"])
         ], 2), [
           [vShow, unref(footerVisible) && currentView.value === "date"]
         ])
@@ -21119,14 +21154,8 @@ var dialogInjectionKey = Symbol("dialogInjectionKey");
 
 // node_modules/element-plus/es/components/dialog/src/dialog-content.mjs
 var dialogContentProps = buildProps({
-  center: {
-    type: Boolean,
-    default: false
-  },
-  alignCenter: {
-    type: Boolean,
-    default: false
-  },
+  center: Boolean,
+  alignCenter: Boolean,
   closeIcon: {
     type: iconPropType
   },
@@ -21134,14 +21163,8 @@ var dialogContentProps = buildProps({
     type: String,
     default: ""
   },
-  draggable: {
-    type: Boolean,
-    default: false
-  },
-  fullscreen: {
-    type: Boolean,
-    default: false
-  },
+  draggable: Boolean,
+  fullscreen: Boolean,
   showClose: {
     type: Boolean,
     default: true
@@ -21169,20 +21192,21 @@ var _sfc_main70 = defineComponent({
     const { Close } = CloseComponents;
     const { dialogRef, headerRef, bodyId, ns, style } = inject(dialogInjectionKey);
     const { focusTrapRef } = inject(FOCUS_TRAP_INJECTION_KEY);
+    const dialogKls = computed2(() => [
+      ns.b(),
+      ns.is("fullscreen", props.fullscreen),
+      ns.is("draggable", props.draggable),
+      ns.is("align-center", props.alignCenter),
+      { [ns.m("center")]: props.center },
+      props.customClass
+    ]);
     const composedDialogRef = composeRefs(focusTrapRef, dialogRef);
     const draggable2 = computed2(() => props.draggable);
     useDraggable(dialogRef, headerRef, draggable2);
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", {
         ref: unref(composedDialogRef),
-        class: normalizeClass([
-          unref(ns).b(),
-          unref(ns).is("fullscreen", _ctx.fullscreen),
-          unref(ns).is("draggable", unref(draggable2)),
-          unref(ns).is("align-center", _ctx.alignCenter),
-          { [unref(ns).m("center")]: _ctx.center },
-          _ctx.customClass
-        ]),
+        class: normalizeClass(unref(dialogKls)),
         style: normalizeStyle(unref(style)),
         tabindex: "-1"
       }, [
@@ -21235,17 +21259,11 @@ var ElDialogContent = _export_sfc(_sfc_main70, [["__file", "/home/runner/work/el
 // node_modules/element-plus/es/components/dialog/src/dialog.mjs
 var dialogProps = buildProps({
   ...dialogContentProps,
-  appendToBody: {
-    type: Boolean,
-    default: false
-  },
+  appendToBody: Boolean,
   beforeClose: {
     type: definePropType(Function)
   },
-  destroyOnClose: {
-    type: Boolean,
-    default: false
-  },
+  destroyOnClose: Boolean,
   closeOnClickModal: {
     type: Boolean,
     default: true
@@ -21273,10 +21291,7 @@ var dialogProps = buildProps({
   top: {
     type: String
   },
-  modelValue: {
-    type: Boolean,
-    default: false
-  },
+  modelValue: Boolean,
   modalClass: String,
   width: {
     type: [String, Number]
@@ -24624,6 +24639,8 @@ var SubMenu2 = defineComponent({
       "left-start"
     ] : [
       "right-start",
+      "right",
+      "right-end",
       "left-start",
       "bottom-start",
       "bottom-end",
@@ -25747,10 +25764,10 @@ function useSelectStates(props) {
     menuVisibleOnFocus: false,
     isOnComposition: false,
     prefixWidth: 11,
-    mouseEnter: false
+    mouseEnter: false,
+    focused: false
   });
 }
-var ignoreFocusEvent = false;
 var useSelect = (props, states, ctx) => {
   const { t } = useLocale();
   const ns = useNamespace("select");
@@ -25784,6 +25801,7 @@ var useSelect = (props, states, ctx) => {
   });
   const iconComponent = computed2(() => props.remote && props.filterable && !props.remoteShowSuffix ? "" : props.suffixIcon);
   const iconReverse = computed2(() => ns.is("reverse", iconComponent.value && states.visible && props.suffixTransition));
+  const showStatusIconAndState = computed2(() => (form == null ? void 0 : form.statusIcon) && (formItem == null ? void 0 : formItem.validateState) && ValidateComponentsMap[formItem == null ? void 0 : formItem.validateState]);
   const debounce$1 = computed2(() => props.remote ? 300 : 0);
   const emptyText = computed2(() => {
     if (props.loading) {
@@ -25877,7 +25895,6 @@ var useSelect = (props, states, ctx) => {
           props.remoteMethod("");
         }
       }
-      input.value && input.value.blur();
       states.query = "";
       states.previousQuery = null;
       states.selectedLabel = "";
@@ -26151,6 +26168,7 @@ var useSelect = (props, states, ctx) => {
       ctx.emit("remove-tag", tag.value);
     }
     event.stopPropagation();
+    focus();
   };
   const deleteSelected = (event) => {
     event.stopPropagation();
@@ -26166,6 +26184,7 @@ var useSelect = (props, states, ctx) => {
     states.hoverIndex = -1;
     states.visible = false;
     ctx.emit("clear");
+    focus();
   };
   const handleOptionSelect = (option) => {
     var _a;
@@ -26282,16 +26301,24 @@ var useSelect = (props, states, ctx) => {
     nextTick(() => scrollToOption(states.selected));
   };
   const handleFocus = (event) => {
-    if (!ignoreFocusEvent) {
+    if (!states.focused) {
       if (props.automaticDropdown || props.filterable) {
         if (props.filterable && !states.visible) {
           states.menuVisibleOnFocus = true;
         }
         states.visible = true;
       }
+      states.focused = true;
       ctx.emit("focus", event);
+    }
+  };
+  const focus = () => {
+    var _a, _b;
+    if (states.visible) {
+      ;
+      (_a = input.value || reference.value) == null ? void 0 : _a.focus();
     } else {
-      ignoreFocusEvent = false;
+      (_b = reference.value) == null ? void 0 : _b.focus();
     }
   };
   const blur = () => {
@@ -26301,15 +26328,13 @@ var useSelect = (props, states, ctx) => {
     (_c = (_b = iOSInput.value) == null ? void 0 : _b.blur) == null ? void 0 : _c.call(_b);
   };
   const handleBlur = (event) => {
-    setTimeout(() => {
-      var _a;
-      if ((_a = tooltipRef.value) == null ? void 0 : _a.isFocusInsideContent()) {
-        ignoreFocusEvent = true;
-        return;
-      }
-      states.visible && handleClose();
-      ctx.emit("blur", event);
-    });
+    var _a, _b, _c;
+    if (((_a = tooltipRef.value) == null ? void 0 : _a.isFocusInsideContent(event)) || ((_b = tagTooltipRef.value) == null ? void 0 : _b.isFocusInsideContent(event)) || ((_c = selectWrapper.value) == null ? void 0 : _c.contains(event.relatedTarget))) {
+      return;
+    }
+    states.visible && handleClose();
+    states.focused = false;
+    ctx.emit("blur", event);
   };
   const handleClearClick = (event) => {
     deleteSelected(event);
@@ -26325,7 +26350,6 @@ var useSelect = (props, states, ctx) => {
     }
   };
   const toggleMenu = (e) => {
-    var _a;
     if (e && !states.mouseEnter) {
       return;
     }
@@ -26337,10 +26361,7 @@ var useSelect = (props, states, ctx) => {
           states.visible = !states.visible;
         }
       }
-      if (states.visible) {
-        ;
-        (_a = input.value || reference.value) == null ? void 0 : _a.focus();
-      }
+      focus();
     }
   };
   const selectOption = () => {
@@ -26397,6 +26418,10 @@ var useSelect = (props, states, ctx) => {
     deleteTag(event, tag);
     (_b = (_a = tagTooltipRef.value) == null ? void 0 : _a.updatePopper) == null ? void 0 : _b.call(_a);
   };
+  const selectTagsStyle = computed2(() => ({
+    maxWidth: `${unref(states.inputWidth) - 32 - (showStatusIconAndState.value ? 22 : 0)}px`,
+    width: "100%"
+  }));
   return {
     optionList,
     optionsArray,
@@ -26427,6 +26452,7 @@ var useSelect = (props, states, ctx) => {
     onOptionDestroy,
     handleMenuEnter,
     handleFocus,
+    focus,
     blur,
     handleBlur,
     handleClearClick,
@@ -26442,6 +26468,7 @@ var useSelect = (props, states, ctx) => {
     groupQueryChange,
     showTagList,
     collapseTagList,
+    selectTagsStyle,
     reference,
     input,
     iOSInput,
@@ -26663,6 +26690,7 @@ var _sfc_main97 = defineComponent({
       onOptionDestroy,
       handleMenuEnter,
       handleFocus,
+      focus,
       blur,
       handleBlur,
       handleClearClick,
@@ -26687,9 +26715,9 @@ var _sfc_main97 = defineComponent({
       handleMouseEnter,
       handleMouseLeave,
       showTagList,
-      collapseTagList
+      collapseTagList,
+      selectTagsStyle
     } = useSelect(props, states, ctx);
-    const { focus } = useFocus(reference);
     const {
       inputWidth,
       selected,
@@ -26740,10 +26768,6 @@ var _sfc_main97 = defineComponent({
     const scrollbarKls = computed2(() => [
       nsSelect.is("empty", !props.allowCreate && Boolean(unref(query)) && unref(filteredOptionsCount) === 0)
     ]);
-    const selectTagsStyle = computed2(() => ({
-      maxWidth: `${unref(inputWidth) - 32}px`,
-      width: "100%"
-    }));
     const tagTextStyle = computed2(() => {
       const maxWidth = unref(inputWidth) > 123 ? unref(inputWidth) - 123 : unref(inputWidth) - 75;
       return { maxWidth: `${maxWidth}px` };
@@ -26847,6 +26871,7 @@ var _sfc_main97 = defineComponent({
       handleComposition,
       handleMenuEnter,
       handleFocus,
+      focus,
       blur,
       handleBlur,
       handleClearClick,
@@ -26857,7 +26882,6 @@ var _sfc_main97 = defineComponent({
       getValueKey,
       navigateOptions,
       dropMenuVisible,
-      focus,
       reference,
       input,
       iOSInput,
@@ -26900,9 +26924,9 @@ function _sfc_render23(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("div", {
     ref: "selectWrapper",
     class: normalizeClass(_ctx.wrapperKls),
-    onMouseenter: _cache[21] || (_cache[21] = (...args) => _ctx.handleMouseEnter && _ctx.handleMouseEnter(...args)),
-    onMouseleave: _cache[22] || (_cache[22] = (...args) => _ctx.handleMouseLeave && _ctx.handleMouseLeave(...args)),
-    onClick: _cache[23] || (_cache[23] = withModifiers((...args) => _ctx.toggleMenu && _ctx.toggleMenu(...args), ["stop"]))
+    onMouseenter: _cache[22] || (_cache[22] = (...args) => _ctx.handleMouseEnter && _ctx.handleMouseEnter(...args)),
+    onMouseleave: _cache[23] || (_cache[23] = (...args) => _ctx.handleMouseLeave && _ctx.handleMouseLeave(...args)),
+    onClick: _cache[24] || (_cache[24] = withModifiers((...args) => _ctx.toggleMenu && _ctx.toggleMenu(...args), ["stop"]))
   }, [
     createVNode(_component_el_tooltip, {
       ref: "tooltipRef",
@@ -26924,14 +26948,16 @@ function _sfc_render23(_ctx, _cache, $props, $setup, $data, $options) {
       default: withCtx(() => [
         createBaseVNode("div", {
           class: "select-trigger",
-          onMouseenter: _cache[19] || (_cache[19] = ($event) => _ctx.inputHovering = true),
-          onMouseleave: _cache[20] || (_cache[20] = ($event) => _ctx.inputHovering = false)
+          onMouseenter: _cache[20] || (_cache[20] = ($event) => _ctx.inputHovering = true),
+          onMouseleave: _cache[21] || (_cache[21] = ($event) => _ctx.inputHovering = false)
         }, [
           _ctx.multiple ? (openBlock(), createElementBlock("div", {
             key: 0,
             ref: "tags",
+            tabindex: "-1",
             class: normalizeClass(_ctx.tagsKls),
-            style: normalizeStyle(_ctx.selectTagsStyle)
+            style: normalizeStyle(_ctx.selectTagsStyle),
+            onClick: _cache[15] || (_cache[15] = (...args) => _ctx.focus && _ctx.focus(...args))
           }, [
             _ctx.collapseTags && _ctx.selected.length ? (openBlock(), createBlock(Transition, {
               key: 0,
@@ -27100,7 +27126,7 @@ function _sfc_render23(_ctx, _cache, $props, $setup, $data, $options) {
             id: _ctx.id,
             ref: "reference",
             modelValue: _ctx.selectedLabel,
-            "onUpdate:modelValue": _cache[15] || (_cache[15] = ($event) => _ctx.selectedLabel = $event),
+            "onUpdate:modelValue": _cache[16] || (_cache[16] = ($event) => _ctx.selectedLabel = $event),
             type: "text",
             placeholder: typeof _ctx.currentPlaceholder === "function" ? _ctx.currentPlaceholder() : _ctx.currentPlaceholder,
             name: _ctx.name,
@@ -27119,11 +27145,11 @@ function _sfc_render23(_ctx, _cache, $props, $setup, $data, $options) {
             onCompositionupdate: _ctx.handleComposition,
             onCompositionend: _ctx.handleComposition,
             onKeydown: [
-              _cache[16] || (_cache[16] = withKeys(withModifiers(($event) => _ctx.navigateOptions("next"), ["stop", "prevent"]), ["down"])),
-              _cache[17] || (_cache[17] = withKeys(withModifiers(($event) => _ctx.navigateOptions("prev"), ["stop", "prevent"]), ["up"])),
+              _cache[17] || (_cache[17] = withKeys(withModifiers(($event) => _ctx.navigateOptions("next"), ["stop", "prevent"]), ["down"])),
+              _cache[18] || (_cache[18] = withKeys(withModifiers(($event) => _ctx.navigateOptions("prev"), ["stop", "prevent"]), ["up"])),
               withKeys(withModifiers(_ctx.selectOption, ["stop", "prevent"]), ["enter"]),
               withKeys(_ctx.handleKeydownEscape, ["esc"]),
-              _cache[18] || (_cache[18] = withKeys(($event) => _ctx.visible = false, ["tab"]))
+              _cache[19] || (_cache[19] = withKeys(($event) => _ctx.visible = false, ["tab"]))
             ]
           }, createSlots({
             suffix: withCtx(() => [
@@ -34228,6 +34254,12 @@ var switchProps = buildProps({
     type: Boolean,
     default: false
   },
+  inactiveActionIcon: {
+    type: iconPropType
+  },
+  activeActionIcon: {
+    type: iconPropType
+  },
   activeIcon: {
     type: iconPropType
   },
@@ -34505,7 +34537,17 @@ var _sfc_main119 = defineComponent({
                 createVNode(unref(loading_default))
               ]),
               _: 1
-            }, 8, ["class"])) : createCommentVNode("v-if", true)
+            }, 8, ["class"])) : _ctx.activeActionIcon && unref(checked) ? (openBlock(), createBlock(unref(ElIcon), { key: 1 }, {
+              default: withCtx(() => [
+                (openBlock(), createBlock(resolveDynamicComponent(_ctx.activeActionIcon)))
+              ]),
+              _: 1
+            })) : _ctx.inactiveActionIcon && !unref(checked) ? (openBlock(), createBlock(unref(ElIcon), { key: 2 }, {
+              default: withCtx(() => [
+                (openBlock(), createBlock(resolveDynamicComponent(_ctx.inactiveActionIcon)))
+              ]),
+              _: 1
+            })) : createCommentVNode("v-if", true)
           ], 2)
         ], 6),
         !_ctx.inlinePrompt && (_ctx.activeIcon || _ctx.activeText) ? (openBlock(), createElementBlock("span", {
@@ -37008,8 +37050,16 @@ function useEvents(props) {
     const range3 = document.createRange();
     range3.setStart(cellChild, 0);
     range3.setEnd(cellChild, cellChild.childNodes.length);
-    const rangeWidth = Math.round(range3.getBoundingClientRect().width);
-    const rangeHeight = Math.round(range3.getBoundingClientRect().height);
+    let rangeWidth = range3.getBoundingClientRect().width;
+    let rangeHeight = range3.getBoundingClientRect().height;
+    const offsetWidth = rangeWidth - Math.floor(rangeWidth);
+    if (offsetWidth < 1e-3) {
+      rangeWidth = Math.floor(rangeWidth);
+    }
+    const offsetHeight = rangeHeight - Math.floor(rangeHeight);
+    if (offsetHeight < 1e-3) {
+      rangeHeight = Math.floor(rangeHeight);
+    }
     const { top, left: left2, right: right2, bottom } = getPadding(cellChild);
     const horizontalPadding = left2 + right2;
     const verticalPadding = top + bottom;
@@ -38636,6 +38686,7 @@ function useWatcher2(owner, props_) {
       "label",
       "filters",
       "filterMultiple",
+      "filteredValue",
       "sortable",
       "index",
       "formatter",

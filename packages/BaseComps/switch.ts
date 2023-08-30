@@ -22,7 +22,7 @@ export interface SwitchProps {
   beforeChange?: () => Promise<boolean> | boolean;
   id?: string;
   tabindex?: string | number;
-  ref?:Ref<any>
+  ref?:any
 
   onChange?: <T>(val: T) => void;
   onClear?: () => void;

@@ -32,7 +32,7 @@ export interface SliderProps {
   marks?:Marks
   validateEvent?:boolean
   class?:string
-  ref?:Ref<any>
+  ref?:any
 
 
   onChange?: <T>(val: T) => void;

@@ -1,8 +1,8 @@
-import { Component, Ref } from "vue";
+import { Component } from "vue";
 export interface DateTimePickerPorps {
     readonly?: boolean;
     disabled?: boolean;
-    ref?: Ref<any>;
+    ref?: any;
     size?: "large" | "default" | "small";
     editable?: boolean;
     clearable?: boolean;

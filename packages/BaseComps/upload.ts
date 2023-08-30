@@ -23,7 +23,7 @@ export interface UploadBaseProps {
   drag?: boolean;
   accept?: string;
   withCredentials?: boolean;
-  ref?:Ref<any>
+  ref?:any
 
 
   onPreview?: (uploadFile: UploadFile) => void;

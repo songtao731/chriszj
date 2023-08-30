@@ -1,5 +1,4 @@
 import { Component } from "@vue/runtime-dom";
-import { Ref } from "vue";
 export type ButtonType = "default" | "primary" | "success" | "warning" | "info" | "danger" | "text" | "";
 export interface ButtonProps {
     size?: "large" | "default" | "small";
@@ -20,7 +19,7 @@ export interface ButtonProps {
     tag?: string | Component;
     color?: string;
     dark?: boolean;
-    ref?: Ref<any>;
+    ref?: any;
     /**
      * 按钮内容
      */

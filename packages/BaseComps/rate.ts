@@ -4,7 +4,7 @@ import { Component ,Ref} from "vue";
 export interface RateProps {
   max?: number;
   disabled?: boolean;
-  ref?:Ref<any>
+  ref?:any
 
   size?: "large" | "default" | "small";
   allowHalf?:boolean

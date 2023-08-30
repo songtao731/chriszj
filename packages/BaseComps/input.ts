@@ -29,7 +29,8 @@ export interface InputPorps {
   tabindex?: string;
   validateEvent?: boolean;
   inputStyle?: string ;
-  ref?:Ref<any>
+  ref?:any
+  placeholder?:string
   onChange?: <T>(data: T) => void;
   onFocus?: <T>(data: T) => void;
   onBlur?: <T>(data: T) => void;
