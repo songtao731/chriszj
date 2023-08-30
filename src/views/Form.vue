@@ -19,6 +19,8 @@
 import { computed, reactive, Ref, ref, toRef } from "vue";
 import { chris, Tform } from "../../packages/index";
 //import { chris, Tform } from "chriszj";
+//import { chris, Tform } from "../../lib/chris-ui.mjs";
+
 
 import { dataItem } from "../../packages/Tform/comp/useForm";
 
@@ -365,7 +367,9 @@ const bind = computed(() => {
             prop: "min",
             rules: chris.rulesFn().required(true, "最小值"),
             placeholder: "请输入最小值",
-            input: {},
+            input: {
+            },
+         
           },
           {
             prop: "max",

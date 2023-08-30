@@ -1,5 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 
+
  import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
@@ -9,13 +10,17 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 import { VPDemo } from '../vitepress'
 // 基于element-plus二次封装基础组件
-//import TuiPlus from '../../../packages'
-import TuiPlus from '../../../packages'
 
-import Chriszj from '../../../packages'
-import "../../../packages/TableList/style/search.scss";
 
+import Chriszj from 'chriszj'
 import '../../public/css/index.css'
+import "chriszj/style.css";
+
+// import "../../../packages/TableList/style/search.scss";
+
+
+
+
 
 export default {
   ...DefaultTheme,

@@ -63,15 +63,13 @@ export default defineComponent({
     let isBclick = true;
 
     const getDataList = async () => {
-      let objData:{[key:string]:any}={}
+      let objData: { [key: string]: any } = {};
       if (typeof request === "function") {
         const res = await request!();
-        objData  = getPath(res, path);
+        objData = getPath(res, path);
 
         Object.keys(formData).forEach((el) => {
-          
           if (objData[el]) {
-            
             formData[el] = objData[el];
           }
         });
@@ -86,7 +84,6 @@ export default defineComponent({
     };
     //设置默认值
     const resetFn = (el: dataItem) => {
- 
       switch (el.type) {
         case "checkBox":
           formData[el.prop as string] = [];
@@ -111,7 +108,7 @@ export default defineComponent({
         default:
           formData[el.prop as string] = "";
       }
-      delete formData['undefined']
+      delete formData["undefined"];
     };
     //获取循环的表单对象
     const dataList = computed(() => {
@@ -208,12 +205,18 @@ export default defineComponent({
                     case "custom":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules}>
+                          <ElFormItem
+                            {...el}
+                            rules={el.rules?.rules}
+                            class="w-full"
+                          >
                             {slots[el.slotName] &&
                               slots[el.slotName]({ scope: formData })}
                           </ElFormItem>
                         </ElCol>
-                      ):""
+                      ) : (
+                        ""
+                      );
                       break;
                     case "input":
                       element = !(el.hide || el.deepHide) ? (
@@ -222,6 +225,7 @@ export default defineComponent({
                             {...el}
                             prop={el.prop}
                             rules={el.rules?.rules}
+                            class="w-full"
                           >
                             <ElInput
                               clearable={true}
@@ -243,11 +247,12 @@ export default defineComponent({
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           {el.columns && (
-                            <ElFormItem label={el.label} {...el}>
+                            <ElFormItem label={el.label} {...el} class='w-full'>
                               <ElCol span={11}>
                                 <ElFormItem
                                   rules={el.columns[0].rules?.rules}
                                   prop={el.columns[0].prop}
+                                  class='w-full'
                                 >
                                   <ElInput
                                     clearable={true}
@@ -260,6 +265,7 @@ export default defineComponent({
                                       el.columns[0].placeholder
                                     )}
                                     {...el.columns[0]!.input}
+                              
                                   />
                                 </ElFormItem>
                               </ElCol>
@@ -268,6 +274,7 @@ export default defineComponent({
                               </ElCol>
                               <ElCol span={11}>
                                 <ElFormItem
+                                class='w-full'
                                   rules={
                                     el.columns && el.columns[1].rules?.rules
                                   }
@@ -297,7 +304,7 @@ export default defineComponent({
                     case "select":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules}>
+                          <ElFormItem {...el} rules={el.rules?.rules} class="w-full">
                             <ElSelect
                               clearable={true}
                               v-model={formData[el.prop as string]}
@@ -306,9 +313,11 @@ export default defineComponent({
                                 el.showPlaceholder,
                                 "请选择" + el.placeholder
                               )}
+                              class="w-full"
                               {...el.select}
                             >
-                              {el.select&&Array.isArray(unref(el.select.options)) &&
+                              {el.select &&
+                                Array.isArray(unref(el.select.options)) &&
                                 unref(el.select.options).map(
                                   (ele: any, index: any) => {
                                     return (
@@ -325,15 +334,17 @@ export default defineComponent({
                             </ElSelect>
                           </ElFormItem>
                         </ElCol>
-                      ):""
+                      ) : (
+                        ""
+                      );
                       break;
                     case "date":
-                      element =  !(el.hide || el.deepHide) ?(
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules}>
+                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
                             <ElDatePicker
                               clearable={true}
-                              class="wid100"
+                              class="!w-full"
                               v-model={formData[el.prop as string]}
                               value-format="YYYY-MM-DD"
                               placeholder={changePlaceHolderFn(
@@ -341,16 +352,19 @@ export default defineComponent({
                                 el.showPlaceholder,
                                 "请选择" + el.placeholder
                               )}
+                              
                               {...el.date}
                             ></ElDatePicker>
                           </ElFormItem>
                         </ElCol>
-                      ):""
+                      ) : (
+                        ""
+                      );
                       break;
                     case "cascader":
-                      element =  !(el.hide || el.deepHide) ?(
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules}>
+                          <ElFormItem {...el} rules={el.rules?.rules} class=' w-full'>
                             <ElCascader
                               clearable={true}
                               class="w-full"
@@ -364,12 +378,14 @@ export default defineComponent({
                             ></ElCascader>
                           </ElFormItem>
                         </ElCol>
-                      ):""
+                      ) : (
+                        ""
+                      );
                       break;
                     case "checkBox":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules}>
+                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
                             <ElCheckboxGroup
                               v-model={formData[el.prop as string]}
                               {...el.checkBox}
@@ -387,12 +403,14 @@ export default defineComponent({
                             </ElCheckboxGroup>
                           </ElFormItem>
                         </ElCol>
-                      ):""
+                      ) : (
+                        ""
+                      );
                       break;
                     case "radio":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules}>
+                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
                             <ElRadioGroup
                               v-model={formData[el.prop as string]}
                               {...el.checkBox}
@@ -410,12 +428,14 @@ export default defineComponent({
                             </ElRadioGroup>
                           </ElFormItem>
                         </ElCol>
-                      ):""
+                      ) : (
+                        ""
+                      );
                       break;
                     case "rate":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules}>
+                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
                             <ElRate
                               v-model={formData[el.prop as string]}
                               clearable={true}
@@ -423,7 +443,9 @@ export default defineComponent({
                             ></ElRate>
                           </ElFormItem>
                         </ElCol>
-                      ):""
+                      ) : (
+                        ""
+                      );
                       break;
                     case "upload":
                       element = !(el.hide || el.deepHide) ? (
@@ -435,31 +457,37 @@ export default defineComponent({
                             ></Tupload>
                           </ElFormItem>
                         </ElCol>
-                      ):""
+                      ) : (
+                        ""
+                      );
                       break;
                     case "switch":
-                      element =  !(el.hide || el.deepHide) ?(
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules}>
+                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
                             <ElSwitch
                               v-model={formData[el.prop as string]}
                               {...el.switch}
                             ></ElSwitch>
                           </ElFormItem>
                         </ElCol>
-                      ):""
+                      ) : (
+                        ""
+                      );
                       break;
                     case "slider":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules}>
+                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
                             <ElSlider
                               v-model={formData[el.prop as string]}
                               {...el.slider}
                             ></ElSlider>
                           </ElFormItem>
                         </ElCol>
-                      ):""
+                      ) : (
+                        ""
+                      );
                       break;
                   }
                   return element;

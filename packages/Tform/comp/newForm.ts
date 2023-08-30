@@ -30,7 +30,7 @@ export const newForm = {
   },
   gutter: {
     type: Number,
-    default: 20,
+    default: 0,
   },
   closePlaceholder: {
     type: Boolean,

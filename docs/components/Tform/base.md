@@ -1,5 +1,5 @@
 # Tform表单
-表单数据的提交 回显
+表单数据的提交 回显.打开f12可以查看console的内容
 
 ### 基础用法
 :::demo
@@ -26,8 +26,10 @@ Tform/selectObj
 Tform/data
 :::
 
-### 自定义组件
-:::demo 添加slotName来设置插槽
+### 自定义组件 插槽
+传入slotName
+type设置成custom
+:::demo 添加slotName来设置组件插槽
 Tform/zdy
 :::
 

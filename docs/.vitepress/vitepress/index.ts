@@ -3,7 +3,4 @@
 import VPDemo from './components/vp-demo/index.vue'
 import './style/css-vars.scss'
 import './style/index.scss'
-import "chriszj/style.css";
-
-
 export { VPDemo }

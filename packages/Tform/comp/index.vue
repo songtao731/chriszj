@@ -1,7 +1,7 @@
 <template>
-  <div class="Tform">
-    <div class="Tform-header mb-[20px]">
-      <div class="Tform-title">
+  <div class=" w-full">
+    <div class=" flex justify-between mb-[20px]">
+      <div class=" text-[16px]">
         <slot name="title">
           {{ props.title }}
         </slot>
@@ -10,15 +10,15 @@
         <slot name="buttons"> </slot>
       </div>
     </div>
-    <FormDesc v-bind="props" ref="formRef" >
+    <FormDesc v-bind="props" ref="formRef">
       <template v-for="items in dataList" #[items.slotName]="{ scope }">
         <slot :name="items.slotName" :scope="scope" v-if="items.slotName" />
       </template>
     </FormDesc>
 
-      <slot name="footer">
+    <slot name="footer">
 
-      </slot>
+    </slot>
   </div>
 </template>
 <script lang="ts" setup>
@@ -48,19 +48,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Tform {
-  width: 100%;
-  .Tform-header {
-    display: flex;
-    justify-content: space-between;
-    .Tform-title {
-      font-size: 16px;
-      font-weight: 700;
-    }
-  }
-  :deep(.el-form-item),
-  :deep(.el-select) {
-    width: 100%;
-  }
-}
+// .Tform {
+//   width: 100%;
+//   .Tform-header {
+//     display: flex;
+//     justify-content: space-between;
+//     .Tform-title {
+//       font-size: 16px;
+//       font-weight: 700;
+//     }
+//   }
+//   :deep(.el-form-item),
+//   :deep(.el-select) {
+//     width: 100%;
+//   }
+// }
 </style>

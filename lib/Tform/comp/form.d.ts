@@ -127,9 +127,7 @@ export declare const formProps: {
     };
     buttonsAlign: {
         type: StringConstructor;
-        default: string; /**
-         * @description Data of form component.
-         */
+        default: string;
     };
     class: {
         type: StringConstructor;
