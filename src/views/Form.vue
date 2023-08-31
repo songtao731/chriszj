@@ -10,6 +10,17 @@
       </ElInput>
     </template>
   </Tform>
+  <Tform v-bind="bind2" ref="tForm2">
+    <template #title> </template>
+    <template #buttons>
+      <el-button type="primary">Operation</el-button>
+      <el-button type="primary">Operation</el-button>
+    </template>
+    <template #zdy="{ scope }">
+      <ElInput v-model.number="scope.pages" placeholder="Please input">
+      </ElInput>
+    </template>
+  </Tform>
 </template>
 
 
@@ -157,8 +168,12 @@ const bind = computed(() => {
         select: {
           options: bb.value,
           filterable: true,
+          onChange(x) {
+              isHide.value=x==1?true:false
+          },
         },
         rules: chris.rulesFn().required(true, "请选择性别"),
+        
       },
       {
         type: "space",
@@ -338,6 +353,8 @@ const bind = computed(() => {
         rules: chris.rulesFn().required(true),
         type: "slider",
         value: [30, 70],
+        deepHide: isHide.value,
+
         slider: {
           onChange(val) {
             console.log(val);
@@ -361,14 +378,14 @@ const bind = computed(() => {
         type: "range",
         label: "range",
         required: true,
-        deepHide: isHide.value,
         columns: [
           {
             prop: "min",
             rules: chris.rulesFn().required(true, "最小值"),
             placeholder: "请输入最小值",
             input: {
-            },
+
+              },
          
           },
           {
@@ -414,5 +431,30 @@ const bind = computed(() => {
     ],
   });
 });
+
+const bind2=computed(()=>{
+
+  return chris.useForm({
+      title:"11",
+      dataList:[{
+         type:'input',
+         prop:'input',
+         label:"测试",
+         rules:chris.rulesFn().required(true,'请输入')
+
+
+      }],
+      buttons:[
+        {
+          type:'primary',
+          content:'点击',
+          onClick(scope) {
+              
+          },
+        }
+      ]
+     
+  })
+})
 </script>
 <style scoped lang="scss"></style>

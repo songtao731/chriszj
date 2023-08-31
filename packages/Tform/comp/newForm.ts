@@ -46,5 +46,5 @@ export const newForm = {
   },
   class: {
     type: String,
-  },
+  }
 };
