@@ -5,7 +5,7 @@ import { type } from "os";
  * @param {String} format 格式 'Y/M/D h:m:s'
  * @return {String} 格式化后时间 '2020/02/02 12:12:00'
  */
-export const formatTime = (number: number, format = 'Y/M/D h:m:s') => {
+export const formatTime = (number: number, format = 'Y-M-D h:m:s') => {
   const formatNumber = (n: number | string) => {
     n = n.toString();
     return n[1] ? n : `0${n}`;
@@ -42,7 +42,11 @@ export const formatMoney = (value: string | number) => {
   value = String(Math.round(+value * Math.pow(10, 2))) // 乘100 四舍五入
   let integer = value.substr(0, value.length - 2).replace(regex, '$&,') // 最后两位前的为整数
   let decimal = value.substr(value.length - 2) // 最后两位为小数
-  const result = `${integer || 0}.${decimal}`
+  let result = `${integer || 0}.${decimal}`
+
+  if(result==='N.aN'){
+    result ='--'
+  }
   return result
 }
 
@@ -204,13 +208,13 @@ export const formatPrice = (number: number | string, format: FormatPrice) => {
 
   let result:string|number=''
   if (format.thousands) {
-    result = formatMoney(number)
+    result = formatMoney(number)||'--'
   }
   if(format.number){
     result = (+number).toFixed(2)
   }
   if(format.chinaPrice){
-    result =number&&formatPriceToChinese(number)
+    result =number&&formatPriceToChinese(number)||'--'
 
   }
 

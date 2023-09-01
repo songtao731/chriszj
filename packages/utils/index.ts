@@ -168,5 +168,33 @@ export const getTotalPath = (value: any, path: string) => {
   return value;
 };
 
+export const searchTree = (
+  tree: any[],
+  id: string | number,
+  options: {
+    useDictLabel: string;
+    useDictValue: string;
+    useDictChildren: string;
+  }
+) => {
+  let res:{[key:string]:any} = {};
+  let state = false;
+  if (id === "--") return;
+  const { useDictValue, useDictChildren } = options;
+  function readTree(tree: any[], id: string | number) {
+    if (state) return;
+    for (let i = 0; i < tree.length; i++) {
+      if (tree[i][useDictValue] == id) {
+        state = true;
+        res = tree[i];
+      } else {
+        if (tree[i][useDictChildren] != null) {
+          readTree(tree[i][useDictChildren], id);
+        }
+      }
+    }
+  }
+  readTree(tree, id);
 
-
+  return res;
+};

@@ -3,33 +3,35 @@ import { FormatValueType } from "../../TableList/comps/TableColumnItem";
 
 export type direction = "vertical" | "horizontal";
 export type size = "large" | "default" | "small";
-export type align = "left" | "center" | "right" 
+export type align = "left" | "center" | "right";
 
-
-
-export type  desItem={
+export type desItem = {
   //标签文本
-  label:string
+  label?: string;
   //值
-  value?:any
+  value?: any;
   //后端接收的值
-  prop?:string
+  prop?: string;
   //列的数量 1
-  span?:number
-  width?:string|number
-  align?:align
-  labelAlign?:align
-  className?:string
-  labelClassName?:string
-  formatType?: FormatValueType
-  dictData?: { label: string, value: string | number, options?: { label: string, value: string } }[] | ComputedRef<any>,
-  dictOptions?:{label?:string,value?:string}
-
-
-
-}
-
-
+  span?: number;
+  width?: string | number;
+  align?: align;
+  labelAlign?: align;
+  className?: string;
+  labelClassName?: string;
+  //快捷格式化数据
+  formatType?: FormatValueType;
+  //字典或者枚举
+  dictData?: { [key: string]: any }[] | ComputedRef<any>;
+  //配置字典后者枚举的 参数 默认 label value children
+  dictOptions?: { label?: string; value?: string; children?: string };
+  //显示隐藏
+  hide?: boolean;
+  //自己格式化数据展示
+  formatData?: (data: any) => any;
+  //type 占位符
+  space?:boolean
+};
 
 export interface Args {
   //请求接口
@@ -41,17 +43,16 @@ export interface Args {
   //标题
   title?: string;
   //是否有边框
-  border?:boolean;
+  border?: boolean;
   //一行展示几个 3
-   column?:number
+  column?: number;
   // //展示方向
-   direction?:direction
+  direction?: direction;
   // //尺寸大小
-  size?:size
+  size?: size;
   //操作区域右上
-  extra?:string
-  dataList:desItem[]
-
+  extra?: string;
+  dataList: desItem[];
 }
 
 export const useDescriptions = (args: Args) => {

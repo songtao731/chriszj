@@ -6,10 +6,12 @@
       </slot>
     </template>
     <ElDescriptionsItem v-for="(item, index) in dscItemList" :key="index" v-bind="item">
-      <DesItemValue :item="item" :formData="formData"></DesItemValue>
+      <DesItemValue :item="item" :formData="formData" :resData="resData"></DesItemValue>
     </ElDescriptionsItem>
   </ElDescriptions>
 </template>
+
+
 
 <script lang="ts" setup>
 import { ref, computed, unref, useSlots, reactive, watch, onMounted } from "vue";
@@ -30,10 +32,21 @@ const formData: any = reactive({});
 
 
 
-const dscItemList = computed(() => props.dataList)
+const dscItemList = computed(() => props.dataList.filter(el => !el.hide))
 const requestObj = computed(() => props.request)
 
 watchEffect(() => {
+
+  //处理占位符的背景色
+  dscItemList.value.forEach(el => {
+    if (el.space) {
+      el.className = '[--el-descriptions-table-border:border-0]'
+      el.labelClassName = '[--el-descriptions-table-border:border-0] [--el-descriptions-item-bordered-label-background:#fff]'
+
+    }
+
+
+  })
 
 })
 
@@ -51,19 +64,22 @@ watch(requestObj, (newObj: { [key: string]: any }) => {
 
 //初始化函数的
 let path = props.path || "data";
+
+let resData = ref<{ [key: string]: any }>({})
+let res = ref()
 const getDataList = async () => {
-  let objData: { [key: string]: any } = {};
   if (typeof requestObj.value === "function") {
-    const res = await requestObj.value();
-    objData = getPath(res, path);
+    res.value = await requestObj.value();
+    resData.value = getPath(res.value, path);
     Object.keys(formData).forEach((el) => {
-      if (objData[el]) {
-        formData[el] = objData[el];
+      if (resData.value[el]) {
+        formData[el] = resData.value[el];
       }
     });
 
     //格式化函数的情况
     if (props.parseData) {
+      let objData: { [key: string]: any } = {}
       objData = props.parseData(formData);
       Object.keys(objData).forEach((el) => {
         formData[el] = objData[el];
@@ -89,7 +105,10 @@ onMounted(() => {
 console.log(dscItemList, props)
 
 
-
+defineExpose({
+  data: resData,
+  res
+})
 
 
 
@@ -100,4 +119,3 @@ export default {
   name: "Tdescriptions",
 };
 </script>
-./DesItemValue.Tsx
