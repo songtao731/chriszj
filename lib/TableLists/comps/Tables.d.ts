@@ -5,7 +5,7 @@ export declare const TableLists: {
             request: FunctionConstructor;
             parseData: FunctionConstructor;
             path: StringConstructor;
-            toTalPath: StringConstructor;
+            totalPath: StringConstructor;
             pageNum: StringConstructor;
             pageSize: StringConstructor;
             searchSize: {

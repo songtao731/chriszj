@@ -314,7 +314,9 @@ const bind = computed(() => {
           texts: ["oops", "disappointed", "normal", "good", "great"],
           showText: true,
           allowHalf: true,
-          onChange(val) { },
+          onChange(val) { 
+            
+          },
         },
       },
       {

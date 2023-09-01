@@ -147,7 +147,7 @@ const bind = chris.useTable({
   searchData: ruleForm,
   request: (params) => entertainApplicationAddList({ ...params }),
   path: 'data.list',
-  toTalPath: 'data.total',
+  totalPath: 'data.total',
   pageNum:"pageIndex",
 
   buttons: [
@@ -367,7 +367,7 @@ var promise = new Promise((resolve, reject) => {
 const bind2 = chris.useTable({
   request: () => promise,
   path: "data",
-  toTalPath: "total",
+  totalPath: "total",
   columns: [
     {
       prop: "name",

@@ -29,7 +29,7 @@ const bind = chris.useTable({
   pagination:false,//关闭分页
   index:false,//关闭搜因
   path:"data", //后端数据的位置
-  toTalPath:'total', //后端返回total的位置
+  totalPath:'total', //后端返回total的位置
   searchSize:"small",  //搜索条件的大小'medium' | 'small' | 'mini',
   labelPosition:'top',//搜索条件的位置'left' | 'top' | 'right'
   pageNum:'zdyPageNum',  //后端要的分页参数 当前第几页   

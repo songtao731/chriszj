@@ -17,6 +17,8 @@ Schema.messages.required = () => {
 };
 import { createApp } from "vue";
 import App from "./App.vue";
+// import { ElRate } from "element-plus";
+// import { merge } from "lodash";
 
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -24,5 +26,16 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 app.use(chriszj);
 app.use(router);
+
+// app.component(
+//   "ElRate",
+//   merge(ElRate, {
+//     props: {
+//       validateEvent: {
+//         default: true
+//       }
+//     }
+//   })
+// );
 
 app.mount("#app");

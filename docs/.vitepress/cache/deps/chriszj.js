@@ -42745,7 +42745,7 @@ var Qae = {
   request: Function,
   parseData: Function,
   path: String,
-  toTalPath: String,
+  totalPath: String,
   pageNum: String,
   pageSize: String,
   searchSize: {
@@ -42915,7 +42915,7 @@ var tle = defineComponent({
       usePageNum: r.pageNum || "pageNum",
       usePageSize: r.pageSize || "pageSize"
     }, f = ref(1), d = ref(10), p = ref([]), h10 = ref(0);
-    let m = r.path || "data.rows", v = r.toTalPath || "data.total";
+    let m = r.path || "data.rows", v = r.totalPath || "data.total";
     p.value = r.data;
     const g = async (T) => {
       const R = {

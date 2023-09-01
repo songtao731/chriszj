@@ -12,7 +12,7 @@ export interface Args {
   //后台返回的数据地址      //默认是data.rows
   path?: string,
   //后台返回的tottal地址    //默认是data.total                   
-  toTalPath?: string,
+  totalPath?: string,
   //搜索条件的大小
   searchSize?: 'medium' | 'small' | 'mini',
   //搜索条件的位置

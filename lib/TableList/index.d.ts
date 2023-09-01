@@ -171,7 +171,7 @@ declare const TableList: ({
             onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
             readonly request?: Function | undefined;
             readonly parseData?: Function | undefined;
-            readonly toTalPath?: string | undefined;
+            readonly totalPath?: string | undefined;
             readonly pageNum?: string | undefined;
             readonly height?: string | number | undefined;
             readonly maxHeight?: string | number | undefined;
@@ -206,7 +206,7 @@ declare const TableList: ({
             request: FunctionConstructor;
             parseData: FunctionConstructor;
             path: StringConstructor;
-            toTalPath: StringConstructor;
+            totalPath: StringConstructor;
             pageNum: StringConstructor;
             pageSize: StringConstructor;
             searchSize: {
@@ -498,7 +498,7 @@ declare const TableList: ({
         request: FunctionConstructor;
         parseData: FunctionConstructor;
         path: StringConstructor;
-        toTalPath: StringConstructor;
+        totalPath: StringConstructor;
         pageNum: StringConstructor;
         pageSize: StringConstructor;
         searchSize: {
@@ -715,7 +715,7 @@ declare const TableList: ({
     request: FunctionConstructor;
     parseData: FunctionConstructor;
     path: StringConstructor;
-    toTalPath: StringConstructor;
+    totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
     searchSize: {

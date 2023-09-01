@@ -17246,7 +17246,7 @@ const Od = (e, t) => {
   request: Function,
   parseData: Function,
   path: String,
-  toTalPath: String,
+  totalPath: String,
   pageNum: String,
   pageSize: String,
   searchSize: {
@@ -17404,7 +17404,7 @@ const Od = (e, t) => {
       usePageNum: r.pageNum || "pageNum",
       usePageSize: r.pageSize || "pageSize"
     }, f = x(1), p = x(10), m = x(), h = x(0);
-    let v = r.path || "data.rows", d = r.toTalPath || "data.total";
+    let v = r.path || "data.rows", d = r.totalPath || "data.total";
     m.value = r.data;
     const y = async (R) => {
       const z = {

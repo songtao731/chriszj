@@ -128,7 +128,7 @@ const total = ref(0);
 //初始化获取数据格式
 let path = props.path || "data.rows";
 //初始化获取total的位置
-let toTalPath = props.toTalPath || "data.total";
+let totalPath = props.totalPath || "data.total";
 dataList.value = props.data;
 const getDataList = async (data?: any) => {
   const params = {
@@ -140,7 +140,7 @@ const getDataList = async (data?: any) => {
 
   dataList.value = getPath(res, path);
 
-  total.value = getTotalPath(res, toTalPath);
+  total.value = getTotalPath(res, totalPath);
 
 
   if (props.parseData) {

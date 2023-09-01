@@ -90,7 +90,7 @@ TTable/tableprop
 | -------slotName | 自定义插槽 | String | - |
 | buttons | 表格操作按钮 | Arrary | - |
 | path | 后端返回 list 的 路径 | String | data.rows |
-| toTalPath | 后端返回数据的 total 路径 | String | data.total |
+| totalPath | 后端返回数据的 total 路径 | String | data.total |
 | pageNum | 后端接口需要的分页参数 当前第几页 | String | pageNum |
 | pageSize | 后端接口需要的分页参数 每页多少条 | String | pageSize |
 | searchSize | 表格搜索条件按钮大小 | String 'medium,small,mini' | '' |

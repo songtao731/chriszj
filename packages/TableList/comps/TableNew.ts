@@ -11,7 +11,7 @@ export const NewTable = {
   request: Function,
   parseData: Function,
   path: String,
-  toTalPath: String,
+  totalPath: String,
   pageNum: String,
   pageSize: String,
   searchSize: {

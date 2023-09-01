@@ -5,7 +5,7 @@ export interface Args {
     columns: Partial<NewTableColumn<any>>[];
     data?: any[];
     path?: string;
-    toTalPath?: string;
+    totalPath?: string;
     searchSize?: 'medium' | 'small' | 'mini';
     labelPosition?: 'left' | 'top' | 'right';
     parseData?: ((row: any) => {

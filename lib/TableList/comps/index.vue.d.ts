@@ -2,7 +2,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     request: FunctionConstructor;
     parseData: FunctionConstructor;
     path: StringConstructor;
-    toTalPath: StringConstructor;
+    totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
     searchSize: {
@@ -215,7 +215,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     request: FunctionConstructor;
     parseData: FunctionConstructor;
     path: StringConstructor;
-    toTalPath: StringConstructor;
+    totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
     searchSize: {

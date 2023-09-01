@@ -127,7 +127,7 @@ export declare const TableProps: {
     request: FunctionConstructor;
     parseData: FunctionConstructor;
     path: StringConstructor;
-    toTalPath: StringConstructor;
+    totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
     searchSize: {

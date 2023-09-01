@@ -1,4 +1,5 @@
 import { UploadFile } from "element-plus";
+import { Ref } from "vue";
 
 export const handleDownload = (file: Partial<UploadFile>) => {
   const link = document.createElement("a");
@@ -166,3 +167,6 @@ export const getTotalPath = (value: any, path: string) => {
 
   return value;
 };
+
+
+
