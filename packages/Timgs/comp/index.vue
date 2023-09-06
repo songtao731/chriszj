@@ -1,12 +1,13 @@
 <template>
-  <div v-for="(item, index) in srcList" :key="index" :class="`inline-block relative mr-[10px] border border-solid border-inherit overflow-hidden rounded-sm h-[${props.height}] w-[${props.width}]`">
+  <div v-for="(item, index) in srcList" :key="index" class="inline-block relative mr-[10px] border border-solid border-inherit overflow-hidden rounded-sm" :style="`width:${props.width};height:${props.height}`">
     <el-image
       v-bind="props"
       :src="getUrl(item).url"
       :preview-src-list="getImgList(index, item)"
       ref="imgPrew"
       @click="!getUrl(item).isImg && downFn(item)"
-      :class="`h-[${props.height}] w-[${props.width}]`"
+      :style="`width:${props.width};height:${props.height}`"
+   
     >
     </el-image>
   </div>

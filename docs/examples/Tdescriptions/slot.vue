@@ -9,10 +9,10 @@
       <el-descriptions-item>
         <template #label>
           <div class="cell-item">
-            <el-icon :style="iconStyle">
+            <el-icon>
               <user />
             </el-icon>
-            年龄
+            插槽年龄
           </div>
         </template>
         {{ scope.value }}
@@ -20,7 +20,7 @@
     </template>
 
     <template #tree="{ scope }">
-      <el-descriptions-item label="树">{{ scope.value }}</el-descriptions-item>
+      <el-descriptions-item label="插槽树">{{ scope.value }}</el-descriptions-item>
     </template>
   </Tdescriptions>
 </template>
@@ -32,20 +32,11 @@ import { chris, Tdescriptions } from "chriszj";
 import { computed, ref } from "vue";
 
 
-const aa = ref()
 const bb = ref()
 const obj = ref()
 const desRef = ref()
 setTimeout(() => {
-  aa.value = [{
-    label: '男',
-    value: 1,
 
-  },
-  {
-    label2: "女",
-    value2: 2
-  }]
   bb.value = [
     {
       id: 1,
@@ -78,11 +69,6 @@ setTimeout(() => {
   ]
   obj.value = {
     endRow: '上海市宝山区长江南路12号楼801室',
-    nextPage: 1,
-    name: '是',
-    money: 2299,
-    dataTime: 1693881180824,
-    total: 18,
     tree: 12,
     age: 18
 
@@ -113,9 +99,6 @@ const bind = computed(() => {
       {
         slotName: 'cc',
         prop: 'age',
-        formatData(data) {
-          return data.age + 0.1
-        },
 
 
       }

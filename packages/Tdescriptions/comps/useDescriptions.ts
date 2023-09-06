@@ -8,7 +8,6 @@ export type type="space"|"prew"
 export type prew={
   width?:string
   height?:string
-  align?:'middle'|'top'|'bottom'
 }
 
 export type desItem = {

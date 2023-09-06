@@ -7,12 +7,12 @@
     <template #cc="{ scope }">
       <el-descriptions-item>
         <template #label>
-          <div class="cell-item">
+         
             <el-icon :style="iconStyle">
               <user />
             </el-icon>
             年龄
-          </div>
+       
         </template>
         {{ scope.value }}
       </el-descriptions-item>
@@ -20,10 +20,6 @@
     <template #tree="{ scope }">
       <el-descriptions-item label="树">{{ scope.value }}</el-descriptions-item>
     </template>
-  </Tdescriptions>
-  <Tdescriptions v-bind="bind2">
-    <template #title> 失敬失敬</template>
-
   </Tdescriptions>
 </template>
 
@@ -194,7 +190,10 @@ const bind = computed(() => {
         label: '文件',
         prop: 'imgs',
         type: "prew",
-
+        prew: {
+          width: '100px',
+          height: "100px",
+        },
         hide:ishide.value,
         span: 3
       }, {

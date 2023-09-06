@@ -28,8 +28,13 @@ export const parseValue = (
 
   let result;
   if (formData[prop as string] === 0) {
+  //处理数据为0 的情况
+
     result = 0;
-  } else {
+  } else if(item.type==='prew'&&!formData[prop as string]){
+  //处理数据不存在 并且为预览图的情况
+    result=[]
+  }else{
     result = prop ? formData[prop as string] || "--" : value ? value : null;
   }
 

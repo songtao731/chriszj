@@ -5,8 +5,8 @@
     </template>
     <div v-for="(item, index) in dscItemList" :key="index">
       <ElDescriptionsItem v-bind="item" v-if="!item.slotName" :className="props.border
-          ? ''
-          : `inline-block  align-${item.prew?.align || 'middle'}`
+        ? ''
+        : `inline-block  align-middle`
         ">
         <DesItemValue :item="item" :formData="formData" :resData="resData"></DesItemValue>
       </ElDescriptionsItem>
@@ -64,6 +64,8 @@ let resData = ref<{ [key: string]: any }>({});
 //初始化数据 对象的
 // const requestObj = computed(() => unref(props.request));
 watch(requestObj, (newObj: { [key: string]: any }) => {
+
+
   if (typeof newObj === "object") {
     resData.value = newObj;
     Object.keys(formData).forEach((el) => {
@@ -80,6 +82,7 @@ watch(requestObj, (newObj: { [key: string]: any }) => {
         formData[el] = objData[el];
       });
     }
+
   }
 });
 
@@ -92,12 +95,11 @@ const getDataList = async () => {
     res.value = await requestObj.value();
     resData.value = getPath(res.value, path);
     Object.keys(formData).forEach((el) => {
-      if (resData.value[el]||resData.value[el]===0) {
-      
+      if (resData.value[el] || resData.value[el] === 0) {
+
         formData[el] = resData.value[el];
       }
     });
-    console.log(formData,'d')
     //格式化函数的情况
     if (props.parseData) {
       let objData: { [key: string]: any } = {};
@@ -119,6 +121,24 @@ onMounted(() => {
   if (typeof requestObj.value === "function") {
     requestObj && getDataList();
   }
+  if (typeof requestObj.value === "object") {
+    resData.value = requestObj.value;
+    Object.keys(formData).forEach((el) => {
+      if (typeof requestObj.value === "object" && requestObj.value[el]) {
+        formData[el] = requestObj.value[el];
+      }
+    });
+    //格式化函数的情况
+    if (props.parseData) {
+      let objData: { [key: string]: any } = {};
+      objData = props.parseData(formData);
+      Object.keys(objData).forEach((el) => {
+        formData[el] = objData[el];
+      });
+    }
+
+  }
+
 
   // 在这里可以加判断 第一次进页面 不加载数据,暂时不处理这个逻辑
 });
