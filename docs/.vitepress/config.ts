@@ -33,7 +33,8 @@ export default defineConfig({
             { text: 'Tables组件', link: '/components/TTables/base.md' },
             { text: 'Upload组件', link: '/components/Upload/base.md' },
             { text: 'imgs图片预览组件', link: '/components/Imgs/base.md' },
-            { text: 'form表单组件', link: '/components/Tform/base.md' }
+            { text: 'form表单组件', link: '/components/Tform/base.md' },
+            {text:"描述详情组件",link:'/components/Tdescriptions/base.md'}
 
 
 

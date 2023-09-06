@@ -1,54 +1,45 @@
 {
-  "hash": "80668b5e",
-  "browserHash": "d436061f",
+  "hash": "95e975b8",
+  "browserHash": "c1499ea4",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "bd077a98",
+      "fileHash": "2657ebd5",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "34859e45",
+      "fileHash": "c0f84bf9",
       "needsInterop": false
     },
     "element-plus": {
       "src": "../../../../node_modules/element-plus/es/index.mjs",
       "file": "element-plus.js",
-      "fileHash": "4d686604",
+      "fileHash": "581699ca",
       "needsInterop": false
     },
     "@element-plus/icons-vue": {
       "src": "../../../../node_modules/@element-plus/icons-vue/dist/index.js",
       "file": "@element-plus_icons-vue.js",
-      "fileHash": "e19283df",
-      "needsInterop": false
-    },
-    "@vueuse/core": {
-      "src": "../../../../node_modules/@vueuse/core/index.mjs",
-      "file": "@vueuse_core.js",
-      "fileHash": "f434e39e",
+      "fileHash": "a4f4c67e",
       "needsInterop": false
     },
     "chriszj": {
       "src": "../../../../node_modules/chriszj/chris-ui.mjs",
       "file": "chriszj.js",
-      "fileHash": "18b93451",
+      "fileHash": "7b6d7c08",
       "needsInterop": false
     },
-    "element-plus/es/components/upload/src/ajax": {
-      "src": "../../../../node_modules/element-plus/es/components/upload/src/ajax.mjs",
-      "file": "element-plus_es_components_upload_src_ajax.js",
-      "fileHash": "180ad2b2",
+    "@vueuse/core": {
+      "src": "../../../../node_modules/@vueuse/core/index.mjs",
+      "file": "@vueuse_core.js",
+      "fileHash": "b4d21655",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-RXE5FRTD": {
-      "file": "chunk-RXE5FRTD.js"
-    },
     "chunk-PEZMLLGD": {
       "file": "chunk-PEZMLLGD.js"
     },

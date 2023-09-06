@@ -1,11 +1,12 @@
 <template>
-  <div v-for="(item, index) in srcList" :key="index" class="chris-prew">
+  <div v-for="(item, index) in srcList" :key="index" :class="`inline-block relative mr-[10px] border border-solid border-inherit overflow-hidden rounded-sm h-[${props.height}] w-[${props.width}]`">
     <el-image
       v-bind="props"
       :src="getUrl(item).url"
       :preview-src-list="getImgList(index, item)"
       ref="imgPrew"
       @click="!getUrl(item).isImg && downFn(item)"
+      :class="`h-[${props.height}] w-[${props.width}]`"
     >
     </el-image>
   </div>
@@ -105,23 +106,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.el-image {
-  width: 146px;
-  height: 146px;
-  cursor: pointer;
-}
-.chris-upload-progress {
-  top: 150px;
-  width: 100%;
-}
-.chris-prew {
-  display: inline-block;
-  position: relative;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  height: 146px;
-  overflow: hidden;
-  border-radius: 5px;
-}
-</style>

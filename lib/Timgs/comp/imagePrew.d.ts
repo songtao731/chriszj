@@ -49,6 +49,8 @@ export declare const imageProps: {
         name?: string | undefined;
         url: string;
     }[]))[], unknown, unknown, () => never[], boolean>;
+    readonly width: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
+    readonly height: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
 };
 export type ImageProps = ExtractPropTypes<typeof imageProps>;
 export declare const imageEmits: {

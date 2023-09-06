@@ -49,6 +49,8 @@ declare const _default: import("vue").DefineComponent<{
         name?: string | undefined;
         url: string;
     }[]))[], unknown, unknown, () => never[], boolean>;
+    width: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
+    height: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     hideOnClickModal: BooleanConstructor;
     src: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
@@ -99,20 +101,24 @@ declare const _default: import("vue").DefineComponent<{
         name?: string | undefined;
         url: string;
     }[]))[], unknown, unknown, () => never[], boolean>;
+    width: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
+    height: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
 }>>, {
+    width: string;
+    height: string;
     fit: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown>;
     lazy: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    zoomRate: number;
-    initialIndex: number;
     src: string;
     previewSrcList: string[];
+    initialIndex: number;
+    infinite: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+    closeOnPressEscape: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+    zoomRate: number;
+    hideOnClickModal: boolean;
+    previewTeleported: boolean;
     fileList: {
         name?: string | undefined;
         url: string;
     }[];
-    infinite: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    closeOnPressEscape: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    hideOnClickModal: boolean;
-    previewTeleported: boolean;
 }, {}>;
 export default _default;

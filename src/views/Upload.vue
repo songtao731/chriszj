@@ -4,7 +4,7 @@
   
   </Tupload> 
 
-
+  <Timgs :file-list="fileList2" width="100px" height="100px"></Timgs>
  <!-- <Timgs :file-list="fileList2"> </Timgs>
 
 
@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { Tupload} from "../../packages/index";
+import { Tupload,Timgs} from "../../packages/index";
 
 import { UploadUserFile } from "element-plus";
 

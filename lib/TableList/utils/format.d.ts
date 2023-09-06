@@ -11,5 +11,5 @@ interface FormatPrice {
     number?: number;
     chinaPrice?: boolean;
 }
-export declare const formatPrice: (number: number | string, format: FormatPrice) => string | number;
+export declare const formatPrice: (number: number | string, format: FormatPrice) => string;
 export {};

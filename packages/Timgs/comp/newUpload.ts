@@ -10,4 +10,13 @@ export const newImagePrew = {
     type: Array as PropType<{ name?: string; url: string }[]>,
     default: () => [],
   },
+  width:{
+    type:String,
+    default:'146px'
+  },
+  height:{
+    type:String,
+    default:'146px'
+  }
+
 };

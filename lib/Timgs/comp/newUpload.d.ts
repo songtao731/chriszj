@@ -13,4 +13,12 @@ export declare const newImagePrew: {
         }[]>;
         default: () => never[];
     };
+    width: {
+        type: StringConstructor;
+        default: string;
+    };
+    height: {
+        type: StringConstructor;
+        default: string;
+    };
 };

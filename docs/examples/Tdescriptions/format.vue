@@ -21,19 +21,15 @@
       <el-descriptions-item label="树">{{ scope.value }}</el-descriptions-item>
     </template>
   </Tdescriptions>
-  <Tdescriptions v-bind="bind2">
-    <template #title> 失敬失敬</template>
-
-  </Tdescriptions>
 </template>
 
 <script lang="ts" setup>
 import { ElButton } from "element-plus";
-import { chris, Tdescriptions } from "../../packages";
+import { chris, Tdescriptions } from "chriszj";
 
-import { entertainApplicationAddList } from "@/api/index";
+
 import { computed, ref } from "vue";
-import { blob } from "stream/consumers";
+
 import {
   User,
 } from '@element-plus/icons-vue'
@@ -194,7 +190,10 @@ const bind = computed(() => {
         label: '文件',
         prop: 'imgs',
         type: "prew",
-
+        prew: {
+          width: '100px',
+          height: "100px",
+        },
         hide:ishide.value,
         span: 3
       }, {
@@ -209,24 +208,5 @@ const bind = computed(() => {
     ],
   });
 });
-
-const bind2 = computed(()=>{
- return chris.useDescriptions({
-  request: (params) => entertainApplicationAddList({ a: 1 }),
-  dataList: [
-    {
-      label: '姓名',
-      value: '张三',
-      prop: 'endRow'
-    },
-    {
-      label: '性别',
-      prop: "nextPage",
-   
-    }
-  ]
-
-})
-})
 </script>
 <style scoped></style>

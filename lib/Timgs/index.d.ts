@@ -3,20 +3,22 @@ declare const Timgs: ({
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: {
+            width?: string | undefined;
+            height?: string | undefined;
             fit?: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown> | undefined;
             lazy?: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown> | undefined;
-            zoomRate?: number | undefined;
-            initialIndex?: number | undefined;
             src?: string | undefined;
             previewSrcList?: string[] | undefined;
+            initialIndex?: number | undefined;
+            infinite?: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown> | undefined;
+            closeOnPressEscape?: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown> | undefined;
+            zoomRate?: number | undefined;
+            hideOnClickModal?: boolean | undefined;
+            previewTeleported?: boolean | undefined;
             fileList?: {
                 name?: string | undefined;
                 url: string;
             }[] | undefined;
-            infinite?: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown> | undefined;
-            closeOnPressEscape?: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown> | undefined;
-            hideOnClickModal?: boolean | undefined;
-            previewTeleported?: boolean | undefined;
             readonly loading?: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "lazy" | "eager", unknown> | undefined;
             key?: string | number | symbol | undefined;
             style?: unknown;
@@ -63,10 +65,10 @@ declare const Timgs: ({
             }>) => void)[] | undefined;
             class?: unknown;
             readonly zIndex?: number | undefined;
+            readonly scrollContainer?: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => string | HTMLElement) | (() => string | HTMLElement | undefined) | ((new (...args: any[]) => string | HTMLElement) | (() => string | HTMLElement | undefined))[], unknown, unknown>;
             readonly file?: (import("element-plus").UploadFile & {
                 loadProgress: number;
             }) | undefined;
-            readonly scrollContainer?: import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => string | HTMLElement) | (() => string | HTMLElement | undefined) | ((new (...args: any[]) => string | HTMLElement) | (() => string | HTMLElement | undefined))[], unknown, unknown>;
         };
         $attrs: {
             [x: string]: unknown;
@@ -131,21 +133,25 @@ declare const Timgs: ({
                 name?: string | undefined;
                 url: string;
             }[]))[], unknown, unknown, () => never[], boolean>;
+            width: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
+            height: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
         }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
+            width: string;
+            height: string;
             fit: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown>;
             lazy: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-            zoomRate: number;
-            initialIndex: number;
             src: string;
             previewSrcList: string[];
+            initialIndex: number;
+            infinite: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+            closeOnPressEscape: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+            zoomRate: number;
+            hideOnClickModal: boolean;
+            previewTeleported: boolean;
             fileList: {
                 name?: string | undefined;
                 url: string;
             }[];
-            infinite: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-            closeOnPressEscape: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-            hideOnClickModal: boolean;
-            previewTeleported: boolean;
         }, {}, string, {}> & {
             beforeCreate?: ((() => void) | (() => void)[]) | undefined;
             created?: ((() => void) | (() => void)[]) | undefined;
@@ -216,6 +222,8 @@ declare const Timgs: ({
             name?: string | undefined;
             url: string;
         }[]))[], unknown, unknown, () => never[], boolean>;
+        width: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
+        height: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
     }>> & import("vue").ShallowUnwrapRef<{}> & {} & import("vue").ComponentCustomProperties & {};
     __isFragment?: undefined;
     __isTeleport?: undefined;
@@ -270,20 +278,24 @@ declare const Timgs: ({
         name?: string | undefined;
         url: string;
     }[]))[], unknown, unknown, () => never[], boolean>;
+    width: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
+    height: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, string, boolean>;
 }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
+    width: string;
+    height: string;
     fit: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown>;
     lazy: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    zoomRate: number;
-    initialIndex: number;
     src: string;
     previewSrcList: string[];
+    initialIndex: number;
+    infinite: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+    closeOnPressEscape: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
+    zoomRate: number;
+    hideOnClickModal: boolean;
+    previewTeleported: boolean;
     fileList: {
         name?: string | undefined;
         url: string;
     }[];
-    infinite: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    closeOnPressEscape: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
-    hideOnClickModal: boolean;
-    previewTeleported: boolean;
 }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & import("vue").Plugin) & Record<string, any>;
 export default Timgs;

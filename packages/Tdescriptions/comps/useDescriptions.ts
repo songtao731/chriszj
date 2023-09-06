@@ -4,6 +4,12 @@ import { FormatValueType } from "../../TableList/comps/TableColumnItem";
 export type direction = "vertical" | "horizontal";
 export type size = "large" | "default" | "small";
 export type align = "left" | "center" | "right";
+export type type="space"|"prew"
+export type prew={
+  width?:string
+  height?:string
+  align?:'middle'|'top'|'bottom'
+}
 
 export type desItem = {
   //标签文本
@@ -29,8 +35,11 @@ export type desItem = {
   hide?: boolean;
   //自己格式化数据展示
   formatData?: (data: any) => any;
-  //type 占位符
-  space?:boolean
+  //type 占位符和图片模式
+  type?:string,
+  //图片预览的宽 高 对齐方式
+  prew?:prew,
+  slotName?:string
 };
 
 export interface Args {

@@ -38,4 +38,11 @@ export declare const rulesFn: () => {
 };
 export declare const getPath: (value: any, path: string) => any;
 export declare const getTotalPath: (value: any, path: string) => any;
+export declare const searchTree: (tree: any[], id: string | number, options: {
+    useDictLabel: string;
+    useDictValue: string;
+    useDictChildren: string;
+}) => {
+    [key: string]: any;
+} | undefined;
 export {};
