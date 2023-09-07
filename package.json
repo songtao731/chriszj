@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "async-validator": "^4.2.5",
     "axios": "^1.4.0",
     "chalk": "4.1.2",
     "chris": "^1.0.0",

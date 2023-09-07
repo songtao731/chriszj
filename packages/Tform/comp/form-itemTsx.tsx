@@ -413,7 +413,7 @@ export default defineComponent({
                           <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
                             <ElRadioGroup
                               v-model={formData[el.prop as string]}
-                              {...el.checkBox}
+                              {...el.radio}
                             >
                               {unref(el!.radio!.options).length &&
                                 unref(el!.radio!.options).map(

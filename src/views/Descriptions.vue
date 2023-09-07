@@ -107,6 +107,9 @@ const bind = computed(() => {
     request: obj.value,
 
     parseData: (el) => {
+
+
+      console.log(el,9999)
       return {
         ...el,
         imgs: [

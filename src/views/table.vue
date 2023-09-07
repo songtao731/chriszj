@@ -18,17 +18,13 @@
           {{ scope.row.promoter }}
         </span>
       </template>
-      <template #search>
-        <el-form-item label="活动区域" prop="region">
-          <el-select v-model="ruleForm.region" placeholder="请选择活动区域" @change="getForm" clearable>
-            <el-option v-for="item in data" :key="item" :label="item.label" :value="item.value"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="活动区域2" prop="region">
-          <el-select v-model="ruleForm.region2" placeholder="请选择活动区域" clearable>
-            <el-option v-for="item in data12" :key="item" :label="item.label" :value="item.value"></el-option>
-          </el-select>
-        </el-form-item>
+      <template #zds="{ scope }">
+        {{ scope }}
+
+        <el-select v-model="scope.region" placeholder="请选择活动区域" @change="getForm" clearable>
+          <el-option v-for="item in data3" :key="item" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+
       </template>
     </TableList>
 
@@ -67,7 +63,6 @@ const getForm = (val) => {
 };
 
 const resetFn = () => {
-  console.log(222);
   Object.keys(ruleForm.value).forEach((el: any) => {
     ruleForm.value[el] = "";
   });
@@ -103,13 +98,14 @@ const tableData = [
 
 const data = ref();
 const data2 = ref();
+const data3=ref()
 
 const fn = () => {
   setTimeout(() => {
     data.value = [
-      { label: "前端", value: "1" },
-      { label: "后端", value: "2" },
-      { label: "运维", value: "3" },
+      { label2: "前端", value2: "1" },
+      { label2: "后端", value2: "2" },
+      { label2: "运维", value2: "3" },
     ];
     data2.value = [
       {
@@ -139,17 +135,21 @@ const fn = () => {
         ],
       },
     ];
+    data3.value = [
+      { label: "前端", value: "1" },
+      { label: "后端", value: "2" },
+      { label: "运维", value: "3" },
+    ];
   }, 30);
 };
 fn();
 
 const bind = chris.useTable({
-  searchData: ruleForm,
   request: (params) => entertainApplicationAddList({ ...params }),
   path: 'data.list',
   totalPath: 'data.total',
-  pageNum:"pageIndex",
-
+  pageNum: "pageIndex",
+  size: 'small',
   buttons: [
     {
       type: "primary",
@@ -168,18 +168,7 @@ const bind = chris.useTable({
       },
     },
   ],
-  // data: [
-  //   {
-  //     name: "开始看",
-  //     age: "33",
-  //     price: 1000221,
-  //     date: "1689065097440",
-  //     dateTime: "1689065097440",
-  //     emun: "1",
-  //   },
-  //   { name: "算了算了了", age: "29", price: 8382.272, emun: "2" },
-  //   { name: "金额", age: "29", price: 0, emun: "3" },
-  // ],
+
   columns: [
     {
       type: "selection",
@@ -193,43 +182,58 @@ const bind = chris.useTable({
       },
       filter: {
         type: "input",
-        placeholder: "流程编号/申请人",
         prop: "processNo",
         label: "姓名:",
-        input:{
+        input: {
           showWordLimit: true,
           maxlength: 10,
           suffixIcon: "Calendar",
+          onChange(data) {
+            console.log(11, data)
+          }
         }
-        
+
       },
     },
     {
-      label: "年龄送水",
+
+    },
+    {
+      label: "树形",
       prop: "promoter",
-      slotName: "age",
-      sortable: true,
       value: ["zhinan", "typography"],
       filter: {
         type: "cascader",
         prop: ["one", "two", "three"],
-        options: computed(() => data2.value),
+        cascader: {
+          options: computed(() => data2.value),
+        }
       },
     },
     {
-      label: "身价",
-      prop: "place",
-
+      label: "日期",
+      prop: "date",
       filter: {
-        type: "dateRange",
-        prop: ["sTime", "eTime"],
+        type: "date",
+        date: {
+          type: 'date'
+        }
       },
+      formatType: 'date',
     },
     {
-      label: "日期送水",
+      label: "日期范围",
       prop: "date",
       width: "120",
-      filter: "input",
+      formatType: 'dateTime',
+      filter: {
+        type: 'date',
+        prop: ['sdate', 'edate'],
+        date: {
+          type: "daterange",
+        }
+
+      },
     },
     {
       label: "千分位上",
@@ -238,26 +242,151 @@ const bind = chris.useTable({
         return cellValue && cellValue.split(" ")[0];
       },
       filter: {
-        prop: ["min", "max"],
-        type: "inputrange",
+        type: 'inputrange',
+        columns: [
+          {
+            prop: "min",
+            placeholder: "请输入最小值",
+            input: {
+
+            },
+
+          },
+          {
+            prop: "max",
+            input: {},
+          },
+        ],
       },
     },
     {
-      label: "时间",
-      prop: "applicationTime",
+      label: "日期时间",
+      prop: "datetime",
       formatType: "dateTime",
       filter: {
         type: "date",
-        hide: true,
+        prop: 'dataTieme',
+        date: {
+          type: "datetime",
+        }
       },
+    },
+    {
+      label: "日期时间范围",
+      prop: "datetimerange",
+      formatType: "dateTime",
+      filter: {
+        type: "date",
+        prop: ['mindatetimerange', 'ebddatetimerange'],
+        date: {
+          type: "datetimerange"
+        }
+      },
+    },
+    {
+      label: "多选",
+      prop: "checkbox",
+      filter: {
+        type: "checkBox",
+        checkBox: {
+          options: [
+            {
+              label2: "前端",
+              value: "1",
+            },
+            {
+              label: "后端",
+              value: "2",
+            },
+            {
+              label: "测试",
+              value: "3",
+            },
+          ]
+        },
+      },
+    },
+    {
+      label: '单选',
+      prop: 'radio',
+      filter: {
+        type: 'radio',
+        radio: {
+          options: [
+            {
+              label: "金融",
+              value: "1",
+            },
+            {
+              label: "It",
+              value: "2",
+            },
+            {
+              label: "教育",
+              value: "3",
+            },
+          ],
+          onChange() {
+            console.log(1)
+          }
+        }
+      }
+    },
+    {
+      label: '星星',
+      prop: 'xingxing',
+      filter: {
+        type: 'rate',
+
+      }
+    },
+    {
+      label: '开关',
+      prop: 'switch',
+      filter: {
+        type: 'switch'
+      }
+    },
+    {
+      label: '恒信啊',
+      prop: 'slider',
+      filter: {
+        type: 'slider'
+      }
+    },
+    {
+
+      label: "自定义查询",
+      prop: "zds",
+      dictData: computed(() => data.value),
+      dictOptions: {
+        value: "id",
+        label: "name",
+      },
+      filter: {
+        type: "custom",
+        slotName: 'zds',
+
+      }
     },
     {
       label: "枚举",
       prop: "status",
       dictData: computed(() => data.value),
+      dictOptions: {
+        value: "id",
+        label: "name",
+      },
       filter: {
         type: "select",
-        options: computed(() => data.value),
+        select: {
+          options: computed(() => data.value),
+          dictOptions: {
+            value: "value2",
+            label: "label2",
+          },
+        },
+
       },
       buttons: [
         {
@@ -284,92 +413,10 @@ const bind = chris.useTable({
 });
 
 let currentRow = ref();
-const handleCurrentChange = (val) => {
-  console.log(val, "kkkk");
-  currentRow.value = val;
-};
+
 
 console.log(bind, "使用组件的页面", data, oneTable);
 
-const tableData2 = {
-  code: 200,
-  total: 10,
-  data: [
-    {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄",
-      time: "1690440269140",
-      money: 1283218381.345,
-    },
-    {
-      date: "2016-05-04",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1517 弄",
-    },
-    {
-      date: "2016-05-01",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1519 弄",
-    },
-    {
-      date: "2016-05-03",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1516 弄",
-    },
-    {
-      date: "2016-05-04",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1517 弄",
-    },
-    {
-      date: "2016-05-01",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1519 弄",
-    },
-    {
-      date: "2016-05-03",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1516 弄",
-    },
-    {
-      date: "2016-05-04",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1517 弄",
-    },
-    {
-      date: "2016-05-01",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1519 弄",
-    },
-    {
-      date: "2016-05-03",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1516 弄",
-    },
-    {
-      date: "2016-05-04",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1517 弄",
-    },
-    {
-      date: "2016-05-01",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1519 弄",
-    },
-    {
-      date: "2016-05-03",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1516 弄",
-    },
-  ],
-};
-
-var promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(tableData2);
-  }, 10);
-});
 
 
 const getSummaries = (param) => {

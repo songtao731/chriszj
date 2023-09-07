@@ -15,6 +15,7 @@ export type CheckBoxItem = {
   tabindex?: string | number;
   id?: string;
   controls?: string;
+  [key:string]:any
 };
 
 export interface CheckBoxProps {
@@ -28,6 +29,8 @@ export interface CheckBoxProps {
   tag?: string;
   validateEvent?: boolean;
   options: CheckBoxItem[];
+  dictOptions?:{label?:string,value?:string,children?:string}
+
   ref?:any
 
   onChange?: <T>(val: T) => void;

@@ -168,6 +168,25 @@ export const getTotalPath = (value: any, path: string) => {
   return value;
 };
 
+//初始化参数
+export const labelEnum = (dictOptions?: {
+  label?: string;
+  value?: string;
+  children?: string;
+}) => {
+  const { useDictLabel, useDictValue, useDictChildren } = {
+    useDictLabel: dictOptions?.label || "label",
+    useDictValue: dictOptions?.value || "value",
+    useDictChildren: dictOptions?.children || "children",
+  };
+  return {
+    useDictLabel,
+    useDictValue,
+    useDictChildren,
+  };
+};
+
+//筛选出枚举
 export const searchTree = (
   tree: any[],
   id: string | number,
@@ -177,7 +196,7 @@ export const searchTree = (
     useDictChildren: string;
   }
 ) => {
-  let res:{[key:string]:any} = {};
+  let res: { [key: string]: any } = {};
   let state = false;
   if (id === "--") return;
   const { useDictValue, useDictChildren } = options;

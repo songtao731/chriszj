@@ -20,6 +20,7 @@ export type desItem = {
   //列的数量 1
   span?: number;
   width?: string | number;
+  minWidth?:string|number
   align?: align;
   labelAlign?: align;
   className?: string;
@@ -36,8 +37,9 @@ export type desItem = {
   formatData?: (data: any) => any;
   //type 占位符和图片模式
   type?:string,
-  //图片预览的宽 高 对齐方式
+  //当图片时 设置宽高
   prew?:prew,
+  //图片预览的宽 高 对齐方式
   slotName?:string
 };
 

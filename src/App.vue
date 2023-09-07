@@ -15,6 +15,8 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/upload">upload2</RouterLink>
         <RouterLink to="/form">form</RouterLink>
         <RouterLink to="/descriptions">Descriptions</RouterLink>
+        <RouterLink to="/table">table</RouterLink>
+
 
 
       

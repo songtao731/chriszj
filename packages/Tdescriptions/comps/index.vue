@@ -4,6 +4,7 @@
       <slot :name="item"> </slot>
     </template>
     <div v-for="(item, index) in dscItemList" :key="index">
+
       <ElDescriptionsItem v-bind="item" v-if="!item.slotName" :className="props.border
         ? ''
         : `inline-block  align-middle`
@@ -34,7 +35,6 @@ import { parseValue } from "../untils/index";
 
 import DesItemValue from "./DesItemValue";
 import { watchEffect } from "vue";
-import { el } from "element-plus/es/locale";
 //处理插槽
 const props = defineProps(descriptionProps);
 const slot = useSlots();
@@ -68,8 +68,9 @@ watch(requestObj, (newObj: { [key: string]: any }) => {
 
   if (typeof newObj === "object") {
     resData.value = newObj;
+
     Object.keys(formData).forEach((el) => {
-      if (newObj[el]) {
+      if (newObj[el] || newObj[el] == 0) {
         formData[el] = newObj[el];
       }
     });
@@ -84,6 +85,7 @@ watch(requestObj, (newObj: { [key: string]: any }) => {
     }
 
   }
+
 });
 
 //初始化函数的
@@ -138,7 +140,6 @@ onMounted(() => {
     }
 
   }
-
 
   // 在这里可以加判断 第一次进页面 不加载数据,暂时不处理这个逻辑
 });

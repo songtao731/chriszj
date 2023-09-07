@@ -2,58 +2,37 @@
   <div class="chris-table">
     <slot name="topheader"> </slot>
 
-    <Search
-      ref="searchRef"
-      :filter="filterList"
-      :searchSize="props.searchSize"
-      :labelPosition="props.labelPosition"
-      :searchData="props.searchData"
-      @getParams="getParams"
-      @resetFn="resetFn"
-    >
+    <!-- <Search ref="searchRef" :filter="filterList" :searchSize="props.searchSize" :labelPosition="props.labelPosition"
+      :searchData="props.searchData" @getParams="getParams" @resetFn="resetFn">
       <template #search>
         <slot name="search"> </slot>
       </template>
-      <!-- <template #search  #[items.slotName]="{ scope }">
-        <slot name="search" :scope="scope" > </slot>
+    </Search> -->
+    <Search2 ref="searchRef"   :filter="filterList" :size="props.size" :labelPosition="props.labelPosition" :gutter="props.gutter" :column="props.column"
+      @getParams="getParams" @resetFn="resetFn">
+      <template v-for="items in filterList" #[items.filter.slotName]="{ scope }">
+        <slot :name="items.filter&&items.filter.slotName" :scope="scope" v-if="items.filter.slotName" />
+      </template>
 
-
-      </template> -->
-    </Search>
+    </Search2>
     <slot name="centerheader"> </slot>
 
     <Buttons :buttons="props.buttons"> </Buttons>
-    <ElTable
-      :data="dataList"
-      style="width: 100%"
-      v-on="tableEvents"
-      ref="tableRef"
-      
-    >
+    <ElTable :data="dataList" style="width: 100%" v-on="tableEvents" ref="tableRef">
       <template #empty>
         <slot name="empty">
 
-      暂无数据
+          暂无数据
         </slot>
       </template>
       <template #append>
         <slot name="append"></slot>
       </template>
-      <ElTableColumn
-        type="index"
-        :index="indexMethod"
-        :label="typeof props.index === 'object' && props.index.label"
-        :width="typeof props.index === 'object' && props.index.width"
-        v-if="
-          typeof props.index === 'boolean' ? props.index : !props.index.hide
-        "
-      >
+      <ElTableColumn type="index" :index="indexMethod" :label="typeof props.index === 'object' && props.index.label"
+        :width="typeof props.index === 'object' && props.index.width" v-if="typeof props.index === 'boolean' ? props.index : !props.index.hide
+          ">
       </ElTableColumn>
-      <TableColumn
-        v-for="(item, index) in filterColumns"
-        :key="index"
-        v-bind="item"
-      >
+      <TableColumn v-for="(item, index) in filterColumns" :key="index" v-bind="item">
         <template v-if="item.header" #header="scope">
           <slot name="header" v-bind="scope" />
         </template>
@@ -63,16 +42,8 @@
       </TableColumn>
     </ElTable>
 
-    <Pagination
-      v-show="total > 0 && props.pagination"
-      :total="total"
-      @getPage="getPage"
-      :currentPage="currentPage"
-      :pageSize="pageSize"
-      :pageSizes="props.pageSizes"
-      ref="pagination"
-      :layout="props.layout"
-    />
+    <Pagination v-show="total > 0 && props.pagination" :total="total" @getPage="getPage" :currentPage="currentPage"
+      :pageSize="pageSize" :pageSizes="props.pageSizes" ref="pagination" :layout="props.layout" />
     <slot name="footer"> </slot>
   </div>
 </template>
@@ -81,15 +52,20 @@ import { ElTable } from "element-plus";
 import { computed, ref, onMounted, toRefs, unref, defineExpose } from "vue";
 import TableColumn from "./TableColumn.vue";
 import Search from "./SearchTsx";
+import Search2 from "./SearchTsx2";
+
 import Pagination from "./Pagination";
 import Buttons from "./Buttons.vue";
+import { Tform, chris } from "../../index";
 
 import type { Filter } from "./TableColumnItem";
 
 import { vepTableEmits, TableProps } from "./Table";
 import { getPath, getTotalPath } from "../utils/index";
+
+
 //表格所有事件
-const emit = defineEmits({ ...vepTableEmits, resetFn: () => {} });
+const emit = defineEmits({ ...vepTableEmits, resetFn: () => { } });
 //表格属性
 const props = defineProps(TableProps);
 
@@ -159,6 +135,7 @@ columns!
       filterList.value.push(unref(el));
     } else if (typeof el.filter === "object") {
       !el.filter.hide && filterList.value.push(unref(el));
+
     }
   });
 //分页组件Ref
@@ -179,9 +156,12 @@ const indexMethod = (index: number) => {
   return index + 1 + (currentPage.value - 1) * pageSize.value;
 };
 //刷新列表
+console.log(props,'总数据',filterList)
+
 
 onMounted(() => {
   // 在这里可以加判断 第一次进页面 不加载数据,暂时不处理这个逻辑
+
   props.request && getDataList(searchRef.value.formData);
 });
 const tableRef = ref();

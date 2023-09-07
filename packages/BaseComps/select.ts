@@ -1,17 +1,17 @@
-import { Component,ComputedRef,Ref } from "vue";
+import { Component, ComputedRef, Ref } from "vue";
 import { SelectNewPorps } from "./selectNews";
 export type opstionsItem = {
-  label: string;
-  value: string;
-  [key:string]:any
+
+  [key: string]: any;
 };
 
 export interface SelectPorps extends SelectNewPorps {
   disabled?: boolean;
   multiple?: boolean;
-  ref?:Ref<any>
-    //select opstions
-    options?: opstionsItem[] | ComputedRef;
+  ref?: Ref<any>;
+  //select opstions
+  options?: opstionsItem[] | ComputedRef;
+  dictOptions?:{label?:string,value?:string,children?:string}
 
   valueKey?: string;
   size?: "large" | "default" | "small";
