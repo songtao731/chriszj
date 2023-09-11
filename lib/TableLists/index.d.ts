@@ -5,9 +5,9 @@ declare const TableLists: ({
         $props: {
             table?: Record<string, any> | undefined;
             tabs?: Record<string, any> | undefined;
+            ref?: import("vue").VNodeRef | undefined;
             key?: string | number | symbol | undefined;
             style?: unknown;
-            ref?: import("vue").VNodeRef | undefined;
             ref_for?: boolean | undefined;
             ref_key?: string | undefined;
             onVnodeBeforeMount?: ((vnode: import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
@@ -150,12 +150,23 @@ declare const TableLists: ({
                 type: ObjectConstructor;
                 default: {
                     request: FunctionConstructor;
+                    column: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
+                    gutter: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
+                    labelWidth: {
+                        type: (StringConstructor | NumberConstructor)[];
+                    };
                     parseData: FunctionConstructor;
                     path: StringConstructor;
                     totalPath: StringConstructor;
                     pageNum: StringConstructor;
                     pageSize: StringConstructor;
-                    searchSize: {
+                    size: {
                         type: StringConstructor;
                         default: string;
                     };
@@ -204,7 +215,6 @@ declare const TableLists: ({
                         of<T_4>(...items: T_4[]): T_4[];
                         readonly [Symbol.species]: ArrayConstructor;
                     };
-                    size: import("vue").PropType<("default" | "large" | "small") | undefined>;
                     width: (StringConstructor | NumberConstructor)[];
                     height: (StringConstructor | NumberConstructor)[];
                     maxHeight: (StringConstructor | NumberConstructor)[];
@@ -278,7 +288,7 @@ declare const TableLists: ({
                     defaultExpandAll: BooleanConstructor;
                     defaultSort: import("vue").PropType<import("../TableList/comps/Pride").Sort | undefined>;
                     tooltipEffect: StringConstructor;
-                    tooltipOptions: import("vue").PropType<Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+                    tooltipOptions: import("vue").PropType<Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
                     spanMethod: import("vue").PropType<((data: {
                         row: any;
                         rowIndex: number;
@@ -325,7 +335,7 @@ declare const TableLists: ({
                         default: boolean;
                     };
                     flexible: BooleanConstructor;
-                    showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+                    showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
                 };
             };
         }>> & {
@@ -462,12 +472,23 @@ declare const TableLists: ({
             type: ObjectConstructor;
             default: {
                 request: FunctionConstructor;
+                column: {
+                    type: NumberConstructor;
+                    default: number;
+                };
+                gutter: {
+                    type: NumberConstructor;
+                    default: number;
+                };
+                labelWidth: {
+                    type: (StringConstructor | NumberConstructor)[];
+                };
                 parseData: FunctionConstructor;
                 path: StringConstructor;
                 totalPath: StringConstructor;
                 pageNum: StringConstructor;
                 pageSize: StringConstructor;
-                searchSize: {
+                size: {
                     type: StringConstructor;
                     default: string;
                 };
@@ -516,7 +537,6 @@ declare const TableLists: ({
                     of<T_4>(...items: T_4[]): T_4[];
                     readonly [Symbol.species]: ArrayConstructor;
                 };
-                size: import("vue").PropType<("default" | "large" | "small") | undefined>;
                 width: (StringConstructor | NumberConstructor)[];
                 height: (StringConstructor | NumberConstructor)[];
                 maxHeight: (StringConstructor | NumberConstructor)[];
@@ -590,7 +610,7 @@ declare const TableLists: ({
                 defaultExpandAll: BooleanConstructor;
                 defaultSort: import("vue").PropType<import("../TableList/comps/Pride").Sort | undefined>;
                 tooltipEffect: StringConstructor;
-                tooltipOptions: import("vue").PropType<Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+                tooltipOptions: import("vue").PropType<Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
                 spanMethod: import("vue").PropType<((data: {
                     row: any;
                     rowIndex: number;
@@ -637,7 +657,7 @@ declare const TableLists: ({
                     default: boolean;
                 };
                 flexible: BooleanConstructor;
-                showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+                showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
             };
         };
     }>> & {
@@ -724,12 +744,23 @@ declare const TableLists: ({
         type: ObjectConstructor;
         default: {
             request: FunctionConstructor;
+            column: {
+                type: NumberConstructor;
+                default: number;
+            };
+            gutter: {
+                type: NumberConstructor;
+                default: number;
+            };
+            labelWidth: {
+                type: (StringConstructor | NumberConstructor)[];
+            };
             parseData: FunctionConstructor;
             path: StringConstructor;
             totalPath: StringConstructor;
             pageNum: StringConstructor;
             pageSize: StringConstructor;
-            searchSize: {
+            size: {
                 type: StringConstructor;
                 default: string;
             };
@@ -778,7 +809,6 @@ declare const TableLists: ({
                 of<T_4>(...items: T_4[]): T_4[];
                 readonly [Symbol.species]: ArrayConstructor;
             };
-            size: import("vue").PropType<("default" | "large" | "small") | undefined>;
             width: (StringConstructor | NumberConstructor)[];
             height: (StringConstructor | NumberConstructor)[];
             maxHeight: (StringConstructor | NumberConstructor)[];
@@ -852,7 +882,7 @@ declare const TableLists: ({
             defaultExpandAll: BooleanConstructor;
             defaultSort: import("vue").PropType<import("../TableList/comps/Pride").Sort | undefined>;
             tooltipEffect: StringConstructor;
-            tooltipOptions: import("vue").PropType<Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+            tooltipOptions: import("vue").PropType<Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
             spanMethod: import("vue").PropType<((data: {
                 row: any;
                 rowIndex: number;
@@ -899,7 +929,7 @@ declare const TableLists: ({
                 default: boolean;
             };
             flexible: BooleanConstructor;
-            showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+            showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
         };
     };
 }>> & {

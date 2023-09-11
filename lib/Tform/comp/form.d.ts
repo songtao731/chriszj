@@ -24,7 +24,7 @@ export declare const formProps: {
      * @description Position of label. If set to `'left'` or `'right'`, `label-width` prop is also required.
      */
     labelPosition: {
-        type: PropType<"left" | "top" | "right">;
+        type: PropType<"top" | "left" | "right">;
         default: string;
     };
     /**

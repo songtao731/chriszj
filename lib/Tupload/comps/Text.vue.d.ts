@@ -40,7 +40,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: string;
     };
     headers: {
-        type: import("vue").PropType<Record<string, any> | Headers>;
+        type: import("vue").PropType<Headers | Record<string, any>>;
     };
     method: {
         type: StringConstructor;
@@ -136,7 +136,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: string;
     };
     headers: {
-        type: import("vue").PropType<Record<string, any> | Headers>;
+        type: import("vue").PropType<Headers | Record<string, any>>;
     };
     method: {
         type: StringConstructor;
@@ -193,14 +193,14 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
 }>> & {
     "onUpdate:fileList"?: ((...args: any[]) => any) | undefined;
 }, {
-    type: string;
     disabled: boolean;
-    data: Record<string, any>;
+    multiple: boolean;
     name: string;
     onChange: (uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
+    type: string;
+    data: Record<string, any>;
     onError: (error: Error, uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     onProgress: (evt: import("element-plus").UploadProgressEvent, uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
-    multiple: boolean;
     fileList: import("element-plus").UploadUserFile[];
     onRemove: (uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     beforeUpload: (rawFile: import("element-plus").UploadRawFile) => import("element-plus/es/utils").Awaitable<boolean | void | Blob | File | null | undefined>;

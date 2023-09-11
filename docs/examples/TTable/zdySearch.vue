@@ -1,37 +1,12 @@
 <template>
   <TableList v-bind="bind" @resetFn="resetFn">
-    <template #search>
-        <el-form-item label="活动区域" prop="region">
-          <el-select
-            v-model="ruleForm.region"
-            placeholder="请选择活动区域"
-            @change="getForm"
-            clearable
-          >
-            <el-option
-              v-for="item in data"
-              :key="item"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="活动区域2" prop="region">
-          <el-select
-            v-model="ruleForm.region2"
-            placeholder="请选择活动区域"
-            clearable
-          >
-            <el-option
-              v-for="item in data12"
-              :key="item"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
-        </el-form-item>
+    <template #zds="{ scope }">
+        <el-select v-model="scope.dd" placeholder="请选择活动区域" @change="getForm" clearable class="w-full">
+          <el-option v-for="item in data" :key="item" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+        
       </template>
-  
+
   </TableList>
 </template>
 
@@ -69,14 +44,14 @@ const ruleForm = ref({
   region2: "",
 });
 //模拟第一个选择框 异步获取数据
-const data=ref()
-setTimeout(()=>{
+const data = ref()
+setTimeout(() => {
   data.value = [
-      { label: "前端", value: "1" },
-      { label: "后端", value: "2" },
-      { label: "运维", value: "3" },
-    ];
-},300)
+    { label: "前端", value: "1" },
+    { label: "后端", value: "2" },
+    { label: "运维", value: "3" },
+  ];
+}, 300)
 
 const data12 = ref();
 //模拟异步获取第二个选择框数据
@@ -120,18 +95,17 @@ const bind = chris.useTable({
       filter: "input",
     },
     {
-      label: "下拉选择",
-      prop: "sex",
+
+      label: "自定义查询",
+      prop: "processNo",
       filter: {
-        type: "select",
-        options: [
-          { label: "男", value: "1" },
-          { label: "女", value: "2" },
-        ],
-      },
-    }
+        type: "custom",
+        slotName: 'zds',
+
+      }
+    },
   ],
 });
 
- 
+
 </script>

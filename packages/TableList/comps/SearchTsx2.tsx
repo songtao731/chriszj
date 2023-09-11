@@ -36,88 +36,145 @@ import {
 import { CheckBoxItem } from "chriszj/BaseComps/checkBox";
 import { RadioItem } from "chriszj/BaseComps/radio";
 export default defineComponent({
-  props: ["filter", "size", "labelPosition", "searchData", "gutter", "column"],
+  props: [
+    "filter",
+    "size",
+    "labelPosition",
+    "searchData",
+    "gutter",
+    "column",
+    "labelWidth",
+  ],
   emits: ["getParams", "resetFn"],
 
   setup(props, { emit, expose, slots }) {
-
     //filter:过滤条件,searchSize:查询条件框的大小 labelPosition:查询条件label的位置
-    const { filter } = props;
+    const { column, labelPosition } = props;
 
-
+    const filter = computed(() => {
+      return props.filter.filter((ele: any) => ele.filter);
+    });
+    //表格的可视宽度
     const screenWidth = ref();
+    //是否展示 展开 按钮
     const isShow = ref(false);
     const showName = ref("展开");
-    //可视搜索条件宽度大于1500就展示4个
+    //可视搜索条件宽度大于1800就展示4个
     const isShowMax = ref(false);
+
     //一行展示几个
     const span = computed(() => {
-      return (props.column && 24 / +props.column) || 6;
+      if (column) {
+        return 24 / column;
+      }
+
+      return screenWidth.value > 1800 ? 6 : 8;
     });
 
     //判断是否展示 展开按钮
     const getNum = (width: number, num: number) => {
       isShowMax.value = width > +variables.maxwidth.replace(/[^\d]/gi, "");
-
       if (width > +variables.maxwidth.replace(/[^\d]/gi, "")) {
         isShow.value = num > 4;
       } else {
         isShow.value = num > 3;
       }
     };
-        const formData: any = reactive({zds:'1'});
+    //搜索条件的表单数据
+    const formData: any = reactive({});
     //获取屏幕可视化宽度
-    onMounted(() => {});
+    onMounted(() => {
+      //   screenWidth.value = document.body.clientWidth;
+      //搜索条件展示几个
+      screenWidth.value = document.querySelector(
+        ".chris-table-search"
+      )?.clientWidth;
+      getNum(screenWidth.value, searchList.value.length);
+      //回显值
+      // searchList.value.forEach((el: any) => {
+      //   formData[el.prop] = el.value;
+      // });
+
+      // //实时改变浏览器宽度和高度
+      window.onresize = () => {
+        return (() => {
+          screenWidth.value = document.querySelector(
+            ".chris-table-search"
+          )?.clientWidth;
+          getNum(screenWidth.value, searchList.value.length);
+        })();
+      };
+    });
 
     const searchList: Ref<any[]> = ref([]);
     //初始化新的传参
     const newFormData: any = ref({});
     watchEffect(() => {
-      searchList.value = filter.map((el: any) => {
-        //目前值接收字符串类型的赋值
-
-        if (typeof el.value === "string") {
-          formData[el.prop] = el.value;
-        }
-
+      searchList.value = filter.value.map((el: any) => {
         if (typeof el.filter === "string") {
+          //   formData[el.prop] = el.value;
           return {
             prop: el.prop,
             label: el.label,
             type: el.filter,
+            value: el.value,
           };
-        } else {
+        } else if (typeof el.filter === "object") {
+          //      formData[el.filter.prop || el.prop] = el.value;
+
           return {
             ...el.filter,
             prop: el.filter.prop || el.prop,
             label: el.filter.label || el.label,
             type: el.filter.type,
+            value: el.value,
           };
+        }
+      });
+      searchList.value.forEach((el) => {
+        //处理多选 重置为空数租 不然报错
+        if (el.hide) {
+          formData[el.prop] = "";
+
+          if (el.checkBox) {
+            formData[el.prop] = [];
+          }
+          if (el.type === "switch") {
+            formData[el.prop] = false;
+          }
+          if (el.type === "slider") {
+            formData[el.prop] = el.value;
+          }
         }
       });
     });
 
     const getParams = () => {
-
-      
       Object.keys(formData).forEach((el) => {
-        console.log(el,'eeee')
         if (/,/.test(el)) {
           el.split(",").forEach((ele, index) => {
             newFormData.value[ele] = formData[el] ? formData[el][index] : null;
           });
         } else {
-          newFormData.value[el] = formData[el] || null;
+          //处理
+          if (Array.isArray(formData[el])) {
+            newFormData.value[el] = formData[el].join(",");
+          } else {
+            newFormData.value[el] = formData[el] || null;
+          }
         }
       });
 
-      console.log(newFormData.value);
       emit("getParams", { ...newFormData.value });
     };
     //格式化搜索条件的格式
     const formatDataFn = (data: Filter) => {
       let placeholderValue = "";
-      let options = unref(data.select?.options) ||unref(data.checkBox?.options)||unref(data.radio?.options)|| [];
+      let options =
+        unref(data.select?.options) ||
+        unref(data.checkBox?.options) ||
+        unref(data.radio?.options) ||
+        [];
       switch (data.type) {
         case "input":
           if (data.input) {
@@ -158,10 +215,8 @@ export default defineComponent({
           break;
         case "checkBox":
           if (data.checkBox) {
-
             //处理传入的options是自定义label和value key值的
             if (data.checkBox.dictOptions) {
-
               options = options.map((el: any) => {
                 return {
                   label: el[data.checkBox?.dictOptions?.label as string],
@@ -189,7 +244,20 @@ export default defineComponent({
       Object.keys(newFormData.value).forEach((el) => {
         newFormData.value[el] = "";
       });
-      formRef.value.resetFields();
+      searchList.value.forEach((el) => {
+        //处理多选 重置为空数租 不然报错
+        if (el.checkBox) {
+          formData[el.prop] = [];
+        }
+        if (el.type === "switch") {
+          formData[el.prop] = false;
+        }
+        if (el.type === "slider") {
+          formData[el.prop] = el.value;
+        }
+      });
+
+      //formRef.value.resetFields();
 
       emit("resetFn");
     };
@@ -198,7 +266,6 @@ export default defineComponent({
       showName.value = showName.value === "展开" ? "收起" : "展开";
     };
 
-    console.log(searchList,'searchListsearchList',slots,formData)
     expose({
       formData,
       newFormData,
@@ -209,11 +276,26 @@ export default defineComponent({
       changeName,
       slots,
       isShowMax,
+      getParams,
     });
     return () => (
       <>
         <div class="chris-table-search">
-          <ElForm ref={formRef} {...props} model={formData} class={"w-full"}>
+          <ElForm
+            ref={formRef}
+            {...props}
+            model={formData}
+            class={[
+              {
+                "h-[40px] overflow-hidden":
+                  labelPosition !== "top" && showName.value === "展开",
+                "h-[70px] overflow-hidden":
+                  labelPosition === "top" && showName.value === "展开",
+
+                "w-full": true,
+              },
+            ]}
+          >
             <ElRow gutter={props.gutter}>
               {Array.isArray(searchList.value) &&
                 searchList.value.map((el, index) => {
@@ -221,7 +303,7 @@ export default defineComponent({
                   switch (el.type) {
                     case "space":
                       element = (
-                        <ElCol span={el.nospan}>
+                        <ElCol span={span.value}>
                           <ElFormItem></ElFormItem>
                         </ElCol>
                       );
@@ -264,7 +346,6 @@ export default defineComponent({
                       );
                       break;
                     case "inputrange":
-
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={span.value}>
                           {el.columns && (
@@ -411,14 +492,14 @@ export default defineComponent({
                               {...el.checkBox}
                             >
                               {formatDataFn(el).options.map(
-                                  (ele: CheckBoxItem) => {
-                                    return (
-                                      <ElCheckbox {...ele} label={ele.value}>
-                                        {ele.label}
-                                      </ElCheckbox>
-                                    );
-                                  }
-                                )}
+                                (ele: CheckBoxItem) => {
+                                  return (
+                                    <ElCheckbox {...ele} label={ele.value}>
+                                      {ele.label}
+                                    </ElCheckbox>
+                                  );
+                                }
+                              )}
                             </ElCheckboxGroup>
                           </ElFormItem>
                         </ElCol>
@@ -426,7 +507,7 @@ export default defineComponent({
                         ""
                       );
                       break;
-                     case "radio":
+                    case "radio":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={span.value}>
                           <ElFormItem
@@ -439,14 +520,14 @@ export default defineComponent({
                               {...el.radio}
                             >
                               {formatDataFn(el).options.map(
-                                  (ele: RadioItem) => {
-                                    return (
-                                      <ElRadio {...ele} label={ele.value}>
-                                        {ele.label}
-                                      </ElRadio>
-                                    );
-                                  }
-                                )}
+                                (ele: RadioItem) => {
+                                  return (
+                                    <ElRadio {...ele} label={ele.value}>
+                                      {ele.label}
+                                    </ElRadio>
+                                  );
+                                }
+                              )}
                             </ElRadioGroup>
                           </ElFormItem>
                         </ElCol>
@@ -516,12 +597,14 @@ export default defineComponent({
           </ElForm>
           {searchList.value.length ? (
             <div class="chris-table-search-btns">
-              <ElButton type="primary" onClick={getParams}>
+              <ElButton type="primary" onClick={getParams} size={props.size}>
                 查询
               </ElButton>
-              <ElButton onClick={resetFn}>重置</ElButton>
+              <ElButton onClick={resetFn} size={props.size}>
+                重置
+              </ElButton>
               {isShow.value && (
-                <ElButton type="success" onClick={changeName}>
+                <ElButton type="success" onClick={changeName} size={props.size}>
                   {showName.value}
                 </ElButton>
               )}

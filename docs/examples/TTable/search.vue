@@ -108,10 +108,12 @@ const bind = chris.useTable({
       prop: "sex",
       filter: {
         type: "select",
-        options: [
+        select:{
+          options: [
           { label: "男", value: "1" },
           { label: "女", value: "2" },
         ],
+        }
       },
     },
     {
@@ -119,7 +121,10 @@ const bind = chris.useTable({
       prop: "tree",
       filter: {
         type: "cascader",
+        cascader:{
         options: computed(() => data2.value),
+
+        }
       },
     },
     {
@@ -134,31 +139,124 @@ const bind = chris.useTable({
       label: "日期范围",
       prop: "date2",
       filter: {
-        type: "dateRange",
+        type: "date",
         prop: ["minTime", "maxTime"],
+        date:{
+          type:'daterange'
+        }
       },
     },
     {
       label: "日期时间",
       prop: "date3",
       filter: {
-        type: "dateTime",
+        type: "date",
+        date:{
+          type:'datetime'
+        }
       },
     },
     {
       label: "日期时间范围",
       prop: "date4",
       filter: {
-        type: "dateTimeRange",
+        type: "date",
         prop: ["minTimeRange", "maxTimeRange"],
+        date:{
+          type:'datetimerange'
+        }
       },
     },
     {
-      label: "数值范围",
-      prop: "date",
+      label: "多选",
+      prop: "checkbox",
       filter: {
-        type: "inputrange",
-        prop: ["minNumber", "maxNumber"],
+        type: "checkBox",
+        checkBox: {
+          options: [
+            {
+              label: "前端",
+              value: "1",
+            },
+            {
+              label: "后端",
+              value: "2",
+            },
+            {
+              label: "测试",
+              value: "3",
+            },
+          ]
+        },
+      },
+    },
+    {
+      label: '单选',
+      prop: 'radio',
+      filter: {
+        type: 'radio',
+        radio: {
+          options: [
+            {
+              label: "金融",
+              value: "1",
+            },
+            {
+              label: "It",
+              value: "2",
+            },
+            {
+              label: "教育",
+              value: "3",
+            },
+          ],
+          onChange() {
+            console.log(1)
+          }
+        }
+      }
+    },
+    {
+      label: '星星',
+      prop: 'xingxing',
+      filter: {
+        type: 'rate',
+
+      }
+    },
+    {
+      label: '开关',
+      prop: 'switch',
+      filter: {
+        type: 'switch'
+      }
+    },
+    {
+      label: '数值',
+      prop: 'slider',
+      filter: {
+        type: 'slider'
+      }
+    },
+    {
+      label: "范围",
+      prop: "updateTime",
+      filter: {
+        type: 'inputrange',
+        columns: [
+          {
+            prop: "min",
+            placeholder: "请输入最小值",
+            input: {
+
+            },
+
+          },
+          {
+            prop: "max",
+            input: {},
+          },
+        ],
       },
     },
   ],

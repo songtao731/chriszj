@@ -86,10 +86,12 @@ const bind = chris.useTable({
       prop: "sex",
       filter: {
         type: "select",
-        options: [
+        select:{
+          options: [
           { label: "男", value: "1" },
           { label: "女", value: "2" },
         ],
+        }
       },
       dictData: [
         { label: "男", value: "1" },
@@ -101,7 +103,10 @@ const bind = chris.useTable({
       prop: "job",
       filter: {
         type: "select",
+        select:{
         options:computed(()=>data.value),
+
+        }
       },
       dictData: computed(()=>data.value),
     },

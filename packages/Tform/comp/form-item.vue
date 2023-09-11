@@ -10,7 +10,6 @@ import { newForm } from "./newForm";
 import DescItem from "./form-itemTsx";
 const props = defineProps(newForm);
 
-console.log(DescItem, "9999");
 </script>
 
 <style lang="scss" scoped>

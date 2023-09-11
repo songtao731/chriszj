@@ -3,14 +3,14 @@ declare const Tupload: ({
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: {
-            type?: string | undefined;
             disabled?: boolean | undefined;
-            data?: Record<string, any> | undefined;
+            multiple?: boolean | undefined;
             name?: string | undefined;
             onChange?: ((uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void) | undefined;
+            type?: string | undefined;
+            data?: Record<string, any> | undefined;
             onError?: ((error: Error, uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void) | undefined;
             onProgress?: ((evt: import("element-plus").UploadProgressEvent, uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void) | undefined;
-            multiple?: boolean | undefined;
             fileList?: import("element-plus").UploadUserFile[] | undefined;
             onRemove?: ((uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void) | undefined;
             beforeUpload?: ((rawFile: import("element-plus").UploadRawFile) => import("element-plus/es/utils").Awaitable<boolean | void | Blob | File | null | undefined>) | undefined;
@@ -26,10 +26,10 @@ declare const Tupload: ({
             autoUpload?: boolean | undefined;
             listType?: "text" | "picture" | "picture-card" | undefined;
             httpRequest?: import("element-plus").UploadRequestHandler | undefined;
+            ref?: import("vue").VNodeRef | undefined;
             readonly size?: number | undefined;
             key?: string | number | symbol | undefined;
             style?: unknown;
-            ref?: import("vue").VNodeRef | undefined;
             ref_for?: boolean | undefined;
             ref_key?: string | undefined;
             onVnodeBeforeMount?: ((vnode: import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
@@ -72,7 +72,7 @@ declare const Tupload: ({
             }>) => void)[] | undefined;
             class?: string | undefined;
             readonly beforeRemove?: ((uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => import("element-plus/es/utils").Awaitable<boolean>) | undefined;
-            readonly headers?: Record<string, any> | Headers | undefined;
+            readonly headers?: Headers | Record<string, any> | undefined;
             readonly limit?: number | undefined;
             "onUpdate:fileList"?: ((...args: any[]) => any) | undefined;
         };
@@ -131,7 +131,7 @@ declare const Tupload: ({
                 default: string;
             };
             headers: {
-                type: import("vue").PropType<Record<string, any> | Headers>;
+                type: import("vue").PropType<Headers | Record<string, any>>;
             };
             method: {
                 type: StringConstructor;
@@ -191,14 +191,14 @@ declare const Tupload: ({
             pictureCardRef: import("vue").Ref<any>;
             fileList: import("vue").WritableComputedRef<import("element-plus").UploadUserFile[]>;
         }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:fileList"[], string, {
-            type: string;
             disabled: boolean;
-            data: Record<string, any>;
+            multiple: boolean;
             name: string;
             onChange: (uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
+            type: string;
+            data: Record<string, any>;
             onError: (error: Error, uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
             onProgress: (evt: import("element-plus").UploadProgressEvent, uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
-            multiple: boolean;
             fileList: import("element-plus").UploadUserFile[];
             onRemove: (uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
             beforeUpload: (rawFile: import("element-plus").UploadRawFile) => import("element-plus/es/utils").Awaitable<boolean | void | Blob | File | null | undefined>;
@@ -276,7 +276,7 @@ declare const Tupload: ({
             default: string;
         };
         headers: {
-            type: import("vue").PropType<Record<string, any> | Headers>;
+            type: import("vue").PropType<Headers | Record<string, any>>;
         };
         method: {
             type: StringConstructor;
@@ -381,7 +381,7 @@ declare const Tupload: ({
         default: string;
     };
     headers: {
-        type: import("vue").PropType<Record<string, any> | Headers>;
+        type: import("vue").PropType<Headers | Record<string, any>>;
     };
     method: {
         type: StringConstructor;
@@ -441,14 +441,14 @@ declare const Tupload: ({
     pictureCardRef: import("vue").Ref<any>;
     fileList: import("vue").WritableComputedRef<import("element-plus").UploadUserFile[]>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:fileList"[], "update:fileList", {
-    type: string;
     disabled: boolean;
-    data: Record<string, any>;
+    multiple: boolean;
     name: string;
     onChange: (uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
+    type: string;
+    data: Record<string, any>;
     onError: (error: Error, uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     onProgress: (evt: import("element-plus").UploadProgressEvent, uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
-    multiple: boolean;
     fileList: import("element-plus").UploadUserFile[];
     onRemove: (uploadFile: import("element-plus").UploadFile, uploadFiles: import("element-plus").UploadFiles) => void;
     beforeUpload: (rawFile: import("element-plus").UploadRawFile) => import("element-plus/es/utils").Awaitable<boolean | void | Blob | File | null | undefined>;

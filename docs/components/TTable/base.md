@@ -14,7 +14,7 @@ TTable/base
 TTable/request
 :::
 
-### 配置查询条件 'input' | 'select' | 'date' | 'dateRange' | 'dateTime' | 'dateTimeRange' | 'cascader' | 'inputrange'
+### 配置查询条件  "input"| "select"| "date"| "cascader"| "inputrange"| "checkBox"| "radio"| "rate"| "switch"| "slider"| "space"| "custom";
 
 :::demo 在`columns`对象中添加`filter`
 TTable/search
@@ -78,6 +78,9 @@ TTable/tableprop
 | useTable | 表格数据对象 | Function |  |
 | data | 展示数据 静态数据 | Array | [] |
 | request | 传入后台接口 展示数据 | Array | [] |
+|column|查询条件一行展示几个|Number|不传的话 表格宽度大于1800px展示4个否则3个
+|gutter|查询条件之间间隔|Number|20
+|labelWidth|查询条件label宽度|-
 | --columns | 表格内数据 | Array | [] |
 | -------label | 表格头部文字 | Object | - |
 | -------prop | 表格内容展示值 | Array | - |

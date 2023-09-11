@@ -11,7 +11,7 @@ export declare const useTables: (args: newArg) => {
         addable?: boolean | undefined;
         modelValue?: string | number | undefined;
         editable?: boolean | undefined;
-        tabPosition?: "left" | "top" | "right" | "bottom" | undefined;
+        tabPosition?: "top" | "bottom" | "left" | "right" | undefined;
         stretch?: boolean | undefined;
         beforeLeave?: (() => true) | undefined;
         tabsList: {

@@ -22,6 +22,7 @@ export interface CascaderBaseProps {
   teleported?: boolean;
   popperAppendToBody?: boolean;
   tagType?: "success" | "info" | "warning" | "danger";
+  maxCollapseTags?:number
   validateEvent?: boolean;
   onChange?: <T>(val: T) => void;
   onFocus?: <T>(val: T) => void;

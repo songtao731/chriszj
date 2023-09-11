@@ -126,7 +126,7 @@ const bind = computed(() => {
 
   return chris.useForm({
     //  request:cc.value,
-    request: (params) => entertainApplicationAddList({ a: 1 }),
+   // request: (params) => entertainApplicationAddList({ a: 1 }),
     parseData: (value) => {
       return {
         ...value,

@@ -2,7 +2,7 @@ import type { ExtractPropTypes } from "vue";
 export declare const imageProps: {
     readonly hideOnClickModal: BooleanConstructor;
     readonly src: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
-    readonly fit: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
+    readonly fit: import("element-plus/es/utils/vue/props/types").EpPropFinalized<StringConstructor, "" | "none" | "fill" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
     readonly loading: {
         readonly type: import("vue").PropType<import("element-plus/es/utils/vue/props/types").EpPropMergeType<StringConstructor, "lazy" | "eager", unknown>>;
         readonly required: false;

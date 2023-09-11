@@ -1,16 +1,19 @@
-import { NewTableColumn } from './TableColumnItem';
-import { ButtonProps } from './Button';
+import { NewTableColumn } from "./TableColumnItem";
+import { ButtonProps } from "./Button";
 export interface Args {
-    request?: ((...arg: any[]) => Promise<any>);
+    request?: (...arg: any[]) => Promise<any>;
     columns: Partial<NewTableColumn<any>>[];
+    column?: number;
+    gutter?: number;
+    labelWidth?: string | number;
     data?: any[];
     path?: string;
     totalPath?: string;
-    searchSize?: 'medium' | 'small' | 'mini';
-    labelPosition?: 'left' | 'top' | 'right';
-    parseData?: ((row: any) => {
+    size?: '' | 'large' | 'default' | 'small';
+    labelPosition?: "left" | "top" | "right";
+    parseData?: (row: any) => {
         rows: any[];
-    });
+    };
     pageNum?: string;
     pageSize?: string;
     index?: {

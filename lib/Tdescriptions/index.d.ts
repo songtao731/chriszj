@@ -3,17 +3,17 @@ declare const Tdescriptions: ({
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: {
+            border?: boolean | undefined;
             title?: string | undefined;
             column?: number | undefined;
-            border?: boolean | undefined;
             dataList?: import("./comps/useDescriptions").desItem[] | undefined;
             direction?: "horizontal" | "vertical" | undefined;
             extra?: string | undefined;
+            ref?: import("vue").VNodeRef | undefined;
             readonly size?: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "default" | "large" | "small", never> | undefined;
             key?: string | number | symbol | undefined;
             style?: unknown;
             readonly path?: string | undefined;
-            ref?: import("vue").VNodeRef | undefined;
             ref_for?: boolean | undefined;
             ref_key?: string | undefined;
             onVnodeBeforeMount?: ((vnode: import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
@@ -111,9 +111,9 @@ declare const Tdescriptions: ({
             }>;
             res: import("vue").Ref<any>;
         }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
+            border: boolean;
             title: string;
             column: number;
-            border: boolean;
             dataList: import("./comps/useDescriptions").desItem[];
             direction: "horizontal" | "vertical";
             extra: string;
@@ -220,9 +220,9 @@ declare const Tdescriptions: ({
     }>;
     res: import("vue").Ref<any>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
+    border: boolean;
     title: string;
     column: number;
-    border: boolean;
     dataList: import("./comps/useDescriptions").desItem[];
     direction: "horizontal" | "vertical";
     extra: string;

@@ -9,8 +9,14 @@ export default defineComponent({
     const data = props.data;
     const column = props.column;
 
+
     const parseValue = (data: any, column: any) => {
+     
+
       const { formatType, prop, dictData, buttons } = column;
+
+
+    
       let result = data[prop] || "--";
       //格式化数字
       if (formatType) {

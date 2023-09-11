@@ -19,7 +19,7 @@ export declare const uploadBaseProps: {
         default: string;
     };
     headers: {
-        type: PropType<Record<string, any> | Headers>;
+        type: PropType<Headers | Record<string, any>>;
     };
     method: {
         type: StringConstructor;
@@ -116,7 +116,7 @@ export declare const uploadProps: {
         default: string;
     };
     headers: {
-        type: PropType<Record<string, any> | Headers>;
+        type: PropType<Headers | Record<string, any>>;
     };
     method: {
         type: StringConstructor;

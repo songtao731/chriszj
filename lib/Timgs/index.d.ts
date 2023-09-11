@@ -5,7 +5,7 @@ declare const Timgs: ({
         $props: {
             width?: string | undefined;
             height?: string | undefined;
-            fit?: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown> | undefined;
+            fit?: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "none" | "fill" | "contain" | "cover" | "scale-down", unknown> | undefined;
             lazy?: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown> | undefined;
             src?: string | undefined;
             previewSrcList?: string[] | undefined;
@@ -19,10 +19,10 @@ declare const Timgs: ({
                 name?: string | undefined;
                 url: string;
             }[] | undefined;
+            ref?: import("vue").VNodeRef | undefined;
             readonly loading?: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "lazy" | "eager", unknown> | undefined;
             key?: string | number | symbol | undefined;
             style?: unknown;
-            ref?: import("vue").VNodeRef | undefined;
             ref_for?: boolean | undefined;
             ref_key?: string | undefined;
             onVnodeBeforeMount?: ((vnode: import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
@@ -86,7 +86,7 @@ declare const Timgs: ({
         $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
             hideOnClickModal: BooleanConstructor;
             src: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
-            fit: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
+            fit: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "" | "none" | "fill" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
             loading: {
                 readonly type: import("vue").PropType<import("element-plus/es/utils").EpPropMergeType<StringConstructor, "lazy" | "eager", unknown>>;
                 readonly required: false;
@@ -138,7 +138,7 @@ declare const Timgs: ({
         }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
             width: string;
             height: string;
-            fit: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown>;
+            fit: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "none" | "fill" | "contain" | "cover" | "scale-down", unknown>;
             lazy: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
             src: string;
             previewSrcList: string[];
@@ -175,7 +175,7 @@ declare const Timgs: ({
     } & Readonly<import("vue").ExtractPropTypes<{
         hideOnClickModal: BooleanConstructor;
         src: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
-        fit: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
+        fit: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "" | "none" | "fill" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
         loading: {
             readonly type: import("vue").PropType<import("element-plus/es/utils").EpPropMergeType<StringConstructor, "lazy" | "eager", unknown>>;
             readonly required: false;
@@ -231,7 +231,7 @@ declare const Timgs: ({
 } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
     hideOnClickModal: BooleanConstructor;
     src: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
-    fit: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
+    fit: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "" | "none" | "fill" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
     loading: {
         readonly type: import("vue").PropType<import("element-plus/es/utils").EpPropMergeType<StringConstructor, "lazy" | "eager", unknown>>;
         readonly required: false;
@@ -283,7 +283,7 @@ declare const Timgs: ({
 }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
     width: string;
     height: string;
-    fit: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown>;
+    fit: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "none" | "fill" | "contain" | "cover" | "scale-down", unknown>;
     lazy: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
     src: string;
     previewSrcList: string[];

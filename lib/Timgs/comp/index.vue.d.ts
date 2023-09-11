@@ -2,7 +2,7 @@ import { UploadFile } from "element-plus/es/components/upload/src/upload";
 declare const _default: import("vue").DefineComponent<{
     hideOnClickModal: BooleanConstructor;
     src: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
-    fit: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
+    fit: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "" | "none" | "fill" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
     loading: {
         readonly type: import("vue").PropType<import("element-plus/es/utils").EpPropMergeType<StringConstructor, "lazy" | "eager", unknown>>;
         readonly required: false;
@@ -54,7 +54,7 @@ declare const _default: import("vue").DefineComponent<{
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     hideOnClickModal: BooleanConstructor;
     src: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
-    fit: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
+    fit: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "" | "none" | "fill" | "contain" | "cover" | "scale-down", unknown, "fill", boolean>;
     loading: {
         readonly type: import("vue").PropType<import("element-plus/es/utils").EpPropMergeType<StringConstructor, "lazy" | "eager", unknown>>;
         readonly required: false;
@@ -106,7 +106,7 @@ declare const _default: import("vue").DefineComponent<{
 }>>, {
     width: string;
     height: string;
-    fit: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "fill" | "none" | "contain" | "cover" | "scale-down", unknown>;
+    fit: import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "none" | "fill" | "contain" | "cover" | "scale-down", unknown>;
     lazy: import("element-plus/es/utils").EpPropMergeType<BooleanConstructor, unknown, unknown>;
     src: string;
     previewSrcList: string[];

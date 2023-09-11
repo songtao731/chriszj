@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <TableList v-bind="bind" @resetFn="resetFn" ref="oneTable" show-summary :summaryMethod="getSummaries">
+    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries">
       <template #topheader> 最上部</template>
       <template #centerheader> 中间 </template>
       <template #footer> 尾部 </template>
@@ -19,12 +19,9 @@
         </span>
       </template>
       <template #zds="{ scope }">
-        {{ scope }}
-
-        <el-select v-model="scope.region" placeholder="请选择活动区域" @change="getForm" clearable>
+        <el-select v-model="scope.dd" placeholder="请选择活动区域" @change="getForm" clearable class="w-full">
           <el-option v-for="item in data3" :key="item" :label="item.label" :value="item.value"></el-option>
         </el-select>
-
       </template>
     </TableList>
 
@@ -33,14 +30,13 @@
 </template>
 
 <script setup lang="ts">
-import { chris, TableList, TableLists, Tupload } from "../../packages/index";
+import { chris, TableList, TableLists, Tupload } from "../../packages";
 
-import { ref, computed, nextTick } from "vue";
+import { ref, computed, reactive } from "vue";
 import {
   entertainApplicationAddList,
 
 } from "@/api/index";
-import { ElButton } from "element-plus";
 
 const oneTable = ref();
 const ruleForm = ref({
@@ -62,11 +58,6 @@ const getForm = (val) => {
   }, 2000);
 };
 
-const resetFn = () => {
-  Object.keys(ruleForm.value).forEach((el: any) => {
-    ruleForm.value[el] = "";
-  });
-};
 
 const tableData = [
   {
@@ -98,7 +89,7 @@ const tableData = [
 
 const data = ref();
 const data2 = ref();
-const data3=ref()
+const data3 = ref()
 
 const fn = () => {
   setTimeout(() => {
@@ -115,6 +106,12 @@ const fn = () => {
           {
             value: "layout",
             label: "Layout 布局",
+            children: [
+              {
+                label: "测试",
+                value: 'ceshi'
+              }
+            ]
           },
           {
             value: "color",
@@ -143,274 +140,304 @@ const fn = () => {
   }, 30);
 };
 fn();
+const marks = reactive({
+  0: '0°C',
+  8: '8°C',
+  37: '37°C',
+  50: {
+    style: {
+      color: '#1989FA',
+    },
+    label: '50%',
+  },
+})
 
-const bind = chris.useTable({
-  request: (params) => entertainApplicationAddList({ ...params }),
-  path: 'data.list',
-  totalPath: 'data.total',
-  pageNum: "pageIndex",
-  size: 'small',
-  buttons: [
-    {
-      type: "primary",
-      content: "新增",
-      onClick: () => {
-        //   oneTable.value.tableRef.refresh()
+const isShow = ref(true)
+const isShow2 = ref(false)
 
-        console.log("操作成功", oneTable.value.refresh());
-      },
-    },
-    {
-      type: "success",
-      content: "删除",
-      onClick: () => {
-        console.log("删除操作成功");
-      },
-    },
-  ],
+const bind = computed(() => {
+  console.log('我变了')
+  return chris.useTable({
+    request: (params) => entertainApplicationAddList({ ...params }),
+    path: 'data.list',
+    totalPath: 'data.total',
+    pageNum: "pageIndex",
+    labelWidth: '100px',
+    buttons: [
+      {
+        type: "primary",
+        content: "新增",
+        onClick: () => {
+          //   oneTable.value.tableRef.refresh()
 
-  columns: [
-    {
-      type: "selection",
-      width: "200px",
-    },
-    {
-      label: "姓名",
-      prop: "id",
-      formatter(row, column, cellValue, index) {
-        return cellValue + index;
-      },
-      filter: {
-        type: "input",
-        prop: "processNo",
-        label: "姓名:",
-        input: {
-          showWordLimit: true,
-          maxlength: 10,
-          suffixIcon: "Calendar",
-          onChange(data) {
-            console.log(11, data)
-          }
-        }
-
-      },
-    },
-    {
-
-    },
-    {
-      label: "树形",
-      prop: "promoter",
-      value: ["zhinan", "typography"],
-      filter: {
-        type: "cascader",
-        prop: ["one", "two", "three"],
-        cascader: {
-          options: computed(() => data2.value),
-        }
-      },
-    },
-    {
-      label: "日期",
-      prop: "date",
-      filter: {
-        type: "date",
-        date: {
-          type: 'date'
-        }
-      },
-      formatType: 'date',
-    },
-    {
-      label: "日期范围",
-      prop: "date",
-      width: "120",
-      formatType: 'dateTime',
-      filter: {
-        type: 'date',
-        prop: ['sdate', 'edate'],
-        date: {
-          type: "daterange",
-        }
-
-      },
-    },
-    {
-      label: "千分位上",
-      prop: "updateTime",
-      formatter(row, column, cellValue, index) {
-        return cellValue && cellValue.split(" ")[0];
-      },
-      filter: {
-        type: 'inputrange',
-        columns: [
-          {
-            prop: "min",
-            placeholder: "请输入最小值",
-            input: {
-
-            },
-
-          },
-          {
-            prop: "max",
-            input: {},
-          },
-        ],
-      },
-    },
-    {
-      label: "日期时间",
-      prop: "datetime",
-      formatType: "dateTime",
-      filter: {
-        type: "date",
-        prop: 'dataTieme',
-        date: {
-          type: "datetime",
-        }
-      },
-    },
-    {
-      label: "日期时间范围",
-      prop: "datetimerange",
-      formatType: "dateTime",
-      filter: {
-        type: "date",
-        prop: ['mindatetimerange', 'ebddatetimerange'],
-        date: {
-          type: "datetimerange"
-        }
-      },
-    },
-    {
-      label: "多选",
-      prop: "checkbox",
-      filter: {
-        type: "checkBox",
-        checkBox: {
-          options: [
-            {
-              label2: "前端",
-              value: "1",
-            },
-            {
-              label: "后端",
-              value: "2",
-            },
-            {
-              label: "测试",
-              value: "3",
-            },
-          ]
+          console.log("操作成功", oneTable.value.refresh());
         },
       },
-    },
-    {
-      label: '单选',
-      prop: 'radio',
-      filter: {
-        type: 'radio',
-        radio: {
-          options: [
+      {
+        type: "success",
+        content: "删除",
+        onClick: () => {
+          console.log("删除操作成功");
+        },
+      },
+    ],
+
+    columns: [
+      {
+        type: "selection",
+        width: "200px",
+      },
+      {
+        label: "输入框",
+        prop: 'input',
+        filter: 'input',
+        value: "输入"
+      },
+      {
+        label: "姓名",
+        prop: "id",
+        formatter(row, column, cellValue, index) {
+          return cellValue + index;
+        },
+        hide: isShow2.value,
+
+        filter: {
+          type: "input",
+          prop: "processNo",
+          label: "姓名:",
+          hide: isShow.value,
+
+          input: {
+            showWordLimit: true,
+            maxlength: 10,
+            suffixIcon: "Calendar",
+            onChange(data) {
+              console.log(11, data)
+            }
+          }
+
+        },
+        value: '33'
+
+      },
+      {
+        label: "枚举",
+        prop: "status",
+        dictData: computed(() => data.value),
+        dictOptions: {
+          value: "id",
+          label: "name",
+        },
+        value: "1",
+        filter: {
+          type: "select",
+          select: {
+            options: computed(() => data.value),
+            dictOptions: {
+              value: "value2",
+              label: "label2",
+            },
+            onChange(val) {
+              isShow.value = val == '2' ? true : false
+              isShow2.value = val == '2' ? false : true
+
+
+              console.log(isShow2.value)
+            }
+          },
+
+        },
+      },
+      {
+        label: "树形是上课时开始看看是",
+        prop: "promoter",
+        value: ["zhinan", "typography"],
+        filter: {
+          type: "cascader",
+          prop: ["one", 'two', 'three'],
+          cascader: {
+            options: computed(() => data2.value),
+            props: {
+            }
+          }
+        },
+      },
+      {
+        label: "日期",
+        prop: "date",
+        filter: {
+          type: "date",
+          date: {
+            type: 'date'
+          }
+        },
+        formatType: 'date',
+        value: '2022-11-11'
+      },
+      {
+        label: "日期范围",
+        prop: "date",
+        width: "120",
+        formatType: 'dateTime',
+        value: ['2022-11-11', '2022-11-15'],
+        filter: {
+          type: 'date',
+          prop: ['sdate', 'edate'],
+          date: {
+            type: "daterange",
+          }
+
+        },
+      },
+      {
+        label: "千分位上",
+        prop: "updateTime",
+        formatter(row, column, cellValue, index) {
+          return cellValue && cellValue.split(" ")[0];
+        },
+        filter: {
+          type: 'inputrange',
+          columns: [
             {
-              label: "金融",
-              value: "1",
+              prop: "min",
+              placeholder: "请输入最小值",
+              input: {
+
+              },
+
             },
             {
-              label: "It",
-              value: "2",
-            },
-            {
-              label: "教育",
-              value: "3",
+              prop: "max",
+              input: {},
             },
           ],
-          onChange() {
-            console.log(1)
+        },
+      },
+      {
+        label: "日期时间",
+        prop: "datetime",
+        formatType: "dateTime",
+        filter: {
+          type: "date",
+          prop: 'dataTieme',
+          date: {
+            type: "datetime",
+          }
+        },
+      },
+      {
+        label: "日期时间范围",
+        prop: "datetimerange",
+        formatType: "dateTime",
+        filter: {
+          type: "date",
+          prop: ['mindatetimerange', 'ebddatetimerange'],
+          date: {
+            type: "datetimerange"
+          }
+        },
+      },
+      {
+        label: "多选",
+        prop: "checkbox",
+        value: ['1', '3'],
+        filter: {
+          type: "checkBox",
+          label: "测试数组",
+          prop: 'check',
+          hide: isShow.value,
+
+          checkBox: {
+
+            options: [
+              {
+                label2: "前端",
+                value: "1",
+              },
+              {
+                label: "后端",
+                value: "2",
+              },
+              {
+                label: "测试",
+                value: "3",
+              },
+            ]
+          },
+        },
+      },
+      {
+        label: '单选',
+        prop: 'radio',
+        value: '1',
+        filter: {
+          type: 'radio',
+          radio: {
+            options: [
+              {
+                label: "金融",
+                value: "1",
+              },
+              {
+                label: "It",
+                value: "2",
+              },
+              {
+                label: "教育",
+                value: "3",
+              },
+            ],
+            onChange() {
+              console.log(1)
+            }
           }
         }
-      }
-    },
-    {
-      label: '星星',
-      prop: 'xingxing',
-      filter: {
-        type: 'rate',
-
-      }
-    },
-    {
-      label: '开关',
-      prop: 'switch',
-      filter: {
-        type: 'switch'
-      }
-    },
-    {
-      label: '恒信啊',
-      prop: 'slider',
-      filter: {
-        type: 'slider'
-      }
-    },
-    {
-
-      label: "自定义查询",
-      prop: "zds",
-      dictData: computed(() => data.value),
-      dictOptions: {
-        value: "id",
-        label: "name",
       },
-      filter: {
-        type: "custom",
-        slotName: 'zds',
+      {
+        label: '星星',
+        prop: 'xingxing',
+        filter: {
+          type: 'rate',
 
-      }
-    },
-    {
-      label: "枚举",
-      prop: "status",
-      dictData: computed(() => data.value),
-      dictOptions: {
-        value: "id",
-        label: "name",
-      },
-      filter: {
-        type: "select",
-        select: {
-          options: computed(() => data.value),
-          dictOptions: {
-            value: "value2",
-            label: "label2",
-          },
         },
+        value: 3
+      },
+      {
+        label: '开关',
+        prop: 'switch',
+        filter: {
+          type: 'switch'
+        },
+        value: true
+      },
+      {
+        label: '数值',
+        prop: 'slider',
+        filter: {
+          type: 'slider',
+          prop: "minslider,maxslider",
+          slider: {
+            range: true,
+            marks: marks
+          }
+        },
+        value: [30, 50]
+      },
+      {
 
+        label: "自定义查询",
+        prop: "processNo2",
+
+        filter: {
+          type: "custom",
+          slotName: 'zds',
+
+        }
       },
-      buttons: [
-        {
-          content: "新增",
-          link: true,
-          type: "primary",
-          click(rows) {
-            console.log(rows, "新增");
-          },
-        },
-        {
-          content: "删除",
-          link: true,
-          type: "success",
-          icon: "Delete",
-          click(row) {
-            console.log("删除", oneTable.value.params.newFormData);
-            //  oneTable.value.tableRef.setCurrentRow(row);
-          },
-        },
-      ],
-    },
-  ],
-});
+
+    ],
+  })
+})
 
 let currentRow = ref();
 

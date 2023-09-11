@@ -125,12 +125,23 @@ export interface TableProps<T> {
 }
 export declare const TableProps: {
     request: FunctionConstructor;
+    column: {
+        type: NumberConstructor;
+        default: number;
+    };
+    gutter: {
+        type: NumberConstructor;
+        default: number;
+    };
+    labelWidth: {
+        type: (StringConstructor | NumberConstructor)[];
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
-    searchSize: {
+    size: {
         type: StringConstructor;
         default: string;
     };
@@ -179,7 +190,6 @@ export declare const TableProps: {
         of<T_4>(...items: T_4[]): T_4[];
         readonly [Symbol.species]: ArrayConstructor;
     };
-    size: PropType<ComponentSize | undefined>;
     width: (StringConstructor | NumberConstructor)[];
     height: (StringConstructor | NumberConstructor)[];
     maxHeight: (StringConstructor | NumberConstructor)[];
@@ -218,7 +228,7 @@ export declare const TableProps: {
     defaultExpandAll: BooleanConstructor;
     defaultSort: PropType<Sort | undefined>;
     tooltipEffect: StringConstructor;
-    tooltipOptions: PropType<Partial<Pick<ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+    tooltipOptions: PropType<Partial<Pick<ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
     spanMethod: PropType<((data: {
         row: any;
         rowIndex: number;
@@ -265,7 +275,7 @@ export declare const TableProps: {
         default: boolean;
     };
     flexible: BooleanConstructor;
-    showOverflowTooltip: PropType<boolean | Partial<Pick<ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+    showOverflowTooltip: PropType<boolean | Partial<Pick<ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
 };
 export declare const vepTableEmits: {
     select: (selection: any[], row: any) => boolean;

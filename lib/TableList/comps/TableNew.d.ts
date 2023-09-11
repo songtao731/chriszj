@@ -1,15 +1,25 @@
-import { ButtonProps } from './Button';
 import { PropType } from "vue";
 import { Args } from "./useTable";
 export type NewTableCtx = Args;
 export declare const NewTable: {
     request: FunctionConstructor;
+    column: {
+        type: NumberConstructor;
+        default: number;
+    };
+    gutter: {
+        type: NumberConstructor;
+        default: number;
+    };
+    labelWidth: {
+        type: (StringConstructor | NumberConstructor)[];
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
-    searchSize: {
+    size: {
         type: StringConstructor;
         default: string;
     };
@@ -25,7 +35,7 @@ export declare const NewTable: {
             hide: boolean;
         };
     };
-    buttons: PropType<ButtonProps[] | undefined>;
+    buttons: PropType<import("./Button").ButtonProps[] | undefined>;
     pagination: {
         type: BooleanConstructor;
         default: boolean;

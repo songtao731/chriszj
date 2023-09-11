@@ -72,9 +72,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: () => never[];
     };
 }>>, {
+    border: boolean;
     title: string;
     column: number;
-    border: boolean;
     dataList: import("./useDescriptions").desItem[];
     direction: "horizontal" | "vertical";
     extra: string;

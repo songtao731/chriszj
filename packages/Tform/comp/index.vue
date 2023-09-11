@@ -35,7 +35,8 @@ const dataList = computed(() => {
   }
 });
 
-console.log(props, 'props')
+
+console.log(props,'222',dataList)
 
 defineExpose({
   form: formRef,

@@ -1,11 +1,22 @@
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     request: FunctionConstructor;
+    column: {
+        type: NumberConstructor;
+        default: number;
+    };
+    gutter: {
+        type: NumberConstructor;
+        default: number;
+    };
+    labelWidth: {
+        type: (StringConstructor | NumberConstructor)[];
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
-    searchSize: {
+    size: {
         type: StringConstructor;
         default: string;
     };
@@ -54,7 +65,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         of<T_4>(...items: T_4[]): T_4[];
         readonly [Symbol.species]: ArrayConstructor;
     };
-    size: import("vue").PropType<("default" | "large" | "small") | undefined>;
     width: (StringConstructor | NumberConstructor)[];
     height: (StringConstructor | NumberConstructor)[];
     maxHeight: (StringConstructor | NumberConstructor)[];
@@ -128,7 +138,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     defaultExpandAll: BooleanConstructor;
     defaultSort: import("vue").PropType<import("./Pride").Sort | undefined>;
     tooltipEffect: StringConstructor;
-    tooltipOptions: import("vue").PropType<Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+    tooltipOptions: import("vue").PropType<Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
     spanMethod: import("vue").PropType<((data: {
         row: any;
         rowIndex: number;
@@ -175,7 +185,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: boolean;
     };
     flexible: BooleanConstructor;
-    showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+    showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
 }, {
     tableRef: import("vue").Ref<any>;
     refresh: (data: any) => void;
@@ -213,12 +223,23 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     }) => boolean;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     request: FunctionConstructor;
+    column: {
+        type: NumberConstructor;
+        default: number;
+    };
+    gutter: {
+        type: NumberConstructor;
+        default: number;
+    };
+    labelWidth: {
+        type: (StringConstructor | NumberConstructor)[];
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
-    searchSize: {
+    size: {
         type: StringConstructor;
         default: string;
     };
@@ -267,7 +288,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         of<T_4>(...items: T_4[]): T_4[];
         readonly [Symbol.species]: ArrayConstructor;
     };
-    size: import("vue").PropType<("default" | "large" | "small") | undefined>;
     width: (StringConstructor | NumberConstructor)[];
     height: (StringConstructor | NumberConstructor)[];
     maxHeight: (StringConstructor | NumberConstructor)[];
@@ -341,7 +361,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     defaultExpandAll: BooleanConstructor;
     defaultSort: import("vue").PropType<import("./Pride").Sort | undefined>;
     tooltipEffect: StringConstructor;
-    tooltipOptions: import("vue").PropType<Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+    tooltipOptions: import("vue").PropType<Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
     spanMethod: import("vue").PropType<((data: {
         row: any;
         rowIndex: number;
@@ -388,7 +408,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: boolean;
     };
     flexible: BooleanConstructor;
-    showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+    showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
 }>> & {
     onSelect?: ((selection: any[], row: any) => any) | undefined;
     onResetFn?: (() => any) | undefined;
@@ -421,6 +441,8 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     onCurrentChange?: ((currentRow: any, oldCurrentRow: any) => any) | undefined;
     onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
 }, {
+    size: string;
+    border: boolean;
     className: string;
     index: boolean | Record<string, any>;
     data: any[];
@@ -429,15 +451,15 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         hasChildren?: string | undefined;
         children?: string | undefined;
     } | undefined;
-    searchSize: string;
+    column: number;
     labelPosition: string;
     emptyText: string;
+    gutter: number;
     pagination: boolean;
     layout: string;
     pageSizes: unknown[];
     fit: boolean;
     stripe: boolean;
-    border: boolean;
     showHeader: boolean;
     showSummary: boolean;
     highlightCurrentRow: boolean;
@@ -448,9 +470,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     tableLayout: "fixed" | "auto";
     scrollbarAlwaysOn: boolean;
     flexible: boolean;
-}, {}>, Partial<Record<any, (_: any) => any>> & {
+}, {}>, Partial<Record<any, (_: {
+    scope: any;
+}) => any>> & Partial<Record<any, (_: any) => any>> & {
     topheader?(_: {}): any;
-    search?(_: {}): any;
     centerheader?(_: {}): any;
     empty?(_: {}): any;
     append?(_: {}): any;

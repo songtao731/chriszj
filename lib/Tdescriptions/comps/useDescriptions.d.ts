@@ -14,6 +14,7 @@ export type desItem = {
     prop?: string;
     span?: number;
     width?: string | number;
+    minWidth?: string | number;
     align?: align;
     labelAlign?: align;
     className?: string;

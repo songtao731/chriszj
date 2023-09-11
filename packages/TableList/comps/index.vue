@@ -8,11 +8,15 @@
         <slot name="search"> </slot>
       </template>
     </Search> -->
-    <Search2 ref="searchRef"   :filter="filterList" :size="props.size" :labelPosition="props.labelPosition" :gutter="props.gutter" :column="props.column"
-      @getParams="getParams" @resetFn="resetFn">
-      <template v-for="items in filterList" #[items.filter.slotName]="{ scope }">
-        <slot :name="items.filter&&items.filter.slotName" :scope="scope" v-if="items.filter.slotName" />
-      </template>
+    <Search2 ref="searchRef" :labelWidth="props.labelWidth" :filter="columnsFilter" :size="props.size" :labelPosition="props.labelPosition"
+      :gutter="props.gutter" :column="props.column" @getParams="getParams" @resetFn="resetFn">
+   
+        <template v-for="items in filterList" #[items.filter.slotName]="{ scope }">
+          <slot :name="items.filter&&items.filter.slotName" :scope="scope" />
+        </template>
+
+   
+
 
     </Search2>
     <slot name="centerheader"> </slot>
@@ -32,7 +36,7 @@
         :width="typeof props.index === 'object' && props.index.width" v-if="typeof props.index === 'boolean' ? props.index : !props.index.hide
           ">
       </ElTableColumn>
-      <TableColumn v-for="(item, index) in filterColumns" :key="index" v-bind="item">
+      <TableColumn v-for="(item, index) in columnsFilter" :key="index" v-bind="item">
         <template v-if="item.header" #header="scope">
           <slot name="header" v-bind="scope" />
         </template>
@@ -53,15 +57,12 @@ import { computed, ref, onMounted, toRefs, unref, defineExpose } from "vue";
 import TableColumn from "./TableColumn.vue";
 import Search from "./SearchTsx";
 import Search2 from "./SearchTsx2";
-
 import Pagination from "./Pagination";
 import Buttons from "./Buttons.vue";
-import { Tform, chris } from "../../index";
-
 import type { Filter } from "./TableColumnItem";
-
 import { vepTableEmits, TableProps } from "./Table";
 import { getPath, getTotalPath } from "../utils/index";
+
 
 
 //表格所有事件
@@ -69,10 +70,17 @@ const emit = defineEmits({ ...vepTableEmits, resetFn: () => { } });
 //表格属性
 const props = defineProps(TableProps);
 
+
 const { columns } = toRefs(props);
+const columnsFilter=computed(()=>props.columns?.filter(el=>{
+  return !unref(el.hide)
+}))
+
 //控制展示显示隐藏 某些列
-const filterColumns = ref<any>();
-filterColumns.value = columns?.value?.filter((el) => !el.hide);
+
+const filterColumns = columns?.value?.filter((el) => !el.hide);
+console.log(filterColumns,'columnsFilter',columnsFilter)
+
 
 const searchRef = ref();
 
@@ -128,16 +136,8 @@ const getDataList = async (data?: any) => {
 type NewFilter = Filter;
 const filterList = ref<NewFilter[]>([]);
 //当列不存在的时候筛选条件也 取消
-columns!
-  .value!.filter((el) => !el.hide)
-  .forEach((el: any) => {
-    if (typeof el.filter === "string") {
-      filterList.value.push(unref(el));
-    } else if (typeof el.filter === "object") {
-      !el.filter.hide && filterList.value.push(unref(el));
 
-    }
-  });
+
 //分页组件Ref
 const pagination = ref();
 //点击查询 查询事件
@@ -155,14 +155,12 @@ const getPage = async (page: any) => {
 const indexMethod = (index: number) => {
   return index + 1 + (currentPage.value - 1) * pageSize.value;
 };
-//刷新列表
-console.log(props,'总数据',filterList)
+
 
 
 onMounted(() => {
   // 在这里可以加判断 第一次进页面 不加载数据,暂时不处理这个逻辑
-
-  props.request && getDataList(searchRef.value.formData);
+  props.request && searchRef.value.getParams(searchRef.value.formData);
 });
 const tableRef = ref();
 

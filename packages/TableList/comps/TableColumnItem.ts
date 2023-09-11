@@ -85,7 +85,7 @@ interface CustomType {
   dictOptions?: { label?: string; value?: string; children?: string };
 
   filter?: string | Filter;
-  value?: string | number | (string | number)[];
+  value?: string | number | (string | number)[]|boolean;
   hide?: boolean;
   buttons?: Omit<ButtonProps, "onClick">[];
 }

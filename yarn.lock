@@ -1618,12 +1618,12 @@ chris@^1.0.0:
     express "^4.10.6"
     npm "^1.4.28"
 
-chriszj@^1.6.4:
-  version "1.6.4"
-  resolved "https://registry.npmjs.org/chriszj/-/chriszj-1.6.4.tgz#a02e37ed69948e640ed9983dca29f225e20e65cf"
-  integrity sha512-7V/PUhsOclfD3it7z3GGVf7uY0ON7I4OQ/SButu+A9CAfsyU1GFSyF3kEPHb5Z+i27f0HsYM9jNO6+Xl9NUWSQ==
+chriszj@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.npmjs.org/chriszj/-/chriszj-1.6.5.tgz#fb32b091910ec18df2e6ab5b8be9c06c4df1c4b3"
+  integrity sha512-E8M6LuL4QZYJ2rkalN7wNF9wH41gZaqBk0vV5jZgxU0rXjAVEIyBxHKMnVpvpLGPlKvptWJmJ56SNEMYkiBdWw==
   dependencies:
-    chriszj "^1.6.4"
+    chriszj "^1.6.5"
 
 clone@^1.0.2:
   version "1.0.4"

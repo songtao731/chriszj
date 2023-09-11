@@ -33,6 +33,9 @@ declare const _default: {
         type: (ObjectConstructor | ArrayConstructor)[];
         default: never[];
     };
+    dictOptions: {
+        type: ObjectConstructor;
+    };
     filter: {
         type: (StringConstructor | ObjectConstructor)[];
         default: string;
@@ -85,7 +88,7 @@ declare const _default: {
     align: StringConstructor;
     headerAlign: StringConstructor;
     showOverflowTooltip: {
-        type: PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "showArrow" | "effect" | "enterable" | "popperClass" | "offset" | "placement" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
+        type: PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
         default: undefined;
     };
     fixed: (StringConstructor | BooleanConstructor)[];

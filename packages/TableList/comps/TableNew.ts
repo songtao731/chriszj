@@ -10,11 +10,15 @@ export const NewTable = {
   request: Function,
   column:{
     type:Number,
-    default:4
+    default:0
   },
   gutter:{
     type:Number,
     default:20
+  },
+  labelWidth:{
+    type:[String,Number]
+
   },
   parseData: Function,
   path: String,

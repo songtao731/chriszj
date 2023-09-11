@@ -21,8 +21,8 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   chriszj:
-    specifier: ^1.6.4
-    version: 1.6.4
+    specifier: ^1.6.6
+    version: 1.6.6
   consola:
     specifier: ^3.2.3
     version: 3.2.3
@@ -1711,8 +1711,8 @@ packages:
       - supports-color
     dev: false
 
-  /chriszj@1.6.4:
-    resolution: {integrity: sha512-7V/PUhsOclfD3it7z3GGVf7uY0ON7I4OQ/SButu+A9CAfsyU1GFSyF3kEPHb5Z+i27f0HsYM9jNO6+Xl9NUWSQ==}
+  /chriszj@1.6.6:
+    resolution: {integrity: sha512-idkx6l4c4WQGg354GA0/oIIH9MI7sAUfgnUlLzJf6mNNDHaw7mOhUSDxj4UxFtjQBl60BcRc3ktGqZPVeSNXsA==}
     dev: false
 
   /color-convert@1.9.3:

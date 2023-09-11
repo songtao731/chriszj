@@ -23,7 +23,6 @@ import { formProps } from "./form";
 import DescItem from "./form-itemTsx";
 const props = defineProps(formProps);
 
-console.log(props, "9999");
 </script>
 
 <style lang="scss" scoped>

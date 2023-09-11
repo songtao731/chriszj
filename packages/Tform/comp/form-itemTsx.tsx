@@ -117,6 +117,8 @@ export default defineComponent({
     //初始化表单对象的数据
     watchEffect(() => {
       //接收转进来的栅格布局 数据转换24格
+
+      console.log(dataList,'dataList')
       dataList.value.forEach((el) => {
         el.nospan = (el.span && +el.span * (24 / +column)) || 24 / +column;
       });
@@ -196,10 +198,12 @@ export default defineComponent({
                   let element = null;
                   switch (el.type) {
                     case "space":
-                      element = (
+                      element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           <ElFormItem></ElFormItem>
                         </ElCol>
+                      ) : (
+                        ""
                       );
                       break;
                     case "custom":
@@ -247,12 +251,12 @@ export default defineComponent({
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
                           {el.columns && (
-                            <ElFormItem label={el.label} {...el} class='w-full'>
+                            <ElFormItem label={el.label} {...el} class="w-full">
                               <ElCol span={11}>
                                 <ElFormItem
                                   rules={el.columns[0].rules?.rules}
                                   prop={el.columns[0].prop}
-                                  class='w-full'
+                                  class="w-full"
                                 >
                                   <ElInput
                                     clearable={true}
@@ -265,7 +269,6 @@ export default defineComponent({
                                       el.columns[0].placeholder
                                     )}
                                     {...el.columns[0]!.input}
-                              
                                   />
                                 </ElFormItem>
                               </ElCol>
@@ -274,7 +277,7 @@ export default defineComponent({
                               </ElCol>
                               <ElCol span={11}>
                                 <ElFormItem
-                                class='w-full'
+                                  class="w-full"
                                   rules={
                                     el.columns && el.columns[1].rules?.rules
                                   }
@@ -304,7 +307,11 @@ export default defineComponent({
                     case "select":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules} class="w-full">
+                          <ElFormItem
+                            {...el}
+                            rules={el.rules?.rules}
+                            class="w-full"
+                          >
                             <ElSelect
                               clearable={true}
                               v-model={formData[el.prop as string]}
@@ -341,7 +348,11 @@ export default defineComponent({
                     case "date":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
+                          <ElFormItem
+                            {...el}
+                            rules={el.rules?.rules}
+                            class="w-full"
+                          >
                             <ElDatePicker
                               clearable={true}
                               class="!w-full"
@@ -352,7 +363,6 @@ export default defineComponent({
                                 el.showPlaceholder,
                                 "请选择" + el.placeholder
                               )}
-                              
                               {...el.date}
                             ></ElDatePicker>
                           </ElFormItem>
@@ -364,7 +374,11 @@ export default defineComponent({
                     case "cascader":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules} class=' w-full'>
+                          <ElFormItem
+                            {...el}
+                            rules={el.rules?.rules}
+                            class=" w-full"
+                          >
                             <ElCascader
                               clearable={true}
                               class="w-full"
@@ -385,7 +399,11 @@ export default defineComponent({
                     case "checkBox":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
+                          <ElFormItem
+                            {...el}
+                            rules={el.rules?.rules}
+                            class="w-full"
+                          >
                             <ElCheckboxGroup
                               v-model={formData[el.prop as string]}
                               {...el.checkBox}
@@ -410,7 +428,11 @@ export default defineComponent({
                     case "radio":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
+                          <ElFormItem
+                            {...el}
+                            rules={el.rules?.rules}
+                            class="w-full"
+                          >
                             <ElRadioGroup
                               v-model={formData[el.prop as string]}
                               {...el.radio}
@@ -435,7 +457,11 @@ export default defineComponent({
                     case "rate":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
+                          <ElFormItem
+                            {...el}
+                            rules={el.rules?.rules}
+                            class="w-full"
+                          >
                             <ElRate
                               v-model={formData[el.prop as string]}
                               clearable={true}
@@ -464,7 +490,11 @@ export default defineComponent({
                     case "switch":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
+                          <ElFormItem
+                            {...el}
+                            rules={el.rules?.rules}
+                            class="w-full"
+                          >
                             <ElSwitch
                               v-model={formData[el.prop as string]}
                               {...el.switch}
@@ -478,7 +508,11 @@ export default defineComponent({
                     case "slider":
                       element = !(el.hide || el.deepHide) ? (
                         <ElCol span={el.nospan}>
-                          <ElFormItem {...el} rules={el.rules?.rules} class='w-full'>
+                          <ElFormItem
+                            {...el}
+                            rules={el.rules?.rules}
+                            class="w-full"
+                          >
                             <ElSlider
                               v-model={formData[el.prop as string]}
                               {...el.slider}

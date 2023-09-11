@@ -136,62 +136,13 @@ const bind = chris.useTable({
         prop: "newaddress",
       },
     },
-    {
-      label: "下拉选择",
-      prop: "sex",
-      filter: {
-        type: "select",
-        options: [
-          { label: "男", value: "1" },
-          { label: "女", value: "2" },
-        ],
-      },
-    },
-    {
-      label: "树形多级",
-      prop: "tree",
-      filter: {
-        type: "cascader",
-        options: computed(() => data2.value),
-      },
-    },
+
     {
       label: "日期",
       prop: "date",
       filter: {
         type: "date",
         placeholder: "生活日期",
-      },
-    },
-    {
-      label: "日期范围",
-      prop: "date2",
-      filter: {
-        type: "dateRange",
-        prop: ["minTime", "maxTime"],
-      },
-    },
-    {
-      label: "日期时间",
-      prop: "date3",
-      filter: {
-        type: "dateTime",
-      },
-    },
-    {
-      label: "日期时间范围",
-      prop: "date4",
-      filter: {
-        type: "dateTimeRange",
-        prop: ["minTimeRange", "maxTimeRange"],
-      },
-    },
-    {
-      label: "数值范围",
-      prop: "date",
-      filter: {
-        type: "inputrange",
-        prop: ["minNumber", "maxNumber"],
       },
     },
     {

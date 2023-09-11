@@ -38,7 +38,7 @@ export declare const ButtonTypeProps: {
     size: StringConstructor;
     type: StringConstructor;
     disabled: BooleanConstructor;
-    icon: import("vue").PropType<string | Component<any, any, any, import("vue").ComputedOptions, import("vue").MethodOptions>>;
+    icon: import("vue").PropType<string | import("vue").Component<any, any, any, import("vue").ComputedOptions, import("vue").MethodOptions>>;
     plain: BooleanConstructor;
     link: BooleanConstructor;
     round: BooleanConstructor;
@@ -54,13 +54,13 @@ export declare const ButtonTypeProps: {
     bg: BooleanConstructor;
     loading: BooleanConstructor;
     loadingIcon: {
-        type: import("vue").PropType<string | Component<any, any, any, import("vue").ComputedOptions, import("vue").MethodOptions>>;
+        type: import("vue").PropType<string | import("vue").Component<any, any, any, import("vue").ComputedOptions, import("vue").MethodOptions>>;
         default: () => import("vue").DefineComponent<{}, {}, {}, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
     };
     autofocus: BooleanConstructor;
     autoInsertSpaces: BooleanConstructor;
     tag: {
-        type: import("vue").PropType<string | Component>;
+        type: import("vue").PropType<any>;
         default: string;
     };
     /**

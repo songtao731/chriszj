@@ -3,12 +3,13 @@ declare const Tform: ({
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: {
-            size?: import("./comp/useForm").size | undefined;
             disabled?: boolean | undefined;
+            size?: import("./comp/useForm").size | undefined;
+            border?: boolean | undefined;
             buttons?: import("../BaseComps/buttons").ButtonProps[] | undefined;
             title?: string | undefined;
             column?: string | number | undefined;
-            labelPosition?: "left" | "top" | "right" | undefined;
+            labelPosition?: "top" | "left" | "right" | undefined;
             requireAsteriskPosition?: "left" | "right" | undefined;
             labelWidth?: string | number | undefined;
             labelSuffix?: string | undefined;
@@ -19,15 +20,14 @@ declare const Tform: ({
             validateOnRuleChange?: boolean | undefined;
             hideRequiredAsterisk?: boolean | undefined;
             scrollToError?: boolean | undefined;
-            border?: boolean | undefined;
-            dataList?: import("./comp/useForm").dataItem[] | undefined;
             gutter?: number | undefined;
+            dataList?: import("./comp/useForm").dataItem[] | undefined;
             closePlaceholder?: boolean | undefined;
             buttonsAlign?: string | undefined;
+            ref?: import("vue").VNodeRef | undefined;
             key?: string | number | symbol | undefined;
             style?: unknown;
             readonly path?: string | undefined;
-            ref?: import("vue").VNodeRef | undefined;
             ref_for?: boolean | undefined;
             ref_key?: string | undefined;
             onVnodeBeforeMount?: ((vnode: import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
@@ -94,7 +94,7 @@ declare const Tform: ({
                 type: import("vue").PropType<Partial<Record<string, import("element-plus/es/utils").Arrayable<import("./comp/types").FormItemRule>>>>;
             };
             labelPosition: {
-                type: import("vue").PropType<"left" | "top" | "right">;
+                type: import("vue").PropType<"top" | "left" | "right">;
                 default: string;
             };
             requireAsteriskPosition: {
@@ -171,12 +171,13 @@ declare const Tform: ({
         }>>, {
             form: import("vue").Ref<any>;
         }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
-            size: import("./comp/useForm").size;
             disabled: boolean;
+            size: import("./comp/useForm").size;
+            border: boolean;
             buttons: import("../BaseComps/buttons").ButtonProps[];
             title: string;
             column: string | number;
-            labelPosition: "left" | "top" | "right";
+            labelPosition: "top" | "left" | "right";
             requireAsteriskPosition: "left" | "right";
             labelWidth: string | number;
             labelSuffix: string;
@@ -187,9 +188,8 @@ declare const Tform: ({
             validateOnRuleChange: boolean;
             hideRequiredAsterisk: boolean;
             scrollToError: boolean;
-            border: boolean;
-            dataList: import("./comp/useForm").dataItem[];
             gutter: number;
+            dataList: import("./comp/useForm").dataItem[];
             closePlaceholder: boolean;
             buttonsAlign: string;
         }, {}, string, {}> & {
@@ -218,7 +218,7 @@ declare const Tform: ({
             type: import("vue").PropType<Partial<Record<string, import("element-plus/es/utils").Arrayable<import("./comp/types").FormItemRule>>>>;
         };
         labelPosition: {
-            type: import("vue").PropType<"left" | "top" | "right">;
+            type: import("vue").PropType<"top" | "left" | "right">;
             default: string;
         };
         requireAsteriskPosition: {
@@ -304,7 +304,7 @@ declare const Tform: ({
         type: import("vue").PropType<Partial<Record<string, import("element-plus/es/utils").Arrayable<import("./comp/types").FormItemRule>>>>;
     };
     labelPosition: {
-        type: import("vue").PropType<"left" | "top" | "right">;
+        type: import("vue").PropType<"top" | "left" | "right">;
         default: string;
     };
     requireAsteriskPosition: {
@@ -381,12 +381,13 @@ declare const Tform: ({
 }>>, {
     form: import("vue").Ref<any>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
-    size: import("./comp/useForm").size;
     disabled: boolean;
+    size: import("./comp/useForm").size;
+    border: boolean;
     buttons: import("../BaseComps/buttons").ButtonProps[];
     title: string;
     column: string | number;
-    labelPosition: "left" | "top" | "right";
+    labelPosition: "top" | "left" | "right";
     requireAsteriskPosition: "left" | "right";
     labelWidth: string | number;
     labelSuffix: string;
@@ -397,9 +398,8 @@ declare const Tform: ({
     validateOnRuleChange: boolean;
     hideRequiredAsterisk: boolean;
     scrollToError: boolean;
-    border: boolean;
-    dataList: import("./comp/useForm").dataItem[];
     gutter: number;
+    dataList: import("./comp/useForm").dataItem[];
     closePlaceholder: boolean;
     buttonsAlign: string;
 }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {

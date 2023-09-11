@@ -10,6 +10,8 @@ export interface Args {
   column?: number;
   //查询条件间隙
   gutter?: number;
+  //昆都
+  labelWidth?:string|number
   //传入写死的表格数据
   data?: any[];
   //后台返回的数据地址      //默认是data.rows

@@ -4,7 +4,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<Partial<Record<string, import("element-plus/es/utils").Arrayable<import("./types").FormItemRule>>>>;
     };
     labelPosition: {
-        type: import("vue").PropType<"left" | "top" | "right">;
+        type: import("vue").PropType<"top" | "left" | "right">;
         default: string;
     };
     requireAsteriskPosition: {
@@ -86,7 +86,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<Partial<Record<string, import("element-plus/es/utils").Arrayable<import("./types").FormItemRule>>>>;
     };
     labelPosition: {
-        type: import("vue").PropType<"left" | "top" | "right">;
+        type: import("vue").PropType<"top" | "left" | "right">;
         default: string;
     };
     requireAsteriskPosition: {
@@ -161,12 +161,13 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     };
     disabled: BooleanConstructor;
 }>>, {
-    size: import("./useForm").size;
     disabled: boolean;
+    size: import("./useForm").size;
+    border: boolean;
     buttons: import("../../BaseComps/buttons").ButtonProps[];
     title: string;
     column: string | number;
-    labelPosition: "left" | "top" | "right";
+    labelPosition: "top" | "left" | "right";
     requireAsteriskPosition: "left" | "right";
     labelWidth: string | number;
     labelSuffix: string;
@@ -177,9 +178,8 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     validateOnRuleChange: boolean;
     hideRequiredAsterisk: boolean;
     scrollToError: boolean;
-    border: boolean;
-    dataList: import("./useForm").dataItem[];
     gutter: number;
+    dataList: import("./useForm").dataItem[];
     closePlaceholder: boolean;
     buttonsAlign: string;
 }, {}>, Partial<Record<string, (_: {

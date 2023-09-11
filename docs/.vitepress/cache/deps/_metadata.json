@@ -1,47 +1,41 @@
 {
-  "hash": "98680af4",
-  "browserHash": "adc33a8e",
+  "hash": "e0542d52",
+  "browserHash": "2c18dd1e",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "a019eb5d",
+      "fileHash": "8b43c11c",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "dbb4ab04",
+      "fileHash": "0abd74ee",
       "needsInterop": false
     },
     "element-plus": {
       "src": "../../../../node_modules/element-plus/es/index.mjs",
       "file": "element-plus.js",
-      "fileHash": "0584c5ae",
+      "fileHash": "76375158",
       "needsInterop": false
     },
     "@element-plus/icons-vue": {
       "src": "../../../../node_modules/@element-plus/icons-vue/dist/index.js",
       "file": "@element-plus_icons-vue.js",
-      "fileHash": "bbd3d1bf",
+      "fileHash": "f603abf0",
       "needsInterop": false
     },
     "chriszj": {
       "src": "../../../../node_modules/chriszj/chris-ui.mjs",
       "file": "chriszj.js",
-      "fileHash": "4f765c45",
+      "fileHash": "f94b65ff",
       "needsInterop": false
     },
     "@vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "c1201e63",
-      "needsInterop": false
-    },
-    "axios": {
-      "src": "../../../../node_modules/axios/index.js",
-      "file": "axios.js",
-      "fileHash": "68eab8db",
+      "fileHash": "f32d17fb",
       "needsInterop": false
     }
   },
