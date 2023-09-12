@@ -15,8 +15,14 @@
       </template>
       <template #age="scope">
         <span style="color: red">
-          {{ scope.row.promoter }}
+          {{ scope.row.contractAmount }}
         </span>
+      </template>
+      <template #zds2="scope">
+        <span style="color: rgb(0, 94, 255)">
+          {{ scope.row.contractAmount }}
+        </span>
+
       </template>
       <template #zds="{ scope }">
         <el-select v-model="scope.dd" placeholder="请选择活动区域" @change="getForm" clearable class="w-full">
@@ -37,6 +43,7 @@ import {
   entertainApplicationAddList,
 
 } from "@/api/index";
+import { ElButton } from "element-plus";
 
 const oneTable = ref();
 const ruleForm = ref({
@@ -152,7 +159,7 @@ const marks = reactive({
   },
 })
 
-const isShow = ref(true)
+const isShow = ref(false)
 const isShow2 = ref(false)
 
 const bind = computed(() => {
@@ -191,7 +198,8 @@ const bind = computed(() => {
         label: "输入框",
         prop: 'input',
         filter: 'input',
-        value: "输入"
+        value: "输入",
+        slotName: "age"
       },
       {
         label: "姓名",
@@ -199,7 +207,6 @@ const bind = computed(() => {
         formatter(row, column, cellValue, index) {
           return cellValue + index;
         },
-        hide: isShow2.value,
 
         filter: {
           type: "input",
@@ -217,7 +224,6 @@ const bind = computed(() => {
           }
 
         },
-        value: '33'
 
       },
       {
@@ -228,7 +234,7 @@ const bind = computed(() => {
           value: "id",
           label: "name",
         },
-        value: "1",
+        value: '1',
         filter: {
           type: "select",
           select: {
@@ -238,11 +244,8 @@ const bind = computed(() => {
               label: "label2",
             },
             onChange(val) {
+              console.log('slecs')
               isShow.value = val == '2' ? true : false
-              isShow2.value = val == '2' ? false : true
-
-
-              console.log(isShow2.value)
             }
           },
 
@@ -255,6 +258,8 @@ const bind = computed(() => {
         filter: {
           type: "cascader",
           prop: ["one", 'two', 'three'],
+          hide: isShow.value,
+
           cascader: {
             options: computed(() => data2.value),
             props: {
@@ -264,25 +269,30 @@ const bind = computed(() => {
       },
       {
         label: "日期",
-        prop: "date",
+        prop: "date333ll",
+        value:'2021-11-22',
         filter: {
           type: "date",
+          prop: 'kkk',
+          hide: isShow.value,
+
           date: {
-            type: 'date'
+            type: 'date',
+
           }
         },
-        formatType: 'date',
-        value: '2022-11-11'
       },
       {
         label: "日期范围",
-        prop: "date",
+        prop: "date2",
         width: "120",
         formatType: 'dateTime',
         value: ['2022-11-11', '2022-11-15'],
         filter: {
           type: 'date',
           prop: ['sdate', 'edate'],
+          hide: isShow.value,
+
           date: {
             type: "daterange",
           }
@@ -290,7 +300,34 @@ const bind = computed(() => {
         },
       },
       {
-        label: "千分位上",
+        label: "日期时间",
+        prop: "datetime",
+        value: '2023-11',
+        filter: {
+          type: "date",
+          prop: 'dataTieme',
+          hide: isShow.value,
+
+          date: {
+            type: "datetime",
+          }
+        },
+      },
+      {
+        label: "日期时间范围",
+        prop: "datetimerange222",
+        formatType: "dateTime",
+        value: ['2024-11-18 00:00:11', '2025-11-12 12:00:00'],
+        filter: {
+          type: "date",
+          prop: ['mindatetimerange', 'ebddatetimerange'],
+          date: {
+            type: "datetimerange"
+          }
+        },
+      },
+      {
+        label: "范围",
         prop: "updateTime",
         formatter(row, column, cellValue, index) {
           return cellValue && cellValue.split(" ")[0];
@@ -313,42 +350,19 @@ const bind = computed(() => {
           ],
         },
       },
-      {
-        label: "日期时间",
-        prop: "datetime",
-        formatType: "dateTime",
-        filter: {
-          type: "date",
-          prop: 'dataTieme',
-          date: {
-            type: "datetime",
-          }
-        },
-      },
-      {
-        label: "日期时间范围",
-        prop: "datetimerange",
-        formatType: "dateTime",
-        filter: {
-          type: "date",
-          prop: ['mindatetimerange', 'ebddatetimerange'],
-          date: {
-            type: "datetimerange"
-          }
-        },
-      },
+
       {
         label: "多选",
         prop: "checkbox",
         value: ['1', '3'],
+
         filter: {
           type: "checkBox",
           label: "测试数组",
           prop: 'check',
-          hide: isShow.value,
+           hide: isShow.value,
 
           checkBox: {
-
             options: [
               {
                 label2: "前端",
@@ -369,9 +383,11 @@ const bind = computed(() => {
       {
         label: '单选',
         prop: 'radio',
+
         value: '1',
         filter: {
           type: 'radio',
+
           radio: {
             options: [
               {
@@ -406,6 +422,8 @@ const bind = computed(() => {
         label: '开关',
         prop: 'switch',
         filter: {
+          hide: isShow.value,
+
           type: 'switch'
         },
         value: true
@@ -427,6 +445,7 @@ const bind = computed(() => {
 
         label: "自定义查询",
         prop: "processNo2",
+        slotName: 'zds2',
 
         filter: {
           type: "custom",

@@ -1,5 +1,6 @@
 <template>
   <div class="chris-table">
+    <!-- 顶部插槽 -->
     <slot name="topheader"> </slot>
 
     <!-- <Search ref="searchRef" :filter="filterList" :searchSize="props.searchSize" :labelPosition="props.labelPosition"
@@ -8,20 +9,25 @@
         <slot name="search"> </slot>
       </template>
     </Search> -->
-    <Search2 ref="searchRef" :labelWidth="props.labelWidth" :filter="columnsFilter" :size="props.size" :labelPosition="props.labelPosition"
-      :gutter="props.gutter" :column="props.column" @getParams="getParams" @resetFn="resetFn">
-   
-        <template v-for="items in filterList" #[items.filter.slotName]="{ scope }">
-          <slot :name="items.filter&&items.filter.slotName" :scope="scope" />
-        </template>
+    <Search2 ref="searchRef" :labelWidth="props.labelWidth" :filter="columnsFilter" :size="props.size"
+      :labelPosition="props.labelPosition" :gutter="props.gutter" :column="props.column" @getParams="getParams"
+      @resetFn="resetFn">
 
-   
+      <template v-for="items in columnsFilter" #[items?.filter?.slotName]="{ scope }">
+        <slot :name="items?.filter && items.filter?.slotName" :scope="scope" />
+      </template>
+
+
 
 
     </Search2>
+    <!-- 表格查询条件和表格之间的插槽 -->
     <slot name="centerheader"> </slot>
+    
 
+<!-- 右上插槽 -->
     <Buttons :buttons="props.buttons"> </Buttons>
+    
     <ElTable :data="dataList" style="width: 100%" v-on="tableEvents" ref="tableRef">
       <template #empty>
         <slot name="empty">
@@ -36,14 +42,27 @@
         :width="typeof props.index === 'object' && props.index.width" v-if="typeof props.index === 'boolean' ? props.index : !props.index.hide
           ">
       </ElTableColumn>
-      <TableColumn v-for="(item, index) in columnsFilter" :key="index" v-bind="item">
+      <ElTableColumn v-for="(item, index) in columnsFilter" :key="index" v-bind="item">
+        <template #header="scope" v-if="item.header">
+          <slot v-bind="scope" name="header" />
+        </template>
+        <template #default="scope">
+          <slot v-bind="scope" :name="item.slotName" v-if="item.slotName"> </slot>
+          <TableColumnTsx v-if="!item.slotName&&item.type==='default'&&!item.formatter"  :data="scope?.row" :column="item"></TableColumnTsx>
+        </template>
+
+      </ElTableColumn>
+
+
+
+      <!-- <TableColumn v-for="(item, index) in columnsFilter" :key="index" v-bind="item">
         <template v-if="item.header" #header="scope">
           <slot name="header" v-bind="scope" />
         </template>
         <template v-if="item.slotName" #default="scope">
           <slot :name="item.slotName" v-bind="scope" />
         </template>
-      </TableColumn>
+      </TableColumn> -->
     </ElTable>
 
     <Pagination v-show="total > 0 && props.pagination" :total="total" @getPage="getPage" :currentPage="currentPage"
@@ -53,9 +72,9 @@
 </template>
 <script setup lang="ts">
 import { ElTable } from "element-plus";
-import { computed, ref, onMounted, toRefs, unref, defineExpose } from "vue";
-import TableColumn from "./TableColumn.vue";
-import Search from "./SearchTsx";
+import { computed, ref, onMounted, unref, defineExpose } from "vue";
+// import TableColumn from "./TableColumn.vue";
+// import Search from "./SearchTsx";
 import Search2 from "./SearchTsx2";
 import Pagination from "./Pagination";
 import Buttons from "./Buttons.vue";
@@ -63,23 +82,27 @@ import type { Filter } from "./TableColumnItem";
 import { vepTableEmits, TableProps } from "./Table";
 import { getPath, getTotalPath } from "../utils/index";
 
+import TableColumnTsx from "./TableColumnTsx";
+
+
+
 
 
 //表格所有事件
-const emit = defineEmits({ ...vepTableEmits, resetFn: () => { } });
+const emit = defineEmits({ ...vepTableEmits, resetFn: () => true });
 //表格属性
 const props = defineProps(TableProps);
 
 
-const { columns } = toRefs(props);
-const columnsFilter=computed(()=>props.columns?.filter(el=>{
+// const { columns } = toRefs(props);
+const columnsFilter = computed(() => props.columns?.filter(el => {
   return !unref(el.hide)
 }))
 
 //控制展示显示隐藏 某些列
 
-const filterColumns = columns?.value?.filter((el) => !el.hide);
-console.log(filterColumns,'columnsFilter',columnsFilter)
+// const filterColumns = columns?.value?.filter((el) => !el.hide);
+ console.log('columnsFilter', columnsFilter)
 
 
 const searchRef = ref();
@@ -133,8 +156,8 @@ const getDataList = async (data?: any) => {
 };
 
 //获取筛选条件
-type NewFilter = Filter;
-const filterList = ref<NewFilter[]>([]);
+// type NewFilter = Filter;
+// const filterList = ref<NewFilter[]>([]);
 //当列不存在的时候筛选条件也 取消
 
 

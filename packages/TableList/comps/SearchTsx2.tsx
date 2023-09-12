@@ -35,6 +35,8 @@ import {
 } from "element-plus";
 import { CheckBoxItem } from "chriszj/BaseComps/checkBox";
 import { RadioItem } from "chriszj/BaseComps/radio";
+import { valueFormat } from "../../utils/data";
+
 export default defineComponent({
   props: [
     "filter",
@@ -91,9 +93,10 @@ export default defineComponent({
       )?.clientWidth;
       getNum(screenWidth.value, searchList.value.length);
       //回显值
-      // searchList.value.forEach((el: any) => {
-      //   formData[el.prop] = el.value;
-      // });
+      searchList.value.forEach((el: any) => {
+        formData[el.prop] = el.value;
+      });
+
 
       // //实时改变浏览器宽度和高度
       window.onresize = () => {
@@ -106,13 +109,12 @@ export default defineComponent({
       };
     });
 
-    const searchList: Ref<any[]> = ref([]);
+    const searchList: Ref<Filter[]> = ref([]);
     //初始化新的传参
     const newFormData: any = ref({});
     watchEffect(() => {
       searchList.value = filter.value.map((el: any) => {
         if (typeof el.filter === "string") {
-          //   formData[el.prop] = el.value;
           return {
             prop: el.prop,
             label: el.label,
@@ -120,8 +122,6 @@ export default defineComponent({
             value: el.value,
           };
         } else if (typeof el.filter === "object") {
-          //      formData[el.filter.prop || el.prop] = el.value;
-
           return {
             ...el.filter,
             prop: el.filter.prop || el.prop,
@@ -131,22 +131,8 @@ export default defineComponent({
           };
         }
       });
-      searchList.value.forEach((el) => {
-        //处理多选 重置为空数租 不然报错
-        if (el.hide) {
-          formData[el.prop] = "";
 
-          if (el.checkBox) {
-            formData[el.prop] = [];
-          }
-          if (el.type === "switch") {
-            formData[el.prop] = false;
-          }
-          if (el.type === "slider") {
-            formData[el.prop] = el.value;
-          }
-        }
-      });
+
     });
 
     const getParams = () => {
@@ -247,13 +233,16 @@ export default defineComponent({
       searchList.value.forEach((el) => {
         //处理多选 重置为空数租 不然报错
         if (el.checkBox) {
-          formData[el.prop] = [];
+          formData[el.prop as string] = [];
         }
         if (el.type === "switch") {
-          formData[el.prop] = false;
+          formData[el.prop as string] = false;
         }
         if (el.type === "slider") {
-          formData[el.prop] = el.value;
+          formData[el.prop as string] = el.value;
+        }
+        if (el.type === "rate") {
+          formData[el.prop as string] = 0;
         }
       });
 
@@ -316,7 +305,7 @@ export default defineComponent({
                             rules={el.rules?.rules}
                             class="w-full"
                           >
-                            {slots[el.slotName] &&
+                            {slots[el.slotName as string] &&
                               slots[el.slotName]({ scope: formData })}
                           </ElFormItem>
                         </ElCol>
@@ -446,11 +435,12 @@ export default defineComponent({
                             <ElDatePicker
                               clearable={true}
                               class="!w-full"
-                              v-model={formData[el.prop as string]}
-                              value-format="YYYY-MM-DD"
+                            valueFormat={valueFormat[el.date?.type as string]}
                               editable={false}
                               placeholder={formatDataFn(el).placeholder}
                               {...el.date}
+                              v-model={formData[el.prop as string]}
+
                             ></ElDatePicker>
                           </ElFormItem>
                         </ElCol>

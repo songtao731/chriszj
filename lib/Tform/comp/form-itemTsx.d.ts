@@ -169,8 +169,9 @@ declare const _default: import("vue").DefineComponent<{
     title: string;
     column: string | number;
     labelPosition: "top" | "left" | "right";
-    requireAsteriskPosition: "left" | "right";
+    gutter: number;
     labelWidth: string | number;
+    requireAsteriskPosition: "left" | "right";
     labelSuffix: string;
     inline: boolean;
     inlineMessage: boolean;
@@ -179,7 +180,6 @@ declare const _default: import("vue").DefineComponent<{
     validateOnRuleChange: boolean;
     hideRequiredAsterisk: boolean;
     scrollToError: boolean;
-    gutter: number;
     dataList: dataItem[];
     closePlaceholder: boolean;
     buttonsAlign: string;

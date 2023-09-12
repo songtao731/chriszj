@@ -15,8 +15,8 @@ declare const TableList: ({
             } | undefined;
             column?: number | undefined;
             labelPosition?: string | undefined;
-            emptyText?: string | undefined;
             gutter?: number | undefined;
+            emptyText?: string | undefined;
             pagination?: boolean | undefined;
             layout?: string | undefined;
             pageSizes?: unknown[] | undefined;
@@ -140,8 +140,8 @@ declare const TableList: ({
             } | undefined) | undefined;
             readonly load?: ((row: any, treeNode: import("./comps/Pride").TreeNode, resolve: (data: any[]) => void) => void) | undefined;
             readonly searchData?: Record<string, any> | undefined;
-            onResetFn?: (() => any) | undefined;
             readonly labelWidth?: string | number | undefined;
+            onResetFn?: (() => any) | undefined;
             onExpandChange?: ((row: any, expanded: boolean | any[]) => any) | undefined;
             readonly height?: string | number | undefined;
             readonly pageSize?: string | undefined;
@@ -428,7 +428,7 @@ declare const TableList: ({
             refresh: (data: any) => void;
             params: import("vue").Ref<any>;
         }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-            resetFn: () => void;
+            resetFn: () => true;
             select: (selection: any[], row: any) => boolean;
             selectAll: (selection: any[]) => boolean;
             selectionChange: (selection: any[]) => boolean;
@@ -471,8 +471,8 @@ declare const TableList: ({
             } | undefined;
             column: number;
             labelPosition: string;
-            emptyText: string;
             gutter: number;
+            emptyText: string;
             pagination: boolean;
             layout: string;
             pageSizes: unknown[];
@@ -959,7 +959,7 @@ declare const TableList: ({
     refresh: (data: any) => void;
     params: import("vue").Ref<any>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    resetFn: () => void;
+    resetFn: () => true;
     select: (selection: any[], row: any) => boolean;
     selectAll: (selection: any[]) => boolean;
     selectionChange: (selection: any[]) => boolean;
@@ -1002,8 +1002,8 @@ declare const TableList: ({
     } | undefined;
     column: number;
     labelPosition: string;
-    emptyText: string;
     gutter: number;
+    emptyText: string;
     pagination: boolean;
     layout: string;
     pageSizes: unknown[];
@@ -1022,7 +1022,7 @@ declare const TableList: ({
 }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: Partial<Record<any, (_: {
         scope: any;
-    }) => any>> & Partial<Record<any, (_: any) => any>> & {
+    }) => any>> & Partial<Record<string, (_: any) => any>> & {
         topheader?(_: {}): any;
         centerheader?(_: {}): any;
         empty?(_: {}): any;

@@ -10,8 +10,9 @@ declare const Tform: ({
             title?: string | undefined;
             column?: string | number | undefined;
             labelPosition?: "top" | "left" | "right" | undefined;
-            requireAsteriskPosition?: "left" | "right" | undefined;
+            gutter?: number | undefined;
             labelWidth?: string | number | undefined;
+            requireAsteriskPosition?: "left" | "right" | undefined;
             labelSuffix?: string | undefined;
             inline?: boolean | undefined;
             inlineMessage?: boolean | undefined;
@@ -20,7 +21,6 @@ declare const Tform: ({
             validateOnRuleChange?: boolean | undefined;
             hideRequiredAsterisk?: boolean | undefined;
             scrollToError?: boolean | undefined;
-            gutter?: number | undefined;
             dataList?: import("./comp/useForm").dataItem[] | undefined;
             closePlaceholder?: boolean | undefined;
             buttonsAlign?: string | undefined;
@@ -178,8 +178,9 @@ declare const Tform: ({
             title: string;
             column: string | number;
             labelPosition: "top" | "left" | "right";
-            requireAsteriskPosition: "left" | "right";
+            gutter: number;
             labelWidth: string | number;
+            requireAsteriskPosition: "left" | "right";
             labelSuffix: string;
             inline: boolean;
             inlineMessage: boolean;
@@ -188,7 +189,6 @@ declare const Tform: ({
             validateOnRuleChange: boolean;
             hideRequiredAsterisk: boolean;
             scrollToError: boolean;
-            gutter: number;
             dataList: import("./comp/useForm").dataItem[];
             closePlaceholder: boolean;
             buttonsAlign: string;
@@ -388,8 +388,9 @@ declare const Tform: ({
     title: string;
     column: string | number;
     labelPosition: "top" | "left" | "right";
-    requireAsteriskPosition: "left" | "right";
+    gutter: number;
     labelWidth: string | number;
+    requireAsteriskPosition: "left" | "right";
     labelSuffix: string;
     inline: boolean;
     inlineMessage: boolean;
@@ -398,7 +399,6 @@ declare const Tform: ({
     validateOnRuleChange: boolean;
     hideRequiredAsterisk: boolean;
     scrollToError: boolean;
-    gutter: number;
     dataList: import("./comp/useForm").dataItem[];
     closePlaceholder: boolean;
     buttonsAlign: string;

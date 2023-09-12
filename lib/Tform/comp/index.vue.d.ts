@@ -168,8 +168,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     title: string;
     column: string | number;
     labelPosition: "top" | "left" | "right";
-    requireAsteriskPosition: "left" | "right";
+    gutter: number;
     labelWidth: string | number;
+    requireAsteriskPosition: "left" | "right";
     labelSuffix: string;
     inline: boolean;
     inlineMessage: boolean;
@@ -178,7 +179,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     validateOnRuleChange: boolean;
     hideRequiredAsterisk: boolean;
     scrollToError: boolean;
-    gutter: number;
     dataList: import("./useForm").dataItem[];
     closePlaceholder: boolean;
     buttonsAlign: string;

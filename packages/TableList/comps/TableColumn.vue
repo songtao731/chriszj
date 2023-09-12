@@ -24,7 +24,8 @@ import TableColumn from "./TableColumnTsx";
 
 const props = defineProps(TableColumnProps);
 
-console.log(props,111)
+
+
 
 
 </script>

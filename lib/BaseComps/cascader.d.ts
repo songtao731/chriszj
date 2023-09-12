@@ -1,7 +1,7 @@
-import { CascaderNode, CascaderProps, CascaderValue } from "element-plus";
+import { CascaderNode, CascaderOption, CascaderProps, CascaderValue } from "element-plus";
 import { ComputedRef } from "vue";
 export interface CascaderBaseProps {
-    options?: Record<string, unknown>[] | ComputedRef;
+    options?: CascaderOption[] | ComputedRef<any>;
     ref?: any;
     props?: CascaderProps;
     size?: "large" | "default" | "small";
@@ -20,6 +20,7 @@ export interface CascaderBaseProps {
     teleported?: boolean;
     popperAppendToBody?: boolean;
     tagType?: "success" | "info" | "warning" | "danger";
+    maxCollapseTags?: number;
     validateEvent?: boolean;
     onChange?: <T>(val: T) => void;
     onFocus?: <T>(val: T) => void;

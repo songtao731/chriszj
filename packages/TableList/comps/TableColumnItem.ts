@@ -24,6 +24,8 @@ export interface Filter {
   placeholder?: string | string[];
   type?: FilterType;
   slotName?: string;
+  value?: any;
+
   options?:
     | {
         label: string;
@@ -33,6 +35,8 @@ export interface Filter {
     | ComputedRef<any>;
   showAllLevels?: boolean;
   hide?: boolean;
+  deepHide?: boolean;
+  rules?: any;
   input?: MainPackage["input"];
   select?: MainPackage["select"];
   //日期
@@ -85,7 +89,7 @@ interface CustomType {
   dictOptions?: { label?: string; value?: string; children?: string };
 
   filter?: string | Filter;
-  value?: string | number | (string | number)[]|boolean;
+  value?: string | number | (string | number)[] | boolean;
   hide?: boolean;
   buttons?: Omit<ButtonProps, "onClick">[];
 }

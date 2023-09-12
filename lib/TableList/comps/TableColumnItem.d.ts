@@ -11,6 +11,7 @@ export interface Filter {
     placeholder?: string | string[];
     type?: FilterType;
     slotName?: string;
+    value?: any;
     options?: {
         label: string;
         value: string;
@@ -21,6 +22,8 @@ export interface Filter {
     }[] | ComputedRef<any>;
     showAllLevels?: boolean;
     hide?: boolean;
+    deepHide?: boolean;
+    rules?: any;
     input?: MainPackage["input"];
     select?: MainPackage["select"];
     date?: MainPackage["date"];

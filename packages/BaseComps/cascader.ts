@@ -1,8 +1,11 @@
-import { CascaderNode, CascaderProps, CascaderValue } from "element-plus";
-import { ComputedRef, Ref } from "vue";
+import { CascaderNode, CascaderOption, CascaderProps, CascaderValue } from "element-plus";
+import { ComputedRef } from "vue";
+
+
 
 export interface CascaderBaseProps {
-  options?: Record<string, unknown>[]| ComputedRef;
+  options?: CascaderOption[]|ComputedRef<any>;
+
   ref?:any
 
   props?: CascaderProps;
