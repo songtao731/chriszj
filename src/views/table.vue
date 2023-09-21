@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries">
+    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries" :currentPage="2">
       <template #topheader> 最上部</template>
       <template #centerheader> 中间 </template>
       <template #footer> 尾部 </template>
@@ -32,7 +32,10 @@
     </TableList>
 
     <!-- <TableList v-bind="bind2" @resetFn="resetFn"> </TableList> -->
+
+
   </div>
+
 </template>
 
 <script setup lang="ts">
@@ -46,6 +49,7 @@ import {
 import { ElButton } from "element-plus";
 
 const oneTable = ref();
+
 const ruleForm = ref({
   region: "",
   region2: "",
@@ -100,6 +104,7 @@ const data3 = ref()
 
 const fn = () => {
   setTimeout(() => {
+    nums.value=10
     data.value = [
       { label2: "前端", value2: "1" },
       { label2: "后端", value2: "2" },
@@ -166,9 +171,9 @@ const bind = computed(() => {
   console.log('我变了')
   return chris.useTable({
     request: (params) => entertainApplicationAddList({ ...params }),
-    path: 'data.list',
+
+
     totalPath: 'data.total',
-    pageNum: "pageIndex",
     labelWidth: '100px',
     buttons: [
       {
@@ -244,8 +249,10 @@ const bind = computed(() => {
               label: "label2",
             },
             onChange(val) {
-              console.log('slecs')
               isShow.value = val == '2' ? true : false
+
+              console.log('slecs', isShow.value)
+
             }
           },
 
@@ -255,6 +262,7 @@ const bind = computed(() => {
         label: "树形是上课时开始看看是",
         prop: "promoter",
         value: ["zhinan", "typography"],
+        hide: isShow.value,
         filter: {
           type: "cascader",
           prop: ["one", 'two', 'three'],
@@ -270,7 +278,7 @@ const bind = computed(() => {
       {
         label: "日期",
         prop: "date333ll",
-        value:'2021-11-22',
+        value: '2021-11-22',
         filter: {
           type: "date",
           prop: 'kkk',
@@ -334,10 +342,13 @@ const bind = computed(() => {
         },
         filter: {
           type: 'inputrange',
+          value: [1, 2],
           columns: [
             {
               prop: "min",
               placeholder: "请输入最小值",
+              value: '2',
+
               input: {
 
               },
@@ -345,6 +356,7 @@ const bind = computed(() => {
             },
             {
               prop: "max",
+              value: '88',
               input: {},
             },
           ],
@@ -360,7 +372,7 @@ const bind = computed(() => {
           type: "checkBox",
           label: "测试数组",
           prop: 'check',
-           hide: isShow.value,
+          hide: isShow.value,
 
           checkBox: {
             options: [

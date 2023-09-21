@@ -10,7 +10,7 @@
       </ElInput>
     </template>
   </Tform>
-  <Tform v-bind="bind2" ref="tForm2">
+  <!-- <Tform v-bind="bind2" ref="tForm2">
     <template #title> </template>
     <template #buttons>
       <el-button type="primary">Operation</el-button>
@@ -20,7 +20,7 @@
       <ElInput v-model.number="scope.pages" placeholder="Please input">
       </ElInput>
     </template>
-  </Tform>
+  </Tform> -->
 </template>
 
 
@@ -43,14 +43,17 @@ const url =
   "https://gateway-uat.zhidabl.com" + "/finance-file/fast/file/upload";
 const tForm = ref();
 let bb: any = ref([]);
+let dd: any = ref([]);
+
 
 setTimeout(() => {
   bb.value = [
     { label: "男", value: "1", id: 1 },
     { label: "女", value: "0", id: 2 },
   ];
+  dd.value='111'
   // ishide.value=true
-}, 2000);
+}, 10);
 
 let aa: Ref<dataItem[]> = ref([]);
 const cc = ref();
@@ -61,6 +64,24 @@ setTimeout(() => {
     size: 1,
     startRow: "1",
     pages: "99",
+    check: [],
+    radio: '1',
+    rate: 1,
+    nextPage:"身高2米",
+    upload: [
+      {
+        name: "food.jpeg",
+        url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+      },
+      {
+        url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+        name: '2.jpg'
+      },
+      {
+        url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.pdf",
+        name: '3.png'
+      }
+    ],
   };
 }, 100);
 
@@ -107,6 +128,8 @@ const checkRate = (rule: any, value: any, callback: any) => {
   }
 };
 const checkUpload = (rule: any, value: any, callback: any) => {
+
+  console.log(value, 'upload')
   if (!value.length) {
     callback(new Error("请上传"));
   } else {
@@ -125,15 +148,15 @@ const bind = computed(() => {
   console.log("我变了");
 
   return chris.useForm({
-    //  request:cc.value,
-   // request: (params) => entertainApplicationAddList({ a: 1 }),
+    request: cc.value,
+    // request: (params) => entertainApplicationAddList({ a: 1 }),
     parseData: (value) => {
       return {
         ...value,
       };
     },
     title: "测试表单",
-    column: 4,
+    column: 3,
     labelWidth: "140px",
     dataList: [
       {
@@ -147,13 +170,11 @@ const bind = computed(() => {
         prop: "size",
         type: "input",
         class: "inss",
-        value: 22,
 
         input: {
           showWordLimit: true,
           maxlength: 10,
           suffixIcon: "Calendar",
-          ref: startRef,
         },
         rules: chris
           .rulesFn()
@@ -169,15 +190,16 @@ const bind = computed(() => {
           options: bb.value,
           filterable: true,
           onChange(x) {
-              isHide.value=x==1?true:false
+            isHide.value = x == 1 ? true : false
           },
         },
-        rules: chris.rulesFn().required(true, "请选择性别"),
-        
+        rules: chris.rulesFn().required(true, "请选择性别", 'change'),
+
       },
       {
         type: "space",
       },
+
       {
         label: "身高:",
         prop: "nextPage",
@@ -186,8 +208,30 @@ const bind = computed(() => {
           .rulesFn()
           .range(0, 2, "请输入2到5位", "blur")
           .required(true, "请输入身高"),
-        value: "1",
-        hide: isHide.value,
+        deepHide: isHide.value,
+        value:'222'
+      },
+      {
+        label: "职业",
+        type: "checkBox",
+        prop: "check",
+        rules: chris.rulesFn().required(true, "请选择职业"),
+        checkBox: {
+          options: [
+            {
+              label: "前端",
+              value: "1",
+            },
+            {
+              label: "后端",
+              value: "2",
+            },
+            {
+              label: "测试",
+              value: "3",
+            },
+          ],
+        },
       },
       {
         label: "体总:",
@@ -213,7 +257,6 @@ const bind = computed(() => {
         prop: "date",
         type: "date",
         rules: chris.rulesFn().required(true, "请输入日期"),
-        value: "2021-11-11",
 
         date: {
           type: "date",
@@ -226,6 +269,15 @@ const bind = computed(() => {
         rules: chris.rulesFn().required(true, "请输入日期时间"),
         date: {
           type: "datetimerange",
+        },
+      },
+      {
+        label: "daterange:",
+        prop: "daterange",
+        type: "date",
+        rules: chris.rulesFn().required(true, "请输入日期时间"),
+        date: {
+          type: "daterange",
         },
       },
       {
@@ -260,34 +312,13 @@ const bind = computed(() => {
           },
         },
       },
-      {
-        label: "职业",
-        type: "checkBox",
-        prop: "check",
-        rules: chris.rulesFn().required(true, "请选择职业"),
-        checkBox: {
-          options: [
-            {
-              label: "前端",
-              value: "1",
-            },
-            {
-              label: "后端",
-              value: "2",
-            },
-            {
-              label: "测试",
-              value: "3",
-            },
-          ],
-        },
-      },
+
       {
         label: "行业",
         type: "radio",
         prop: "radio",
-        value: "1",
         rules: chris.rulesFn().required(true, "请选择行业"),
+        value:'1',
         radio: {
           options: [
             {
@@ -314,8 +345,8 @@ const bind = computed(() => {
           texts: ["oops", "disappointed", "normal", "good", "great"],
           showText: true,
           allowHalf: true,
-          onChange(val) { 
-            
+          onChange(val) {
+
           },
         },
       },
@@ -323,7 +354,7 @@ const bind = computed(() => {
         label: "上传",
         type: "upload",
         prop: "upload",
-        rules: chris.rulesFn().validator(checkUpload).required(true),
+        rules:chris.rulesFn().required(true,'请上传').validator(checkUpload),
         ref: startRef,
 
         upload: {
@@ -331,7 +362,7 @@ const bind = computed(() => {
           headers: {
             token: sessionStorage.token,
           },
-          ref: startRef,
+
           onChange() {
             startRef.value.validate();
           },
@@ -342,10 +373,12 @@ const bind = computed(() => {
         prop: "switch",
         rules: chris.rulesFn().required(true),
         type: "switch",
-        value: "100",
+
+        hide: isHide.value,
+
         switch: {
           onChange(val) { },
-          activeValue: "100",
+          activeValue: "22",
           inactiveValue: "8",
         },
       },
@@ -355,7 +388,6 @@ const bind = computed(() => {
         rules: chris.rulesFn().required(true),
         type: "slider",
         value: [30, 70],
-        deepHide: isHide.value,
 
         slider: {
           onChange(val) {
@@ -384,11 +416,12 @@ const bind = computed(() => {
           {
             prop: "min",
             rules: chris.rulesFn().required(true, "最小值"),
-            placeholder: "请输入最小值",
+            placeholder: "请输入最小值22",
+            value: 11,
             input: {
 
-              },
-         
+            },
+
           },
           {
             prop: "max",
@@ -406,6 +439,7 @@ const bind = computed(() => {
         content: "提交",
         type: "primary",
         onClick() {
+
           console.log(
             tForm.value.form.formData,
             "formdata",
@@ -428,34 +462,37 @@ const bind = computed(() => {
         type: "success",
         onClick() {
           tForm.value.form.formRef.resetFields();
+
+
+          console.log(tForm.value.form, 'ss', tForm.value.form.formData)
         },
       },
     ],
   });
 });
 
-const bind2=computed(()=>{
+const bind2 = computed(() => {
 
   return chris.useForm({
-      title:"11",
-      dataList:[{
-         type:'input',
-         prop:'input',
-         label:"测试",
-         rules:chris.rulesFn().required(true,'请输入')
+    title: "11",
+    dataList: [{
+      type: 'input',
+      prop: 'input',
+      label: "测试",
+      rules: chris.rulesFn().required(true, '请输入')
 
 
-      }],
-      buttons:[
-        {
-          type:'primary',
-          content:'点击',
-          onClick(scope) {
-              
-          },
-        }
-      ]
-     
+    }],
+    buttons: [
+      {
+        type: 'primary',
+        content: '点击',
+        onClick(scope) {
+
+        },
+      }
+    ]
+
   })
 })
 </script>

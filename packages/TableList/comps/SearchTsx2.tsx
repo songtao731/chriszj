@@ -53,8 +53,32 @@ export default defineComponent({
     //filter:过滤条件,searchSize:查询条件框的大小 labelPosition:查询条件label的位置
     const { column, labelPosition } = props;
 
+    //搜索条件的表单数据
+    const formData: any = reactive({});
     const filter = computed(() => {
-      return props.filter.filter((ele: any) => ele.filter);
+      return props.filter.filter((ele: any) => {
+        if (typeof ele.filter === "object" && ele.filter.hide) {
+          formData[ele.filter.prop || (ele.prop as string)] = "";
+
+          if (ele.filter.type === "checkBox") {
+            formData[ele.filter.prop || (ele.prop as string)] = [];
+          }
+          if (ele.filter.type === "switch") {
+            formData[ele.filter.prop || (ele.prop as string)] = false;
+          }
+          if (ele.filter.type === "slider") {
+            formData[ele.filter.prop || (ele.prop as string)] = ele.value;
+          }
+          if (ele.filter.type === "rate") {
+            formData[ele.filter.prop || (ele.prop as string)] = 0;
+          }
+        }
+        if (typeof ele.filter === "string") {
+          return ele.filter;
+        } else if (typeof ele.filter === "object" && !ele.filter.hide) {
+          return ele.filter;
+        }
+      });
     });
     //表格的可视宽度
     const screenWidth = ref();
@@ -82,8 +106,7 @@ export default defineComponent({
         isShow.value = num > 3;
       }
     };
-    //搜索条件的表单数据
-    const formData: any = reactive({});
+
     //获取屏幕可视化宽度
     onMounted(() => {
       //   screenWidth.value = document.body.clientWidth;
@@ -96,7 +119,6 @@ export default defineComponent({
       searchList.value.forEach((el: any) => {
         formData[el.prop] = el.value;
       });
-
 
       // //实时改变浏览器宽度和高度
       window.onresize = () => {
@@ -131,8 +153,6 @@ export default defineComponent({
           };
         }
       });
-
-
     });
 
     const getParams = () => {
@@ -292,14 +312,14 @@ export default defineComponent({
                   switch (el.type) {
                     case "space":
                       element = (
-                        <ElCol span={span.value}>
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem></ElFormItem>
                         </ElCol>
                       );
                       break;
                     case "custom":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem
                             {...el}
                             rules={el.rules?.rules}
@@ -309,13 +329,12 @@ export default defineComponent({
                               slots[el.slotName]({ scope: formData })}
                           </ElFormItem>
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                     case "input":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem
                             {...el}
                             prop={el.prop}
@@ -330,13 +349,12 @@ export default defineComponent({
                             />
                           </ElFormItem>
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                     case "inputrange":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           {el.columns && (
                             <ElFormItem label={el.label} {...el} class="w-full">
                               <ElCol span={11} class="!pr-0 !pl-0">
@@ -385,13 +403,12 @@ export default defineComponent({
                             </ElFormItem>
                           )}
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                     case "select":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem
                             {...el}
                             rules={el.rules?.rules}
@@ -420,13 +437,12 @@ export default defineComponent({
                             </ElSelect>
                           </ElFormItem>
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                     case "date":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem
                             {...el}
                             rules={el.rules?.rules}
@@ -435,22 +451,20 @@ export default defineComponent({
                             <ElDatePicker
                               clearable={true}
                               class="!w-full"
-                            valueFormat={valueFormat[el.date?.type as string]}
+                              valueFormat={valueFormat[el.date?.type as string]}
                               editable={false}
                               placeholder={formatDataFn(el).placeholder}
                               {...el.date}
                               v-model={formData[el.prop as string]}
-
                             ></ElDatePicker>
                           </ElFormItem>
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                     case "cascader":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem
                             {...el}
                             rules={el.rules?.rules}
@@ -465,13 +479,12 @@ export default defineComponent({
                             ></ElCascader>
                           </ElFormItem>
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                     case "checkBox":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem
                             {...el}
                             rules={el.rules?.rules}
@@ -493,13 +506,12 @@ export default defineComponent({
                             </ElCheckboxGroup>
                           </ElFormItem>
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                     case "radio":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem
                             {...el}
                             rules={el.rules?.rules}
@@ -521,13 +533,12 @@ export default defineComponent({
                             </ElRadioGroup>
                           </ElFormItem>
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                     case "rate":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem
                             {...el}
                             rules={el.rules?.rules}
@@ -540,13 +551,12 @@ export default defineComponent({
                             ></ElRate>
                           </ElFormItem>
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                     case "switch":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem
                             {...el}
                             rules={el.rules?.rules}
@@ -558,13 +568,12 @@ export default defineComponent({
                             ></ElSwitch>
                           </ElFormItem>
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                     case "slider":
-                      element = !(el.hide || el.deepHide) ? (
-                        <ElCol span={span.value}>
+                      element = (
+                        <ElCol span={span.value} key={el.label}>
                           <ElFormItem
                             {...el}
                             rules={el.rules?.rules}
@@ -576,9 +585,8 @@ export default defineComponent({
                             ></ElSlider>
                           </ElFormItem>
                         </ElCol>
-                      ) : (
-                        ""
                       );
+
                       break;
                   }
                   return element;

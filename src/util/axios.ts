@@ -35,7 +35,7 @@ const requestConfig: Config = {
   baseURL: '/api',
   timeout: 600000,
   headers: {
-    token : `${sessionStorage.getItem("token")}`
+   " X-UserToken" : `${sessionStorage.getItem("token")}`
   }
 };
 

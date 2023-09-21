@@ -37,7 +37,7 @@ export default defineComponent({
         <ElPagination
           onUpdate:current-page={this.handleCurrentChange}
           onUpdate:page-size={this.handleSizeChange}
-          currentPage={this.currentPage}
+          currentPageSync={this.currentPage}
           pageSizes={this.props.pageSizes}
           pageSize={this.pageSize}
           layout={this.props.layout}
