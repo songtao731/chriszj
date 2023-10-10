@@ -1,6 +1,6 @@
 export declare const TableLists: {
     table: {
-        type: ObjectConstructor;
+        type: FunctionConstructor;
         default: {
             request: FunctionConstructor;
             column: {

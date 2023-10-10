@@ -19,7 +19,8 @@ TTables/tablesProp
 | :---------------------- | :----------------------------------------------------------------------------- | :----------- | :-------- |
 | useTables | 表格数据对象 | Function |  |
 | tabs | 表格上方的选项卡  | Object | {} |
-| ---activeName | 默认选中的值  | String&&Number | 必填 |
+| ---activeValue | 默认选中的值  | String&&Number | 必填 |
+| ---isRoute | 开启浏览器缓存route,用于列表页点击进详情页 再返回 |  boolean |  false|
 | ---tabsList | 选项卡的值  | Object |[{label:'选项一',value:'1'}] 必填 |
 | ---type | 	风格类型  | String |card/border-card |
 | ---closable | 	标签是否可关闭  | Boolean |false|

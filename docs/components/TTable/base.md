@@ -14,7 +14,7 @@ TTable/base
 TTable/request
 :::
 
-### 配置查询条件  "input"| "select"| "date"| "cascader"| "inputrange"| "checkBox"| "radio"| "rate"| "switch"| "slider"| "space"| "custom";
+### 配置查询条件 "input"| "select"| "date"| "cascader"| "inputrange"| "checkBox"| "radio"| "rate"| "switch"| "slider"| "space"| "custom";
 
 :::demo 在`columns`对象中添加`filter`
 TTable/search
@@ -62,29 +62,36 @@ TTable/baseoptions
 TTable/tableslot  
 :::
 
-
 ### 自定义搜索
 
-:::demo  手动传入resetFn 重置的时候情况自定义的查询条件
+:::demo 手动传入 resetFn 重置的时候情况自定义的查询条件
 TTable/zdySearch  
 :::
-### 获取table属性页面
 
-:::demo  tableRef
+### 表格校验
+
+:::demo 表格里有输入框 下拉框 日期 次级 switch
+TTable/formtable  
+:::
+
+### 获取 table 属性页面
+
+:::demo tableRef
 TTable/tableprop  
 :::
 | 参数 | 说明 | 类型 | 默认值 |
 | :---------------------- | :----------------------------------------------------------------------------- | :----------- | :-------- |
-| useTable | 表格数据对象 | Function |  |
+| useTable | 表格数据对象 | Function | |
 | data | 展示数据 静态数据 | Array | [] |
 | request | 传入后台接口 展示数据 | Array | [] |
-|column|查询条件一行展示几个|Number|不传的话 表格宽度大于1800px展示4个否则3个
+|column|查询条件一行展示几个|Number|不传的话 表格宽度大于 1800px 展示 4 个否则 3 个
 |gutter|查询条件之间间隔|Number|20
-|labelWidth|查询条件label宽度|-
+|labelWidth|查询条件 label 宽度|-
 | --columns | 表格内数据 | Array | [] |
 | -------label | 表格头部文字 | Object | - |
 | -------prop | 表格内容展示值 | Array | - |
 | -------filter | 搜索条件 | Object 或者 String 具体参考配置查询条件 | - |
+| -------event | 搜索条件 | Object 具体参考配置查询条件(这里只支持 input,select,date,cascader,switch) | - |
 | -------dictData | 用于回显模具数据 | Array |  
 | -------formatType | 用于快速格式化数据 | String price,priceChinese,date,dateTime | | - |
 | -------formatter | 用于格式化数据 | Function(row, column, cellValue, index) | Element 原始方法 |
@@ -109,9 +116,8 @@ TTable/tableprop
 
 ### 4、Methods 方法 全局属性 参考 el-table 直接使用
 
-| 事件名             | 说明                         | 参数 |
-| :----------------- | :--------------------------- | :--- |
-| tableRef     |  获取table  参考获取table属性页面 | -    |
-| refresh          | 刷新列表数据                | -    |
-| params | 获取查询条件             | -    |
-
+| 事件名   | 说明                               | 参数 |
+| :------- | :--------------------------------- | :--- |
+| tableRef | 获取 table 参考获取 table 属性页面 | -    |
+| refresh  | 刷新列表数据                       | -    |
+| params   | 获取查询条件                       | -    |

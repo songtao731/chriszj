@@ -18,6 +18,27 @@ export type FilterType =
   | "space"
   | "custom";
 
+export interface EventFilter {
+
+  type?: FilterType;
+  input?: MainPackage["input"];
+  select?: MainPackage["select"];
+  //日期
+  date?: MainPackage["date"];
+  // dateTime?:MainPackage['dateTime']
+  //次级选择
+  cascader?: MainPackage["cascader"];
+  //多选
+  checkBox?: MainPackage["checkbox"];
+  //单选
+  radio?: MainPackage["radio"];
+  //评分
+  rate?: MainPackage["rate"];
+  //开关
+  switch?: MainPackage["switch"];
+  //滑块
+  slider?: MainPackage["slider"];
+}
 export interface Filter {
   label?: string;
   prop?: string | string[];
@@ -92,6 +113,9 @@ interface CustomType {
   value?: string | number | (string | number)[] | boolean;
   hide?: boolean;
   buttons?: Omit<ButtonProps, "onClick">[];
+  type?: "selection" | "index" | "expand" | "input" | "select";
+  rules?: any;
+  event?:EventFilter
 }
 //自定义添加属性
 export const CustomType = {
@@ -129,6 +153,10 @@ export const CustomType = {
     type: Array as PropType<CustomType["buttons"]>,
     default: [],
   },
+  event:{
+    type:Object,
+    default:{}
+  }
 };
 
 export interface NewTableColumn<T>

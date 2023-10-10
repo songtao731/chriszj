@@ -3,10 +3,15 @@
   </TableLists>
 </template>
 <script setup lang="ts">
-import { chris } from "chriszj";
+//import { chris } from "chriszj";
+import { useRoute,useRouter } from "vue-router";
+import { chris,TableLists } from "../../../packages";
 //实际使用是 import { chris } from "chriszj";
 
+
 import { ref } from "vue";
+
+
 const tableData = {
   data: {
     rows: [
@@ -55,7 +60,8 @@ const request = (params) => {
 const activeName = ref("3");
 const bind = chris.useTables({
   tabs: {
-    activeName: activeName.value,
+    activeValue: activeName.value,
+    isRoute:true,
     tabsList: [
       { label: "待审核", value: "1" },
       { label: "审核中", value: "2" },

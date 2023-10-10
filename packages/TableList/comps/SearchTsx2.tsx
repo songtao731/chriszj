@@ -174,7 +174,7 @@ export default defineComponent({
       emit("getParams", { ...newFormData.value });
     };
     //格式化搜索条件的格式
-    const formatDataFn = (data: Filter) => {
+  const formatDataFn = (data: Filter) => {
       let placeholderValue = "";
       let options =
         unref(data.select?.options) ||

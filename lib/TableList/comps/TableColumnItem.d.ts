@@ -5,6 +5,18 @@ import { ButtonProps } from "./Button";
 import { MainPackage } from "../../BaseComps/index";
 export type FormatValueType = "price" | "priceChinese" | "date" | "dateTime";
 export type FilterType = "input" | "select" | "date" | "cascader" | "inputrange" | "checkBox" | "radio" | "rate" | "switch" | "slider" | "space" | "custom";
+export interface EventFilter {
+    type?: FilterType;
+    input?: MainPackage["input"];
+    select?: MainPackage["select"];
+    date?: MainPackage["date"];
+    cascader?: MainPackage["cascader"];
+    checkBox?: MainPackage["checkbox"];
+    radio?: MainPackage["radio"];
+    rate?: MainPackage["rate"];
+    switch?: MainPackage["switch"];
+    slider?: MainPackage["slider"];
+}
 export interface Filter {
     label?: string;
     prop?: string | string[];
@@ -71,6 +83,9 @@ interface CustomType {
     value?: string | number | (string | number)[] | boolean;
     hide?: boolean;
     buttons?: Omit<ButtonProps, "onClick">[];
+    type?: "selection" | "index" | "expand" | "input" | "select";
+    rules?: any;
+    event?: EventFilter;
 }
 export declare const CustomType: {
     formatType: {
@@ -103,6 +118,10 @@ export declare const CustomType: {
     buttons: {
         type: PropType<Omit<ButtonProps, "onClick">[] | undefined>;
         default: never[];
+    };
+    event: {
+        type: ObjectConstructor;
+        default: {};
     };
 };
 export interface NewTableColumn<T> extends CustomType, Partial<TableColumnCtx<T>> {

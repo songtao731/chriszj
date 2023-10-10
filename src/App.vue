@@ -17,6 +17,10 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/descriptions">Descriptions</RouterLink>
         <RouterLink to="/table">table</RouterLink>
         <RouterLink to="/test">test</RouterLink>
+        <RouterLink to="/tableLists?a=1">tableLists</RouterLink>
+        <RouterLink to="/formTable">formTable</RouterLink>
+
+
 
 
 

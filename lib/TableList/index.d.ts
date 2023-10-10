@@ -5,8 +5,8 @@ declare const TableList: ({
         $props: {
             size?: string | undefined;
             border?: boolean | undefined;
-            className?: string | undefined;
             index?: boolean | Record<string, any> | undefined;
+            className?: string | undefined;
             data?: any[] | undefined;
             style?: import("vue").CSSProperties | undefined;
             treeProps?: {
@@ -425,6 +425,7 @@ declare const TableList: ({
             onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
         }, {
             tableRef: import("vue").Ref<any>;
+            formRef: import("vue").Ref<any>;
             refresh: (data: any) => void;
             params: import("vue").Ref<any>;
         }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
@@ -461,8 +462,8 @@ declare const TableList: ({
         }, string, {
             size: string;
             border: boolean;
-            className: string;
             index: boolean | Record<string, any>;
+            className: string;
             data: any[];
             style: import("vue").CSSProperties;
             treeProps: {
@@ -729,6 +730,7 @@ declare const TableList: ({
         onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
     } & import("vue").ShallowUnwrapRef<{
         tableRef: import("vue").Ref<any>;
+        formRef: import("vue").Ref<any>;
         refresh: (data: any) => void;
         params: import("vue").Ref<any>;
     }> & {} & import("vue").ComponentCustomProperties & {};
@@ -956,6 +958,7 @@ declare const TableList: ({
     onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
 }, {
     tableRef: import("vue").Ref<any>;
+    formRef: import("vue").Ref<any>;
     refresh: (data: any) => void;
     params: import("vue").Ref<any>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
@@ -992,8 +995,8 @@ declare const TableList: ({
 }, string, {
     size: string;
     border: boolean;
-    className: string;
     index: boolean | Record<string, any>;
+    className: string;
     data: any[];
     style: import("vue").CSSProperties;
     treeProps: {

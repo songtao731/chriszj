@@ -8,7 +8,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
                 values: string[];
                 default: string;
             };
-            activeName: {
+            activeValue: {
                 type: (StringConstructor | NumberConstructor)[];
                 default: string;
             };
@@ -40,10 +40,14 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
                 type: BooleanConstructor;
                 default: boolean;
             };
+            isRoute: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
         };
     };
     table: {
-        type: ObjectConstructor;
+        type: FunctionConstructor;
         default: {
             request: FunctionConstructor;
             column: {
@@ -237,7 +241,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
 }, {
     tableRef: tabsRefs;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    resetFn: () => void;
+    resetFn: () => true;
     select: (selection: any[], row: any) => boolean;
     selectAll: (selection: any[]) => boolean;
     selectionChange: (selection: any[]) => boolean;
@@ -276,7 +280,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
                 values: string[];
                 default: string;
             };
-            activeName: {
+            activeValue: {
                 type: (StringConstructor | NumberConstructor)[];
                 default: string;
             };
@@ -308,10 +312,14 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
                 type: BooleanConstructor;
                 default: boolean;
             };
+            isRoute: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
         };
     };
     table: {
-        type: ObjectConstructor;
+        type: FunctionConstructor;
         default: {
             request: FunctionConstructor;
             column: {
@@ -534,7 +542,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     onCurrentChange?: ((currentRow: any, oldCurrentRow: any) => any) | undefined;
     onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
 }, {
-    table: Record<string, any>;
+    table: Function;
     tabs: Record<string, any>;
 }, {}>, Partial<Record<any, (_: any) => any>> & {
     topheader?(_: {}): any;

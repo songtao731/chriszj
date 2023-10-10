@@ -188,6 +188,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     showOverflowTooltip: import("vue").PropType<boolean | Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined>;
 }, {
     tableRef: import("vue").Ref<any>;
+    formRef: import("vue").Ref<any>;
     refresh: (data: any) => void;
     params: import("vue").Ref<any>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
@@ -443,8 +444,8 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
 }, {
     size: string;
     border: boolean;
-    className: string;
     index: boolean | Record<string, any>;
+    className: string;
     data: any[];
     style: import("vue").CSSProperties;
     treeProps: {

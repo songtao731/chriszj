@@ -2,7 +2,7 @@ export type TabPaneName = string | number;
 export interface TabsProps {
     tabs: {
         type?: string;
-        activeName: string | number;
+        activeValue: string | number;
         closable?: boolean;
         addable?: boolean;
         modelValue?: string | number;
@@ -14,6 +14,7 @@ export interface TabsProps {
             label: string;
             value: string | number;
         }[];
+        isRoute?: boolean;
     };
 }
 export declare const TabsProps: {
@@ -25,7 +26,7 @@ export declare const TabsProps: {
                 values: string[];
                 default: string;
             };
-            activeName: {
+            activeValue: {
                 type: (StringConstructor | NumberConstructor)[];
                 default: string;
             };
@@ -54,6 +55,10 @@ export declare const TabsProps: {
                 default: () => boolean;
             };
             stretch: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
+            isRoute: {
                 type: BooleanConstructor;
                 default: boolean;
             };

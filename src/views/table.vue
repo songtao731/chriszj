@@ -3,7 +3,12 @@
     <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries" :currentPage="2">
       <template #topheader> 最上部</template>
       <template #centerheader> 中间 </template>
-      <template #footer> 尾部 </template>
+      <template #footer>
+        <el-button @click="formBtn">
+          校验
+        </el-button>
+
+      </template>
 
       <template #append> </template>
 
@@ -35,11 +40,10 @@
 
 
   </div>
-
 </template>
 
 <script setup lang="ts">
-import { chris, TableList, TableLists, Tupload } from "../../packages";
+import { chris, TableList } from "../../packages";
 
 import { ref, computed, reactive } from "vue";
 import {
@@ -75,21 +79,30 @@ const tableData = [
     date: "2016-05-02",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1518 弄",
+    reg: '',
+    sel: ''
   },
   {
     date: "2016-05-04",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1517 弄",
+    reg: '收款',
+    sel: ''
+
   },
   {
     date: "2016-05-01",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1519 弄",
+    reg: ''
+
   },
   {
     date: "2016-05-03",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1516 弄",
+    reg: ''
+
   },
 ];
 
@@ -104,7 +117,6 @@ const data3 = ref()
 
 const fn = () => {
   setTimeout(() => {
-    nums.value=10
     data.value = [
       { label2: "前端", value2: "1" },
       { label2: "后端", value2: "2" },
@@ -168,10 +180,9 @@ const isShow = ref(false)
 const isShow2 = ref(false)
 
 const bind = computed(() => {
-  console.log('我变了')
   return chris.useTable({
     request: (params) => entertainApplicationAddList({ ...params }),
-
+    data: tableData,
 
     totalPath: 'data.total',
     labelWidth: '100px',
@@ -208,7 +219,7 @@ const bind = computed(() => {
       },
       {
         label: "姓名",
-        prop: "id",
+        prop: "name",
         formatter(row, column, cellValue, index) {
           return cellValue + index;
         },
@@ -234,7 +245,7 @@ const bind = computed(() => {
       {
         label: "枚举",
         prop: "status",
-        dictData: computed(() => data.value),
+        dictData: data.value,
         dictOptions: {
           value: "id",
           label: "name",
@@ -243,7 +254,7 @@ const bind = computed(() => {
         filter: {
           type: "select",
           select: {
-            options: computed(() => data.value),
+            options: data.value,
             dictOptions: {
               value: "value2",
               label: "label2",
@@ -455,16 +466,104 @@ const bind = computed(() => {
       },
       {
 
+        label: "校验",
+        prop: "reg",
+        rules: chris.rulesFn().required(true, '请输入').pattern(/^\d{3}$/, '大口大口'),
+        width: '300px',
+        event: {
+          type: "input",
+          input: {
+            onChange(v) {
+              console.log(v, 999888)
+            }
+
+          }
+        }
+
+
+      },
+      {
+
+        label: "下拉",
+        prop: "sel",
+        rules: chris.rulesFn().required(true, '请选择', 'change'),
+        width: "300px",
+        event: {
+          type: "select",
+          select: {
+            onChange(v) {
+              console.log(v, 999888)
+            },
+            options: data.value,
+            dictOptions: {
+              value: "value2",
+              label: "label2",
+            },
+          }
+        }
+      },
+      {
+
+        label: "日期",
+        prop: "date",
+        rules: chris.rulesFn().required(true, '请选择'),
+        width: '300px',
+        event: {
+          type: "date",
+          date: {
+            onChange(v) {
+              console.log(v, 999888)
+            },
+          }
+        }
+      },
+      {
+
+        label: "次级",
+        prop: "tree",
+        rules: chris.rulesFn().required(true, '请选择', 'change'),
+        width: '300px',
+        event: {
+          type: "cascader",
+          cascader: {
+            onChange(v) {
+              console.log(v, 999888)
+            },
+            options: data2.value,
+
+          }
+        }
+      },
+      {
+
+        label: "开关",
+        prop: "switch",
+        width: '300px',
+        event: {
+          type: "switch",
+          switch: {
+            onChange(v) {
+              console.log(v, 999888)
+            },
+
+          }
+        }
+      },
+
+
+
+      {
+
         label: "自定义查询",
         prop: "processNo2",
         slotName: 'zds2',
-
         filter: {
           type: "custom",
           slotName: 'zds',
 
         }
       },
+
 
     ],
   })
@@ -502,6 +601,21 @@ const getSummaries = (param) => {
 
   return sums;
 };
+
+const formBtn = async () => {
+
+  console.log(tableData, 'tableDatatableData', oneTable.value.formRef.validateField)
+
+  await oneTable.value.formRef.validate((valid, fields) => {
+    if (valid) {
+      console.log('submit!')
+    } else {
+      console.log('error submit!', fields)
+    }
+  })
+
+
+}
 
 console.log(oneTable, "oneTable");
 </script>

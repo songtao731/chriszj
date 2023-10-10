@@ -10,7 +10,7 @@ declare const chris: {
     useTables: (args: import("./TableLists/comps/useTables").newArg) => {
         tabs: {
             type?: string | undefined;
-            activeName: string | number;
+            activeValue: string | number;
             closable?: boolean | undefined;
             addable?: boolean | undefined;
             modelValue?: string | number | undefined;
@@ -22,6 +22,7 @@ declare const chris: {
                 label: string;
                 value: string | number;
             }[];
+            isRoute?: boolean | undefined;
         };
         table: (parms: any) => import("./TableList").Args;
     };

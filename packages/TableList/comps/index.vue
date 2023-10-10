@@ -23,47 +23,46 @@
     </Search2>
     <!-- 表格查询条件和表格之间的插槽 -->
     <slot name="centerheader"> </slot>
-    
 
-<!-- 右上插槽 -->
+
+    <!-- 右上插槽 -->
     <Buttons :buttons="props.buttons"> </Buttons>
-    
-    <ElTable :data="dataList" style="width: 100%" v-on="tableEvents" ref="tableRef">
-      <template #empty>
-        <slot name="empty">
+    <el-form ref="formRef" :model="formData">
+      <ElTable :data="formData.dataList" style="width: 100%" v-on="tableEvents" ref="tableRef">
+        <template #empty>
+          <slot name="empty">
 
-          暂无数据
-        </slot>
-      </template>
-      <template #append>
-        <slot name="append"></slot>
-      </template>
-      <ElTableColumn type="index" :index="indexMethod" :label="typeof props.index === 'object' && props.index.label"
-        :width="typeof props.index === 'object' && props.index.width" v-if="typeof props.index === 'boolean' ? props.index : !props.index.hide
-          ">
-      </ElTableColumn>
-      <ElTableColumn v-for="(item, index) in columnsFilter" :key="index" v-bind="item">
-        <template #header="scope" v-if="item.header">
-          <slot v-bind="scope" name="header" />
+            暂无数据
+          </slot>
         </template>
-        <template #default="scope">
-          <slot v-bind="scope" :name="item.slotName" v-if="item.slotName"> </slot>
-          <TableColumnTsx v-if="!item.slotName&&item.type==='default'&&!item.formatter"  :data="scope?.row" :column="item"></TableColumnTsx>
+        <template #append>
+          <slot name="append"></slot>
         </template>
+        <ElTableColumn type="index" :index="indexMethod" :label="typeof props.index === 'object' && props.index.label"
+          :width="typeof props.index === 'object' && props.index.width" v-if="typeof props.index === 'boolean' ? props.index : !props.index.hide
+            ">
+        </ElTableColumn>
+        <ElTableColumn v-for="(item, index) in columnsFilter" :key="index" v-bind="item">
+          <template #header="scope" v-if="item.header">
+            <slot v-bind="scope" name="header" />
+          </template>
+          <template #default="scope">
+            <slot v-bind="scope" :name="item.slotName" v-if="item.slotName"> </slot>
+            <TableColumnTsx v-if="!item.slotName && item.type === 'default' && !item.formatter" :data="scope?.row"
+              :column="item">
+            </TableColumnTsx>
+            <FormColumnTsx v-if="item.event" :data="scope" :column="item" :dataList="dataList">
+            </FormColumnTsx>
+            <!-- <el-form-item v-if="item.type === 'input'" :prop="'dataList.' + scope.$index + '.input'" :rules="item.rules.rules">
+              <el-input v-model="scope.row.input">
+              </el-input>
+            </el-form-item> -->
 
-      </ElTableColumn>
+          </template>
 
-
-
-      <!-- <TableColumn v-for="(item, index) in columnsFilter" :key="index" v-bind="item">
-        <template v-if="item.header" #header="scope">
-          <slot name="header" v-bind="scope" />
-        </template>
-        <template v-if="item.slotName" #default="scope">
-          <slot :name="item.slotName" v-bind="scope" />
-        </template>
-      </TableColumn> -->
-    </ElTable>
+        </ElTableColumn>
+      </ElTable>
+    </el-form>
 
     <Pagination v-show="total > 0 && props.pagination" :total="total" @getPage="getPage" :currentPage="currentPage"
       :pageSize="pageSize" :pageSizes="props.pageSizes" ref="pagination" :layout="props.layout" />
@@ -78,11 +77,12 @@ import { computed, ref, onMounted, unref, defineExpose } from "vue";
 import Search2 from "./SearchTsx2";
 import Pagination from "./Pagination";
 import Buttons from "./Buttons.vue";
-import type { Filter } from "./TableColumnItem";
 import { vepTableEmits, TableProps } from "./Table";
 import { getPath, getTotalPath } from "../utils/index";
 
 import TableColumnTsx from "./TableColumnTsx";
+import FormColumnTsx from "./FormColumnTsx";
+
 
 
 
@@ -102,7 +102,6 @@ const columnsFilter = computed(() => props.columns?.filter(el => {
 //控制展示显示隐藏 某些列
 
 // const filterColumns = columns?.value?.filter((el) => !el.hide);
- console.log('columnsFilter', columnsFilter)
 
 
 const searchRef = ref();
@@ -136,7 +135,13 @@ const total = ref(0);
 let path = props.path || "data.rows";
 //初始化获取total的位置
 let totalPath = props.totalPath || "data.total";
+
+
+const formData = ref({
+  dataList:[] as any[]
+})
 dataList.value = props.data;
+formData.value.dataList=dataList.value
 const getDataList = async (data?: any) => {
   const params = {
     ...data,
@@ -153,6 +158,7 @@ const getDataList = async (data?: any) => {
   if (props.parseData) {
     dataList.value = props.parseData(dataList.value);
   }
+  formData.value.dataList = dataList.value
 };
 
 //获取筛选条件
@@ -178,6 +184,7 @@ const getPage = async (page: any) => {
 const indexMethod = (index: number) => {
   return index + 1 + (currentPage.value - 1) * pageSize.value;
 };
+//初始化表格校验
 
 
 
@@ -186,6 +193,7 @@ onMounted(() => {
   props.request && searchRef.value.getParams(searchRef.value.formData);
 });
 const tableRef = ref();
+const formRef = ref()
 
 //清空查询条件
 const resetFn = () => {
@@ -193,6 +201,7 @@ const resetFn = () => {
 };
 defineExpose({
   tableRef,
+  formRef,
   refresh: getParams,
   params: searchRef,
 });

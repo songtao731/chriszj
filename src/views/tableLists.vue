@@ -3,8 +3,11 @@
   </TableLists>
 </template>
 <script setup lang="ts">
-import { chris } from "chriszj";
-//实际使用是 import { chris } from "chriszj";
+
+import { chris, TableList, TableLists, Tupload } from "../../packages";
+
+// import { chris,TableLists } from "chriszj";
+import { useRoute,useRouter } from "vue-router";
 
 import { ref } from "vue";
 
@@ -45,17 +48,17 @@ const tableData = {
   code: 200,
 };
 const request = (params) => {
- 
+
   return new Promise((reslove, reject) => {
     setTimeout(() => {
       reslove(tableData);
-    }, 100);
+    }, 2000);
   });
 };
 
 const activeName = ref("1");
 
-const tabRef=ref()
+const tabRef = ref()
 
 const bind = chris.useTables({
   tabs: {
@@ -65,6 +68,7 @@ const bind = chris.useTables({
       { label: "审核中", value: "2" },
       { label: "已审核", value: "3" },
     ],
+    isRoute:true
   },
   table: (row) => {
     console.log(row);
@@ -75,6 +79,8 @@ const bind = chris.useTables({
           type: "primary",
           content: "清空全选",
           onClick: () => {
+
+            console.log(row,12312)
             activeName.value = row;
             console.log(
               "操作成功",
@@ -93,12 +99,12 @@ const bind = chris.useTables({
       ],
       columns: [
         {
-          type:'selection'
+          type: 'selection'
         },
         {
           label: "姓名",
           prop: "name",
-          filter:'input'
+          filter: 'input'
         },
         {
           label: "地址",

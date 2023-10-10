@@ -6,7 +6,7 @@ export interface newArg extends TabsProps {
 export declare const useTables: (args: newArg) => {
     tabs: {
         type?: string | undefined;
-        activeName: string | number;
+        activeValue: string | number;
         closable?: boolean | undefined;
         addable?: boolean | undefined;
         modelValue?: string | number | undefined;
@@ -18,6 +18,7 @@ export declare const useTables: (args: newArg) => {
             label: string;
             value: string | number;
         }[];
+        isRoute?: boolean | undefined;
     };
     table: (parms: any) => Args;
 };

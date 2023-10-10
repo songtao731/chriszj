@@ -3,7 +3,7 @@ export type TabPaneName = string | number;
 export interface TabsProps {
   tabs: {
     type?: string;
-    activeName: string | number;
+    activeValue: string | number;
     closable?: boolean;
     addable?: boolean;
     modelValue?: string | number;
@@ -11,7 +11,8 @@ export interface TabsProps {
     tabPosition?: "top" | "right" | "bottom" | "left";
     stretch?: boolean;
     beforeLeave?: () => true;
-    tabsList:{label:string,value:string|number}[]
+    tabsList:{label:string,value:string|number}[],
+    isRoute?:boolean
   };
 }
 
@@ -24,7 +25,7 @@ export const TabsProps = {
         values: ["card", "border-card"],
         default: "border-card",
       },
-      activeName: {
+      activeValue: {
         type: [String, Number],
         default: "",
       },
@@ -56,6 +57,10 @@ export const TabsProps = {
         type:Boolean,
         default:false
       },
+      isRoute:{
+        type:Boolean,
+        default:false
+      }
     },
   },
 };

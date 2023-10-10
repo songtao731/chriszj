@@ -48,6 +48,10 @@ declare const _default: {
         type: PropType<Omit<import("./Button").ButtonProps, "onClick">[] | undefined>;
         default: never[];
     };
+    event: {
+        type: ObjectConstructor;
+        default: {};
+    };
     type: {
         type: StringConstructor;
         default: string;

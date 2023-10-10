@@ -3,7 +3,7 @@ declare const TableLists: ({
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: {
-            table?: Record<string, any> | undefined;
+            table?: Function | undefined;
             tabs?: Record<string, any> | undefined;
             ref?: import("vue").VNodeRef | undefined;
             key?: string | number | symbol | undefined;
@@ -112,7 +112,7 @@ declare const TableLists: ({
                         values: string[];
                         default: string;
                     };
-                    activeName: {
+                    activeValue: {
                         type: (StringConstructor | NumberConstructor)[];
                         default: string;
                     };
@@ -144,10 +144,14 @@ declare const TableLists: ({
                         type: BooleanConstructor;
                         default: boolean;
                     };
+                    isRoute: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
                 };
             };
             table: {
-                type: ObjectConstructor;
+                type: FunctionConstructor;
                 default: {
                     request: FunctionConstructor;
                     column: {
@@ -372,7 +376,7 @@ declare const TableLists: ({
         }, {
             tableRef: import("./comps/TabsProps").tabsRefs;
         }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-            resetFn: () => void;
+            resetFn: () => true;
             select: (selection: any[], row: any) => boolean;
             selectAll: (selection: any[]) => boolean;
             selectionChange: (selection: any[]) => boolean;
@@ -403,7 +407,7 @@ declare const TableLists: ({
                 filterForm: any;
             }) => boolean;
         }, string, {
-            table: Record<string, any>;
+            table: Function;
             tabs: Record<string, any>;
         }, {}, string, {}> & {
             beforeCreate?: ((() => void) | (() => void)[]) | undefined;
@@ -434,7 +438,7 @@ declare const TableLists: ({
                     values: string[];
                     default: string;
                 };
-                activeName: {
+                activeValue: {
                     type: (StringConstructor | NumberConstructor)[];
                     default: string;
                 };
@@ -466,10 +470,14 @@ declare const TableLists: ({
                     type: BooleanConstructor;
                     default: boolean;
                 };
+                isRoute: {
+                    type: BooleanConstructor;
+                    default: boolean;
+                };
             };
         };
         table: {
-            type: ObjectConstructor;
+            type: FunctionConstructor;
             default: {
                 request: FunctionConstructor;
                 column: {
@@ -706,7 +714,7 @@ declare const TableLists: ({
                 values: string[];
                 default: string;
             };
-            activeName: {
+            activeValue: {
                 type: (StringConstructor | NumberConstructor)[];
                 default: string;
             };
@@ -738,10 +746,14 @@ declare const TableLists: ({
                 type: BooleanConstructor;
                 default: boolean;
             };
+            isRoute: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
         };
     };
     table: {
-        type: ObjectConstructor;
+        type: FunctionConstructor;
         default: {
             request: FunctionConstructor;
             column: {
@@ -966,7 +978,7 @@ declare const TableLists: ({
 }, {
     tableRef: import("./comps/TabsProps").tabsRefs;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    resetFn: () => void;
+    resetFn: () => true;
     select: (selection: any[], row: any) => boolean;
     selectAll: (selection: any[]) => boolean;
     selectionChange: (selection: any[]) => boolean;
@@ -997,7 +1009,7 @@ declare const TableLists: ({
         filterForm: any;
     }) => boolean;
 }, string, {
-    table: Record<string, any>;
+    table: Function;
     tabs: Record<string, any>;
 }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: Partial<Record<any, (_: any) => any>> & {

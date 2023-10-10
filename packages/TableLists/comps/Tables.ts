@@ -2,7 +2,7 @@ import { TableProps } from "../../TableList/comps/Table";
 
 export const  TableLists={
   table:{
-      type:Object,
+      type:Function,
       default:TableProps
   }
 
