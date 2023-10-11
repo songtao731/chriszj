@@ -39,6 +39,7 @@ export default defineComponent({
         result = findData && findData["label"];
       }
       //处理操作按钮
+
       if (buttons && buttons.length) {
         result = buttons.map((el: ButtonProps) => {
           return (

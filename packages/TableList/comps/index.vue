@@ -42,21 +42,17 @@
           :width="typeof props.index === 'object' && props.index.width" v-if="typeof props.index === 'boolean' ? props.index : !props.index.hide
             ">
         </ElTableColumn>
-        <ElTableColumn v-for="(item, index) in columnsFilter" :key="index" v-bind="item">
+        <ElTableColumn v-for="(item, index) in columnsFilter" :key="item" v-bind="item">
           <template #header="scope" v-if="item.header">
             <slot v-bind="scope" name="header" />
           </template>
           <template #default="scope">
             <slot v-bind="scope" :name="item.slotName" v-if="item.slotName"> </slot>
-            <TableColumnTsx v-if="!item.slotName && item.type === 'default' && !item.formatter" :data="scope?.row"
+            <TableColumnTsx v-if="!item.slotName && !item.type && !item.formatter && !item.event" :data="scope?.row"
               :column="item">
             </TableColumnTsx>
             <FormColumnTsx v-if="item.event" :data="scope" :column="item" :dataList="dataList">
             </FormColumnTsx>
-            <!-- <el-form-item v-if="item.type === 'input'" :prop="'dataList.' + scope.$index + '.input'" :rules="item.rules.rules">
-              <el-input v-model="scope.row.input">
-              </el-input>
-            </el-form-item> -->
 
           </template>
 
@@ -71,7 +67,7 @@
 </template>
 <script setup lang="ts">
 import { ElTable } from "element-plus";
-import { computed, ref, onMounted, unref, defineExpose } from "vue";
+import { computed, ref, onMounted, unref, defineExpose, watchEffect } from "vue";
 // import TableColumn from "./TableColumn.vue";
 // import Search from "./SearchTsx";
 import Search2 from "./SearchTsx2";
@@ -89,7 +85,7 @@ import FormColumnTsx from "./FormColumnTsx";
 
 
 //表格所有事件
-const emit = defineEmits({ ...vepTableEmits, resetFn: () => true });
+const emit = defineEmits({ ...vepTableEmits, resetFn: () => true, getSearchData: (data) => data });
 //表格属性
 const props = defineProps(TableProps);
 
@@ -127,8 +123,7 @@ const { usePageNum, usePageSize } = {
 const currentPage = ref(1);
 const pageSize = ref(10);
 
-//表格的数据
-const dataList = ref<any[]>([]);
+
 //初始化数目
 const total = ref(0);
 //初始化获取数据格式
@@ -138,27 +133,35 @@ let totalPath = props.totalPath || "data.total";
 
 
 const formData = ref({
-  dataList:[] as any[]
+  dataList: [] as any[]
 })
-dataList.value = props.data;
-formData.value.dataList=dataList.value
+
+//表格的数据
+const dataList = ref()
+watchEffect(() => {
+  dataList.value = props.data;
+  formData.value.dataList = dataList.value
+})
+
+
 const getDataList = async (data?: any) => {
   const params = {
     ...data,
     [usePageNum]: currentPage.value,
     [usePageSize]: pageSize.value,
   };
-  const res = await props.request!(params);
-
-  dataList.value = getPath(res, path);
-
-  total.value = getTotalPath(res, totalPath);
-
-
-  if (props.parseData) {
-    dataList.value = props.parseData(dataList.value);
+  if (props.request) {
+    const res = await props.request!(params);
+    dataList.value = getPath(res, path);
+    total.value = getTotalPath(res, totalPath);
+    if (props.parseData) {
+      dataList.value = props.parseData(dataList.value);
+    }
+    formData.value.dataList = dataList.value
+  } else {
+    emit('getSearchData', params)
   }
-  formData.value.dataList = dataList.value
+
 };
 
 //获取筛选条件

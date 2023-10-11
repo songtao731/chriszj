@@ -4,6 +4,8 @@ import {
   ElFormItem,
   ElInput,
   ElOption,
+  ElRadio,
+  ElRadioGroup,
   ElSelect,
   ElSwitch,
 } from "element-plus";
@@ -12,6 +14,7 @@ import { EventFilter } from "./TableColumnItem";
 import { valueFormat } from "../../utils/data";
 
 import "../style/table.scss";
+import { RadioItem } from "chriszj/BaseComps/radio";
 
 export default defineComponent({
   props: ["data", "column", "dataList"],
@@ -187,6 +190,26 @@ export default defineComponent({
           );
 
           break;
+
+        // case "radio":
+        //   result = (
+        //     <ElFormItem
+        //       prop={"dataList." + $index + "." + prop}
+        //       class={"inline"}
+        //     >
+        //       <ElRadioGroup v-model={row[prop]} {...event.switch}>
+        //         {formatDataFn(column).options.map((ele: RadioItem) => {
+        //           return (
+        //             <ElRadio {...ele} label={ele.value}>
+        //               {ele.label}
+        //             </ElRadio>
+        //           );
+        //         })}
+        //       </ElRadioGroup>
+        //     </ElFormItem>
+        //   );
+
+        //   break;
 
         default:
           break;

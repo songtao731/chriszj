@@ -1,6 +1,7 @@
 <template>
   <div class="about">
-    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries" :currentPage="2">
+    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries" :currentPage="2"
+      @getSearchData="aa">
       <template #topheader> 最上部</template>
       <template #centerheader> 中间 </template>
       <template #footer>
@@ -13,9 +14,12 @@
       <template #append> </template>
 
 
-      <template #header="scope">
-        <span style="color: red">
-          {{ scope.$index }}
+      <template #header="{ column, $index }">
+        <span style="color: red" v-if="$index === 19">
+          {{ column.label }}
+        </span>
+        <span style="color: red" v-if="$index === 20">
+          {{ column.label }}
         </span>
       </template>
       <template #age="scope">
@@ -74,37 +78,44 @@ const getForm = (val) => {
 };
 
 
-const tableData = [
+const tableData = ref([
   {
     date: "2016-05-02",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1518 弄",
     reg: '',
-    sel: ''
+    sel: '',
+    contractAmount: '22'
   },
   {
     date: "2016-05-04",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1517 弄",
     reg: '收款',
-    sel: ''
+    sel: '',
+    contractAmount: '33'
+
 
   },
   {
     date: "2016-05-01",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1519 弄",
-    reg: ''
+    reg: '',
+    contractAmount: '44'
+
 
   },
   {
     date: "2016-05-03",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1516 弄",
-    reg: ''
+    reg: '',
+    contractAmount: '55'
+
 
   },
-];
+]);
 
 // travelReimbursementAddList({
 //   pageNum: 1,
@@ -178,11 +189,12 @@ const marks = reactive({
 
 const isShow = ref(false)
 const isShow2 = ref(false)
+let num = ref(100)
 
 const bind = computed(() => {
   return chris.useTable({
-    request: (params) => entertainApplicationAddList({ ...params }),
-    data: tableData,
+    // request: (params) => entertainApplicationAddList({ ...params }),
+    data: tableData.value,
 
     totalPath: 'data.total',
     labelWidth: '100px',
@@ -192,8 +204,18 @@ const bind = computed(() => {
         content: "新增",
         onClick: () => {
           //   oneTable.value.tableRef.refresh()
+          tableData.value.push({
+            date: "2016-05-04",
+            name: "王小虎",
+            address: "上海市普陀区金沙江路 1517 弄",
+            reg: '收款',
+            sel: '',
+            contractAmount: num.value += 10
 
-          console.log("操作成功", oneTable.value.refresh());
+
+          })
+
+          console.log("操作成功");
         },
       },
       {
@@ -523,6 +545,7 @@ const bind = computed(() => {
         prop: "tree",
         rules: chris.rulesFn().required(true, '请选择', 'change'),
         width: '300px',
+        header: true,
         event: {
           type: "cascader",
           cascader: {
@@ -539,6 +562,7 @@ const bind = computed(() => {
         label: "开关",
         prop: "switch",
         width: '300px',
+        header: true,
         event: {
           type: "switch",
           switch: {
@@ -549,9 +573,6 @@ const bind = computed(() => {
           }
         }
       },
-
-
-
       {
 
         label: "自定义查询",
@@ -563,6 +584,23 @@ const bind = computed(() => {
 
         }
       },
+      {
+        label: '操作',
+        buttons: [
+          {
+            content: '删除',
+            click(scope) {
+
+              tableData.value = tableData.value.filter((el) => el.contractAmount !== scope.contractAmount)
+
+              console.log(tableData, 'kk', scope)
+
+            },
+
+
+          }
+        ]
+      }
 
 
     ],
@@ -603,9 +641,6 @@ const getSummaries = (param) => {
 };
 
 const formBtn = async () => {
-
-  console.log(tableData, 'tableDatatableData', oneTable.value.formRef.validateField)
-
   await oneTable.value.formRef.validate((valid, fields) => {
     if (valid) {
       console.log('submit!')
@@ -613,8 +648,10 @@ const formBtn = async () => {
       console.log('error submit!', fields)
     }
   })
+}
 
-
+const aa = (data) => {
+  console.log(data)
 }
 
 console.log(oneTable, "oneTable");

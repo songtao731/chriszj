@@ -9,6 +9,7 @@
       <ElInput v-model.number="scope.pages" placeholder="Please input">
       </ElInput>
     </template>
+    
   </Tform>
   <!-- <Tform v-bind="bind2" ref="tForm2">
     <template #title> </template>
