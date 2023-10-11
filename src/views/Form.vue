@@ -9,7 +9,9 @@
       <ElInput v-model.number="scope.pages" placeholder="Please input">
       </ElInput>
     </template>
-    
+
+
+
   </Tform>
   <!-- <Tform v-bind="bind2" ref="tForm2">
     <template #title> </template>
@@ -52,7 +54,7 @@ setTimeout(() => {
     { label: "男", value: "1", id: 1 },
     { label: "女", value: "0", id: 2 },
   ];
-  dd.value='111'
+  dd.value = '111'
   // ishide.value=true
 }, 10);
 
@@ -68,7 +70,7 @@ setTimeout(() => {
     check: [],
     radio: '1',
     rate: 1,
-    nextPage:"身高2米",
+    nextPage: "身高2米",
     upload: [
       {
         name: "food.jpeg",
@@ -182,7 +184,6 @@ const bind = computed(() => {
           .required(true, "请输入年龄")
           .validator(checkAge),
       },
-
       {
         label: "性别:",
         prop: "startRow",
@@ -210,7 +211,7 @@ const bind = computed(() => {
           .range(0, 2, "请输入2到5位", "blur")
           .required(true, "请输入身高"),
         deepHide: isHide.value,
-        value:'222'
+        value: '222'
       },
       {
         label: "职业",
@@ -319,7 +320,7 @@ const bind = computed(() => {
         type: "radio",
         prop: "radio",
         rules: chris.rulesFn().required(true, "请选择行业"),
-        value:'1',
+        value: '1',
         radio: {
           options: [
             {
@@ -355,7 +356,7 @@ const bind = computed(() => {
         label: "上传",
         type: "upload",
         prop: "upload",
-        rules:chris.rulesFn().required(true,'请上传').validator(checkUpload),
+        rules: chris.rulesFn().required(true, '请上传').validator(checkUpload),
         ref: startRef,
 
         upload: {

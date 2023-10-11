@@ -49,6 +49,14 @@ export declare const TableLists: {
                 type: ArrayConstructor;
                 default: number[];
             };
+            currentPage: {
+                type: NumberConstructor;
+                default: number;
+            };
+            currentPageSize: {
+                type: NumberConstructor;
+                default: number;
+            };
             data: {
                 type: import("vue").PropType<any[]>;
                 default: () => never[];

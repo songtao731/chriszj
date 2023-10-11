@@ -200,6 +200,14 @@ declare const TableLists: ({
                         type: ArrayConstructor;
                         default: number[];
                     };
+                    currentPage: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
+                    currentPageSize: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
                     data: {
                         type: import("vue").PropType<any[]>;
                         default: () => never[];
@@ -526,6 +534,14 @@ declare const TableLists: ({
                     type: ArrayConstructor;
                     default: number[];
                 };
+                currentPage: {
+                    type: NumberConstructor;
+                    default: number;
+                };
+                currentPageSize: {
+                    type: NumberConstructor;
+                    default: number;
+                };
                 data: {
                     type: import("vue").PropType<any[]>;
                     default: () => never[];
@@ -801,6 +817,14 @@ declare const TableLists: ({
             pageSizes: {
                 type: ArrayConstructor;
                 default: number[];
+            };
+            currentPage: {
+                type: NumberConstructor;
+                default: number;
+            };
+            currentPageSize: {
+                type: NumberConstructor;
+                default: number;
             };
             data: {
                 type: import("vue").PropType<any[]>;

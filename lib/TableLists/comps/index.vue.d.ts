@@ -96,6 +96,14 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
                 type: ArrayConstructor;
                 default: number[];
             };
+            currentPage: {
+                type: NumberConstructor;
+                default: number;
+            };
+            currentPageSize: {
+                type: NumberConstructor;
+                default: number;
+            };
             data: {
                 type: import("vue").PropType<any[]>;
                 default: () => never[];
@@ -367,6 +375,14 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
             pageSizes: {
                 type: ArrayConstructor;
                 default: number[];
+            };
+            currentPage: {
+                type: NumberConstructor;
+                default: number;
+            };
+            currentPageSize: {
+                type: NumberConstructor;
+                default: number;
             };
             data: {
                 type: import("vue").PropType<any[]>;

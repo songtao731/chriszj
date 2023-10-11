@@ -26,5 +26,7 @@ export interface Args {
     searchData?: object;
     layout?: string;
     pageSizes?: number[];
+    currentPage?: number;
+    currentPageSize?: number;
 }
 export declare const useTable: (args: Args) => Args;

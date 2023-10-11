@@ -103,6 +103,8 @@ TTable/tableprop
 | totalPath | 后端返回数据的 total 路径 | String | data.total |
 | pageNum | 后端接口需要的分页参数 当前第几页 | String | pageNum |
 | pageSize | 后端接口需要的分页参数 每页多少条 | String | pageSize |
+| currentPage | 默认显示第几页 | Number | 1 |
+| currentPageSize | 默认显示每页多少条 | Number | 10 |
 | searchSize | 表格搜索条件按钮大小 | String 'medium,small,mini' | '' |
 | labelPosition | 表格搜索按钮位置 | String 'left,top,right' | 'left' |
 | layout | 分页展示种类 同 Pagination 的属性 layout | String | 'prev, pager, next, jumper, ->, total' |

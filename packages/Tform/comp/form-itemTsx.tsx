@@ -58,7 +58,6 @@ export default defineComponent({
       }
     });
 
-
     //初始化函数的
     let path = props.path || "data";
 
@@ -151,7 +150,7 @@ export default defineComponent({
               el.columns[1]?.placeholder || "请输入最大值";
           }
           if (el.type === "upload" && el.upload) {
-           // el.upload.fileList = formData.value[el.prop as string];
+            // el.upload.fileList = formData.value[el.prop as string];
           }
         });
       }

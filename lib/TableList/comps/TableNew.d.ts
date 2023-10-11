@@ -49,4 +49,12 @@ export declare const NewTable: {
         type: ArrayConstructor;
         default: number[];
     };
+    currentPage: {
+        type: NumberConstructor;
+        default: number;
+    };
+    currentPageSize: {
+        type: NumberConstructor;
+        default: number;
+    };
 };

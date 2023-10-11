@@ -171,6 +171,14 @@ export declare const TableProps: {
         type: ArrayConstructor;
         default: number[];
     };
+    currentPage: {
+        type: NumberConstructor;
+        default: number;
+    };
+    currentPageSize: {
+        type: NumberConstructor;
+        default: number;
+    };
     data: {
         type: PropType<any[]>;
         default: () => never[];

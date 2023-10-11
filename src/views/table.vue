@@ -196,8 +196,6 @@ const bind = computed(() => {
      request: (params) => entertainApplicationAddList({ ...params }),
     // data: tableData.value,
     labelWidth: '100px',
-    currentPage:2,
-    currentPageSize:20,
     buttons: [
       {
         type: "primary",
@@ -598,7 +596,7 @@ const bind = computed(() => {
             link:false,
             click(scope) {
 
-              tableData.value = tableData.value.filter((el) => el.contractAmount !== scope.contractAmount)
+              tableData.value = tableData.value.filter((el) => el.id !== scope.id)
 
               console.log(tableData, 'kk', scope)
 

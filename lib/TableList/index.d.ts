@@ -20,6 +20,8 @@ declare const TableList: ({
             pagination?: boolean | undefined;
             layout?: string | undefined;
             pageSizes?: unknown[] | undefined;
+            currentPage?: number | undefined;
+            currentPageSize?: number | undefined;
             fit?: boolean | undefined;
             stripe?: boolean | undefined;
             showHeader?: boolean | undefined;
@@ -253,6 +255,14 @@ declare const TableList: ({
                 type: ArrayConstructor;
                 default: number[];
             };
+            currentPage: {
+                type: NumberConstructor;
+                default: number;
+            };
+            currentPageSize: {
+                type: NumberConstructor;
+                default: number;
+            };
             data: {
                 type: import("vue").PropType<any[]>;
                 default: () => never[];
@@ -480,6 +490,8 @@ declare const TableList: ({
             pagination: boolean;
             layout: string;
             pageSizes: unknown[];
+            currentPage: number;
+            currentPageSize: number;
             fit: boolean;
             stripe: boolean;
             showHeader: boolean;
@@ -559,6 +571,14 @@ declare const TableList: ({
         pageSizes: {
             type: ArrayConstructor;
             default: number[];
+        };
+        currentPage: {
+            type: NumberConstructor;
+            default: number;
+        };
+        currentPageSize: {
+            type: NumberConstructor;
+            default: number;
         };
         data: {
             type: import("vue").PropType<any[]>;
@@ -789,6 +809,14 @@ declare const TableList: ({
         type: ArrayConstructor;
         default: number[];
     };
+    currentPage: {
+        type: NumberConstructor;
+        default: number;
+    };
+    currentPageSize: {
+        type: NumberConstructor;
+        default: number;
+    };
     data: {
         type: import("vue").PropType<any[]>;
         default: () => never[];
@@ -1016,6 +1044,8 @@ declare const TableList: ({
     pagination: boolean;
     layout: string;
     pageSizes: unknown[];
+    currentPage: number;
+    currentPageSize: number;
     fit: boolean;
     stripe: boolean;
     showHeader: boolean;

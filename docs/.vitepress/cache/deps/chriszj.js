@@ -79,7 +79,7 @@ import {
 } from "./chunk-254DOEZA.js";
 import "./chunk-UXIASGQL.js";
 
-// node_modules/.pnpm/chriszj@1.7.3/node_modules/chriszj/chris-ui.mjs
+// node_modules/.pnpm/chriszj@1.7.5/node_modules/chriszj/chris-ui.mjs
 var ry = 'a[href],button:not([disabled]),button:not([hidden]),:not([tabindex="-1"]),input:not([disabled]),input:not([type="hidden"]),select:not([disabled]),textarea:not([disabled])';
 var oy = (e) => false ? true : getComputedStyle(e).position === "fixed" ? false : e.offsetParent !== null;
 var u2 = (e) => Array.from(e.querySelectorAll(ry)).filter((t) => ay(t) && oy(t));
@@ -1371,14 +1371,14 @@ function t0(e) {
     h5.call(e, n) && n != "constructor" && t.push(n);
   return t;
 }
-function kn(e) {
+function En(e) {
   return or(e) ? cm(e) : t0(e);
 }
 var m5 = Object.prototype;
 var g5 = m5.hasOwnProperty;
 var _5 = Al(function(e, t) {
   if (zs(t) || or(t)) {
-    no(t, kn(t), e);
+    no(t, En(t), e);
     return;
   }
   for (var n in t)
@@ -1411,7 +1411,7 @@ var ou = Al(function(e, t, n, r) {
   no(t, ar(t), e, r);
 });
 var $5 = Al(function(e, t, n, r) {
-  no(t, kn(t), e, r);
+  no(t, En(t), e, r);
 });
 var S5 = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
 var k5 = /^\w*$/;
@@ -2121,7 +2121,7 @@ Lr.prototype.get = RC;
 Lr.prototype.has = NC;
 Lr.prototype.set = LC;
 function Dm(e, t) {
-  return e && no(t, kn(t), e);
+  return e && no(t, En(t), e);
 }
 function BC(e, t) {
   return e && no(t, ar(t), e);
@@ -2172,7 +2172,7 @@ function Wm(e, t, n) {
   return St(e) ? r : Zo(r, n(e));
 }
 function bd(e) {
-  return Wm(e, kn, f0);
+  return Wm(e, En, f0);
 }
 function p0(e) {
   return Wm(e, ar, Km);
@@ -2370,7 +2370,7 @@ function wr(e, t, n, r, o, a) {
   }) : qm(e) && e.forEach(function(_, g) {
     l.set(g, wr(_, t, n, g, e, a));
   });
-  var m = c ? u ? p0 : bd : u ? ar : kn, v = f ? void 0 : m(e);
+  var m = c ? u ? p0 : bd : u ? ar : En, v = f ? void 0 : m(e);
   return Pr(v || e, function(_, g) {
     v && (g = _, _ = e[g]), Ns(l, g, wr(_, t, n, g, e, a));
   }), l;
@@ -2625,7 +2625,7 @@ function Zm(e) {
   return e === e && !ln(e);
 }
 function _0(e) {
-  for (var t = kn(e), n = t.length; n--; ) {
+  for (var t = En(e), n = t.length; n--; ) {
     var r = t[n], o = e[r];
     t[n] = [r, o, Zm(o)];
   }
@@ -2709,7 +2709,7 @@ function ag(e, t, n) {
   return true;
 }
 function j7(e) {
-  var t = kn(e);
+  var t = En(e);
   return function(n) {
     return ag(n, e, t);
   };
@@ -2719,7 +2719,7 @@ function q7(e) {
   return j7(wr(e, U7));
 }
 function G7(e, t) {
-  return t == null || ag(e, t, kn(t));
+  return t == null || ag(e, t, En(t));
 }
 function Y7(e, t, n, r) {
   for (var o = -1, a = e == null ? 0 : e.length; ++o < a; ) {
@@ -2740,7 +2740,7 @@ function lg(e) {
 }
 var w0 = lg();
 function oo(e, t) {
-  return e && w0(e, t, kn);
+  return e && w0(e, t, En);
 }
 function sg(e, t) {
   return function(n, r) {
@@ -2991,7 +2991,7 @@ function $S(e, t) {
 }
 var pg = lg(true);
 function k0(e, t) {
-  return e && pg(e, t, kn);
+  return e && pg(e, t, En);
 }
 var vg = sg(k0, true);
 function vv(e, t) {
@@ -3024,7 +3024,7 @@ function hg(e) {
     return n == AS ? m0(t) : n == xS ? ES(t) : kS(t, e(t));
   };
 }
-var hv = hg(kn);
+var hv = hg(En);
 var mv = hg(ar);
 var MS = {
   "&": "&amp;",
@@ -3089,7 +3089,7 @@ function Cg(e) {
     var o = Object(t);
     if (!or(t)) {
       var a = Ct(n, 3);
-      t = kn(t), n = function(i) {
+      t = En(t), n = function(i) {
         return a(o[i], i, o);
       };
     }
@@ -3223,7 +3223,7 @@ function Zu(e, t) {
   });
 }
 function fk(e) {
-  return e == null ? [] : Zu(e, kn(e));
+  return e == null ? [] : Zu(e, En(e));
 }
 function pk(e) {
   return e == null ? [] : Zu(e, ar(e));
@@ -3271,7 +3271,7 @@ function A0(e, t) {
   });
 }
 function Tl(e) {
-  return e == null ? [] : A0(e, kn(e));
+  return e == null ? [] : A0(e, En(e));
 }
 var xk = Math.max;
 function Mk(e, t, n, r) {
@@ -3577,7 +3577,7 @@ function ZE(e, t) {
   return e && e.length ? nc(e, Ct(t, 2), T0) : void 0;
 }
 function Lg(e, t, n) {
-  var r = kn(t), o = Zu(t, r), a = !(ln(n) && "chain" in n) || !!n.chain, l = _o(e);
+  var r = En(t), o = Zu(t, r), a = !(ln(n) && "chain" in n) || !!n.chain, l = _o(e);
   return Pr(o, function(i) {
     var u = t[i];
     e[i] = u, l && (e.prototype[i] = function() {
@@ -4329,7 +4329,7 @@ var kv = FM.hasOwnProperty;
 function KM(e, t, n) {
   var r = Od.imports._.templateSettings || Od;
   n && Kn(e, t, n) && (t = void 0), e = Wt(e), t = ou({}, t, r, Sv);
-  var o = ou({}, t.imports, r.imports, Sv), a = kn(o), l = A0(o, a), i, u, c = 0, f = t.interpolate || ti, d = "__p += '", p = RegExp(
+  var o = ou({}, t.imports, r.imports, Sv), a = En(o), l = A0(o, a), i, u, c = 0, f = t.interpolate || ti, d = "__p += '", p = RegExp(
     (t.escape || ti).source + "|" + f.source + "|" + (f === o4 ? DM : ti).source + "|" + (t.evaluate || ti).source + "|$",
     "g"
   ), h10 = kv.call(t, "sourceURL") ? "//# sourceURL=" + (t.sourceURL + "").replace(/\s/g, " ") + `
@@ -4909,7 +4909,7 @@ var yt = {
   invert: Dk,
   invertBy: Kk,
   invoke: Wk,
-  keys: kn,
+  keys: En,
   keysIn: ar,
   mapKeys: VE,
   mapValues: DE,
@@ -5087,7 +5087,7 @@ var xv = Math.min;
 var K0 = function(e) {
   return function(t, n, r) {
     if (r == null) {
-      var o = ln(n), a = o && kn(n), l = a && a.length && Zu(n, a);
+      var o = ln(n), a = o && En(n), l = a && a.length && Zu(n, a);
       (l ? l.length : o) || (r = n, n = t, t = this);
     }
     return e(t, n, r);
@@ -5152,7 +5152,7 @@ j.invertBy = yt.invertBy;
 j.invokeMap = Yt.invokeMap;
 j.iteratee = Ut.iteratee;
 j.keyBy = Yt.keyBy;
-j.keys = kn;
+j.keys = En;
 j.keysIn = yt.keysIn;
 j.map = Yt.map;
 j.mapKeys = yt.mapKeys;
@@ -10057,7 +10057,7 @@ function cr(e) {
 function lV(e) {
   return e === "string" || e === "url" || e === "hex" || e === "email" || e === "date" || e === "pattern";
 }
-function $n(e, t) {
+function Sn(e, t) {
   return !!(e == null || t === "array" && Array.isArray(e) && !e.length || lV(t) && typeof e == "string" && !e);
 }
 function sV(e, t, n) {
@@ -10153,7 +10153,7 @@ function l1(e, t) {
   return e;
 }
 var k3 = function(t, n, r, o, a, l) {
-  t.required && (!r.hasOwnProperty(t.field) || $n(n, l || t.type)) && o.push(cr(a.messages.required, t.fullField));
+  t.required && (!r.hasOwnProperty(t.field) || Sn(n, l || t.type)) && o.push(cr(a.messages.required, t.fullField));
 };
 var fV = function(t, n, r, o, a) {
   (/^\s+$/.test(n) || n === "") && o.push(cr(a.messages.whitespace, t.fullField));
@@ -10275,16 +10275,16 @@ var Rt = {
 var _V = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n, "string") && !t.required)
+    if (Sn(n, "string") && !t.required)
       return r();
-    Rt.required(t, n, o, l, a, "string"), $n(n, "string") || (Rt.type(t, n, o, l, a), Rt.range(t, n, o, l, a), Rt.pattern(t, n, o, l, a), t.whitespace === true && Rt.whitespace(t, n, o, l, a));
+    Rt.required(t, n, o, l, a, "string"), Sn(n, "string") || (Rt.type(t, n, o, l, a), Rt.range(t, n, o, l, a), Rt.pattern(t, n, o, l, a), t.whitespace === true && Rt.whitespace(t, n, o, l, a));
   }
   r(l);
 };
 var yV = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n) && !t.required)
+    if (Sn(n) && !t.required)
       return r();
     Rt.required(t, n, o, l, a), n !== void 0 && Rt.type(t, n, o, l, a);
   }
@@ -10293,7 +10293,7 @@ var yV = function(t, n, r, o, a) {
 var bV = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if (n === "" && (n = void 0), $n(n) && !t.required)
+    if (n === "" && (n = void 0), Sn(n) && !t.required)
       return r();
     Rt.required(t, n, o, l, a), n !== void 0 && (Rt.type(t, n, o, l, a), Rt.range(t, n, o, l, a));
   }
@@ -10302,7 +10302,7 @@ var bV = function(t, n, r, o, a) {
 var wV = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n) && !t.required)
+    if (Sn(n) && !t.required)
       return r();
     Rt.required(t, n, o, l, a), n !== void 0 && Rt.type(t, n, o, l, a);
   }
@@ -10311,16 +10311,16 @@ var wV = function(t, n, r, o, a) {
 var CV = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n) && !t.required)
+    if (Sn(n) && !t.required)
       return r();
-    Rt.required(t, n, o, l, a), $n(n) || Rt.type(t, n, o, l, a);
+    Rt.required(t, n, o, l, a), Sn(n) || Rt.type(t, n, o, l, a);
   }
   r(l);
 };
 var $V = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n) && !t.required)
+    if (Sn(n) && !t.required)
       return r();
     Rt.required(t, n, o, l, a), n !== void 0 && (Rt.type(t, n, o, l, a), Rt.range(t, n, o, l, a));
   }
@@ -10329,7 +10329,7 @@ var $V = function(t, n, r, o, a) {
 var SV = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n) && !t.required)
+    if (Sn(n) && !t.required)
       return r();
     Rt.required(t, n, o, l, a), n !== void 0 && (Rt.type(t, n, o, l, a), Rt.range(t, n, o, l, a));
   }
@@ -10347,7 +10347,7 @@ var kV = function(t, n, r, o, a) {
 var EV = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n) && !t.required)
+    if (Sn(n) && !t.required)
       return r();
     Rt.required(t, n, o, l, a), n !== void 0 && Rt.type(t, n, o, l, a);
   }
@@ -10357,7 +10357,7 @@ var AV = "enum";
 var xV = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n) && !t.required)
+    if (Sn(n) && !t.required)
       return r();
     Rt.required(t, n, o, l, a), n !== void 0 && Rt[AV](t, n, o, l, a);
   }
@@ -10366,18 +10366,18 @@ var xV = function(t, n, r, o, a) {
 var MV = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n, "string") && !t.required)
+    if (Sn(n, "string") && !t.required)
       return r();
-    Rt.required(t, n, o, l, a), $n(n, "string") || Rt.pattern(t, n, o, l, a);
+    Rt.required(t, n, o, l, a), Sn(n, "string") || Rt.pattern(t, n, o, l, a);
   }
   r(l);
 };
 var OV = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n, "date") && !t.required)
+    if (Sn(n, "date") && !t.required)
       return r();
-    if (Rt.required(t, n, o, l, a), !$n(n, "date")) {
+    if (Rt.required(t, n, o, l, a), !Sn(n, "date")) {
       var u;
       n instanceof Date ? u = n : u = new Date(n), Rt.type(t, u, o, l, a), u && Rt.range(t, u.getTime(), o, l, a);
     }
@@ -10391,16 +10391,16 @@ var TV = function(t, n, r, o, a) {
 var Uc = function(t, n, r, o, a) {
   var l = t.type, i = [], u = t.required || !t.required && o.hasOwnProperty(t.field);
   if (u) {
-    if ($n(n, l) && !t.required)
+    if (Sn(n, l) && !t.required)
       return r();
-    Rt.required(t, n, o, i, a, l), $n(n, l) || Rt.type(t, n, o, i, a);
+    Rt.required(t, n, o, i, a, l), Sn(n, l) || Rt.type(t, n, o, i, a);
   }
   r(i);
 };
 var PV = function(t, n, r, o, a) {
   var l = [], i = t.required || !t.required && o.hasOwnProperty(t.field);
   if (i) {
-    if ($n(n) && !t.required)
+    if (Sn(n) && !t.required)
       return r();
     Rt.required(t, n, o, l, a);
   }
@@ -12474,7 +12474,7 @@ var HD = defineComponent({
 var FD = _e(HD, [["__file", "/home/runner/work/element-plus/element-plus/packages/components/popper/src/content.vue"]]);
 var L3 = nt(dD);
 var Cc = Symbol("elTooltip");
-var En = ge({
+var An = ge({
   ...WL,
   ...z3,
   appendTo: {
@@ -12521,7 +12521,7 @@ var {
 var UD = ge({
   ...O3,
   ...KD,
-  ...En,
+  ...An,
   ...$s,
   ...T3,
   showArrow: {
@@ -12590,7 +12590,7 @@ var JD = defineComponent({
 });
 var ZD = defineComponent({
   ...JD,
-  props: En,
+  props: An,
   setup(e, { expose: t }) {
     const n = e, { selector: r } = r3(), o = de("tooltip"), a = ref(null), l = ref(false), {
       controlled: i,
@@ -12887,7 +12887,7 @@ var lH = ge({
   label: {
     type: String
   },
-  teleported: En.teleported,
+  teleported: An.teleported,
   highlightFirstItem: {
     type: Boolean,
     default: false
@@ -18299,7 +18299,7 @@ var MW = ge({
     type: String,
     default: ""
   },
-  teleported: En.teleported,
+  teleported: An.teleported,
   tagType: { ...Ap.type, default: "info" },
   validateEvent: {
     type: Boolean,
@@ -23172,7 +23172,7 @@ var OG = _e(xG, [["render", MG], ["__file", "/home/runner/work/element-plus/elem
 var Fi = ge({
   trigger: $s.trigger,
   effect: {
-    ...En.effect,
+    ...An.effect,
     default: "light"
   },
   type: {
@@ -23231,7 +23231,7 @@ var Fi = ge({
   buttonProps: {
     type: Z(Object)
   },
-  teleported: En.teleported
+  teleported: An.teleported
 });
 var e_ = ge({
   command: {
@@ -26265,7 +26265,7 @@ var rX = defineComponent({
       type: Number,
       default: 1
     },
-    teleported: En.teleported,
+    teleported: An.teleported,
     persistent: {
       type: Boolean,
       default: true
@@ -27384,8 +27384,8 @@ var VX = ge({
     type: Number,
     default: 200
   },
-  teleported: En.teleported,
-  persistent: En.persistent,
+  teleported: An.teleported,
+  persistent: An.persistent,
   width: {
     type: [String, Number],
     default: 150
@@ -27486,22 +27486,22 @@ var jX = ge({
   trigger: $s.trigger,
   placement: Fi.placement,
   disabled: $s.disabled,
-  visible: En.visible,
-  transition: En.transition,
+  visible: An.visible,
+  transition: An.transition,
   popperOptions: Fi.popperOptions,
   tabindex: Fi.tabindex,
-  content: En.content,
-  popperStyle: En.popperStyle,
-  popperClass: En.popperClass,
+  content: An.content,
+  popperStyle: An.popperStyle,
+  popperClass: An.popperClass,
   enterable: {
-    ...En.enterable,
+    ...An.enterable,
     default: true
   },
   effect: {
-    ...En.effect,
+    ...An.effect,
     default: "light"
   },
-  teleported: En.teleported,
+  teleported: An.teleported,
   title: String,
   width: {
     type: [String, Number],
@@ -29576,7 +29576,7 @@ var jJ = {
   placeholder: {
     type: String
   },
-  teleported: En.teleported,
+  teleported: An.teleported,
   persistent: {
     type: Boolean,
     default: true
@@ -43005,7 +43005,8 @@ var sle = defineComponent({
     }, [createVNode(h_, {
       "onUpdate:current-page": this.handleCurrentChange,
       "onUpdate:page-size": this.handleSizeChange,
-      currentPageSync: this.currentPage,
+      currentPage: this.currentPage,
+      "onUpdate:currentPage": (e) => this.currentPage = e,
       pageSizes: this.props.pageSizes,
       pageSize: this.pageSize,
       layout: this.props.layout,
@@ -43248,47 +43249,47 @@ var Pu = (e, t) => {
 var mle = defineComponent({
   props: ["data", "column"],
   setup(e) {
-    const t = e.data, n = e.column, r = (o, a) => {
+    const t = (n, r) => {
       const {
-        formatType: l,
-        prop: i,
-        dictData: u,
-        buttons: c
-      } = a;
-      let f = o[i] || "--";
-      if (l)
-        switch (l) {
+        formatType: o,
+        prop: a,
+        dictData: l,
+        buttons: i
+      } = r;
+      let u = e.data[a] || "--";
+      if (o)
+        switch (o) {
           case "price":
-            f = Pu(o[i], {
+            u = Pu(e.data[a], {
               thousands: true
             });
             break;
           case "priceChinese":
-            f = Pu(o[i], {
+            u = Pu(e.data[a], {
               chinaPrice: true
             });
             break;
           case "date":
-            f = Tu(o[i], "Y-M-D");
+            u = Tu(e.data[a], "Y-M-D");
             break;
           case "dateTime":
-            f = Tu(o[i]);
+            u = Tu(e.data[a]);
           default:
             break;
         }
-      if (u && u.length) {
-        const d = u.find((p) => p.value == o[i]);
-        f = d && d.label;
+      if (l && l.length) {
+        const c = l.find((f) => f.value == e.data[a]);
+        u = c && c.label;
       }
-      return c && c.length && (f = c.map((d) => createVNode(an, mergeProps(d, {
-        onClick: (p) => {
-          p.stopPropagation(), d.click && d.click(o);
+      return i && i.length && (u = i.map((c) => createVNode(an, mergeProps(c, {
+        onClick: (f) => {
+          f.stopPropagation(), c.click && c.click(n);
         }
       }), {
-        default: () => [d.content]
-      }))), f;
+        default: () => [c.content]
+      }))), u;
     };
-    return () => createVNode(Fragment, null, [r(t, n)]);
+    return () => createVNode(Fragment, null, [t(e.data, e.column)]);
   }
 });
 function gle(e) {
@@ -43402,6 +43403,7 @@ var _le = defineComponent({
         case "cascader":
           d = createVNode(It, {
             prop: "dataList." + f + "." + i,
+            rules: l.rules,
             class: "inline"
           }, {
             default: () => [createVNode(kc, mergeProps({
@@ -43438,7 +43440,7 @@ var ble = {
 var wle = defineComponent({
   ...ble,
   props: N8,
-  emits: { ...Ou, resetFn: () => true },
+  emits: { ...Ou, resetFn: () => true, getSearchData: (e) => e },
   setup(e, { expose: t, emit: n }) {
     const r = e, o = computed(() => {
       var A;
@@ -43453,19 +43455,25 @@ var wle = defineComponent({
     }), { usePageNum: i, usePageSize: u } = {
       usePageNum: r.pageNum || "pageNum",
       usePageSize: r.pageSize || "pageSize"
-    }, c = ref(1), f = ref(10), d = ref([]), p = ref(0);
-    let h10 = r.path || "data.rows", m = r.totalPath || "data.total";
-    const v = ref({
+    }, c = ref(1), f = ref(10), d = ref(0);
+    let p = r.path || "data.rows", h10 = r.totalPath || "data.total";
+    const m = ref({
       dataList: []
+    }), v = ref();
+    watchEffect(() => {
+      r.request || (v.value = r.data, m.value.dataList = v.value);
     });
-    d.value = r.data, v.value.dataList = d.value;
     const _ = async (A) => {
       const R = {
         ...A,
         [i]: c.value,
         [u]: f.value
-      }, z = await r.request(R);
-      d.value = fle(z, h10), p.value = ple(z, m), r.parseData && (d.value = r.parseData(d.value)), v.value.dataList = d.value;
+      };
+      if (r.request) {
+        const z = await r.request(R);
+        v.value = fle(z, p), d.value = ple(z, h10), r.parseData && (v.value = r.parseData(v.value)), m.value.dataList = v.value, console.log(z, "res", m.value.dataList);
+      } else
+        n("getSearchData", R);
     }, g = ref(), C = (A) => {
       c.value = 1, _(A);
     }, y = async (A) => {
@@ -43518,11 +43526,11 @@ var wle = defineComponent({
         createVNode(N, {
           ref_key: "formRef",
           ref: b,
-          model: v.value
+          model: m.value
         }, {
           default: withCtx(() => [
             createVNode(unref(U_), mergeProps({
-              data: v.value.dataList,
+              data: m.value.dataList,
               style: { width: "100%" }
             }, toHandlers(l.value), {
               ref_key: "tableRef",
@@ -43544,10 +43552,10 @@ var wle = defineComponent({
                   label: typeof r.index == "object" && r.index.label,
                   width: typeof r.index == "object" && r.index.width
                 }, null, 8, ["label", "width"])) : createCommentVNode("", true),
-                (openBlock(true), createElementBlock(Fragment, null, renderList(o.value, (P, T) => (openBlock(), createBlock(z, mergeProps({ key: T }, P), createSlots({
+                (openBlock(true), createElementBlock(Fragment, null, renderList(o.value, (P, T) => (openBlock(), createBlock(z, mergeProps({ key: P }, P), createSlots({
                   default: withCtx((V) => [
                     P.slotName ? renderSlot(A.$slots, P.slotName, normalizeProps(mergeProps({ key: 0 }, V)), void 0, true) : createCommentVNode("", true),
-                    !P.slotName && P.type === "default" && !P.formatter ? (openBlock(), createBlock(unref(mle), {
+                    !P.slotName && !P.type && !P.formatter && !P.event ? (openBlock(), createBlock(unref(mle), {
                       key: 1,
                       data: V == null ? void 0 : V.row,
                       column: P
@@ -43556,7 +43564,7 @@ var wle = defineComponent({
                       key: 2,
                       data: V,
                       column: P,
-                      dataList: d.value
+                      dataList: v.value
                     }, null, 8, ["data", "column", "dataList"])) : createCommentVNode("", true)
                   ]),
                   _: 2
@@ -43576,7 +43584,7 @@ var wle = defineComponent({
           _: 3
         }, 8, ["model"]),
         withDirectives(createVNode(unref(sle), {
-          total: p.value,
+          total: d.value,
           onGetPage: y,
           currentPage: c.value,
           pageSize: f.value,
@@ -43585,14 +43593,14 @@ var wle = defineComponent({
           ref: g,
           layout: r.layout
         }, null, 8, ["total", "currentPage", "pageSize", "pageSizes", "layout"]), [
-          [vShow, p.value > 0 && r.pagination]
+          [vShow, d.value > 0 && r.pagination]
         ]),
         renderSlot(A.$slots, "footer", {}, void 0, true)
       ]);
     };
   }
 });
-var z8 = ia(wle, [["__scopeId", "data-v-6da410ef"]]);
+var z8 = ia(wle, [["__scopeId", "data-v-bb5ab24c"]]);
 var zl = (e, t) => {
   if (e.install = (n) => {
     for (const r of [e, ...Object.values(t ?? {})])
