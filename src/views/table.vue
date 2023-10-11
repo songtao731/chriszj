@@ -193,10 +193,8 @@ let num = ref(100)
 
 const bind = computed(() => {
   return chris.useTable({
-    // request: (params) => entertainApplicationAddList({ ...params }),
-    data: tableData.value,
-
-    totalPath: 'data.total',
+     request: (params) => entertainApplicationAddList({ ...params }),
+    // data: tableData.value,
     labelWidth: '100px',
     buttons: [
       {
@@ -231,6 +229,11 @@ const bind = computed(() => {
       {
         type: "selection",
         width: "200px",
+      },
+      {
+        label:'id',
+        prop:'id'
+
       },
       {
         label: "输入框",
@@ -427,7 +430,7 @@ const bind = computed(() => {
       },
       {
         label: '单选',
-        prop: 'radio',
+        prop: 'county',
 
         value: '1',
         filter: {
@@ -586,9 +589,11 @@ const bind = computed(() => {
       },
       {
         label: '操作',
+        width:'200px',
         buttons: [
           {
             content: '删除',
+            link:false,
             click(scope) {
 
               tableData.value = tableData.value.filter((el) => el.contractAmount !== scope.contractAmount)

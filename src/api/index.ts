@@ -18,7 +18,7 @@ export const travelAddList = (data: any) => {
 //招待申请列表
 export const entertainApplicationAddList = (data: any) => {
   return axios({
-    url: `https://gateway-uat.zhidabl.com/direct-rent-service/direct-rent/personalApplyOrder/creditCentreOrderInfo`,
+    url: `https://gateway-uat.zhidabl.com/dr-garage-car-service/dr-garage-car/tCarStorehouse/list`,
     method: "get",
     params: data,
   });

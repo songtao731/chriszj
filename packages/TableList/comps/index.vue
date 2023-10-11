@@ -27,6 +27,7 @@
 
     <!-- 右上插槽 -->
     <Buttons :buttons="props.buttons"> </Buttons>
+    <!-- {{ formData.dataList }} -->
     <el-form ref="formRef" :model="formData">
       <ElTable :data="formData.dataList" style="width: 100%" v-on="tableEvents" ref="tableRef">
         <template #empty>
@@ -138,9 +139,13 @@ const formData = ref({
 
 //表格的数据
 const dataList = ref()
+
 watchEffect(() => {
-  dataList.value = props.data;
-  formData.value.dataList = dataList.value
+  if (!props.request) {
+    dataList.value = props.data;
+    formData.value.dataList = dataList.value
+  }
+
 })
 
 
@@ -152,12 +157,17 @@ const getDataList = async (data?: any) => {
   };
   if (props.request) {
     const res = await props.request!(params);
+
     dataList.value = getPath(res, path);
     total.value = getTotalPath(res, totalPath);
+
     if (props.parseData) {
       dataList.value = props.parseData(dataList.value);
     }
     formData.value.dataList = dataList.value
+
+    console.log(res, 'res', formData.value.dataList)
+
   } else {
     emit('getSearchData', params)
   }

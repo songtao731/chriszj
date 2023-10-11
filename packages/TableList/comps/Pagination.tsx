@@ -37,7 +37,7 @@ export default defineComponent({
         <ElPagination
           onUpdate:current-page={this.handleCurrentChange}
           onUpdate:page-size={this.handleSizeChange}
-          currentPageSync={this.currentPage}
+          v-model:currentPage={this.currentPage}
           pageSizes={this.props.pageSizes}
           pageSize={this.pageSize}
           layout={this.props.layout}

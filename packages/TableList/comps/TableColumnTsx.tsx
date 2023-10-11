@@ -6,27 +6,27 @@ import { ButtonProps } from "./Button";
 export default defineComponent({
   props: ["data", "column"],
   setup(props) {
-    const data = props.data;
-    const column = props.column;
+
 
     const parseValue = (data: any, column: any) => {
       const { formatType, prop, dictData, buttons } = column;
 
-      let result = data[prop] || "--";
+      let result = props.data[prop] || "--";
+
       //格式化数字
       if (formatType) {
         switch (formatType) {
           case "price":
-            result = formatPrice(data[prop], { thousands: true });
+            result = formatPrice(props.data[prop], { thousands: true });
             break;
           case "priceChinese":
-            result = formatPrice(data[prop], { chinaPrice: true });
+            result = formatPrice(props.data[prop], { chinaPrice: true });
             break;
           case "date":
-            result = formatTime(data[prop], "Y-M-D");
+            result = formatTime(props.data[prop], "Y-M-D");
             break;
           case "dateTime":
-            result = formatTime(data[prop]);
+            result = formatTime(props.data[prop]);
           default:
             break;
         }
@@ -34,7 +34,7 @@ export default defineComponent({
       //处理枚举 字典
       if (dictData && dictData.length) {
         const findData = dictData.find((el: any) => {
-          return el.value == data[prop];
+          return el.value == props.data[prop];
         });
         result = findData && findData["label"];
       }
@@ -58,6 +58,6 @@ export default defineComponent({
 
       return result;
     };
-    return () => <>{parseValue(data, column)}</>;
+    return () => <>{parseValue(props.data, props.column)}</>;
   },
 });
