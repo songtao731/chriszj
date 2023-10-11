@@ -121,9 +121,9 @@ const { usePageNum, usePageSize } = {
   usePageSize: props.pageSize || "pageSize",
 };
 // 初始化分页参数 给后台的值
-const currentPage = ref(1);
-const pageSize = ref(10);
 
+const currentPage = ref(props.currentPage);
+const pageSize = ref(props.currentPageSize);
 
 //初始化数目
 const total = ref(0);
@@ -166,7 +166,6 @@ const getDataList = async (data?: any) => {
     }
     formData.value.dataList = dataList.value
 
-    console.log(res, 'res', formData.value.dataList)
 
   } else {
     emit('getSearchData', params)
@@ -182,9 +181,18 @@ const getDataList = async (data?: any) => {
 
 //分页组件Ref
 const pagination = ref();
-//点击查询 查询事件
+//点击查询 查询事件  第一次加载数据也是这里
+//只触发第一次 
+let isFirstPage=true
 const getParams = (data: any) => {
+  //点击查询回到第一页
   currentPage.value = 1;
+//如果外部传入显示第几页 
+  if(props.currentPage&&isFirstPage){
+    currentPage.value=props.currentPage
+    pageSize.value =props.currentPageSize
+    isFirstPage=false
+  }
   getDataList(data);
 };
 const getPage = async (page: any) => {

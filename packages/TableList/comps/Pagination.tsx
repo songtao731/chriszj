@@ -6,10 +6,10 @@ export default defineComponent({
   name: 'pagination',
   inheritAttrs: true,
   emits: ['getPage'],
-  props: ['total','layout','pageSizes','currentPage'],
+  props: ['total','layout','pageSizes','currentPage','pageSize'],
   setup(props, { emit }) {
-    const currentPage = ref(1);
-    const pageSize = ref(10);
+    const currentPage = ref(props.currentPage);
+    const pageSize = ref(props.pageSize);
     const handleSizeChange = (val: number): void => {
       currentPage.value = 1;
       pageSize.value = val;
@@ -17,6 +17,8 @@ export default defineComponent({
     };
     const handleCurrentChange = (val: number): void => {
       currentPage.value = val;
+
+      console.log(pageSize,'....')
       emit('getPage', { pageSize, currentPage });
     };
     watchEffect(()=>{
@@ -39,7 +41,7 @@ export default defineComponent({
           onUpdate:page-size={this.handleSizeChange}
           v-model:currentPage={this.currentPage}
           pageSizes={this.props.pageSizes}
-          pageSize={this.pageSize}
+          pageSize={this.props.pageSize}
           layout={this.props.layout}
           total={+this.props.total}
         ></ElPagination>

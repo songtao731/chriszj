@@ -54,6 +54,14 @@ export const NewTable = {
   pageSizes:{
     type:Array,
     default:[5,10,20,30]
+  },
+  currentPage:{
+    type:Number,
+    default:1
+  },
+  currentPageSize:{
+    type:Number,
+    default:10
   }
 
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries" :currentPage="2"
+    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries"
       @getSearchData="aa">
       <template #topheader> 最上部</template>
       <template #centerheader> 中间 </template>
@@ -196,6 +196,8 @@ const bind = computed(() => {
      request: (params) => entertainApplicationAddList({ ...params }),
     // data: tableData.value,
     labelWidth: '100px',
+    currentPage:2,
+    currentPageSize:20,
     buttons: [
       {
         type: "primary",

@@ -47,6 +47,9 @@ export interface Args {
   layout?: string;
   //分页控制切换多少条
   pageSizes?: number[];
+  currentPage?:number
+  currentPageSize?:number
+
 }
 
 export const useTable = (args: Args) => {

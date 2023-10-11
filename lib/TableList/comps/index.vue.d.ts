@@ -193,6 +193,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     params: import("vue").Ref<any>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     resetFn: () => true;
+    getSearchData: (data: any) => any;
     select: (selection: any[], row: any) => boolean;
     selectAll: (selection: any[]) => boolean;
     selectionChange: (selection: any[]) => boolean;
@@ -421,6 +422,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         dataList: any[];
         filterForm: any;
     }) => any) | undefined;
+    onGetSearchData?: ((data: any) => any) | undefined;
     onSelectAll?: ((selection: any[]) => any) | undefined;
     onSelectionChange?: ((selection: any[]) => any) | undefined;
     onCellMouseEnter?: ((row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: MouseEvent) => any) | undefined;

@@ -145,6 +145,14 @@ declare const TableList: ({
             onExpandChange?: ((row: any, expanded: boolean | any[]) => any) | undefined;
             readonly height?: string | number | undefined;
             readonly pageSize?: string | undefined;
+            readonly request?: Function | undefined;
+            readonly parseData?: Function | undefined;
+            readonly totalPath?: string | undefined;
+            readonly pageNum?: string | undefined;
+            readonly maxHeight?: string | number | undefined;
+            readonly sumText?: string | undefined;
+            readonly currentRowKey?: string | number | undefined;
+            readonly tooltipEffect?: string | undefined;
             onQuery?: ((options: {
                 pageNum: number;
                 pageSize: number;
@@ -152,6 +160,7 @@ declare const TableList: ({
                 dataList: any[];
                 filterForm: any;
             }) => any) | undefined;
+            onGetSearchData?: ((data: any) => any) | undefined;
             onSelectAll?: ((selection: any[]) => any) | undefined;
             onSelectionChange?: ((selection: any[]) => any) | undefined;
             onCellMouseEnter?: ((row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: MouseEvent) => any) | undefined;
@@ -172,14 +181,6 @@ declare const TableList: ({
             onFilterChange?: ((filters: any) => any) | undefined;
             onCurrentChange?: ((currentRow: any, oldCurrentRow: any) => any) | undefined;
             onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
-            readonly request?: Function | undefined;
-            readonly parseData?: Function | undefined;
-            readonly totalPath?: string | undefined;
-            readonly pageNum?: string | undefined;
-            readonly maxHeight?: string | number | undefined;
-            readonly sumText?: string | undefined;
-            readonly currentRowKey?: string | number | undefined;
-            readonly tooltipEffect?: string | undefined;
         };
         $attrs: {
             [x: string]: unknown;
@@ -198,7 +199,7 @@ declare const TableList: ({
             total: number;
             dataList: any[];
             filterForm: any;
-        }) => void) & ((event: "selectAll", selection: any[]) => void) & ((event: "selectionChange", selection: any[]) => void) & ((event: "cellMouseEnter", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: MouseEvent) => void) & ((event: "cellMouseLeave", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: MouseEvent) => void) & ((event: "cellContextmenu", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: Event) => void) & ((event: "cellClick", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: Event) => void) & ((event: "cellDblclick", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: Event) => void) & ((event: "rowClick", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => void) & ((event: "rowContextmenu", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => void) & ((event: "rowDblclick", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => void) & ((event: "headerClick", column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => void) & ((event: "headerContextmenu", column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => void) & ((event: "sortChange", prop: {
+        }) => void) & ((event: "getSearchData", data: any) => void) & ((event: "selectAll", selection: any[]) => void) & ((event: "selectionChange", selection: any[]) => void) & ((event: "cellMouseEnter", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: MouseEvent) => void) & ((event: "cellMouseLeave", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: MouseEvent) => void) & ((event: "cellContextmenu", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: Event) => void) & ((event: "cellClick", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: Event) => void) & ((event: "cellDblclick", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: Event) => void) & ((event: "rowClick", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => void) & ((event: "rowContextmenu", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => void) & ((event: "rowDblclick", row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => void) & ((event: "headerClick", column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => void) & ((event: "headerContextmenu", column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => void) & ((event: "sortChange", prop: {
             column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>;
             prop: any;
             order: any;
@@ -403,6 +404,7 @@ declare const TableList: ({
                 dataList: any[];
                 filterForm: any;
             }) => any) | undefined;
+            onGetSearchData?: ((data: any) => any) | undefined;
             onSelectAll?: ((selection: any[]) => any) | undefined;
             onSelectionChange?: ((selection: any[]) => any) | undefined;
             onCellMouseEnter?: ((row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: MouseEvent) => any) | undefined;
@@ -430,6 +432,7 @@ declare const TableList: ({
             params: import("vue").Ref<any>;
         }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
             resetFn: () => true;
+            getSearchData: (data: any) => any;
             select: (selection: any[], row: any) => boolean;
             selectAll: (selection: any[]) => boolean;
             selectionChange: (selection: any[]) => boolean;
@@ -708,6 +711,7 @@ declare const TableList: ({
             dataList: any[];
             filterForm: any;
         }) => any) | undefined;
+        onGetSearchData?: ((data: any) => any) | undefined;
         onSelectAll?: ((selection: any[]) => any) | undefined;
         onSelectionChange?: ((selection: any[]) => any) | undefined;
         onCellMouseEnter?: ((row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: MouseEvent) => any) | undefined;
@@ -936,6 +940,7 @@ declare const TableList: ({
         dataList: any[];
         filterForm: any;
     }) => any) | undefined;
+    onGetSearchData?: ((data: any) => any) | undefined;
     onSelectAll?: ((selection: any[]) => any) | undefined;
     onSelectionChange?: ((selection: any[]) => any) | undefined;
     onCellMouseEnter?: ((row: any, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, cell: HTMLTableCellElement, ev: MouseEvent) => any) | undefined;
@@ -963,6 +968,7 @@ declare const TableList: ({
     params: import("vue").Ref<any>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     resetFn: () => true;
+    getSearchData: (data: any) => any;
     select: (selection: any[], row: any) => boolean;
     selectAll: (selection: any[]) => boolean;
     selectionChange: (selection: any[]) => boolean;
