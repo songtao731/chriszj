@@ -30,7 +30,7 @@ export interface ButtonProps {
     /**
      * 是否隐藏
      */
-    hidden?: boolean;
+    hide?: boolean | ((scope: any) => boolean);
     click?: (scope: any) => void;
 }
 export declare const ButtonTypeProps: {
@@ -73,6 +73,6 @@ export declare const ButtonTypeProps: {
     /**
      * 是否隐藏
      */
-    hidden: BooleanConstructor;
+    hidden: (BooleanConstructor | FunctionConstructor)[];
     click: FunctionConstructor;
 };

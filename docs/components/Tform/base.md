@@ -33,6 +33,19 @@ type设置成custom
 Tform/zdy
 :::
 
+### 动态校验
+传入keys 后端接收的数组的key值
+type设置成domains
+:::demo 添加slotName来设置组件插槽
+Tform/domains
+:::
+### 动态校验回显
+传入keys 后端接收的数组的key值  edit设置成true
+type设置成domains
+:::demo 添加slotName来设置组件插槽
+Tform/domainsEdit
+:::
+
 | 参数 | 说明 | 类型 | 默认值 |
 | :---------------------- | :----------------------------------------------------------------------------- | :----------- | :-------- |
 | useForm | 表单数据对象 | Function |  |

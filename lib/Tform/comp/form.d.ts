@@ -89,6 +89,10 @@ export declare const formProps: {
         type: (BooleanConstructor | ObjectConstructor)[];
     };
     request: (ObjectConstructor | FunctionConstructor)[];
+    edit: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     title: {
@@ -102,9 +106,7 @@ export declare const formProps: {
     size: {
         type: PropType<import("./useForm").size>;
         default: string;
-    }; /**
-     * @description Control the size of components in this form.
-     */
+    };
     border: {
         type: BooleanConstructor;
         default: boolean;

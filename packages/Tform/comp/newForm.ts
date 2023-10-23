@@ -4,6 +4,11 @@ import { dataItem, size } from "./useForm";
 
 export const newForm = {
   request: [Object,Function],
+  edit:{  
+    type:Boolean,
+    default:false
+
+  },
   parseData: Function,
 
   path: String,

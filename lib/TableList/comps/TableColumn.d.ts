@@ -45,7 +45,7 @@ declare const _default: {
         default: boolean;
     };
     buttons: {
-        type: PropType<Omit<import("./Button").ButtonProps, "onClick">[] | undefined>;
+        type: PropType<Omit<import("./Button").ButtonProps, "onClick">[] | ((row: any) => any[]) | undefined>;
         default: never[];
     };
     event: {

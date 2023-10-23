@@ -1,9 +1,7 @@
 <template>
   <div class="about">
-    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries"
-      @getSearchData="aa">
-      <template #topheader> 最上部</template>
-      <template #centerheader> 中间 </template>
+    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries" @getSearchData="aa">
+
       <template #footer>
         <el-button @click="formBtn">
           校验
@@ -193,8 +191,8 @@ let num = ref(100)
 
 const bind = computed(() => {
   return chris.useTable({
-     request: (params) => entertainApplicationAddList({ ...params }),
-    // data: tableData.value,
+    // request: (params) => entertainApplicationAddList({ ...params }),
+    data: tableData.value,
     labelWidth: '100px',
     buttons: [
       {
@@ -231,8 +229,8 @@ const bind = computed(() => {
         width: "200px",
       },
       {
-        label:'id',
-        prop:'id'
+        label: 'id',
+        prop: 'id'
 
       },
       {
@@ -585,26 +583,30 @@ const bind = computed(() => {
           type: "custom",
           slotName: 'zds',
 
-        }
+        },
+
       },
       {
         label: '操作',
-        width:'200px',
-        buttons: [
-          {
-            content: '删除',
-            link:false,
-            click(scope) {
+        width: '200px',
+        buttons: () => {
+          return [
+            {
+              content: '删除',
+              link: false,
+              click(scope) {
+                tableData.value = tableData.value.filter((el) => el.contractAmount !== scope.contractAmount)
+                console.log(tableData, 'kk', scope)
 
-              tableData.value = tableData.value.filter((el) => el.id !== scope.id)
+              },
+              hide(scope) {
+                return scope.contractAmount === '33'
+              },
 
-              console.log(tableData, 'kk', scope)
 
-            },
-
-
-          }
-        ]
+            }
+          ]
+        }
       }
 
 

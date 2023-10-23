@@ -22,6 +22,7 @@ declare const Tform: ({
             hideRequiredAsterisk?: boolean | undefined;
             scrollToError?: boolean | undefined;
             dataList?: import("./comp/useForm").dataItem[] | undefined;
+            edit?: boolean | undefined;
             closePlaceholder?: boolean | undefined;
             buttonsAlign?: string | undefined;
             ref?: import("vue").VNodeRef | undefined;
@@ -126,6 +127,10 @@ declare const Tform: ({
                 type: (BooleanConstructor | ObjectConstructor)[];
             };
             request: (ObjectConstructor | FunctionConstructor)[];
+            edit: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
             parseData: FunctionConstructor;
             path: StringConstructor;
             title: {
@@ -190,6 +195,7 @@ declare const Tform: ({
             hideRequiredAsterisk: boolean;
             scrollToError: boolean;
             dataList: import("./comp/useForm").dataItem[];
+            edit: boolean;
             closePlaceholder: boolean;
             buttonsAlign: string;
         }, {}, string, {}> & {
@@ -250,6 +256,10 @@ declare const Tform: ({
             type: (BooleanConstructor | ObjectConstructor)[];
         };
         request: (ObjectConstructor | FunctionConstructor)[];
+        edit: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         parseData: FunctionConstructor;
         path: StringConstructor;
         title: {
@@ -336,6 +346,10 @@ declare const Tform: ({
         type: (BooleanConstructor | ObjectConstructor)[];
     };
     request: (ObjectConstructor | FunctionConstructor)[];
+    edit: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     title: {
@@ -400,10 +414,13 @@ declare const Tform: ({
     hideRequiredAsterisk: boolean;
     scrollToError: boolean;
     dataList: import("./comp/useForm").dataItem[];
+    edit: boolean;
     closePlaceholder: boolean;
     buttonsAlign: string;
 }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: Partial<Record<string, (_: {
+        scope: any;
+    }) => any>> & Partial<Record<any, (_: {
         scope: any;
     }) => any>> & {
         title?(_: {}): any;

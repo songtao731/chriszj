@@ -98,7 +98,14 @@ TTable/tableprop
 | -------hide | 控制显示隐藏 | Boolean | false |
 | -------header | 自定义头部 | Boolean | false |
 | -------slotName | 自定义插槽 | String | - |
+| -------buttons | 表格操作按钮 | Arrary|Function(row)=>Arrary | - |
 | buttons | 表格操作按钮 | Arrary | - |
+| -------content | 按钮文字 | String | - |
+| -------link | 是否是文本按钮 | Boolean |false |
+| -------type | 按钮类型 | string | 同elementui button |
+| -------click | 点击事件 | Function(row) | - |
+| -------hide | 是否显示隐藏 | (row)=>boolean&Boolean | - |
+| -------其他 |其余属性参考elementui button
 | path | 后端返回 list 的 路径 | String | data.rows |
 | totalPath | 后端返回数据的 total 路径 | String | data.total |
 | pageNum | 后端接口需要的分页参数 当前第几页 | String | pageNum |

@@ -46,7 +46,7 @@ export interface ButtonProps {
   /**
    * 是否隐藏
    */
-  hidden?: boolean;
+  hide?: boolean | ((scope: any) => boolean);
   click?: (scope: any) => void;
 }
 export const ButtonTypeProps = {
@@ -91,7 +91,7 @@ export const ButtonTypeProps = {
   /**
    * 是否隐藏
    */
-  hidden: Boolean,
+  hidden: [Function,Boolean],
 
   click: Function,
 };

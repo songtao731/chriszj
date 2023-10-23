@@ -2,12 +2,19 @@
   <Tform v-bind="bind" ref="tForm" class="aa">
     <template #title> </template>
     <template #buttons>
-      <el-button type="primary">Operation</el-button>
+      <el-button type="primary" @click="add">Operation</el-button>
       <el-button type="primary">Operation</el-button>
     </template>
     <template #zdy="{ scope }">
       <ElInput v-model.number="scope.pages" placeholder="Please input">
       </ElInput>
+
+    </template>
+
+    <template #btn="{ scope }">
+      <el-button @click="btbfn(scope)">
+        点击
+      </el-button>
     </template>
 
 
@@ -36,7 +43,7 @@ import { chris, Tform } from "../../packages/index";
 //import { chris, Tform } from "../../lib/chris-ui.mjs";
 
 
-import { dataItem } from "../../packages/Tform/comp/useForm";
+import { dataItem, domain, NewDataItem } from "../../packages/Tform/comp/useForm";
 
 import { entertainApplicationAddList } from "@/api/index";
 import { ElLoading, ElInput } from "element-plus";
@@ -58,7 +65,197 @@ setTimeout(() => {
   // ishide.value=true
 }, 10);
 
-let aa: Ref<dataItem[]> = ref([]);
+let key = ref(0)
+let aa = ref<domain[]>([
+  {
+    item: [
+      {
+        label: "测试1",
+        prop: "a",
+        type: "input",
+        value: '292999',
+        rules: chris.rulesFn().required(true, '请输入测试12'),
+      },
+      {
+
+        label: "测试2",
+        prop: "b",
+        type: "select",
+        value: '0',
+        select: {
+          options: computed(() => bb.value),
+          filterable: true,
+
+        },
+        rules: chris.rulesFn().required(true, '请选择测试12', 'change')
+      },
+      {
+        label: '日期',
+        type: 'date',
+        prop: 'daterange',
+        date: {
+          type: 'daterange'
+        }
+
+      },
+      {
+        type: "range",
+        label: "range",
+        columns: [
+          {
+            prop: "min",
+            rules: chris.rulesFn().required(true, "最小值"),
+            placeholder: "请输入最小值22",
+            value: 11,
+            input: {
+
+            },
+
+          },
+          {
+            prop: "max",
+            rules: chris.rulesFn().required(true, "最大值"),
+            placeholder: "请输入最大值",
+            input: {},
+          },
+        ],
+      },
+      {
+        label: "次级联动:",
+        type: "cascader",
+        prop: "cascader",
+        rules: chris.rulesFn().required(true, "请选择联级"),
+        cascader: {
+          options: [
+            {
+              value: "resource",
+              label: "Resource",
+              children: [
+                {
+                  value: "axure",
+                  label: "Axure Components",
+                },
+                {
+                  value: "sketch",
+                  label: "Sketch Templates",
+                },
+                {
+                  value: "docs",
+                  label: "Design Documentation",
+                },
+              ],
+            },
+          ],
+          filterable: true,
+          onChange(val) {
+            console.log(val);
+          },
+        },
+      },
+      {
+        label: "职业",
+        type: "checkBox",
+        prop: "check",
+        rules: chris.rulesFn().required(true, "请选择职业"),
+        checkBox: {
+          options: [
+            {
+              label: "前端",
+              value: "1",
+            },
+            {
+              label: "后端",
+              value: "2",
+            },
+            {
+              label: "测试",
+              value: "3",
+            },
+          ],
+        },
+      },
+      {
+        label: "上传",
+        type: "upload",
+        prop: "upload",
+        required: true,
+        value: [],
+
+
+        upload: {
+          action: "/api/gateway/financial/pay/collectionList/claim/list",
+          headers: {
+            token: sessionStorage.token,
+          },
+
+          onChange() {
+            startRef.value.validate();
+          },
+        },
+      },
+      {
+        label: "行业",
+        type: "radio",
+        prop: "radio",
+        rules: chris.rulesFn().required(true, "请选择行业"),
+        value: '1',
+        radio: {
+          options: [
+            {
+              label: "金融",
+              value: "1",
+            },
+            {
+              label: "It",
+              value: "2",
+            },
+            {
+              label: "教育",
+              value: "3",
+            },
+          ],
+        },
+      },
+      {
+        label: "评分",
+        type: "rate",
+        prop: "rate",
+        rules: chris.rulesFn().required(true, "请打分"),
+        rate: {
+          texts: ["oops", "disappointed", "normal", "good", "great"],
+          showText: true,
+          allowHalf: true,
+          onChange(val) {
+
+          },
+        },
+      },
+      {
+        label: "评分",
+        type: "rate",
+        prop: "rate",
+        rules: chris.rulesFn().required(true, "请打分"),
+        rate: {
+          texts: ["oops", "disappointed", "normal", "good", "great"],
+          showText: true,
+          allowHalf: true,
+          onChange(val) {
+
+          },
+        },
+      },
+
+      {
+        slotName: 'btn',
+        type: 'custom',
+        span: 3
+
+      },
+
+    ],
+    chriskey: 238837
+  }
+]);
 const cc = ref();
 
 const isHide = ref<boolean>(false);
@@ -71,6 +268,10 @@ setTimeout(() => {
     radio: '1',
     rate: 1,
     nextPage: "身高2米",
+    domains: [
+
+    ],
+
     upload: [
       {
         name: "food.jpeg",
@@ -86,6 +287,39 @@ setTimeout(() => {
       }
     ],
   };
+
+  // aa.value.push({
+
+  //   item: [
+  //     {
+  //       label: "测试1",
+  //       prop: "a",
+  //       type: "input",
+  //       value: 111,
+  //       rules: chris.rulesFn().required(true, '请输入测试12'),
+  //     },
+  //     {
+
+  //       label: "测试2",
+  //       prop: "b",
+  //       type: "select",
+  //       value: '0',
+  //       select: {
+  //         options: computed(() => bb.value),
+  //         filterable: true,
+
+  //       },
+  //       rules: chris.rulesFn().required(true, '请选择测试12', 'change')
+  //     },
+  //     {
+  //       slotName: 'btn',
+  //       type: 'custom',
+  //       span: 3
+
+  //     },
+  //   ],
+  //   chriskey: 238837
+  // })
 }, 100);
 
 const checkAge = (rule: any, value: any, callback: any) => {
@@ -148,16 +382,11 @@ const getStartRef = (el) => {
 };
 
 const bind = computed(() => {
-  console.log("我变了");
 
   return chris.useForm({
     request: cc.value,
     // request: (params) => entertainApplicationAddList({ a: 1 }),
-    parseData: (value) => {
-      return {
-        ...value,
-      };
-    },
+
     title: "测试表单",
     column: 3,
     labelWidth: "140px",
@@ -185,135 +414,146 @@ const bind = computed(() => {
           .validator(checkAge),
       },
       {
-        label: "性别:",
-        prop: "startRow",
-        type: "select",
-        select: {
-          options: bb.value,
-          filterable: true,
-          onChange(x) {
-            isHide.value = x == 1 ? true : false
-          },
-        },
-        rules: chris.rulesFn().required(true, "请选择性别", 'change'),
+        type: 'space',
+      },
+      {
+        type: "domains",
+        keys: 'domains',
+        domains: aa.value
 
       },
-      {
-        type: "space",
-      },
 
-      {
-        label: "身高:",
-        prop: "nextPage",
-        type: "input",
-        rules: chris
-          .rulesFn()
-          .range(0, 2, "请输入2到5位", "blur")
-          .required(true, "请输入身高"),
-        deepHide: isHide.value,
-        value: '222'
-      },
-      {
-        label: "职业",
-        type: "checkBox",
-        prop: "check",
-        rules: chris.rulesFn().required(true, "请选择职业"),
-        checkBox: {
-          options: [
-            {
-              label: "前端",
-              value: "1",
-            },
-            {
-              label: "后端",
-              value: "2",
-            },
-            {
-              label: "测试",
-              value: "3",
-            },
-          ],
-        },
-      },
-      {
-        label: "体总:",
-        prop: "pass",
-        type: "input",
-        rules: chris.rulesFn().validator(validatePass).required(true),
-      },
-      {
-        label: "收入:",
-        prop: "checkPass",
-        type: "input",
-        rules: chris.rulesFn().validator(validatePass2),
-      },
-      {
-        label: "自定义输入框:",
-        prop: "pages",
-        slotName: "zdy",
-        type: "custom",
-        rules: chris.rulesFn().required(true),
-      },
-      {
-        label: "Date:",
-        prop: "date",
-        type: "date",
-        rules: chris.rulesFn().required(true, "请输入日期"),
 
-        date: {
-          type: "date",
-        },
-      },
-      {
-        label: "DateTime:",
-        prop: "dateTime",
-        type: "date",
-        rules: chris.rulesFn().required(true, "请输入日期时间"),
-        date: {
-          type: "datetimerange",
-        },
-      },
-      {
-        label: "daterange:",
-        prop: "daterange",
-        type: "date",
-        rules: chris.rulesFn().required(true, "请输入日期时间"),
-        date: {
-          type: "daterange",
-        },
-      },
-      {
-        label: "次级联动:",
-        type: "cascader",
-        prop: "cascader",
-        rules: chris.rulesFn().required(true, "请选择联级"),
-        cascader: {
-          options: [
-            {
-              value: "resource",
-              label: "Resource",
-              children: [
-                {
-                  value: "axure",
-                  label: "Axure Components",
-                },
-                {
-                  value: "sketch",
-                  label: "Sketch Templates",
-                },
-                {
-                  value: "docs",
-                  label: "Design Documentation",
-                },
-              ],
-            },
-          ],
-          filterable: true,
-          onChange(val) {
-            console.log(val);
-          },
-        },
-      },
+      // {
+      //   label: "性别:",
+      //   prop: "startRow",
+      //   type: "select",
+      //   select: {
+      //     options: bb.value,
+      //     filterable: true,
+      //     onChange(x) {
+      //       isHide.value = x == 1 ? true : false
+      //     },
+      //   },
+      //   rules: chris.rulesFn().required(true, "请选择性别", 'change'),
+
+      // },
+      // {
+      //   type: "space",
+      // },
+
+      // {
+      //   label: "身高:",
+      //   prop: "nextPage",
+      //   type: "input",
+      //   rules: chris
+      //     .rulesFn()
+      //     .range(0, 2, "请输入2到5位", "blur")
+      //     .required(true, "请输入身高"),
+      //   deepHide: isHide.value,
+      //   value: '222'
+      // },
+      // {
+      //   label: "职业",
+      //   type: "checkBox",
+      //   prop: "check",
+      //   rules: chris.rulesFn().required(true, "请选择职业"),
+      //   checkBox: {
+      //     options: [
+      //       {
+      //         label: "前端",
+      //         value: "1",
+      //       },
+      //       {
+      //         label: "后端",
+      //         value: "2",
+      //       },
+      //       {
+      //         label: "测试",
+      //         value: "3",
+      //       },
+      //     ],
+      //   },
+      // },
+      // {
+      //   label: "体总:",
+      //   prop: "pass",
+      //   type: "input",
+      //   rules: chris.rulesFn().validator(validatePass).required(true),
+      // },
+      // {
+      //   label: "收入:",
+      //   prop: "checkPass",
+      //   type: "input",
+      //   rules: chris.rulesFn().validator(validatePass2),
+      // },
+      // {
+      //   label: "自定义输入框:",
+      //   prop: "pages",
+      //   slotName: "zdy",
+      //   type: "custom",
+      //   rules: chris.rulesFn().required(true),
+      // },
+      // {
+      //   label: "Date:",
+      //   prop: "date",
+      //   type: "date",
+      //   rules: chris.rulesFn().required(true, "请输入日期"),
+
+      //   date: {
+      //     type: "date",
+      //   },
+      // },
+      // {
+      //   label: "DateTime:",
+      //   prop: "dateTime",
+      //   type: "date",
+      //   rules: chris.rulesFn().required(true, "请输入日期时间"),
+      //   date: {
+      //     type: "datetimerange",
+      //   },
+      // },
+      // {
+      //   label: "daterange:",
+      //   prop: "daterange",
+      //   type: "date",
+      //   rules: chris.rulesFn().required(true, "请输入日期时间"),
+      //   date: {
+      //     type: "daterange",
+      //   },
+      // },
+      // {
+      //   label: "次级联动:",
+      //   type: "cascader",
+      //   prop: "cascader",
+      //   rules: chris.rulesFn().required(true, "请选择联级"),
+      //   cascader: {
+      //     options: [
+      //       {
+      //         value: "resource",
+      //         label: "Resource",
+      //         children: [
+      //           {
+      //             value: "axure",
+      //             label: "Axure Components",
+      //           },
+      //           {
+      //             value: "sketch",
+      //             label: "Sketch Templates",
+      //           },
+      //           {
+      //             value: "docs",
+      //             label: "Design Documentation",
+      //           },
+      //         ],
+      //       },
+      //     ],
+      //     filterable: true,
+      //     onChange(val) {
+      //       console.log(val);
+      //     },
+      //   },
+      // },
 
       {
         label: "行业",
@@ -352,24 +592,24 @@ const bind = computed(() => {
           },
         },
       },
-      {
-        label: "上传",
-        type: "upload",
-        prop: "upload",
-        rules: chris.rulesFn().required(true, '请上传').validator(checkUpload),
-        ref: startRef,
+      // {
+      //   label: "上传",
+      //   type: "upload",
+      //   prop: "upload",
+      //   rules: chris.rulesFn().required(true, '请上传').validator(checkUpload),
+      //   ref: startRef,
 
-        upload: {
-          action: "/api/gateway/financial/pay/collectionList/claim/list",
-          headers: {
-            token: sessionStorage.token,
-          },
+      //   upload: {
+      //     action: "/api/gateway/financial/pay/collectionList/claim/list",
+      //     headers: {
+      //       token: sessionStorage.token,
+      //     },
 
-          onChange() {
-            startRef.value.validate();
-          },
-        },
-      },
+      //     onChange() {
+      //       startRef.value.validate();
+      //     },
+      //   },
+      // },
       {
         label: "开关",
         prop: "switch",
@@ -414,6 +654,7 @@ const bind = computed(() => {
         type: "range",
         label: "range",
         required: true,
+
         columns: [
           {
             prop: "min",
@@ -497,5 +738,231 @@ const bind2 = computed(() => {
 
   })
 })
+const add = () => {
+
+  console.log(aa.value, '8888888')
+  aa.value.push({
+
+    item: [
+      {
+        label: "测试1",
+        prop: "a",
+        type: "input",
+        value: '',
+        rules: chris.rulesFn().required(true, '请输入测试12'),
+      },
+      {
+
+        label: "测试2",
+        prop: "b",
+        type: "select",
+        value: '',
+        select: {
+          options: bb.value,
+          filterable: true,
+
+        },
+        rules: chris.rulesFn().required(true, '请选择测试12', 'change')
+      },
+      {
+        label: '日期',
+        type: 'date',
+        prop: 'daterange',
+        date: {
+          type: 'daterange'
+        }
+
+      },
+      {
+        type: "range",
+        label: "range",
+        columns: [
+          {
+            prop: "min",
+            rules: chris.rulesFn().required(true, "最小值"),
+            placeholder: "请输入最小值22",
+            value: 11,
+            input: {
+
+            },
+
+          },
+          {
+            prop: "max",
+            rules: chris.rulesFn().required(true, "最大值"),
+            placeholder: "请输入最大值",
+            input: {},
+          },
+        ],
+      },
+      {
+        label: "次级联动:",
+        type: "cascader",
+        prop: "cascader",
+        rules: chris.rulesFn().required(true, "请选择联级"),
+        cascader: {
+          options: [
+            {
+              value: "resource",
+              label: "Resource",
+              children: [
+                {
+                  value: "axure",
+                  label: "Axure Components",
+                },
+                {
+                  value: "sketch",
+                  label: "Sketch Templates",
+                },
+                {
+                  value: "docs",
+                  label: "Design Documentation",
+                },
+              ],
+            },
+          ],
+          filterable: true,
+          onChange(val) {
+            console.log(val);
+          },
+        },
+      },
+      {
+        label: "职业",
+        type: "checkBox",
+        prop: "check",
+        rules: chris.rulesFn().required(true, "请选择职业"),
+        checkBox: {
+          options: [
+            {
+              label: "前端",
+              value: "1",
+            },
+            {
+              label: "后端",
+              value: "2",
+            },
+            {
+              label: "测试",
+              value: "3",
+            },
+          ],
+        },
+      },
+      {
+        label: "上传",
+        type: "upload",
+        prop: "upload",
+        required: true,
+
+
+        upload: {
+          action: "/api/gateway/financial/pay/collectionList/claim/list",
+          headers: {
+            token: sessionStorage.token,
+          },
+
+          onChange(val) {
+            console.log(val, 8282828)
+            startRef.value.validate();
+          },
+        },
+      },
+      {
+        label: "行业",
+        type: "radio",
+        prop: "radio",
+        rules: chris.rulesFn().required(true, "请选择行业"),
+        value: '1',
+        radio: {
+          options: [
+            {
+              label: "金融",
+              value: "1",
+            },
+            {
+              label: "It",
+              value: "2",
+            },
+            {
+              label: "教育",
+              value: "3",
+            },
+          ],
+        },
+      },
+      {
+        label: "评分",
+        type: "rate",
+        prop: "rate",
+        rules: chris.rulesFn().required(true, "请打分"),
+        rate: {
+          texts: ["oops", "disappointed", "normal", "good", "great"],
+          showText: true,
+          allowHalf: true,
+          onChange(val) {
+
+          },
+        },
+      },
+      {
+        label: "开关",
+        prop: "switch",
+        rules: chris.rulesFn().required(true),
+        type: "switch",
+
+        hide: isHide.value,
+
+        switch: {
+          onChange(val) { },
+          activeValue: "22",
+          inactiveValue: "8",
+        },
+      },
+      {
+        label: "滑块",
+        prop: "slider",
+        rules: chris.rulesFn().required(true),
+        type: "slider",
+        value: [30, 70],
+
+        slider: {
+          onChange(val) {
+            console.log(val);
+          },
+          class: "slider-demo-block",
+          range: true,
+          marks: {
+            0: "0°C",
+            8: "8°C",
+            37: "37°C",
+            50: {
+              style: {
+                color: "#1989FA",
+              },
+              label: "50%",
+            },
+          },
+        },
+      },
+
+
+      {
+        slotName: 'btn',
+        type: 'custom',
+        span: 3
+
+      },
+    ],
+    chriskey: Math.random()
+  })
+  console.log(tForm.value.form, '222', aa.value)
+
+
+}
+const btbfn = (val) => {
+  console.log(val)
+  aa.value.splice(val.index, 1)
+}
 </script>
 <style scoped lang="scss"></style>

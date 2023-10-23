@@ -1,7 +1,7 @@
 <template>
-  <div class=" w-full">
-    <div class=" flex justify-between mb-[20px]">
-      <div class=" text-[16px]">
+  <div class="w-full">
+    <div class="flex justify-between mb-[20px]">
+      <div class="text-[16px]">
         <slot name="title">
           {{ props.title }}
         </slot>
@@ -14,17 +14,20 @@
       <template v-for="items in dataList" #[items.slotName]="{ scope }">
         <slot :name="items.slotName" :scope="scope" v-if="items.slotName" />
       </template>
+      <template v-for="items in customList" #[items.slotName]="{ scope }">
+        <slot :name="items.slotName" :scope="scope" v-if="items.slotName" />
+      </template>
     </FormDesc>
 
-    <slot name="footer">
-
-    </slot>
+    <slot name="footer"> </slot>
   </div>
 </template>
 <script lang="ts" setup>
 import { ref, computed, unref } from "vue";
 import FormDesc from "./form-itemTsx";
 import { formProps } from "./form";
+import { watchEffect } from "vue";
+
 
 const props = defineProps(formProps);
 const formRef = ref();
@@ -34,9 +37,25 @@ const dataList = computed(() => {
     return propDataList.filter((el) => el.slotName);
   }
 });
-
-
-console.log(props,'222',dataList)
+const customList = ref([]);
+watchEffect(() => {
+  const propDataList = unref(props.dataList);
+  if (propDataList.length) {
+    propDataList
+      .filter((ele) => {
+        return ele.type === "domains";
+      })
+      .map((ela) => ela.domains)
+      .map((elb) => {
+        return elb.map((elc) => elc.item);
+      })
+      .map((eld) => {
+        eld.map((elf) => {
+          customList.value = elf.filter((elg) => elg.slotName);
+        });
+      });
+  }
+})
 
 defineExpose({
   form: formRef,

@@ -1,5 +1,5 @@
 <template>
-  <div class="chris-buttons">
+  <div class="chris-buttons pt-[20px]" v-if="buttonList?.length">
     <ElButton type="primary" v-bind="item"  v-for="(item, index) in buttonList" :key="index">
       {{ item.content }}
     </ElButton>

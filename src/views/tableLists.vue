@@ -1,5 +1,5 @@
 <template>
-  <TableLists v-bind="bind" ref="tabRef">
+  <TableLists v-bind="bind" ref="tabRef" @tabClick="tabClick">
   </TableLists>
 </template>
 <script setup lang="ts">
@@ -7,7 +7,7 @@
 import { chris, TableList, TableLists, Tupload } from "../../packages";
 
 // import { chris,TableLists } from "chriszj";
-import { useRoute,useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 import { ref } from "vue";
 
@@ -60,6 +60,11 @@ const activeName = ref("1");
 
 const tabRef = ref()
 
+const tabClick = (val) => {
+
+  console.log(val, 'tab', activeName.value)
+}
+
 const bind = chris.useTables({
   tabs: {
     activeValue: activeName.value,
@@ -68,10 +73,9 @@ const bind = chris.useTables({
       { label: "审核中", value: "2" },
       { label: "已审核", value: "3" },
     ],
-    isRoute:true
+    isRoute: true
   },
   table: (row) => {
-    console.log(row);
     return {
       request: (params) => request({ ...params, state: row }),
       buttons: [
@@ -80,7 +84,7 @@ const bind = chris.useTables({
           content: "清空全选",
           onClick: () => {
 
-            console.log(row,12312)
+            console.log(row, 12312)
             activeName.value = row;
             console.log(
               "操作成功",
@@ -109,6 +113,39 @@ const bind = chris.useTables({
         {
           label: "地址",
           prop: "address",
+        },
+        {
+          label: '操作',
+          align: 'center',
+          fixed: 'right',
+          width: 240,
+          buttons: () => {
+
+            return [
+              {
+                content: '新增',
+                icon: 'icon-document-add',
+                link: true,
+                disabled: row.menuType === 2,
+                click: () => true
+
+
+              },
+              {
+                content: '编辑',
+                icon: 'icon-edit',
+                link: true,
+
+              },
+              {
+                content: '删除',
+                icon: 'icon-delete',
+                link: true,
+                disabled: Array.isArray(row.children) && !!row.children.length,
+            
+              }
+            ]
+          }
         }
       ],
     };

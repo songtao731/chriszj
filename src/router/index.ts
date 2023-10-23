@@ -49,6 +49,11 @@ const router = createRouter({
       name: "formTable",
       component:()=>import('../views/FormTable.vue')
     },
+    {
+      path: "/tableTree",
+      name: "tableTree",
+      component:()=>import('../views/tableTree.vue')
+    },
     
   ],
 });

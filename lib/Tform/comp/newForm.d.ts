@@ -2,6 +2,10 @@ import { PropType } from "vue";
 import { dataItem, size } from "./useForm";
 export declare const newForm: {
     request: (ObjectConstructor | FunctionConstructor)[];
+    edit: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     title: {

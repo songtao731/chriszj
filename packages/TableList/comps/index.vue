@@ -9,17 +9,13 @@
         <slot name="search"> </slot>
       </template>
     </Search> -->
-    <Search2 ref="searchRef" :labelWidth="props.labelWidth" :filter="columnsFilter" :size="props.size"
+    <Search2 ref="searchRef" :labelWidth="props.labelWidth" :filter="columnsFilter" :size="props.size" v-if="columnsFilter.length"
       :labelPosition="props.labelPosition" :gutter="props.gutter" :column="props.column" @getParams="getParams"
       @resetFn="resetFn">
 
       <template v-for="items in columnsFilter" #[items?.filter?.slotName]="{ scope }">
         <slot :name="items?.filter && items.filter?.slotName" :scope="scope" />
       </template>
-
-
-
-
     </Search2>
     <!-- 表格查询条件和表格之间的插槽 -->
     <slot name="centerheader"> </slot>
@@ -29,7 +25,7 @@
     <Buttons :buttons="props.buttons"> </Buttons>
     <!-- {{ formData.dataList }} -->
     <el-form ref="formRef" :model="formData">
-      <ElTable :data="formData.dataList" style="width: 100%" v-on="tableEvents" ref="tableRef">
+      <ElTable v-bind="props" :data="formData.dataList" style="width: 100%"  v-on="tableEvents" ref="tableRef">
         <template #empty>
           <slot name="empty">
 
@@ -91,11 +87,12 @@ const emit = defineEmits({ ...vepTableEmits, resetFn: () => true, getSearchData:
 const props = defineProps(TableProps);
 
 
+
 // const { columns } = toRefs(props);
 const columnsFilter = computed(() => props.columns?.filter(el => {
-  return !unref(el.hide)
-}))
 
+  return  !unref(el.hide)
+}))
 //控制展示显示隐藏 某些列
 
 // const filterColumns = columns?.value?.filter((el) => !el.hide);
@@ -156,7 +153,12 @@ const getDataList = async (data?: any) => {
     [usePageSize]: pageSize.value,
   };
   if (props.request) {
-    const res = await props.request!(params);
+
+    const res = await props.request!(params).then((res: any) => {
+      return res
+    }).finally(() => {
+      //  console.log(22)
+    })
 
     dataList.value = getPath(res, path);
     total.value = getTotalPath(res, totalPath);
@@ -183,15 +185,15 @@ const getDataList = async (data?: any) => {
 const pagination = ref();
 //点击查询 查询事件  第一次加载数据也是这里
 //只触发第一次 
-let isFirstPage=true
+let isFirstPage = true
 const getParams = (data: any) => {
   //点击查询回到第一页
   currentPage.value = 1;
-//如果外部传入显示第几页 
-  if(props.currentPage&&isFirstPage){
-    currentPage.value=props.currentPage
-    pageSize.value =props.currentPageSize
-    isFirstPage=false
+  //如果外部传入显示第几页 
+  if (props.currentPage && isFirstPage) {
+    currentPage.value = props.currentPage
+    pageSize.value = props.currentPageSize
+    isFirstPage = false
   }
   getDataList(data);
 };
@@ -236,6 +238,11 @@ export default {
 <style scoped lang="scss">
 .chris-table {
   margin: 20px 0;
-  padding: 0 20px;
+  :deep(.el-table th.el-table__cell) {
+    background: #f8f8f8;
+    color: #606266;
+  }
+
 }
+
 </style>

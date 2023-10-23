@@ -6,12 +6,17 @@ import { ButtonProps } from "./Button";
 export default defineComponent({
   props: ["data", "column"],
   setup(props) {
-
-
     const parseValue = (data: any, column: any) => {
       const { formatType, prop, dictData, buttons } = column;
 
-      let result = props.data[prop] || "--";
+      let result;
+      if (props.data[prop] === 0) {
+        result = 0;
+      } else if (props.data[prop]) {
+        result = props.data[prop];
+      } else {
+        result = "_ _";
+      }
 
       //格式化数字
       if (formatType) {
@@ -40,20 +45,51 @@ export default defineComponent({
       }
       //处理操作按钮
 
-      if (buttons && buttons.length) {
-        result = buttons.map((el: ButtonProps) => {
-          return (
-            <ElButton
-              {...el}
-              onClick={(e: any) => {
-                e.stopPropagation();
-                el.click && el.click(data);
-              }}
-            >
-              {el.content}
-            </ElButton>
-          );
-        });
+
+      if (buttons && typeof buttons === "object" && buttons.length) {
+        result = buttons
+
+          .filter((ele: ButtonProps) => {
+            return typeof ele.hide === "function" ? !ele.hide(data) : !ele.hide;
+          })
+          .map((el: ButtonProps) => {
+            return (
+              <ElButton
+                {...el}
+                onClick={(e: any) => {
+                  e.stopPropagation();
+                  el.click && el.click(data);
+                }}
+              >
+                {el.content}
+              </ElButton>
+            );
+          });
+      } else if (buttons && typeof buttons === "function") {
+
+        const buttonsList = buttons(data);
+        if (buttonsList  && buttonsList.length) {
+
+          result = buttonsList
+            .filter((ele: ButtonProps) => {
+              return typeof ele.hide === "function"
+                ? !ele.hide(data)
+                : !ele.hide;
+            })
+            .map((el: ButtonProps) => {
+              return (
+                <ElButton
+                  {...el}
+                  onClick={(e: any) => {
+                    e.stopPropagation();
+                    el.click && el.click(data);
+                  }}
+                >
+                  {el.content}
+                </ElButton>
+              );
+            });
+        }
       }
 
       return result;

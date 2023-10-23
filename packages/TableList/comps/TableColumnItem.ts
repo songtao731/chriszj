@@ -112,7 +112,7 @@ interface CustomType {
   filter?: string | Filter;
   value?: string | number | (string | number)[] | boolean;
   hide?: boolean;
-  buttons?: Omit<ButtonProps, "onClick">[];
+  buttons?: Omit<ButtonProps, "onClick">[]|((row)=>any[]);
   type?: "selection" | "index" | "expand" | "input" | "select";
   rules?: any;
   event?:EventFilter

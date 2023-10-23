@@ -36,6 +36,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: (BooleanConstructor | ObjectConstructor)[];
     };
     request: (ObjectConstructor | FunctionConstructor)[];
+    edit: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     title: {
@@ -118,6 +122,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: (BooleanConstructor | ObjectConstructor)[];
     };
     request: (ObjectConstructor | FunctionConstructor)[];
+    edit: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     title: {
@@ -180,9 +188,12 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     hideRequiredAsterisk: boolean;
     scrollToError: boolean;
     dataList: import("./useForm").dataItem[];
+    edit: boolean;
     closePlaceholder: boolean;
     buttonsAlign: string;
 }, {}>, Partial<Record<string, (_: {
+    scope: any;
+}) => any>> & Partial<Record<any, (_: {
     scope: any;
 }) => any>> & {
     title?(_: {}): any;

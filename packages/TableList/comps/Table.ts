@@ -186,7 +186,7 @@ export const TableProps = {
   stripe: Boolean,
   border: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   rowKey: [String, Function] as PropType<TableProps<DefaultRow>["rowKey"]>,
   showHeader: {

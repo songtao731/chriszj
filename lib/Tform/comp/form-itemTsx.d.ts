@@ -37,6 +37,10 @@ declare const _default: import("vue").DefineComponent<{
         type: (BooleanConstructor | ObjectConstructor)[];
     };
     request: (ObjectConstructor | FunctionConstructor)[];
+    edit: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     title: {
@@ -117,6 +121,10 @@ declare const _default: import("vue").DefineComponent<{
         type: (BooleanConstructor | ObjectConstructor)[];
     };
     request: (ObjectConstructor | FunctionConstructor)[];
+    edit: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     parseData: FunctionConstructor;
     path: StringConstructor;
     title: {
@@ -181,6 +189,7 @@ declare const _default: import("vue").DefineComponent<{
     hideRequiredAsterisk: boolean;
     scrollToError: boolean;
     dataList: dataItem[];
+    edit: boolean;
     closePlaceholder: boolean;
     buttonsAlign: string;
 }, {}>;
