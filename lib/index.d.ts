@@ -9,15 +9,7 @@ declare const chris: {
     useTable: (args: import("./TableList").Args) => import("./TableList").Args;
     useTables: (args: import("./TableLists/comps/useTables").newArg) => {
         tabs: {
-            type?: string | undefined;
             activeValue: string | number;
-            closable?: boolean | undefined;
-            addable?: boolean | undefined;
-            modelValue?: string | number | undefined;
-            editable?: boolean | undefined;
-            tabPosition?: "top" | "bottom" | "left" | "right" | undefined;
-            stretch?: boolean | undefined;
-            beforeLeave?: (() => true) | undefined;
             tabsList: {
                 label: string;
                 value: string | number;

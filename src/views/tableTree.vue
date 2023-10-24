@@ -1,5 +1,5 @@
 <template>
-  <TableLists v-bind="bind" row-key="id"> </TableLists>
+  <TableLists v-bind="bind" row-key="id" > </TableLists>
 </template>
 
 <script setup lang="ts">

@@ -1,7 +1,6 @@
 <template>
   <div class="about">
-    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries" @getSearchData="aa">
-
+    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries" @getSearchData="aa" >
       <template #footer>
         <el-button @click="formBtn">
           校验
@@ -222,7 +221,7 @@ const bind = computed(() => {
         },
       },
     ],
-
+      buttonsPosition:'left',
     columns: [
       {
         type: "selection",

@@ -67,7 +67,7 @@
 <script setup lang="ts">
 import Tabs from "./Tabs.vue";
 import { vepTableEmits, TableProps } from "../../TableList/comps/Table";
-import { TabsProps, tabsRefs } from "./TabProps";
+import  { TabsProps, tabsRefs } from "./TabsProps";
 import { TableLists } from "./Tables";
 
 import { ComputedRef, watchEffect } from "vue";
@@ -79,8 +79,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 
 
-const props = defineProps({ ...TableLists, ...TabsProps, ...TableProps });
-
+const props = defineProps({ ...TableLists, ...TableProps,...TabsProps});
 
 
 
@@ -91,6 +90,7 @@ const tabsProps: ComputedRef = computed(() => {
 const tablePropsFn: ComputedRef = computed(() => {
   return props.table;
 });
+
 
 const route = useRoute()
 const router = useRouter()

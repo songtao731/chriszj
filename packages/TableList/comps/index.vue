@@ -22,7 +22,7 @@
 
 
     <!-- 右上插槽 -->
-    <Buttons :buttons="props.buttons"> </Buttons>
+    <Buttons :buttons="props.buttons" :buttons-position="props.buttonsPosition"> </Buttons>
     <!-- {{ formData.dataList }} -->
     <el-form ref="formRef" :model="formData">
       <ElTable v-bind="props" :data="formData.dataList" style="width: 100%"  v-on="tableEvents" ref="tableRef">

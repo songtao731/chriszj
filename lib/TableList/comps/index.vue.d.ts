@@ -16,10 +16,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
-    size: {
-        type: StringConstructor;
-        default: string;
-    };
     labelPosition: {
         type: StringConstructor;
         default: string;
@@ -33,6 +29,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         };
     };
     buttons: import("vue").PropType<import("./Button").ButtonProps[] | undefined>;
+    buttonsPosition: {
+        type: StringConstructor;
+        default: string;
+    };
     pagination: {
         type: BooleanConstructor;
         default: boolean;
@@ -73,6 +73,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         of<T_4>(...items: T_4[]): T_4[];
         readonly [Symbol.species]: ArrayConstructor;
     };
+    size: StringConstructor;
     width: (StringConstructor | NumberConstructor)[];
     height: (StringConstructor | NumberConstructor)[];
     maxHeight: (StringConstructor | NumberConstructor)[];
@@ -249,10 +250,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
-    size: {
-        type: StringConstructor;
-        default: string;
-    };
     labelPosition: {
         type: StringConstructor;
         default: string;
@@ -266,6 +263,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         };
     };
     buttons: import("vue").PropType<import("./Button").ButtonProps[] | undefined>;
+    buttonsPosition: {
+        type: StringConstructor;
+        default: string;
+    };
     pagination: {
         type: BooleanConstructor;
         default: boolean;
@@ -306,6 +307,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         of<T_4>(...items: T_4[]): T_4[];
         readonly [Symbol.species]: ArrayConstructor;
     };
+    size: StringConstructor;
     width: (StringConstructor | NumberConstructor)[];
     height: (StringConstructor | NumberConstructor)[];
     maxHeight: (StringConstructor | NumberConstructor)[];
@@ -460,10 +462,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     onCurrentChange?: ((currentRow: any, oldCurrentRow: any) => any) | undefined;
     onHeaderDragend?: ((newWidth: number, oldWidth: number, column: import("element-plus/es/components/table/src/table-column/defaults").TableColumnCtx<any>, ev: Event) => any) | undefined;
 }, {
-    size: string;
     border: boolean;
     index: boolean | Record<string, any>;
     className: string;
+    buttonsPosition: string;
     data: any[];
     style: import("vue").CSSProperties;
     treeProps: {

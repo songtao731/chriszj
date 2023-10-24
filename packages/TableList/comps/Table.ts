@@ -175,7 +175,7 @@ export const TableProps = {
   },
   ref: [String,Function],
   columns: Array<NewTableColumn<any>>,
-  size: String as PropType<TableProps<DefaultRow>["size"]>,
+  size: String,
   width: [String, Number],
   height: [String, Number],
   maxHeight: [String, Number],

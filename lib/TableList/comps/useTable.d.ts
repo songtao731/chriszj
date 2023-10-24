@@ -22,6 +22,7 @@ export interface Args {
         hide?: boolean;
     } | boolean;
     buttons?: ButtonProps[];
+    buttonsPosition?: 'left' | 'right';
     pagination?: boolean;
     searchData?: object;
     layout?: string;

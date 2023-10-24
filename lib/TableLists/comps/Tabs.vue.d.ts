@@ -5,15 +5,14 @@ declare const _default: import("vue").DefineComponent<{
     };
     tabsList: {
         type: ArrayConstructor;
-        default: never[];
+        default: {
+            label: string;
+            value: string;
+        }[];
     };
     isRoute: {
         type: BooleanConstructor;
         default: boolean;
-    };
-    size: {
-        type: StringConstructor;
-        default: string;
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "changeTabs"[], "changeTabs", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     activeValue: {
@@ -22,20 +21,18 @@ declare const _default: import("vue").DefineComponent<{
     };
     tabsList: {
         type: ArrayConstructor;
-        default: never[];
+        default: {
+            label: string;
+            value: string;
+        }[];
     };
     isRoute: {
         type: BooleanConstructor;
         default: boolean;
     };
-    size: {
-        type: StringConstructor;
-        default: string;
-    };
 }>> & {
     onChangeTabs?: ((...args: any[]) => any) | undefined;
 }, {
-    size: string;
     activeValue: string | number;
     tabsList: unknown[];
     isRoute: boolean;

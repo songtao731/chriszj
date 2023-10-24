@@ -141,10 +141,6 @@ export declare const TableProps: {
     totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
-    size: {
-        type: StringConstructor;
-        default: string;
-    };
     labelPosition: {
         type: StringConstructor;
         default: string;
@@ -158,6 +154,10 @@ export declare const TableProps: {
         };
     };
     buttons: PropType<import("./Button").ButtonProps[] | undefined>;
+    buttonsPosition: {
+        type: StringConstructor;
+        default: string;
+    };
     pagination: {
         type: BooleanConstructor;
         default: boolean;
@@ -198,6 +198,7 @@ export declare const TableProps: {
         of<T_4>(...items: T_4[]): T_4[];
         readonly [Symbol.species]: ArrayConstructor;
     };
+    size: StringConstructor;
     width: (StringConstructor | NumberConstructor)[];
     height: (StringConstructor | NumberConstructor)[];
     maxHeight: (StringConstructor | NumberConstructor)[];

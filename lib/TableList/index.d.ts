@@ -3,10 +3,10 @@ declare const TableList: ({
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: {
-            size?: string | undefined;
             border?: boolean | undefined;
             index?: boolean | Record<string, any> | undefined;
             className?: string | undefined;
+            buttonsPosition?: string | undefined;
             data?: any[] | undefined;
             style?: import("vue").CSSProperties | undefined;
             treeProps?: {
@@ -35,6 +35,7 @@ declare const TableList: ({
             scrollbarAlwaysOn?: boolean | undefined;
             flexible?: boolean | undefined;
             ref?: ((string | Function) & import("vue").VNodeRef) | undefined;
+            readonly size?: string | undefined;
             readonly buttons?: import("./comps/Button").ButtonProps[] | undefined;
             readonly width?: string | number | undefined;
             readonly showOverflowTooltip?: boolean | Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined;
@@ -225,10 +226,6 @@ declare const TableList: ({
             totalPath: StringConstructor;
             pageNum: StringConstructor;
             pageSize: StringConstructor;
-            size: {
-                type: StringConstructor;
-                default: string;
-            };
             labelPosition: {
                 type: StringConstructor;
                 default: string;
@@ -242,6 +239,10 @@ declare const TableList: ({
                 };
             };
             buttons: import("vue").PropType<import("./comps/Button").ButtonProps[] | undefined>;
+            buttonsPosition: {
+                type: StringConstructor;
+                default: string;
+            };
             pagination: {
                 type: BooleanConstructor;
                 default: boolean;
@@ -282,6 +283,7 @@ declare const TableList: ({
                 of<T_4>(...items: T_4[]): T_4[];
                 readonly [Symbol.species]: ArrayConstructor;
             };
+            size: StringConstructor;
             width: (StringConstructor | NumberConstructor)[];
             height: (StringConstructor | NumberConstructor)[];
             maxHeight: (StringConstructor | NumberConstructor)[];
@@ -473,10 +475,10 @@ declare const TableList: ({
                 filterForm: any;
             }) => boolean;
         }, string, {
-            size: string;
             border: boolean;
             index: boolean | Record<string, any>;
             className: string;
+            buttonsPosition: string;
             data: any[];
             style: import("vue").CSSProperties;
             treeProps: {
@@ -542,10 +544,6 @@ declare const TableList: ({
         totalPath: StringConstructor;
         pageNum: StringConstructor;
         pageSize: StringConstructor;
-        size: {
-            type: StringConstructor;
-            default: string;
-        };
         labelPosition: {
             type: StringConstructor;
             default: string;
@@ -559,6 +557,10 @@ declare const TableList: ({
             };
         };
         buttons: import("vue").PropType<import("./comps/Button").ButtonProps[] | undefined>;
+        buttonsPosition: {
+            type: StringConstructor;
+            default: string;
+        };
         pagination: {
             type: BooleanConstructor;
             default: boolean;
@@ -599,6 +601,7 @@ declare const TableList: ({
             of<T_4>(...items: T_4[]): T_4[];
             readonly [Symbol.species]: ArrayConstructor;
         };
+        size: StringConstructor;
         width: (StringConstructor | NumberConstructor)[];
         height: (StringConstructor | NumberConstructor)[];
         maxHeight: (StringConstructor | NumberConstructor)[];
@@ -779,10 +782,6 @@ declare const TableList: ({
     totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
-    size: {
-        type: StringConstructor;
-        default: string;
-    };
     labelPosition: {
         type: StringConstructor;
         default: string;
@@ -796,6 +795,10 @@ declare const TableList: ({
         };
     };
     buttons: import("vue").PropType<import("./comps/Button").ButtonProps[] | undefined>;
+    buttonsPosition: {
+        type: StringConstructor;
+        default: string;
+    };
     pagination: {
         type: BooleanConstructor;
         default: boolean;
@@ -836,6 +839,7 @@ declare const TableList: ({
         of<T_4>(...items: T_4[]): T_4[];
         readonly [Symbol.species]: ArrayConstructor;
     };
+    size: StringConstructor;
     width: (StringConstructor | NumberConstructor)[];
     height: (StringConstructor | NumberConstructor)[];
     maxHeight: (StringConstructor | NumberConstructor)[];
@@ -1027,10 +1031,10 @@ declare const TableList: ({
         filterForm: any;
     }) => boolean;
 }, string, {
-    size: string;
     border: boolean;
     index: boolean | Record<string, any>;
     className: string;
+    buttonsPosition: string;
     data: any[];
     style: import("vue").CSSProperties;
     treeProps: {

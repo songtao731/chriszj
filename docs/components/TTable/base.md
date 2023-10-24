@@ -100,6 +100,7 @@ TTable/tableprop
 | -------slotName | 自定义插槽 | String | - |
 | -------buttons | 表格操作按钮 | Arrary|Function(row)=>Arrary | - |
 | buttons | 表格操作按钮 | Arrary | - |
+| buttonsPosition | 表格操作按钮位置 |left&right |right|
 | -------content | 按钮文字 | String | - |
 | -------link | 是否是文本按钮 | Boolean |false |
 | -------type | 按钮类型 | string | 同elementui button |

@@ -39,6 +39,8 @@ export interface Args {
     | boolean;
   //右上角按钮
   buttons?: ButtonProps[];
+  //右上角按钮位置
+  buttonsPosition?:'left'|'right',
   //分页
   pagination?: boolean;
   //额外添加查询条件

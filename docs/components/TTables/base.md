@@ -22,13 +22,6 @@ TTables/tablesProp
 | ---activeValue | 默认选中的值  | String&&Number | 必填 |
 | ---isRoute | 开启浏览器缓存route,用于列表页点击进详情页 再返回 |  boolean |  false|
 | ---tabsList | 选项卡的值  | Object |[{label:'选项一',value:'1'}] 必填 |
-| ---type | 	风格类型  | String |card/border-card |
-| ---closable | 	标签是否可关闭  | Boolean |false|
-| ---addable | 	标签是否可增加  | Boolean |false|
-| ---editable | 	标签是否同时可增加和关闭  | Boolean |false|
-| ---tab-position | 	选项卡所在位置  | String |top/right/bottom/left 默认:top|
-| ---stretch | 	标签是否可关闭  | Boolean |false|
-| ---before-leave | 	切换标签之前的钩子，若返回 false 或者返回 Promise 且被 reject，则阻止切换。  | Function(activeName, oldActiveName) |--|
 | table | 给表格传值  | Function(activeName) | 看demo,里面传参同Table组件一致 |
 
 
@@ -40,6 +33,10 @@ TTables/tablesProp
 
 
 ### 3、events 其他事件按照 el-table 直接使用（如 sort-change 排序事件）
+| 事件名             | 说明                         | 参数 |
+| :----------------- | :--------------------------- | :--- |
+| tabClick     |  点击tab的回调 | -    |
+
 
 ### 4、Methods 方法 全局属性 参考 el-table 直接使用
 

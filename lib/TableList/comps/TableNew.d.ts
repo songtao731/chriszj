@@ -19,10 +19,6 @@ export declare const NewTable: {
     totalPath: StringConstructor;
     pageNum: StringConstructor;
     pageSize: StringConstructor;
-    size: {
-        type: StringConstructor;
-        default: string;
-    };
     labelPosition: {
         type: StringConstructor;
         default: string;
@@ -36,6 +32,10 @@ export declare const NewTable: {
         };
     };
     buttons: PropType<import("./Button").ButtonProps[] | undefined>;
+    buttonsPosition: {
+        type: StringConstructor;
+        default: string;
+    };
     pagination: {
         type: BooleanConstructor;
         default: boolean;
