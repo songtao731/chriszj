@@ -43,6 +43,7 @@ declare const TableLists: ({
             readonly showOverflowTooltip?: boolean | Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined;
             readonly columns?: import("../TableList").NewTableColumn<any>[] | undefined;
             key?: string | number | symbol | undefined;
+            readonly title?: string | undefined;
             readonly path?: string | undefined;
             ref_for?: boolean | undefined;
             ref_key?: string | undefined;
@@ -232,6 +233,7 @@ declare const TableLists: ({
                 };
             };
             request: FunctionConstructor;
+            title: StringConstructor;
             column: {
                 type: NumberConstructor;
                 default: number;
@@ -431,6 +433,7 @@ declare const TableLists: ({
                 type: FunctionConstructor;
                 default: {
                     request: FunctionConstructor;
+                    title: StringConstructor;
                     column: {
                         type: NumberConstructor;
                         default: number;
@@ -770,6 +773,7 @@ declare const TableLists: ({
             };
         };
         request: FunctionConstructor;
+        title: StringConstructor;
         column: {
             type: NumberConstructor;
             default: number;
@@ -969,6 +973,7 @@ declare const TableLists: ({
             type: FunctionConstructor;
             default: {
                 request: FunctionConstructor;
+                title: StringConstructor;
                 column: {
                     type: NumberConstructor;
                     default: number;
@@ -1226,6 +1231,7 @@ declare const TableLists: ({
         };
     };
     request: FunctionConstructor;
+    title: StringConstructor;
     column: {
         type: NumberConstructor;
         default: number;
@@ -1425,6 +1431,7 @@ declare const TableLists: ({
         type: FunctionConstructor;
         default: {
             request: FunctionConstructor;
+            title: StringConstructor;
             column: {
                 type: NumberConstructor;
                 default: number;

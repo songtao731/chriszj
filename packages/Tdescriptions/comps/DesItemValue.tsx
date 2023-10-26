@@ -8,6 +8,7 @@ export default defineComponent({
   setup(props) {
     const item = computed(() => props.item);
     const formData = computed(() => props.formData);
+
     return () => (
       <>
         {item.value.type === "prew" ? (

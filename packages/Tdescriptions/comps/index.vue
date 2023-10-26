@@ -6,8 +6,8 @@
     <div v-for="(item, index) in dscItemList" :key="index">
 
       <ElDescriptionsItem v-bind="item" v-if="!item.slotName" :className="props.border
-        ? ''
-        : `inline-block  align-middle`
+        ? item.className
+        : `inline-block  align-middle ` +item.className
         ">
         <DesItemValue :item="item" :formData="formData" :resData="resData"></DesItemValue>
       </ElDescriptionsItem>

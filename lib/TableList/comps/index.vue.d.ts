@@ -1,5 +1,6 @@
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     request: FunctionConstructor;
+    title: StringConstructor;
     column: {
         type: NumberConstructor;
         default: number;
@@ -234,6 +235,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     }) => boolean;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     request: FunctionConstructor;
+    title: StringConstructor;
     column: {
         type: NumberConstructor;
         default: number;

@@ -3,6 +3,7 @@ export declare const TableLists: {
         type: FunctionConstructor;
         default: {
             request: FunctionConstructor;
+            title: StringConstructor;
             column: {
                 type: NumberConstructor;
                 default: number;

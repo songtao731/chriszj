@@ -6,7 +6,7 @@ export const descriptionProps = {
   ...newDes,
   border: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   column: {
     type: Number,

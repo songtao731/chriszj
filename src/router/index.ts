@@ -54,6 +54,11 @@ const router = createRouter({
       name: "tableTree",
       component:()=>import('../views/tableTree.vue')
     },
+    {
+      path: "/formvalue",
+      name: "formvalue",
+      component:()=>import('../views/FormValue.vue')
+    },
     
   ],
 });

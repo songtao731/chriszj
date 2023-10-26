@@ -187,6 +187,7 @@ let aa = ref<domain[]>([
           headers: {
             token: sessionStorage.token,
           },
+          disabled:true,
 
           onChange() {
             startRef.value.validate();
@@ -268,6 +269,7 @@ setTimeout(() => {
     radio: '1',
     rate: 1,
     nextPage: "身高2米",
+    span:'WOSHI',
     domains: [
 
     ],
@@ -388,9 +390,19 @@ const bind = computed(() => {
     // request: (params) => entertainApplicationAddList({ a: 1 }),
 
     title: "测试表单",
-    column: 3,
+    column: 2,
     labelWidth: "140px",
     dataList: [
+      {
+        label:'span',
+        type:'span',
+        prop:'span',
+        formatter(row){
+          console.log(row)
+          return row+'21'
+        },
+
+      },
       {
         label: "re",
         prop: "re",
@@ -850,18 +862,17 @@ const add = () => {
         },
       },
       {
-        label: "上传",
+        label: "上传22",
         type: "upload",
         prop: "upload",
         required: true,
-
 
         upload: {
           action: "/api/gateway/financial/pay/collectionList/claim/list",
           headers: {
             token: sessionStorage.token,
           },
-
+          disabled:true,
           onChange(val) {
             console.log(val, 8282828)
             startRef.value.validate();

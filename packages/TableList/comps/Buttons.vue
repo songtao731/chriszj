@@ -17,6 +17,11 @@ const props = defineProps({ buttons: Array as PropType<NewTableCtx["buttons"]>,b
 const buttonList = props.buttons;
 
 </script>
+<script lang="ts">
+export default {
+  name: "Buttons",
+};
+</script>
 
 <style scoped lang="scss">
 .chris-buttons{

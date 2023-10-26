@@ -12,7 +12,7 @@ Tdescriptions/slot
 :::
 
 ### 格式化数据
-:::demo 传入parseData|formatData|formatType('price',  'priceChinese'  ,'date',  'dateTime')
+:::demo 传入parseData|formatter|formatType('price',  'priceChinese'  ,'date',  'dateTime')
 Tdescriptions/format
 :::
 
@@ -50,8 +50,9 @@ Tdescriptions/request
 | -------formatType|快捷格式化数据| 'price' , 'priceChinese' , 'date'  , 'dateTime'|-|
 | -------dictData|处理枚举|object|-|
 | -------dictOptions|枚举的默认参数| label?: string; value?: string; children?: string |默认
-| -------formatData|自己格式化数据展示|function(data)=>any|-|
+| -------formatter|自己格式化数据展示|function(data)=>any|-|
 | -------slotName|插槽明|string|-|
+
 
 ### 插槽
 

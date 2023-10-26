@@ -4,6 +4,8 @@ import { ButtonProps } from "./Button";
 export interface Args {
   //请求接口
   request?: (...arg: any[]) => Promise<any>;
+  //标题
+  title?:string
   //每一列传入的数据
   columns: Partial<NewTableColumn<any>>[];
   //一行展示几个

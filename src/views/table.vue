@@ -193,6 +193,7 @@ const bind = computed(() => {
     // request: (params) => entertainApplicationAddList({ ...params }),
     data: tableData.value,
     labelWidth: '100px',
+    title:'aa',
     buttons: [
       {
         type: "primary",

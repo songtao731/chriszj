@@ -41,6 +41,7 @@ declare const TableList: ({
             readonly showOverflowTooltip?: boolean | Partial<Pick<import("element-plus").ElTooltipProps, "effect" | "popperClass" | "placement" | "showArrow" | "enterable" | "offset" | "popperOptions" | "showAfter" | "hideAfter">> | undefined;
             readonly columns?: import("./comps/TableColumnItem").NewTableColumn<any>[] | undefined;
             key?: string | number | symbol | undefined;
+            readonly title?: string | undefined;
             readonly path?: string | undefined;
             ref_for?: boolean | undefined;
             ref_key?: string | undefined;
@@ -210,6 +211,7 @@ declare const TableList: ({
         $el: any;
         $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
             request: FunctionConstructor;
+            title: StringConstructor;
             column: {
                 type: NumberConstructor;
                 default: number;
@@ -528,6 +530,7 @@ declare const TableList: ({
         $watch<T_5 extends string | ((...args: any) => any)>(source: T_5, cb: T_5 extends (...args: any) => infer R ? (args_0: R, args_1: R) => any : (...args: any) => any, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
     } & Readonly<import("vue").ExtractPropTypes<{
         request: FunctionConstructor;
+        title: StringConstructor;
         column: {
             type: NumberConstructor;
             default: number;
@@ -766,6 +769,7 @@ declare const TableList: ({
     __isSuspense?: undefined;
 } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
     request: FunctionConstructor;
+    title: StringConstructor;
     column: {
         type: NumberConstructor;
         default: number;

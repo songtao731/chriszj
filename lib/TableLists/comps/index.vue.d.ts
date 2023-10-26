@@ -21,6 +21,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         };
     };
     request: FunctionConstructor;
+    title: StringConstructor;
     column: {
         type: NumberConstructor;
         default: number;
@@ -220,6 +221,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: FunctionConstructor;
         default: {
             request: FunctionConstructor;
+            title: StringConstructor;
             column: {
                 type: NumberConstructor;
                 default: number;
@@ -473,6 +475,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         };
     };
     request: FunctionConstructor;
+    title: StringConstructor;
     column: {
         type: NumberConstructor;
         default: number;
@@ -672,6 +675,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: FunctionConstructor;
         default: {
             request: FunctionConstructor;
+            title: StringConstructor;
             column: {
                 type: NumberConstructor;
                 default: number;

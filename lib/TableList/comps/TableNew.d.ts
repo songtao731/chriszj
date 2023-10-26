@@ -3,6 +3,7 @@ import { Args } from "./useTable";
 export type NewTableCtx = Args;
 export declare const NewTable: {
     request: FunctionConstructor;
+    title: StringConstructor;
     column: {
         type: NumberConstructor;
         default: number;

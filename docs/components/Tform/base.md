@@ -46,6 +46,17 @@ type设置成domains
 Tform/domainsEdit
 :::
 
+### 数据回显 用于详情页
+:::demo type传入span 具体看demo
+Tform/formvalue
+:::
+
+
+
+
+
+
+
 | 参数 | 说明 | 类型 | 默认值 |
 | :---------------------- | :----------------------------------------------------------------------------- | :----------- | :-------- |
 | useForm | 表单数据对象 | Function |  |
@@ -62,7 +73,11 @@ Tform/domainsEdit
 | --dataList | 表单内数据 | Array | [] |
 | -------label | 标签内容 | String | - |
 | -------prop | 参数名(后端需要的字段) | String | - |
-| -------type | 类型 |  "input", "select", "space", "custom", "date", "cascader", "checkBox", "radio", "rate", "upload", "switch", "slider", "range"; | - |
+| -------formatType|快捷格式化数据| 'price' , 'priceChinese' , 'date'  , 'dateTime'|-|
+| -------dictData|处理枚举|object|-|
+| -------dictOptions|枚举的默认参数| label?: string; value?: string; children?: string |默认
+| -------formatter|自己格式化数据展示|function(data)=>any|-|
+| -------type | 类型 |  "input", "select", "space", "custom", "date", "cascader", "checkBox", "radio", "rate", "upload", "switch", "slider","span","prew", "range"; | - |
 | -------"input", "select", "space", "custom", "date", "cascader", "checkBox", "radio", "rate" , "upload", "switch", "slider", "range| 各个组件下的属性 | Object |  参考ELmemnetUi各个组件的属性方法
 | -------columns|当type=range下使用|参考demo|
 |labelPosition|标签的位置|"left" , "right" ,"top" | right |

@@ -29,7 +29,7 @@ export type desItem = {
         children?: string;
     };
     hide?: boolean;
-    formatData?: (data: any) => any;
+    formatter?: (data: any) => any;
     type?: string;
     prew?: prew;
     slotName?: string;

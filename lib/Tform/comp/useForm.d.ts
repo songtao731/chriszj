@@ -1,7 +1,7 @@
 export type direction = "vertical" | "horizonta";
 export type size = "large" | "default" | "small";
 export type column = "1" | "2" | "3" | "4";
-export type typeEnum = "input" | "select" | "space" | "custom" | "date" | "cascader" | "checkBox" | "radio" | "rate" | "upload" | "switch" | "slider" | "range" | "domains";
+export type typeEnum = "span" | "prew" | "input" | "select" | "space" | "custom" | "date" | "cascader" | "checkBox" | "radio" | "rate" | "upload" | "switch" | "slider" | "range" | "domains";
 export type NewDataItem = {
     ref?: Ref<any>;
     label?: string;
@@ -35,6 +35,7 @@ export type NewDataItem = {
             input?: MainPackage["input"];
         }
     ];
+    prew?: prew;
     input?: MainPackage["input"];
     select?: MainPackage["select"];
     date?: MainPackage["date"];
@@ -50,8 +51,10 @@ export type domain = {
     item: NewDataItem[];
     chriskey: string | number;
 };
+import { prew } from "chriszj/Tdescriptions/comps/useDescriptions";
 import { MainPackage } from "../../BaseComps/index";
-import { Ref } from "vue";
+import { ComputedRef, Ref } from "vue";
+import { FormatValueType } from "chriszj/TableList/comps/TableColumnItem";
 export type dataItem = {
     ref?: Ref<any>;
     label?: string;
@@ -89,6 +92,17 @@ export type dataItem = {
             input?: MainPackage["input"];
         }
     ];
+    formatter?: (row: any) => any;
+    prew?: prew;
+    formatType?: FormatValueType;
+    dictData?: {
+        [key: string]: any;
+    }[] | ComputedRef<any>;
+    dictOptions?: {
+        label?: string;
+        value?: string;
+        children?: string;
+    };
     input?: MainPackage["input"];
     select?: MainPackage["select"];
     date?: MainPackage["date"];

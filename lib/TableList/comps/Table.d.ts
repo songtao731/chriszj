@@ -125,6 +125,7 @@ export interface TableProps<T> {
 }
 export declare const TableProps: {
     request: FunctionConstructor;
+    title: StringConstructor;
     column: {
         type: NumberConstructor;
         default: number;

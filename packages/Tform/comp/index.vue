@@ -31,12 +31,14 @@ import { watchEffect } from "vue";
 
 const props = defineProps(formProps);
 const formRef = ref();
+//常规插槽
 const dataList = computed(() => {
   const propDataList = unref(props.dataList);
   if (propDataList.length) {
     return propDataList.filter((el) => el.slotName);
   }
 });
+//domains的插槽
 const customList = ref([]);
 watchEffect(() => {
   const propDataList = unref(props.dataList);
@@ -45,7 +47,10 @@ watchEffect(() => {
       .filter((ele) => {
         return ele.type === "domains";
       })
-      .map((ela) => ela.domains)
+      .map((ela) => {
+       
+        return ela.domains||[]
+      })
       .map((elb) => {
         return elb.map((elc) => elc.item);
       })

@@ -34,7 +34,7 @@ export type desItem = {
   //显示隐藏
   hide?: boolean;
   //自己格式化数据展示
-  formatData?: (data: any) => any;
+  formatter?: (data: any) => any;
   //type 占位符和图片模式
   type?:string,
   //当图片时 设置宽高

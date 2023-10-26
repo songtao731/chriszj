@@ -36,6 +36,7 @@ import { RadioItem } from "../../BaseComps/radio";
 
 import { Tupload } from "../../index";
 import { getPath } from "../../utils/index";
+import DesItemValue from "../../Tdescriptions/comps/DesItemValue";
 
 export default defineComponent({
   props: formProps,
@@ -51,7 +52,7 @@ export default defineComponent({
     watch(requestObj, (newObj: { [key: string]: any }) => {
       if (typeof newObj === "object") {
         Object.keys(formData.value).forEach((el) => {
-          if (newObj[el]) {
+          if (newObj[el] || newObj[el] === 0) {
             formData.value[el] = newObj[el];
           }
         });
@@ -112,7 +113,6 @@ export default defineComponent({
           } else {
             formData.value[el.keys as string] = el.domains;
           }
-
           el.domains &&
             el.domains.forEach((ele, index) => {
               let propKeys: { [key: string]: any } = {};
@@ -430,6 +430,7 @@ export default defineComponent({
                                       </ElCol>
                                     );
                                     break;
+
                                   case "input":
                                     newElement = (
                                       <ElCol
@@ -916,6 +917,34 @@ export default defineComponent({
                                     );
                                     break;
                                   default:
+                                    newElement = (
+                                      <ElCol
+                                        span={ele.nospan}
+                                        key={+ela.chriskey + index + "span"}
+                                      >
+                                        <ElFormItem
+                                          {...ele}
+                                          rules={ele.rules?.rules}
+                                          prop={
+                                            el.keys +
+                                            "." +
+                                            index +
+                                            "." +
+                                            ele.prop
+                                          }
+                                          class="w-full"
+                                        >
+                                          <DesItemValue
+                                            item={ele}
+                                            formData={
+                                              formData.value[el.keys as string][
+                                                index
+                                              ]
+                                            }
+                                          ></DesItemValue>
+                                        </ElFormItem>
+                                      </ElCol>
+                                    );
                                     break;
                                 }
                                 return newElement;
@@ -1213,6 +1242,22 @@ export default defineComponent({
                                 v-model={formData.value[el.prop as string]}
                                 {...el.slider}
                               ></ElSlider>
+                            </ElFormItem>
+                          </ElCol>
+                        );
+                        break;
+                      default:
+                        element = (
+                          <ElCol span={el.nospan} key={el.label}>
+                            <ElFormItem
+                              {...el}
+                              rules={el.rules?.rules}
+                              class="w-full"
+                            >
+                              <DesItemValue
+                                item={el}
+                                formData={formData.value}
+                              ></DesItemValue>
                             </ElFormItem>
                           </ElCol>
                         );

@@ -2,6 +2,7 @@ import { NewTableColumn } from "./TableColumnItem";
 import { ButtonProps } from "./Button";
 export interface Args {
     request?: (...arg: any[]) => Promise<any>;
+    title?: string;
     columns: Partial<NewTableColumn<any>>[];
     column?: number;
     gutter?: number;

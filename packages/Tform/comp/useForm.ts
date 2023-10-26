@@ -2,6 +2,8 @@ export type direction = "vertical" | "horizonta";
 export type size = "large" | "default" | "small";
 export type column = "1" | "2" | "3" | "4";
 export type typeEnum =
+  | "span"
+  | "prew"
   | "input"
   | "select"
   | "space"
@@ -67,6 +69,8 @@ export type NewDataItem = {
       input?: MainPackage["input"];
     }
   ];
+  //图片预览
+  prew?: prew;
 
   //input输入框的属性
   input?: MainPackage["input"];
@@ -94,9 +98,11 @@ export type domain = {
   item: NewDataItem[];
   chriskey: string | number;
 };
+import { prew } from "chriszj/Tdescriptions/comps/useDescriptions";
 import { MainPackage } from "../../BaseComps/index";
 // import  { RuleCreater } from "../../utils/index";
 import { ComputedRef, Ref } from "vue";
+import { FormatValueType } from "chriszj/TableList/comps/TableColumnItem";
 
 export type dataItem = {
   ref?: Ref<any>;
@@ -155,7 +161,14 @@ export type dataItem = {
       input?: MainPackage["input"];
     }
   ];
-
+  formatter?: (row: any) => any;
+  //图片预览
+  prew?: prew;
+  //快捷格式化数据
+  formatType?: FormatValueType;
+  dictData?: { [key: string]: any }[] | ComputedRef<any>;
+  //配置字典后者枚举的 参数 默认 label value children
+  dictOptions?: { label?: string; value?: string; children?: string };
   //input输入框的属性
   input?: MainPackage["input"];
   //select选择器的属性
@@ -183,7 +196,7 @@ export interface Args {
   //请求接口
   request?: ((...arg: any[]) => Promise<any>) | { [key: string]: any };
   //是否编辑
-  edit?:boolean;
+  edit?: boolean;
   //格式化数据
   parseData?: (data: any) => any;
   //接口返回的数据结构 默认直接data下

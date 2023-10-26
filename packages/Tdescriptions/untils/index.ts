@@ -30,8 +30,11 @@ export const parseValue = (
 
   //处理枚举 字典
   if (dictData && unref(dictData).length) {
+
     const findData = searchTree(unref(dictData), result, options);
+
     result = (findData && findData[options.useDictLabel]) || "--";
+
   }
   //格式化数字
   if (formatType) {
@@ -51,9 +54,10 @@ export const parseValue = (
         break;
     }
   }
-  // if (formatData) {
-  //   result = formatData(resData);
-  // }
+
+  if (item.formatter) {
+    result = item.formatter(formData);
+  }
 
   return result;
 };

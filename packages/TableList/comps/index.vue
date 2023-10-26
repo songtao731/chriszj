@@ -9,7 +9,10 @@
         <slot name="search"> </slot>
       </template>
     </Search> -->
-    <Search2 ref="searchRef" :labelWidth="props.labelWidth" :filter="columnsFilter" :size="props.size" v-if="columnsFilter.length"
+    <div class="mb-5 font-bold text-[16px]">
+       {{ props.title }}
+    </div>
+    <Search2 ref="searchRef" :labelWidth="props.labelWidth" :filter="columnsFilter" :size="props.size" v-if="columnsFilter&&columnsFilter.length"
       :labelPosition="props.labelPosition" :gutter="props.gutter" :column="props.column" @getParams="getParams"
       @resetFn="resetFn">
 
@@ -22,7 +25,7 @@
 
 
     <!-- 右上插槽 -->
-    <Buttons :buttons="props.buttons" :buttons-position="props.buttonsPosition"> </Buttons>
+    <Buttons :buttons="props.buttons" :buttonsPosition="props.buttonsPosition"> </Buttons>
     <!-- {{ formData.dataList }} -->
     <el-form ref="formRef" :model="formData">
       <ElTable v-bind="props" :data="formData.dataList" style="width: 100%"  v-on="tableEvents" ref="tableRef">

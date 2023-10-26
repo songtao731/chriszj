@@ -1,20 +1,18 @@
 <template>
-  <Tdescriptions v-bind="bind" ref="desRef">
+  <Tdescriptions v-bind="bind" ref="desRef" >
     <template #title> 插槽title </template>
     <template #extra>
-      <ElButton @click="ishide=!ishide"> 我是插槽按钮 </ElButton>
+      <ElButton @click="ishide = !ishide"> 我是插槽按钮 </ElButton>
     </template>
     <template #cc="{ scope }">
       <el-descriptions-item>
         <template #label>
-         
-            <el-icon :style="iconStyle">
-              <user />
-            </el-icon>
-            年龄
-       
+          <el-icon :style="iconStyle">
+            <user />
+          </el-icon>
+          年龄
         </template>
-        {{ scope.value }}
+    {{ scope.resData.age }}
       </el-descriptions-item>
     </template>
     <template #tree="{ scope }">
@@ -91,15 +89,15 @@ setTimeout(() => {
     },
   ];
   obj.value = {
-    endRow: "张三",
+    endRow: "三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三",
     nextPage: 0,
     name: "是",
     total: 27,
     tree: 0,
-    age: 20 
+    age: 20
   };
 }, 100);
-const ishide=ref(false)
+const ishide = ref(false)
 
 const bind = computed(() => {
   return chris.useDescriptions({
@@ -109,7 +107,7 @@ const bind = computed(() => {
     parseData: (el) => {
 
 
-      console.log(el,9999)
+      console.log(el, 9999)
       return {
         ...el,
         imgs: [
@@ -127,12 +125,13 @@ const bind = computed(() => {
       };
     },
     column: 2,
-    border: true,
 
     dataList: [
       {
         label: "姓名",
         prop: "endRow",
+        labelClassName: 'aa',
+        className: 'bb'
       },
       {
         label: "性别",
@@ -143,18 +142,27 @@ const bind = computed(() => {
           label: "label2",
           value: "value2",
         },
+        labelClassName: 'aa',
+        className:'bb'
+
       },
       {
         label: "金钱",
         prop: "money",
         formatType: "price",
+        labelClassName:'aa',
+        className:'bb'
+
       },
       {
         label: "金钱大写",
         prop: "money",
         formatType: "priceChinese",
-        width: "25%",
         hide: desRef.value?.data?.pages === 8,
+        labelClassName:'aa',
+        className:'bb'
+
+      
       },
       {
         label: "时间",
@@ -164,8 +172,8 @@ const bind = computed(() => {
       {
         label: "函数",
         prop: "total",
-        formatData(data) {
-          return data.total * 2 || "--";
+        formatter(data) {
+          return data.total * 3 || "--";
         },
       },
       {
@@ -197,12 +205,12 @@ const bind = computed(() => {
           width: '100px',
           height: "100px",
         },
-        hide:ishide.value,
+        hide: ishide.value,
         span: 3
       }, {
         slotName: 'cc',
         prop: 'age',
-        formatData(data) {
+        formatter(data) {
           return data.age + 0.1
         },
 
@@ -212,23 +220,16 @@ const bind = computed(() => {
   });
 });
 
-const bind2 = computed(()=>{
- return chris.useDescriptions({
-  request: (params) => entertainApplicationAddList({ a: 1 }),
-  dataList: [
-    {
-      label: '姓名',
-      value: '张三',
-      prop: 'endRow'
-    },
-    {
-      label: '性别',
-      prop: "nextPage",
-   
-    }
-  ]
-
-})
-})
+console.log(desRef,'desRef')
 </script>
-<style scoped></style>
+<style scoped>
+:deep(.aa){
+  width: 200px;
+  display: inline-block;
+
+}
+:deep(.bb){
+  width: 50%;
+}
+
+</style>

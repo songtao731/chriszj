@@ -5,6 +5,7 @@ export type NewTableCtx = Args;
 
 export const NewTable = {
   request: Function,
+  title:String,
   column: {
     type: Number,
     default: 0,
