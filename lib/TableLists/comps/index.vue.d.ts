@@ -59,6 +59,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    paginationPosition: {
+        type: StringConstructor;
+        default: string;
+    };
     searchData: ObjectConstructor;
     layout: {
         type: StringConstructor;
@@ -258,6 +262,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
             pagination: {
                 type: BooleanConstructor;
                 default: boolean;
+            };
+            paginationPosition: {
+                type: StringConstructor;
+                default: string;
             };
             searchData: ObjectConstructor;
             layout: {
@@ -513,6 +521,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    paginationPosition: {
+        type: StringConstructor;
+        default: string;
+    };
     searchData: ObjectConstructor;
     layout: {
         type: StringConstructor;
@@ -712,6 +724,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
             pagination: {
                 type: BooleanConstructor;
                 default: boolean;
+            };
+            paginationPosition: {
+                type: StringConstructor;
+                default: string;
             };
             searchData: ObjectConstructor;
             layout: {
@@ -925,6 +941,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     layout: string;
     pageSizes: unknown[];
     currentPage: number;
+    paginationPosition: string;
     currentPageSize: number;
     fit: boolean;
     stripe: boolean;

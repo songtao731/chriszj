@@ -62,14 +62,14 @@ const bind = chris.useTable({
           content: "新增",
           link: true,
           type: "primary",
-          click(rows) {
+          onClick(rows) {
             console.log(rows, "新增");
           },
         },
         {
           content: "删除",
           type: "success",
-          click(row) {
+          onClick(row) {
             console.log("删除", row);
           },
         },

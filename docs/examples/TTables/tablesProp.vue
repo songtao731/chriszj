@@ -3,7 +3,7 @@
   </TableLists>
 </template>
 <script setup lang="ts">
-import { chris } from "chriszj";
+import { chris ,TableLists} from "chriszj";
 //实际使用是 import { chris } from "chriszj";
 
 import { ref } from "vue";

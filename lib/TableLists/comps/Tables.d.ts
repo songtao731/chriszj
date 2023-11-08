@@ -41,6 +41,10 @@ export declare const TableLists: {
                 type: BooleanConstructor;
                 default: boolean;
             };
+            paginationPosition: {
+                type: StringConstructor;
+                default: string;
+            };
             searchData: ObjectConstructor;
             layout: {
                 type: StringConstructor;

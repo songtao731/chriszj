@@ -104,7 +104,7 @@ TTable/tableprop
 | -------content | 按钮文字 | String | - |
 | -------link | 是否是文本按钮 | Boolean |false |
 | -------type | 按钮类型 | string | 同elementui button |
-| -------click | 点击事件 | Function(row) | - |
+| -------onClick | 点击事件 | Function(row) | - |
 | -------hide | 是否显示隐藏 | (row)=>boolean&Boolean | - |
 | -------其他 |其余属性参考elementui button
 | path | 后端返回 list 的 路径 | String | data.rows |

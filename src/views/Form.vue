@@ -399,7 +399,7 @@ const bind = computed(() => {
         prop:'span',
         formatter(row){
           console.log(row)
-          return row+'21'
+          return row.span+'21'
         },
 
       },

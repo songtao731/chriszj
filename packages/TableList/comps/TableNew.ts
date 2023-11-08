@@ -44,6 +44,10 @@ export const NewTable = {
     type: Boolean,
     default: true,
   },
+  paginationPosition: {
+    type: String,
+    default: 'center',
+  },
   searchData: Object,
   layout: {
     type: String,

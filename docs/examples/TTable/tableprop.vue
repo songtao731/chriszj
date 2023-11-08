@@ -151,7 +151,7 @@ const bind = chris.useTable({
         {
           type:'primary',
           content:"单选",
-          click(row){
+          onClick(row){
 
               console.log(row,'22')
           }

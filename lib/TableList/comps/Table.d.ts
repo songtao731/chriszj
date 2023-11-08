@@ -163,6 +163,10 @@ export declare const TableProps: {
         type: BooleanConstructor;
         default: boolean;
     };
+    paginationPosition: {
+        type: StringConstructor;
+        default: string;
+    };
     searchData: ObjectConstructor;
     layout: {
         type: StringConstructor;

@@ -45,6 +45,9 @@ export interface Args {
   buttonsPosition?:'left'|'right',
   //分页
   pagination?: boolean;
+  //分页的位置
+
+  paginationPosition?:'left'|"center"|'right'
   //额外添加查询条件
   searchData?: object;
   //分页显示控制

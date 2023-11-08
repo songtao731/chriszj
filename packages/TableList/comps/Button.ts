@@ -47,7 +47,6 @@ export interface ButtonProps {
    * 是否隐藏
    */
   hide?: boolean | ((scope: any) => boolean);
-  click?: (scope: any) => void;
 }
 export const ButtonTypeProps = {
   size: String,
@@ -93,5 +92,4 @@ export const ButtonTypeProps = {
    */
   hidden: [Function,Boolean],
 
-  click: Function,
 };

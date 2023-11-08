@@ -3,9 +3,9 @@
   </TableLists>
 </template>
 <script setup lang="ts">
-//import { chris } from "chriszj";
+import { chris, TableLists} from "chriszj";
 import { useRoute,useRouter } from "vue-router";
-import { chris,TableLists } from "../../../packages";
+// import { chris,TableLists } from "../../../packages";
 //实际使用是 import { chris } from "chriszj";
 
 
@@ -61,7 +61,6 @@ const activeName = ref("3");
 const bind = chris.useTables({
   tabs: {
     activeValue: activeName.value,
-    isRoute:true,
     tabsList: [
       { label: "待审核", value: "1" },
       { label: "审核中", value: "2" },
@@ -69,7 +68,6 @@ const bind = chris.useTables({
     ],
   },
   table: (row) => {
-    console.log(row);
     return {
       request: (params) => request({ ...params, state: row }),
       columns: [

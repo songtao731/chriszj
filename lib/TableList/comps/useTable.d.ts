@@ -25,6 +25,7 @@ export interface Args {
     buttons?: ButtonProps[];
     buttonsPosition?: 'left' | 'right';
     pagination?: boolean;
+    paginationPosition?: 'left' | "center" | 'right';
     searchData?: object;
     layout?: string;
     pageSizes?: number[];

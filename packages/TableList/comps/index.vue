@@ -59,9 +59,8 @@
         </ElTableColumn>
       </ElTable>
     </el-form>
-
-    <Pagination v-show="total > 0 && props.pagination" :total="total" @getPage="getPage" :currentPage="currentPage"
-      :pageSize="pageSize" :pageSizes="props.pageSizes" ref="pagination" :layout="props.layout" />
+      <Pagination v-show="total > 0 && props.pagination" :total="total" @getPage="getPage" :currentPage="currentPage"
+      :pageSize="pageSize" :pageSizes="props.pageSizes" ref="pagination" :layout="props.layout" class="pb-5" :style="'justify-content:'+props.paginationPosition"  />
     <slot name="footer"> </slot>
   </div>
 </template>

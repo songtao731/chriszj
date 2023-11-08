@@ -589,24 +589,22 @@ const bind = computed(() => {
       {
         label: '操作',
         width: '200px',
-        buttons: () => {
-          return [
+        buttons:[
             {
               content: '删除',
               link: false,
-              click(scope) {
+              hide(scope) {
+                return scope.contractAmount === '33'
+              },
+              onClick(scope) {
                 tableData.value = tableData.value.filter((el) => el.contractAmount !== scope.contractAmount)
                 console.log(tableData, 'kk', scope)
 
-              },
-              hide(scope) {
-                return scope.contractAmount === '33'
               },
 
 
             }
           ]
-        }
       }
 
 

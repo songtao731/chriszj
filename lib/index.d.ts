@@ -22,10 +22,10 @@ declare const chris: {
     useDescriptions: (args: import("./Tdescriptions/comps/useDescriptions").Args) => import("./Tdescriptions/comps/useDescriptions").Args;
     rulesFn: () => {
         rules: import("./utils/index").RuleObject[];
-        required(required: boolean, message?: string | undefined, trigger?: "click" | "focus" | "blur" | "change" | undefined): any;
-        range(min: number, max: number, message: string, trigger?: "click" | "focus" | "blur" | "change" | undefined): any;
-        pattern(pattern: string | RegExp, message: string, trigger?: "click" | "focus" | "blur" | "change" | undefined): any;
-        validator(validator: any, trigger?: "click" | "focus" | "blur" | "change" | undefined): any;
+        required(required: boolean, message?: string | undefined, trigger?: "focus" | "click" | "blur" | "change" | undefined): any;
+        range(min: number, max: number, message: string, trigger?: "focus" | "click" | "blur" | "change" | undefined): any;
+        pattern(pattern: string | RegExp, message: string, trigger?: "focus" | "click" | "blur" | "change" | undefined): any;
+        validator(validator: any, trigger?: "focus" | "click" | "blur" | "change" | undefined): any;
     };
 };
 export { TableList, TableLists, Tupload, Timgs, Tform, Tdescriptions, chris };

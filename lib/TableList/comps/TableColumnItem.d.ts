@@ -82,7 +82,7 @@ interface CustomType {
     filter?: string | Filter;
     value?: string | number | (string | number)[] | boolean;
     hide?: boolean;
-    buttons?: Omit<ButtonProps, "onClick">[] | ((row: any) => any[]);
+    buttons?: ButtonProps[] | ((row: any) => any[]);
     type?: "selection" | "index" | "expand" | "input" | "select";
     rules?: any;
     event?: EventFilter;
@@ -116,7 +116,7 @@ export declare const CustomType: {
         default: boolean;
     };
     buttons: {
-        type: PropType<Omit<ButtonProps, "onClick">[] | ((row: any) => any[]) | undefined>;
+        type: PropType<ButtonProps[] | ((row: any) => any[]) | undefined>;
         default: never[];
     };
     event: {

@@ -22,6 +22,7 @@ declare const TableLists: ({
             layout?: string | undefined;
             pageSizes?: unknown[] | undefined;
             currentPage?: number | undefined;
+            paginationPosition?: string | undefined;
             currentPageSize?: number | undefined;
             fit?: boolean | undefined;
             stripe?: boolean | undefined;
@@ -271,6 +272,10 @@ declare const TableLists: ({
                 type: BooleanConstructor;
                 default: boolean;
             };
+            paginationPosition: {
+                type: StringConstructor;
+                default: string;
+            };
             searchData: ObjectConstructor;
             layout: {
                 type: StringConstructor;
@@ -470,6 +475,10 @@ declare const TableLists: ({
                     pagination: {
                         type: BooleanConstructor;
                         default: boolean;
+                    };
+                    paginationPosition: {
+                        type: StringConstructor;
+                        default: string;
                     };
                     searchData: ObjectConstructor;
                     layout: {
@@ -717,6 +726,7 @@ declare const TableLists: ({
             layout: string;
             pageSizes: unknown[];
             currentPage: number;
+            paginationPosition: string;
             currentPageSize: number;
             fit: boolean;
             stripe: boolean;
@@ -810,6 +820,10 @@ declare const TableLists: ({
         pagination: {
             type: BooleanConstructor;
             default: boolean;
+        };
+        paginationPosition: {
+            type: StringConstructor;
+            default: string;
         };
         searchData: ObjectConstructor;
         layout: {
@@ -1010,6 +1024,10 @@ declare const TableLists: ({
                 pagination: {
                     type: BooleanConstructor;
                     default: boolean;
+                };
+                paginationPosition: {
+                    type: StringConstructor;
+                    default: string;
                 };
                 searchData: ObjectConstructor;
                 layout: {
@@ -1269,6 +1287,10 @@ declare const TableLists: ({
         type: BooleanConstructor;
         default: boolean;
     };
+    paginationPosition: {
+        type: StringConstructor;
+        default: string;
+    };
     searchData: ObjectConstructor;
     layout: {
         type: StringConstructor;
@@ -1468,6 +1490,10 @@ declare const TableLists: ({
             pagination: {
                 type: BooleanConstructor;
                 default: boolean;
+            };
+            paginationPosition: {
+                type: StringConstructor;
+                default: string;
             };
             searchData: ObjectConstructor;
             layout: {
@@ -1715,6 +1741,7 @@ declare const TableLists: ({
     layout: string;
     pageSizes: unknown[];
     currentPage: number;
+    paginationPosition: string;
     currentPageSize: number;
     fit: boolean;
     stripe: boolean;

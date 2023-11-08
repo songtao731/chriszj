@@ -58,7 +58,7 @@ export default defineComponent({
                 {...el}
                 onClick={(e: any) => {
                   e.stopPropagation();
-                  el.click && el.click(data);
+                  el.onClick && el.onClick(data);
                 }}
               >
                 {el.content}
@@ -82,7 +82,7 @@ export default defineComponent({
                   {...el}
                   onClick={(e: any) => {
                     e.stopPropagation();
-                    el.click && el.click(data);
+                    el.onClick && el.onClick(data);
                   }}
                 >
                   {el.content}
