@@ -4,6 +4,8 @@ import Tupload from "./Tupload";
 import Timgs from "./Timgs";
 import Tform from "./Tform";
 import Tdescriptions from "./Tdescriptions";
+import Card from "./Card";
+
 
 
 import { useTable } from "./TableList/comps/useTable";
@@ -24,9 +26,9 @@ const chris = {
   rulesFn,
 };
 // 按需引入
-export { TableList, TableLists, Tupload, Timgs, Tform,Tdescriptions, chris };
+export { TableList, TableLists, Tupload, Timgs, Tform,Tdescriptions, Card,chris };
 
-const component = [TableList, TableLists, Tupload, Timgs, Tform,Tdescriptions];
+const component = [TableList, TableLists, Tupload, Timgs, Tform,Tdescriptions,Card];
 
 const install = {
   install(App: App) {

@@ -1,0 +1,16 @@
+.v-card {
+  border: 0;
+  padding: 0 20px;
+  margin-bottom: 20px;
+
+  .el-card__header {
+    border-bottom-style: dashed;
+    padding: 18px 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .el-card__body {
+    padding: 18px 0;
+  }
+}

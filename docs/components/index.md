@@ -2,17 +2,18 @@
 
 ::: tip 提示
 
-s-ui-plus 基于 vue3 + ts + Element-plus 再次封装的基础组件
+chris-ui-plus 基于 vue3 + ts + Element-plus 再次封装的基础组件
 
 :::
 
 ### 安装
 
 ```bash:no-line-numbers
-yarn add chriszj
-&
-npm  install chriszj
-```
+pnpm  install chriszj
+
+使用pnpm安装是最为稳定的
+
+
 
 
 ### 使用

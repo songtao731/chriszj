@@ -4,6 +4,7 @@ import Tupload from "./Tupload";
 import Timgs from "./Timgs";
 import Tform from "./Tform";
 import Tdescriptions from "./Tdescriptions";
+import Card from "./Card";
 import { App } from "vue";
 declare const chris: {
     useTable: (args: import("./TableList").Args) => import("./TableList").Args;
@@ -28,7 +29,7 @@ declare const chris: {
         validator(validator: any, trigger?: "focus" | "click" | "blur" | "change" | undefined): any;
     };
 };
-export { TableList, TableLists, Tupload, Timgs, Tform, Tdescriptions, chris };
+export { TableList, TableLists, Tupload, Timgs, Tform, Tdescriptions, Card, chris };
 declare const install: {
     install(App: App<any>): void;
 };

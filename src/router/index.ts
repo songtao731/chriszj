@@ -59,6 +59,11 @@ const router = createRouter({
       name: "formvalue",
       component:()=>import('../views/FormValue.vue')
     },
+    {
+      path: "/card",
+      name: "card",
+      component:()=>import('../views/Card.vue')
+    },
     
   ],
 });
