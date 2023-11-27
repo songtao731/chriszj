@@ -1,7 +1,7 @@
 export type direction = "vertical" | "horizonta";
 export type size = "large" | "default" | "small";
 export type column = "1" | "2" | "3" | "4";
-export type typeEnum = "span" | "prew" | "input" |'inputNumber'| "select" | "space" | "custom" | "date" | "cascader" | "checkBox" | "radio" | "rate" | "upload" | "switch" | "slider" | "range" | "domains";
+export type typeEnum = "span" | "prew" | "input" | 'inputNumber' | "select" | "space" | "custom" | "date" | "cascader" | "checkBox" | "radio" | "rate" | "upload" | "switch" | "slider" | "range" | "domains";
 export type NewDataItem = {
     ref?: Ref<any>;
     label?: string;
@@ -113,6 +113,7 @@ export type dataItem = {
     upload?: MainPackage["upload"];
     switch?: MainPackage["switch"];
     slider?: MainPackage["slider"];
+    inputNumber?: MainPackage["inputNumber"];
 };
 export interface Args {
     request?: ((...arg: any[]) => Promise<any>) | {
