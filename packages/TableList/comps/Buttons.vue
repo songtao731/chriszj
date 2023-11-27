@@ -1,5 +1,5 @@
 <template>
-  <div class="chris-buttons pt-[20px] px-5" v-if="buttonList?.length" :style="'text-align:'+props.buttonsPosition">
+  <div class="chris-buttons  px-5" v-if="buttonList?.length" :style="'text-align:'+props.buttonsPosition">
     <ElButton type="primary" v-bind="item"  v-for="(item, index) in buttonList" :key="index">
       {{ item.content }}
     </ElButton>

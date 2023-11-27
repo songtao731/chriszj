@@ -20,6 +20,8 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/formTable">formTable</RouterLink>
         <RouterLink to="/tableTree">tableTree</RouterLink>
         <RouterLink to="/card">card</RouterLink>
+        <RouterLink to="/formvalue">formValue</RouterLink>
+
 
 
         

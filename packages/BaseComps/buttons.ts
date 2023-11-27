@@ -5,7 +5,6 @@ import {
 import { Component } from "@vue/runtime-dom";
 import { buttonNativeTypes } from "element-plus";
 import { Loading } from "@element-plus/icons-vue";
-import { Ref } from "vue";
 
 export type ButtonType =
   | "default"

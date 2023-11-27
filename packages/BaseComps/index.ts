@@ -9,6 +9,8 @@ import { RateProps } from "./rate";
 import { UploadBaseProps } from "./upload";
 import { SwitchProps } from "./switch";
 import { SliderProps } from "./slider";
+import { InputNumberPorps } from "./inputNumber";
+
 
 
 
@@ -25,4 +27,5 @@ export interface MainPackage {
   upload:UploadBaseProps
   switch:SwitchProps
   slider:SliderProps
+  inputNumber:InputNumberPorps
 }

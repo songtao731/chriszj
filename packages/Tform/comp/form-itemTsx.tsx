@@ -27,6 +27,7 @@ import {
   ElRate,
   ElSwitch,
   ElSlider,
+  ElInputNumber,
 } from "element-plus";
 import { formProps } from "./form";
 import { dataItem } from "../../Tform/comp/useForm";
@@ -106,6 +107,9 @@ export default defineComponent({
           el.columns && (formData.value[el.columns[0].prop as string] = "");
           el.columns && (formData.value[el.columns[1].prop as string] = "");
           break;
+        case "inputNumber":
+          formData.value[el.prop as string] = 0;
+          break;
         //额外处理动态表单
         case "domains":
           if (!props.edit) {
@@ -133,6 +137,9 @@ export default defineComponent({
                       propKeys[els.prop] = els.value || true;
                       break;
                     case "slider":
+                      propKeys[els.prop] = els.value || 0;
+                      break;
+                    case "inputNumber":
                       propKeys[els.prop] = els.value || 0;
                       break;
                     default:
@@ -226,6 +233,9 @@ export default defineComponent({
                             propKeys[elb.prop] = elb.value || true;
                             break;
                           case "slider":
+                            propKeys[elb.prop] = elb.value || 0;
+                            break;
+                          case "inputNumber":
                             propKeys[elb.prop] = elb.value || 0;
                             break;
                           default:
@@ -458,6 +468,45 @@ export default defineComponent({
                                               "请输入" + ele.placeholder
                                             )}
                                             {...ele.input}
+                                            v-model={
+                                              formData.value[el.keys as string][
+                                                index
+                                              ][ele.prop as string]
+                                            }
+                                          />
+                                        </ElFormItem>
+                                      </ElCol>
+                                    );
+                                    break;
+                                  case "inputNumber":
+                                    newElement = (
+                                      <ElCol
+                                        span={ele.nospan}
+                                        key={
+                                          +ela.chriskey + index + "inputNumber"
+                                        }
+                                      >
+                                        <ElFormItem
+                                          {...ele}
+                                          key={ela.chriskey + "chris2"}
+                                          rules={ele.rules?.rules}
+                                          prop={
+                                            el.keys +
+                                            "." +
+                                            index +
+                                            "." +
+                                            ele.prop
+                                          }
+                                          class="w-full"
+                                        >
+                                          <ElInputNumber
+                                            class="w-full"
+                                            placeholder={changePlaceHolderFn(
+                                              props.closePlaceholder,
+                                              ele.showPlaceholder,
+                                              "请输入" + ele.placeholder
+                                            )}
+                                            {...ele.inputNumber}
                                             v-model={
                                               formData.value[el.keys as string][
                                                 index
@@ -970,6 +1019,28 @@ export default defineComponent({
                                   "请输入" + el.placeholder
                                 )}
                                 {...el.input}
+                              />
+                            </ElFormItem>
+                          </ElCol>
+                        );
+                        break;
+                      case "inputNumber":
+                        element = (
+                          <ElCol span={el.nospan} key={el.label}>
+                            <ElFormItem
+                              {...el}
+                              rules={el.rules?.rules}
+                              class="w-full"
+                            >
+                              <ElInputNumber
+                                v-model={formData.value[el.prop as string]}
+                                class="w-full"
+                                placeholder={changePlaceHolderFn(
+                                  props.closePlaceholder,
+                                  el.showPlaceholder,
+                                  "请输入" + el.placeholder
+                                )}
+                                {...el.inputNumber}
                               />
                             </ElFormItem>
                           </ElCol>

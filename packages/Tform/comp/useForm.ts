@@ -5,6 +5,7 @@ export type typeEnum =
   | "span"
   | "prew"
   | "input"
+  |'inputNumber'
   | "select"
   | "space"
   | "custom"
@@ -190,6 +191,9 @@ export type dataItem = {
   switch?: MainPackage["switch"];
   //滑块
   slider?: MainPackage["slider"];
+  //数字输入框
+  inputNumber?: MainPackage["inputNumber"];
+
 };
 
 export interface Args {

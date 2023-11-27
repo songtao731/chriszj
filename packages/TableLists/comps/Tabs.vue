@@ -39,7 +39,7 @@ export default {
 
 <style lang='scss' scoped>
 .active {
-  background-color: #0062c7;
+  background-color: #409EFF;
   color: white;
   border-radius: 2px;
 }

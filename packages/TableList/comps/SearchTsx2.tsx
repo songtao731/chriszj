@@ -289,7 +289,7 @@ export default defineComponent({
     return () => (
       <>
         {Array.isArray(searchList.value) && searchList.value.length ? (
-          <div class="chris-table-search bg-[#F8F8F8] p-[20px]">
+          <div class="chris-table-search bg-[#F8F8F8] p-[20px] mb-[20px]">
             <ElForm
               ref={formRef}
               {...props}

@@ -77,8 +77,8 @@ Tform/formvalue
 | -------dictData|处理枚举|object|-|
 | -------dictOptions|枚举的默认参数| label?: string; value?: string; children?: string |默认
 | -------formatter|自己格式化数据展示|function(data)=>any|-|
-| -------type | 类型 |  "input", "select", "space", "custom", "date", "cascader", "checkBox", "radio", "rate", "upload", "switch", "slider","span","prew", "range"; | - |
-| -------"input", "select", "space", "custom", "date", "cascader", "checkBox", "radio", "rate" , "upload", "switch", "slider", "range| 各个组件下的属性 | Object |  参考ELmemnetUi各个组件的属性方法
+| -------type | 类型 |  "input",'inputNumber',"select", "space", "custom", "date", "cascader", "checkBox", "radio", "rate", "upload", "switch", "slider","span","prew", "range"; | - |
+| -------"input","inputNumber", "select", "space", "custom", "date", "cascader", "checkBox", "radio", "rate" , "upload", "switch", "slider", "range| 各个组件下的属性 | Object |  参考ELmemnetUi各个组件的属性方法
 | -------columns|当type=range下使用|参考demo|
 |labelPosition|标签的位置|"left" , "right" ,"top" | right |
 |size|表单的尺寸大小|"large" , "default" , "small" | default |

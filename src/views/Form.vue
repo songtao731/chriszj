@@ -8,17 +8,11 @@
     <template #zdy="{ scope }">
       <ElInput v-model.number="scope.pages" placeholder="Please input">
       </ElInput>
-
     </template>
 
     <template #btn="{ scope }">
-      <el-button @click="btbfn(scope)">
-        点击
-      </el-button>
+      <el-button @click="btbfn(scope)"> 点击 </el-button>
     </template>
-
-
-
   </Tform>
   <!-- <Tform v-bind="bind2" ref="tForm2">
     <template #title> </template>
@@ -33,17 +27,17 @@
   </Tform> -->
 </template>
 
-
-
 <script setup lang="ts">
-
 import { computed, reactive, Ref, ref, toRef } from "vue";
 import { chris, Tform } from "../../packages/index";
 //import { chris, Tform } from "chriszj";
 //import { chris, Tform } from "../../lib/chris-ui.mjs";
 
-
-import { dataItem, domain, NewDataItem } from "../../packages/Tform/comp/useForm";
+import {
+  dataItem,
+  domain,
+  NewDataItem,
+} from "../../packages/Tform/comp/useForm";
 
 import { entertainApplicationAddList } from "@/api/index";
 import { ElLoading, ElInput } from "element-plus";
@@ -55,17 +49,16 @@ const tForm = ref();
 let bb: any = ref([]);
 let dd: any = ref([]);
 
-
 setTimeout(() => {
   bb.value = [
     { label: "男", value: "1", id: 1 },
     { label: "女", value: "0", id: 2 },
   ];
-  dd.value = '111'
+  dd.value = "111";
   // ishide.value=true
 }, 10);
 
-let key = ref(0)
+let key = ref(0);
 let aa = ref<domain[]>([
   {
     item: [
@@ -73,30 +66,25 @@ let aa = ref<domain[]>([
         label: "测试1",
         prop: "a",
         type: "input",
-        value: '292999',
-        rules: chris.rulesFn().required(true, '请输入测试12'),
+        rules: chris.rulesFn().required(true, "请输入测试12"),
       },
       {
-
         label: "测试2",
         prop: "b",
         type: "select",
-        value: '0',
         select: {
           options: computed(() => bb.value),
           filterable: true,
-
         },
-        rules: chris.rulesFn().required(true, '请选择测试12', 'change')
+        rules: chris.rulesFn().required(true, "请选择测试12", "change"),
       },
       {
-        label: '日期',
-        type: 'date',
-        prop: 'daterange',
+        label: "日期",
+        type: "date",
+        prop: "daterange",
         date: {
-          type: 'daterange'
-        }
-
+          type: "daterange",
+        },
       },
       {
         type: "range",
@@ -106,15 +94,14 @@ let aa = ref<domain[]>([
             prop: "min",
             rules: chris.rulesFn().required(true, "最小值"),
             placeholder: "请输入最小值22",
-            value: 11,
             input: {
-
+              type: "text",
             },
-
           },
           {
             prop: "max",
             rules: chris.rulesFn().required(true, "最大值"),
+            value: "22",
             placeholder: "请输入最大值",
             input: {},
           },
@@ -181,13 +168,12 @@ let aa = ref<domain[]>([
         required: true,
         value: [],
 
-
         upload: {
           action: "/api/gateway/financial/pay/collectionList/claim/list",
           headers: {
             token: sessionStorage.token,
           },
-          disabled:true,
+          disabled: true,
 
           onChange() {
             startRef.value.validate();
@@ -199,7 +185,7 @@ let aa = ref<domain[]>([
         type: "radio",
         prop: "radio",
         rules: chris.rulesFn().required(true, "请选择行业"),
-        value: '1',
+        value: "1",
         radio: {
           options: [
             {
@@ -226,36 +212,24 @@ let aa = ref<domain[]>([
           texts: ["oops", "disappointed", "normal", "good", "great"],
           showText: true,
           allowHalf: true,
-          onChange(val) {
-
-          },
+          onChange(val) {},
         },
       },
       {
-        label: "评分",
-        type: "rate",
-        prop: "rate",
-        rules: chris.rulesFn().required(true, "请打分"),
-        rate: {
-          texts: ["oops", "disappointed", "normal", "good", "great"],
-          showText: true,
-          allowHalf: true,
-          onChange(val) {
-
-          },
-        },
+        label: "数字",
+        type: "inputNumber",
+        prop: "inputNumber",
+        rules: chris.rulesFn().required(true, "请输入数字"),
       },
 
       {
-        slotName: 'btn',
-        type: 'custom',
-        span: 3
-
+        slotName: "btn",
+        type: "custom",
+        span: 3,
       },
-
     ],
-    chriskey: 238837
-  }
+    chriskey: 238837,
+  },
 ]);
 const cc = ref();
 
@@ -266,14 +240,19 @@ setTimeout(() => {
     startRow: "1",
     pages: "99",
     check: [],
-    radio: '1',
+    radio: "1",
     rate: 1,
     nextPage: "身高2米",
-    span:'WOSHI',
+    span: "WOSHI",
     domains: [
-
+      {
+        min: "1",
+        max: "2",
+      },
     ],
-
+    range: [121, 232],
+    min: 10,
+    max: 20,
     upload: [
       {
         name: "food.jpeg",
@@ -281,47 +260,14 @@ setTimeout(() => {
       },
       {
         url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
-        name: '2.jpg'
+        name: "2.jpg",
       },
       {
         url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.pdf",
-        name: '3.png'
-      }
+        name: "3.png",
+      },
     ],
   };
-
-  // aa.value.push({
-
-  //   item: [
-  //     {
-  //       label: "测试1",
-  //       prop: "a",
-  //       type: "input",
-  //       value: 111,
-  //       rules: chris.rulesFn().required(true, '请输入测试12'),
-  //     },
-  //     {
-
-  //       label: "测试2",
-  //       prop: "b",
-  //       type: "select",
-  //       value: '0',
-  //       select: {
-  //         options: computed(() => bb.value),
-  //         filterable: true,
-
-  //       },
-  //       rules: chris.rulesFn().required(true, '请选择测试12', 'change')
-  //     },
-  //     {
-  //       slotName: 'btn',
-  //       type: 'custom',
-  //       span: 3
-
-  //     },
-  //   ],
-  //   chriskey: 238837
-  // })
 }, 100);
 
 const checkAge = (rule: any, value: any, callback: any) => {
@@ -367,8 +313,7 @@ const checkRate = (rule: any, value: any, callback: any) => {
   }
 };
 const checkUpload = (rule: any, value: any, callback: any) => {
-
-  console.log(value, 'upload')
+  console.log(value, "upload");
   if (!value.length) {
     callback(new Error("请上传"));
   } else {
@@ -376,15 +321,12 @@ const checkUpload = (rule: any, value: any, callback: any) => {
   }
 };
 
-let id = 0;
-
 const startRef = ref();
 const getStartRef = (el) => {
   startRef.value = el;
 };
 
 const bind = computed(() => {
-
   return chris.useForm({
     request: cc.value,
     // request: (params) => entertainApplicationAddList({ a: 1 }),
@@ -394,14 +336,27 @@ const bind = computed(() => {
     labelWidth: "140px",
     dataList: [
       {
-        label:'span',
-        type:'span',
-        prop:'span',
-        formatter(row){
-          console.log(row)
-          return row.span+'21'
+        label: "span",
+        type: "span",
+        prop: "span",
+        formatter(row) {
+          console.log(row);
+          return row.span + "21";
         },
+      },
+      {
+        label: "数字",
+        type: "inputNumber",
+        prop: "inputNumber",
+        rules: chris.rulesFn().required(true, "请输入数字"),
 
+        inputNumber: {
+          onChange(val) {
+            console.log(typeof val);
+          },
+          controls: false,
+        },
+        class: "si",
       },
       {
         label: "re",
@@ -420,159 +375,30 @@ const bind = computed(() => {
           maxlength: 10,
           suffixIcon: "Calendar",
         },
-        rules: chris
-          .rulesFn()
-          .required(true, "请输入年龄")
-          .validator(checkAge),
+        rules: chris.rulesFn().required(true, "请输入年龄").validator(checkAge),
       },
       {
-        type: 'space',
+        label: "下拉",
+        prop: "mn",
+        type: "select",
+        select: {
+          options: computed(() => bb.value),
+          filterable: true,
+        },
+        rules: chris.rulesFn().required(true, "ll"),
       },
       {
         type: "domains",
-        keys: 'domains',
-        domains: aa.value
-
+        keys: "domains",
+        domains: aa.value,
       },
-
-
-      // {
-      //   label: "性别:",
-      //   prop: "startRow",
-      //   type: "select",
-      //   select: {
-      //     options: bb.value,
-      //     filterable: true,
-      //     onChange(x) {
-      //       isHide.value = x == 1 ? true : false
-      //     },
-      //   },
-      //   rules: chris.rulesFn().required(true, "请选择性别", 'change'),
-
-      // },
-      // {
-      //   type: "space",
-      // },
-
-      // {
-      //   label: "身高:",
-      //   prop: "nextPage",
-      //   type: "input",
-      //   rules: chris
-      //     .rulesFn()
-      //     .range(0, 2, "请输入2到5位", "blur")
-      //     .required(true, "请输入身高"),
-      //   deepHide: isHide.value,
-      //   value: '222'
-      // },
-      // {
-      //   label: "职业",
-      //   type: "checkBox",
-      //   prop: "check",
-      //   rules: chris.rulesFn().required(true, "请选择职业"),
-      //   checkBox: {
-      //     options: [
-      //       {
-      //         label: "前端",
-      //         value: "1",
-      //       },
-      //       {
-      //         label: "后端",
-      //         value: "2",
-      //       },
-      //       {
-      //         label: "测试",
-      //         value: "3",
-      //       },
-      //     ],
-      //   },
-      // },
-      // {
-      //   label: "体总:",
-      //   prop: "pass",
-      //   type: "input",
-      //   rules: chris.rulesFn().validator(validatePass).required(true),
-      // },
-      // {
-      //   label: "收入:",
-      //   prop: "checkPass",
-      //   type: "input",
-      //   rules: chris.rulesFn().validator(validatePass2),
-      // },
-      // {
-      //   label: "自定义输入框:",
-      //   prop: "pages",
-      //   slotName: "zdy",
-      //   type: "custom",
-      //   rules: chris.rulesFn().required(true),
-      // },
-      // {
-      //   label: "Date:",
-      //   prop: "date",
-      //   type: "date",
-      //   rules: chris.rulesFn().required(true, "请输入日期"),
-
-      //   date: {
-      //     type: "date",
-      //   },
-      // },
-      // {
-      //   label: "DateTime:",
-      //   prop: "dateTime",
-      //   type: "date",
-      //   rules: chris.rulesFn().required(true, "请输入日期时间"),
-      //   date: {
-      //     type: "datetimerange",
-      //   },
-      // },
-      // {
-      //   label: "daterange:",
-      //   prop: "daterange",
-      //   type: "date",
-      //   rules: chris.rulesFn().required(true, "请输入日期时间"),
-      //   date: {
-      //     type: "daterange",
-      //   },
-      // },
-      // {
-      //   label: "次级联动:",
-      //   type: "cascader",
-      //   prop: "cascader",
-      //   rules: chris.rulesFn().required(true, "请选择联级"),
-      //   cascader: {
-      //     options: [
-      //       {
-      //         value: "resource",
-      //         label: "Resource",
-      //         children: [
-      //           {
-      //             value: "axure",
-      //             label: "Axure Components",
-      //           },
-      //           {
-      //             value: "sketch",
-      //             label: "Sketch Templates",
-      //           },
-      //           {
-      //             value: "docs",
-      //             label: "Design Documentation",
-      //           },
-      //         ],
-      //       },
-      //     ],
-      //     filterable: true,
-      //     onChange(val) {
-      //       console.log(val);
-      //     },
-      //   },
-      // },
 
       {
         label: "行业",
         type: "radio",
         prop: "radio",
         rules: chris.rulesFn().required(true, "请选择行业"),
-        value: '1',
+        value: "1",
         radio: {
           options: [
             {
@@ -599,29 +425,9 @@ const bind = computed(() => {
           texts: ["oops", "disappointed", "normal", "good", "great"],
           showText: true,
           allowHalf: true,
-          onChange(val) {
-
-          },
+          onChange(val) {},
         },
       },
-      // {
-      //   label: "上传",
-      //   type: "upload",
-      //   prop: "upload",
-      //   rules: chris.rulesFn().required(true, '请上传').validator(checkUpload),
-      //   ref: startRef,
-
-      //   upload: {
-      //     action: "/api/gateway/financial/pay/collectionList/claim/list",
-      //     headers: {
-      //       token: sessionStorage.token,
-      //     },
-
-      //     onChange() {
-      //       startRef.value.validate();
-      //     },
-      //   },
-      // },
       {
         label: "开关",
         prop: "switch",
@@ -631,7 +437,7 @@ const bind = computed(() => {
         hide: isHide.value,
 
         switch: {
-          onChange(val) { },
+          onChange(val) {},
           activeValue: "22",
           inactiveValue: "8",
         },
@@ -672,16 +478,14 @@ const bind = computed(() => {
             prop: "min",
             rules: chris.rulesFn().required(true, "最小值"),
             placeholder: "请输入最小值22",
-            value: 11,
-            input: {
-
-            },
-
+            value: 999,
+            input: {},
           },
           {
             prop: "max",
             rules: chris.rulesFn().required(true, "最大值"),
             placeholder: "请输入最大值",
+            value: "111122",
             input: {},
           },
         ],
@@ -694,7 +498,6 @@ const bind = computed(() => {
         content: "提交",
         type: "primary",
         onClick() {
-
           console.log(
             tForm.value.form.formData,
             "formdata",
@@ -718,8 +521,7 @@ const bind = computed(() => {
         onClick() {
           tForm.value.form.formRef.resetFields();
 
-
-          console.log(tForm.value.form, 'ss', tForm.value.form.formData)
+          console.log(tForm.value.form, "ss", tForm.value.form.formData);
         },
       },
     ],
@@ -727,63 +529,52 @@ const bind = computed(() => {
 });
 
 const bind2 = computed(() => {
-
   return chris.useForm({
     title: "11",
-    dataList: [{
-      type: 'input',
-      prop: 'input',
-      label: "测试",
-      rules: chris.rulesFn().required(true, '请输入')
-
-
-    }],
+    dataList: [
+      {
+        type: "input",
+        prop: "input",
+        label: "测试",
+        rules: chris.rulesFn().required(true, "请输入"),
+      },
+    ],
     buttons: [
       {
-        type: 'primary',
-        content: '点击',
-        onClick(scope) {
-
-        },
-      }
-    ]
-
-  })
-})
+        type: "primary",
+        content: "点击",
+        onClick(scope) {},
+      },
+    ],
+  });
+});
 const add = () => {
-
-  console.log(aa.value, '8888888')
   aa.value.push({
-
     item: [
       {
         label: "测试1",
         prop: "a",
         type: "input",
-        value: '',
-        rules: chris.rulesFn().required(true, '请输入测试12'),
+        value: "",
+        rules: chris.rulesFn().required(true, "请输入测试12"),
       },
       {
-
         label: "测试2",
         prop: "b",
         type: "select",
-        value: '',
         select: {
           options: bb.value,
           filterable: true,
-
         },
-        rules: chris.rulesFn().required(true, '请选择测试12', 'change')
+        rules: chris.rulesFn().required(true, "请选择测试12", "change"),
       },
       {
-        label: '日期',
-        type: 'date',
-        prop: 'daterange',
+        label: "日期",
+        type: "date",
+        prop: "daterange",
         date: {
-          type: 'daterange'
-        }
-
+          type: "daterange",
+        },
       },
       {
         type: "range",
@@ -793,11 +584,7 @@ const add = () => {
             prop: "min",
             rules: chris.rulesFn().required(true, "最小值"),
             placeholder: "请输入最小值22",
-            value: 11,
-            input: {
-
-            },
-
+            input: {},
           },
           {
             prop: "max",
@@ -872,9 +659,9 @@ const add = () => {
           headers: {
             token: sessionStorage.token,
           },
-          disabled:true,
+          disabled: true,
           onChange(val) {
-            console.log(val, 8282828)
+            console.log(val, 8282828);
             startRef.value.validate();
           },
         },
@@ -884,7 +671,7 @@ const add = () => {
         type: "radio",
         prop: "radio",
         rules: chris.rulesFn().required(true, "请选择行业"),
-        value: '1',
+        value: "1",
         radio: {
           options: [
             {
@@ -911,9 +698,7 @@ const add = () => {
           texts: ["oops", "disappointed", "normal", "good", "great"],
           showText: true,
           allowHalf: true,
-          onChange(val) {
-
-          },
+          onChange(val) {},
         },
       },
       {
@@ -925,7 +710,7 @@ const add = () => {
         hide: isHide.value,
 
         switch: {
-          onChange(val) { },
+          onChange(val) {},
           activeValue: "22",
           inactiveValue: "8",
         },
@@ -957,23 +742,22 @@ const add = () => {
         },
       },
 
-
       {
-        slotName: 'btn',
-        type: 'custom',
-        span: 3
-
+        slotName: "btn",
+        type: "custom",
+        span: 3,
       },
     ],
-    chriskey: Math.random()
-  })
-  console.log(tForm.value.form, '222', aa.value)
-
-
-}
+    chriskey: Math.random(),
+  });
+  console.log(tForm.value.form, "222", aa.value);
+};
 const btbfn = (val) => {
-  console.log(val)
-  aa.value.splice(val.index, 1)
-}
+  console.log(val);
+  aa.value.splice(val.index, 1);
+};
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+
+
+</style>
