@@ -1,15 +1,17 @@
 <template>
   <div class="about">
-    <TableList v-bind="bind" ref="oneTable" show-summary :summaryMethod="getSummaries" @getSearchData="aa" >
+    <TableList
+      v-bind="bind"
+      ref="oneTable"
+      show-summary
+      :summaryMethod="getSummaries"
+      @getSearchData="aa"
+    >
       <template #footer>
-        <el-button @click="formBtn">
-          校验
-        </el-button>
-
+        <el-button @click="formBtn"> 校验 </el-button>
       </template>
 
       <template #append> </template>
-
 
       <template #header="{ column, $index }">
         <span style="color: red" v-if="$index === 19">
@@ -28,29 +30,35 @@
         <span style="color: rgb(0, 94, 255)">
           {{ scope.row.contractAmount }}
         </span>
-
       </template>
       <template #zds="{ scope }">
-        <el-select v-model="scope.dd" placeholder="请选择活动区域" @change="getForm" clearable class="w-full">
-          <el-option v-for="item in data3" :key="item" :label="item.label" :value="item.value"></el-option>
+        <el-select
+          v-model="scope.dd"
+          placeholder="请选择活动区域"
+          @change="getForm"
+          clearable
+          class="w-full"
+        >
+          <el-option
+            v-for="item in data3"
+            :key="item"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
         </el-select>
       </template>
     </TableList>
 
     <!-- <TableList v-bind="bind2" @resetFn="resetFn"> </TableList> -->
-
-
   </div>
 </template>
 
 <script setup lang="ts">
-import { chris, TableList } from "../../packages";
+//import { chris, TableList } from "../../packages";
+import { chris, TableList } from "chriszj";
 
 import { ref, computed, reactive } from "vue";
-import {
-  entertainApplicationAddList,
 
-} from "@/api/index";
 import { ElButton } from "element-plus";
 
 const oneTable = ref();
@@ -74,43 +82,36 @@ const getForm = (val) => {
   }, 2000);
 };
 
-
 const tableData = ref([
   {
     date: "2016-05-02",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1518 弄",
-    reg: '',
-    sel: '',
-    contractAmount: '22'
+    reg: "",
+    sel: "",
+    contractAmount: "22",
   },
   {
     date: "2016-05-04",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1517 弄",
-    reg: '收款',
-    sel: '',
-    contractAmount: '33'
-
-
+    reg: "收款",
+    sel: "",
+    contractAmount: "33",
   },
   {
     date: "2016-05-01",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1519 弄",
-    reg: '',
-    contractAmount: '44'
-
-
+    reg: "",
+    contractAmount: "44",
   },
   {
     date: "2016-05-03",
     name: "王小虎",
     address: "上海市普陀区金沙江路 1516 弄",
-    reg: '',
-    contractAmount: '55'
-
-
+    reg: "",
+    contractAmount: "55",
   },
 ]);
 
@@ -121,7 +122,7 @@ const tableData = ref([
 
 const data = ref();
 const data2 = ref();
-const data3 = ref()
+const data3 = ref();
 
 const fn = () => {
   setTimeout(() => {
@@ -141,9 +142,9 @@ const fn = () => {
             children: [
               {
                 label: "测试",
-                value: 'ceshi'
-              }
-            ]
+                value: "ceshi",
+              },
+            ],
           },
           {
             value: "color",
@@ -173,27 +174,28 @@ const fn = () => {
 };
 fn();
 const marks = reactive({
-  0: '0°C',
-  8: '8°C',
-  37: '37°C',
+  0: "0°C",
+  8: "8°C",
+  37: "37°C",
   50: {
     style: {
-      color: '#1989FA',
+      color: "#1989FA",
     },
-    label: '50%',
+    label: "50%",
   },
-})
+});
 
-const isShow = ref(false)
-const isShow2 = ref(false)
-let num = ref(100)
+const isShow = ref(false);
+const isShow2 = ref(false);
+let num = ref(100);
 
 const bind = computed(() => {
   return chris.useTable({
     // request: (params) => entertainApplicationAddList({ ...params }),
     data: tableData.value,
-    labelWidth: '100px',
-    title:'aa',
+    labelWidth: "100px",
+    labelPosition: "left",
+    title: "aa",
     buttons: [
       {
         type: "primary",
@@ -204,12 +206,10 @@ const bind = computed(() => {
             date: "2016-05-04",
             name: "王小虎",
             address: "上海市普陀区金沙江路 1517 弄",
-            reg: '收款',
-            sel: '',
-            contractAmount: num.value += 10
-
-
-          })
+            reg: "收款",
+            sel: "",
+            contractAmount: (num.value += 10),
+          });
 
           console.log("操作成功");
         },
@@ -222,23 +222,22 @@ const bind = computed(() => {
         },
       },
     ],
-      buttonsPosition:'left',
+    buttonsPosition: "left",
     columns: [
       {
         type: "selection",
         width: "200px",
       },
       {
-        label: 'id',
-        prop: 'id'
-
+        label: "id",
+        prop: "id",
       },
       {
         label: "输入框",
-        prop: 'input',
-        filter: 'input',
+        prop: "input",
+        filter: "input",
         value: "输入",
-        slotName: "age"
+        slotName: "age",
       },
       {
         label: "姓名",
@@ -258,12 +257,10 @@ const bind = computed(() => {
             maxlength: 10,
             suffixIcon: "Calendar",
             onChange(data) {
-              console.log(11, data)
-            }
-          }
-
+              console.log(11, data);
+            },
+          },
         },
-
       },
       {
         label: "枚举",
@@ -273,7 +270,7 @@ const bind = computed(() => {
           value: "id",
           label: "name",
         },
-        value: '1',
+        value: "1",
         filter: {
           type: "select",
           select: {
@@ -283,13 +280,11 @@ const bind = computed(() => {
               label: "label2",
             },
             onChange(val) {
-              isShow.value = val == '2' ? true : false
+              isShow.value = val == "2" ? true : false;
 
-              console.log('slecs', isShow.value)
-
-            }
+              console.log("slecs", isShow.value);
+            },
           },
-
         },
       },
       {
@@ -299,73 +294,70 @@ const bind = computed(() => {
         hide: isShow.value,
         filter: {
           type: "cascader",
-          prop: ["one", 'two', 'three'],
+          prop: ["one", "two", "three"],
           hide: isShow.value,
 
           cascader: {
             options: computed(() => data2.value),
-            props: {
-            }
-          }
+            props: {},
+          },
         },
       },
       {
         label: "日期",
         prop: "date333ll",
-        value: '2021-11-22',
+        value: "2021-11-22",
         filter: {
           type: "date",
-          prop: 'kkk',
+          prop: "kkk",
           hide: isShow.value,
 
           date: {
-            type: 'date',
-
-          }
+            type: "date",
+          },
         },
       },
       {
         label: "日期范围",
         prop: "date2",
         width: "120",
-        formatType: 'dateTime',
-        value: ['2022-11-11', '2022-11-15'],
+        formatType: "dateTime",
+        value: ["2022-11-11", "2022-11-15"],
         filter: {
-          type: 'date',
-          prop: ['sdate', 'edate'],
+          type: "date",
+          prop: ["sdate", "edate"],
           hide: isShow.value,
 
           date: {
             type: "daterange",
-          }
-
+          },
         },
       },
       {
         label: "日期时间",
         prop: "datetime",
-        value: '2023-11',
+        value: "2023-11",
         filter: {
           type: "date",
-          prop: 'dataTieme',
+          prop: "dataTieme",
           hide: isShow.value,
 
           date: {
             type: "datetime",
-          }
+          },
         },
       },
       {
         label: "日期时间范围",
         prop: "datetimerange222",
         formatType: "dateTime",
-        value: ['2024-11-18 00:00:11', '2025-11-12 12:00:00'],
+        value: ["2024-11-18 00:00:11", "2025-11-12 12:00:00"],
         filter: {
           type: "date",
-          prop: ['mindatetimerange', 'ebddatetimerange'],
+          prop: ["mindatetimerange", "ebddatetimerange"],
           date: {
-            type: "datetimerange"
-          }
+            type: "datetimerange",
+          },
         },
       },
       {
@@ -375,22 +367,19 @@ const bind = computed(() => {
           return cellValue && cellValue.split(" ")[0];
         },
         filter: {
-          type: 'inputrange',
+          type: "inputrange",
           value: [1, 2],
           columns: [
             {
               prop: "min",
               placeholder: "请输入最小值",
-              value: '2',
+              value: "2",
 
-              input: {
-
-              },
-
+              input: {},
             },
             {
               prop: "max",
-              value: '88',
+              value: "88",
               input: {},
             },
           ],
@@ -400,12 +389,12 @@ const bind = computed(() => {
       {
         label: "多选",
         prop: "checkbox",
-        value: ['1', '3'],
+        value: ["1", "3"],
 
         filter: {
           type: "checkBox",
           label: "测试数组",
-          prop: 'check',
+          prop: "check",
           hide: isShow.value,
 
           checkBox: {
@@ -422,17 +411,17 @@ const bind = computed(() => {
                 label: "测试",
                 value: "3",
               },
-            ]
+            ],
           },
         },
       },
       {
-        label: '单选',
-        prop: 'county',
+        label: "单选",
+        prop: "county",
 
-        value: '1',
+        value: "1",
         filter: {
-          type: 'radio',
+          type: "radio",
 
           radio: {
             options: [
@@ -450,174 +439,157 @@ const bind = computed(() => {
               },
             ],
             onChange() {
-              console.log(1)
-            }
-          }
-        }
-      },
-      {
-        label: '星星',
-        prop: 'xingxing',
-        filter: {
-          type: 'rate',
-
+              console.log(1);
+            },
+          },
         },
-        value: 3
       },
       {
-        label: '开关',
-        prop: 'switch',
+        label: "星星",
+        prop: "xingxing",
+        filter: {
+          type: "rate",
+        },
+        value: 3,
+      },
+      {
+        label: "开关",
+        prop: "switch",
         filter: {
           hide: isShow.value,
 
-          type: 'switch'
+          type: "switch",
         },
-        value: true
+        value: true,
       },
       {
-        label: '数值',
-        prop: 'slider',
+        label: "数值",
+        prop: "slider",
         filter: {
-          type: 'slider',
+          type: "slider",
           prop: "minslider,maxslider",
           slider: {
             range: true,
-            marks: marks
-          }
+            marks: marks,
+          },
         },
-        value: [30, 50]
+        value: [30, 50],
       },
       {
-
         label: "校验",
         prop: "reg",
-        rules: chris.rulesFn().required(true, '请输入').pattern(/^\d{3}$/, '大口大口'),
-        width: '300px',
+        rules: chris
+          .rulesFn()
+          .required(true, "请输入")
+          .pattern(/^\d{3}$/, "大口大口"),
+        width: "300px",
         event: {
           type: "input",
           input: {
             onChange(v) {
-              console.log(v, 999888)
-            }
-
-          }
-        }
-
-
+              console.log(v, 999888);
+            },
+          },
+        },
       },
       {
-
         label: "下拉",
         prop: "sel",
-        rules: chris.rulesFn().required(true, '请选择', 'change'),
+        rules: chris.rulesFn().required(true, "请选择", "change"),
         width: "300px",
         event: {
           type: "select",
           select: {
             onChange(v) {
-              console.log(v, 999888)
+              console.log(v, 999888);
             },
             options: data.value,
             dictOptions: {
               value: "value2",
               label: "label2",
             },
-          }
-        }
+          },
+        },
       },
       {
-
         label: "日期",
         prop: "date",
-        rules: chris.rulesFn().required(true, '请选择'),
-        width: '300px',
+        rules: chris.rulesFn().required(true, "请选择"),
+        width: "300px",
         event: {
           type: "date",
           date: {
             onChange(v) {
-              console.log(v, 999888)
+              console.log(v, 999888);
             },
-          }
-        }
+          },
+        },
       },
       {
-
         label: "次级",
         prop: "tree",
-        rules: chris.rulesFn().required(true, '请选择', 'change'),
-        width: '300px',
+        rules: chris.rulesFn().required(true, "请选择", "change"),
+        width: "300px",
         header: true,
         event: {
           type: "cascader",
           cascader: {
             onChange(v) {
-              console.log(v, 999888)
+              console.log(v, 999888);
             },
             options: data2.value,
-
-          }
-        }
+          },
+        },
       },
       {
-
         label: "开关",
         prop: "switch",
-        width: '300px',
+        width: "300px",
         header: true,
         event: {
           type: "switch",
           switch: {
             onChange(v) {
-              console.log(v, 999888)
+              console.log(v, 999888);
             },
-
-          }
-        }
+          },
+        },
       },
       {
-
         label: "自定义查询",
         prop: "processNo2",
-        slotName: 'zds2',
+        slotName: "zds2",
         filter: {
           type: "custom",
-          slotName: 'zds',
-
+          slotName: "zds",
         },
-
       },
       {
-        label: '操作',
-        width: '200px',
-        buttons:[
-            {
-              content: '删除',
-              link: false,
-              hide(scope) {
-                return scope.contractAmount === '33'
-              },
-              onClick(scope) {
-                tableData.value = tableData.value.filter((el) => el.contractAmount !== scope.contractAmount)
-                console.log(tableData, 'kk', scope)
-
-              },
-
-
-            }
-          ]
-      }
-
-
+        label: "操作",
+        width: "200px",
+        buttons: [
+          {
+            content: "删除",
+            link: false,
+            hide(scope) {
+              return scope.contractAmount === "33";
+            },
+            onClick(scope) {
+              tableData.value = tableData.value.filter(
+                (el) => el.contractAmount !== scope.contractAmount
+              );
+              console.log(tableData, "kk", scope);
+            },
+          },
+        ],
+      },
     ],
-  })
-})
+  });
+});
 
 let currentRow = ref();
 
-
 console.log(bind, "使用组件的页面", data, oneTable);
-
-
 
 const getSummaries = (param) => {
   const { columns, data } = param;
@@ -648,16 +620,16 @@ const getSummaries = (param) => {
 const formBtn = async () => {
   await oneTable.value.formRef.validate((valid, fields) => {
     if (valid) {
-      console.log('submit!')
+      console.log("submit!");
     } else {
-      console.log('error submit!', fields)
+      console.log("error submit!", fields);
     }
-  })
-}
+  });
+};
 
 const aa = (data) => {
-  console.log(data)
-}
+  console.log(data);
+};
 
 console.log(oneTable, "oneTable");
 </script>

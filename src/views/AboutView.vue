@@ -1,12 +1,17 @@
 <template>
   <div class="about">
-    <TableList v-bind="bind" @resetFn="resetFn" ref="oneTable" show-summary :summaryMethod="getSummaries">
+    <TableList
+      v-bind="bind"
+      @resetFn="resetFn"
+      ref="oneTable"
+      show-summary
+      :summaryMethod="getSummaries"
+    >
       <template #topheader> 最上部</template>
       <template #centerheader> 中间 </template>
       <template #footer> 尾部 </template>
 
       <template #append> </template>
-
 
       <template #header="scope">
         <span style="color: red">
@@ -20,13 +25,32 @@
       </template>
       <template #search>
         <el-form-item label="活动区域" prop="region">
-          <el-select v-model="ruleForm.region" placeholder="请选择活动区域" @change="getForm" clearable>
-            <el-option v-for="item in data" :key="item" :label="item.label" :value="item.value"></el-option>
+          <el-select
+            v-model="ruleForm.region"
+            placeholder="请选择活动区域"
+            @change="getForm"
+            clearable
+          >
+            <el-option
+              v-for="item in data"
+              :key="item"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="活动区域2" prop="region">
-          <el-select v-model="ruleForm.region2" placeholder="请选择活动区域" clearable>
-            <el-option v-for="item in data12" :key="item" :label="item.label" :value="item.value"></el-option>
+          <el-select
+            v-model="ruleForm.region2"
+            placeholder="请选择活动区域"
+            clearable
+          >
+            <el-option
+              v-for="item in data12"
+              :key="item"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
           </el-select>
         </el-form-item>
       </template>
@@ -40,10 +64,7 @@
 import { chris, TableList, TableLists, Tupload } from "../../packages/index";
 
 import { ref, computed, nextTick } from "vue";
-import {
-  entertainApplicationAddList,
-
-} from "@/api/index";
+import { entertainApplicationAddList } from "@/api/index";
 import { ElButton } from "element-plus";
 
 const oneTable = ref();
@@ -146,9 +167,9 @@ fn();
 const bind = chris.useTable({
   searchData: ruleForm,
   request: (params) => entertainApplicationAddList({ ...params }),
-  path: 'data.list',
-  totalPath: 'data.total',
-  pageNum:"pageIndex",
+  path: "data.list",
+  totalPath: "data.total",
+  pageNum: "pageIndex",
 
   buttons: [
     {
@@ -196,12 +217,11 @@ const bind = chris.useTable({
         placeholder: "流程编号/申请人",
         prop: "processNo",
         label: "姓名:",
-        input:{
+        input: {
           showWordLimit: true,
           maxlength: 10,
           suffixIcon: "Calendar",
-        }
-        
+        },
       },
     },
     {
@@ -370,7 +390,6 @@ var promise = new Promise((resolve, reject) => {
     resolve(tableData2);
   }, 10);
 });
-
 
 const getSummaries = (param) => {
   const { columns, data } = param;

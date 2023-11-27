@@ -757,7 +757,4 @@ const btbfn = (val) => {
   aa.value.splice(val.index, 1);
 };
 </script>
-<style scoped lang="scss">
-
-
-</style>
+<style scoped lang="scss"></style>

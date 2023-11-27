@@ -1,9 +1,7 @@
 <template>
-  <TableLists v-bind="bind" ref="tabRef" @tabClick="tabClick">
-  </TableLists>
+  <TableLists v-bind="bind" ref="tabRef" @tabClick="tabClick"> </TableLists>
 </template>
 <script setup lang="ts">
-
 import { chris, TableList, TableLists, Tupload } from "../../packages";
 
 // import { chris,TableLists } from "chriszj";
@@ -48,7 +46,6 @@ const tableData = {
   code: 200,
 };
 const request = (params) => {
-
   return new Promise((reslove, reject) => {
     setTimeout(() => {
       reslove(tableData);
@@ -58,12 +55,11 @@ const request = (params) => {
 
 const activeName = ref("1");
 
-const tabRef = ref()
+const tabRef = ref();
 
 const tabClick = (val) => {
-
-  console.log(val, 'tab', activeName.value)
-}
+  console.log(val, "tab", activeName.value);
+};
 
 const bind = chris.useTables({
   tabs: {
@@ -73,7 +69,7 @@ const bind = chris.useTables({
       { label: "审核中", value: "2" },
       { label: "已审核", value: "3" },
     ],
-    isRoute: true
+    isRoute: true,
   },
   table: (row) => {
     return {
@@ -83,8 +79,7 @@ const bind = chris.useTables({
           type: "primary",
           content: "清空全选",
           onClick: () => {
-
-            console.log(row, 12312)
+            console.log(row, 12312);
             activeName.value = row;
             console.log(
               "操作成功",
@@ -103,50 +98,45 @@ const bind = chris.useTables({
       ],
       columns: [
         {
-          type: 'selection'
+          type: "selection",
         },
         {
           label: "姓名",
           prop: "name",
-          filter: 'input'
+          filter: "input",
         },
         {
           label: "地址",
           prop: "address",
         },
         {
-          label: '操作',
-          align: 'center',
-          fixed: 'right',
+          label: "操作",
+          align: "center",
+          fixed: "right",
           width: 240,
           buttons: () => {
-
             return [
               {
-                content: '新增',
-                icon: 'icon-document-add',
+                content: "新增",
+                icon: "icon-document-add",
                 link: true,
                 disabled: row.menuType === 2,
-                click: () => true
-
-
+                click: () => true,
               },
               {
-                content: '编辑',
-                icon: 'icon-edit',
+                content: "编辑",
+                icon: "icon-edit",
                 link: true,
-
               },
               {
-                content: '删除',
-                icon: 'icon-delete',
+                content: "删除",
+                icon: "icon-delete",
                 link: true,
                 disabled: Array.isArray(row.children) && !!row.children.length,
-            
-              }
-            ]
-          }
-        }
+              },
+            ];
+          },
+        },
       ],
     };
   },

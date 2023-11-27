@@ -1,5 +1,5 @@
 <template>
-  <Tdescriptions v-bind="bind" ref="desRef" >
+  <Tdescriptions v-bind="bind" ref="desRef">
     <template #title> 插槽title </template>
     <template #extra>
       <ElButton @click="ishide = !ishide"> 我是插槽按钮 </ElButton>
@@ -12,7 +12,7 @@
           </el-icon>
           年龄
         </template>
-    {{ scope.resData.age }}
+        {{ scope.resData.age }}
       </el-descriptions-item>
     </template>
     <template #tree="{ scope }">
@@ -28,25 +28,23 @@ import { chris, Tdescriptions } from "../../packages";
 import { entertainApplicationAddList } from "@/api/index";
 import { computed, ref } from "vue";
 import { blob } from "stream/consumers";
-import {
-  User,
-} from '@element-plus/icons-vue'
+import { User } from "@element-plus/icons-vue";
 
 const aa = ref();
 const bb = ref();
 const obj = ref();
 const desRef = ref();
-const size = ref('')
+const size = ref("");
 const iconStyle = computed(() => {
   const marginMap = {
-    large: '8px',
-    default: '6px',
-    small: '4px',
-  }
+    large: "8px",
+    default: "6px",
+    small: "4px",
+  };
   return {
     marginRight: marginMap[size.value] || marginMap.default,
-  }
-})
+  };
+});
 setTimeout(() => {
   aa.value = [
     {
@@ -89,15 +87,16 @@ setTimeout(() => {
     },
   ];
   obj.value = {
-    endRow: "三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三",
+    endRow:
+      "三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三",
     nextPage: 0,
     name: "是",
     total: 27,
     tree: 0,
-    age: 20
+    age: 20,
   };
 }, 100);
-const ishide = ref(false)
+const ishide = ref(false);
 
 const bind = computed(() => {
   return chris.useDescriptions({
@@ -105,9 +104,7 @@ const bind = computed(() => {
     request: obj.value,
 
     parseData: (el) => {
-
-
-      console.log(el, 9999)
+      console.log(el, 9999);
       return {
         ...el,
         imgs: [
@@ -121,7 +118,7 @@ const bind = computed(() => {
           {
             url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.pdf",
           },
-        ]
+        ],
       };
     },
     column: 2,
@@ -130,8 +127,8 @@ const bind = computed(() => {
       {
         label: "姓名",
         prop: "endRow",
-        labelClassName: 'aa',
-        className: 'bb'
+        labelClassName: "aa",
+        className: "bb",
       },
       {
         label: "性别",
@@ -142,27 +139,23 @@ const bind = computed(() => {
           label: "label2",
           value: "value2",
         },
-        labelClassName: 'aa',
-        className:'bb'
-
+        labelClassName: "aa",
+        className: "bb",
       },
       {
         label: "金钱",
         prop: "money",
         formatType: "price",
-        labelClassName:'aa',
-        className:'bb'
-
+        labelClassName: "aa",
+        className: "bb",
       },
       {
         label: "金钱大写",
         prop: "money",
         formatType: "priceChinese",
         hide: desRef.value?.data?.pages === 8,
-        labelClassName:'aa',
-        className:'bb'
-
-      
+        labelClassName: "aa",
+        className: "bb",
       },
       {
         label: "时间",
@@ -184,52 +177,48 @@ const bind = computed(() => {
           value: "id",
           label: "name",
         },
-        slotName: 'tree'
+        slotName: "tree",
       },
       {
-        type: "space"
+        type: "space",
       },
 
       {
         label: "数据",
         value: "12321321.22",
         formatType: "priceChinese",
-        span: 3
-
+        span: 3,
       },
       {
-        label: '文件',
-        prop: 'imgs',
+        label: "文件",
+        prop: "imgs",
         type: "prew",
         prew: {
-          width: '100px',
+          width: "100px",
           height: "100px",
         },
         hide: ishide.value,
-        span: 3
-      }, {
-        slotName: 'cc',
-        prop: 'age',
+        span: 3,
+      },
+      {
+        slotName: "cc",
+        prop: "age",
         formatter(data) {
-          return data.age + 0.1
+          return data.age + 0.1;
         },
-
-
-      }
+      },
     ],
   });
 });
 
-console.log(desRef,'desRef')
+console.log(desRef, "desRef");
 </script>
 <style scoped>
-:deep(.aa){
+:deep(.aa) {
   width: 200px;
   display: inline-block;
-
 }
-:deep(.bb){
+:deep(.bb) {
   width: 50%;
 }
-
 </style>

@@ -18,8 +18,8 @@ dependencies:
     specifier: 4.1.2
     version: 4.1.2
   chriszj:
-    specifier: ^1.9.7
-    version: 1.9.7
+    specifier: ^1.9.9
+    version: 1.9.9
   consola:
     specifier: ^3.2.3
     version: 3.2.3
@@ -94,6 +94,9 @@ devDependencies:
   postcss:
     specifier: ^8.4.28
     version: 8.4.28
+  prettier:
+    specifier: ^3.1.0
+    version: 3.1.0
   tailwindcss:
     specifier: ^3.3.3
     version: 3.3.3
@@ -1663,8 +1666,8 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /chriszj@1.9.7:
-    resolution: {integrity: sha512-os63jti94QNyxoQGkB1v6ACujQJBcaScwEE1lBO+svkI9w/JUy3QUHa1de4JCqgFnDmg3jjYnwpPUJpSb4zb6g==}
+  /chriszj@1.9.9:
+    resolution: {integrity: sha512-kmQGhwaFDWrlHQeMPLnQeNR1l9PdSMS1LmtDpByn1xy3DbKgNZz3aZXe9NpuEVo95rFipJXBGdlsz3vJbAnDKQ==}
     dev: false
 
   /color-convert@1.9.3:
@@ -3009,6 +3012,12 @@ packages:
   /preact@10.17.1:
     resolution: {integrity: sha512-X9BODrvQ4Ekwv9GURm9AKAGaomqXmip7NQTZgY7gcNmr7XE83adOMJvd3N42id1tMFU7ojiynRsYnY6/BRFxLA==}
     dev: false
+
+  /prettier@3.1.0:
+    resolution: {integrity: sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
 
   /pretty-format@29.6.3:
     resolution: {integrity: sha512-ZsBgjVhFAj5KeK+nHfF1305/By3lechHQSMWCTl8iHSbfOm2TN5nHEtFc/+W7fAyUeCs2n5iow72gld4gW0xDw==}
