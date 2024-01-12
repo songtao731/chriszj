@@ -107,8 +107,8 @@ TTable/tableprop
 | -------onClick | 点击事件 | Function(row) | - |
 | -------hide | 是否显示隐藏 | (row)=>boolean&Boolean | - |
 | -------其他 |其余属性参考elementui button
-| path | 后端返回 list 的 路径 | String | data.rows |
-| totalPath | 后端返回数据的 total 路径 | String | data.total |
+| path | 后端返回 list 的 路径 | String | rows |
+| totalPath | 后端返回数据的 total 路径 | String | total |
 | pageNum | 后端接口需要的分页参数 当前第几页 | String | pageNum |
 | pageSize | 后端接口需要的分页参数 每页多少条 | String | pageSize |
 | currentPage | 默认显示第几页 | Number | 1 |

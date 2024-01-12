@@ -5,8 +5,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { chris, TableLists } from "../../packages";
+import { entertainApplicationAddList, useMockList } from "@/api/index";
 
-import { entertainApplicationAddList } from "@/api/index";
+//import { entertainApplicationAddList, useMockList } from "../api/index";
+
 //实际使用是 import { chris } from "chriszj";
 const tableData = [
   {

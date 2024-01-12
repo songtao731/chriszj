@@ -27,44 +27,48 @@ const router = createRouter({
     {
       path: "/descriptions",
       name: "descriptions",
-      component:()=>import('../views/Descriptions.vue')
+      component: () => import("../views/Descriptions.vue"),
     },
     {
       path: "/table",
       name: "table",
-      component:()=>import('../views/table.vue')
+      component: () => import("../views/table.vue"),
     },
     {
       path: "/test",
       name: "test",
-      component:()=>import('../views/test.vue')
+      component: () => import("../views/test.vue"),
     },
     {
       path: "/tableLists",
       name: "tableLists",
-      component:()=>import('../views/tableLists.vue')
+      component: () => import("../views/tableLists.vue"),
     },
     {
       path: "/formTable",
       name: "formTable",
-      component:()=>import('../views/FormTable.vue')
+      component: () => import("../views/FormTable.vue"),
     },
     {
       path: "/tableTree",
       name: "tableTree",
-      component:()=>import('../views/tableTree.vue')
+      component: () => import("../views/tableTree.vue"),
     },
     {
       path: "/formvalue",
       name: "formvalue",
-      component:()=>import('../views/FormValue.vue')
+      component: () => import("../views/FormValue.vue"),
     },
     {
       path: "/card",
       name: "card",
-      component:()=>import('../views/Card.vue')
+      component: () => import("../views/Card.vue"),
     },
-    
+    {
+      path: "/tree",
+      name: "tree",
+      component: () => import("../views/tree.vue"),
+    },
   ],
 });
 

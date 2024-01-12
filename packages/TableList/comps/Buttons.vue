@@ -1,6 +1,15 @@
 <template>
-  <div class="chris-buttons  px-5" v-if="buttonList?.length" :style="'text-align:'+props.buttonsPosition">
-    <ElButton type="primary" v-bind="item"  v-for="(item, index) in buttonList" :key="index">
+  <div
+    class="chris-buttons px-5"
+    v-if="buttonList?.length"
+    :style="'text-align:' + props.buttonsPosition"
+  >
+    <ElButton
+      type="primary"
+      v-bind="item"
+      v-for="(item, index) in buttonList"
+      :key="index"
+    >
       {{ item.content }}
     </ElButton>
   </div>
@@ -11,11 +20,12 @@ import { NewTableCtx } from "./TableNew";
 
 import { PropType } from "vue";
 
-
-const props = defineProps({ buttons: Array as PropType<NewTableCtx["buttons"]>,buttonsPosition: String as PropType<NewTableCtx["buttonsPosition"]> });
+const props = defineProps({
+  buttons: Array as PropType<NewTableCtx["buttons"]>,
+  buttonsPosition: String as PropType<NewTableCtx["buttonsPosition"]>,
+});
 
 const buttonList = props.buttons;
-
 </script>
 <script lang="ts">
 export default {
@@ -24,9 +34,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.chris-buttons{
+.chris-buttons {
   text-align: right;
   margin-bottom: 20px;
 }
-
 </style>

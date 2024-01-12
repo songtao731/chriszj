@@ -192,7 +192,7 @@ let num = ref(100);
 const bind = computed(() => {
   return chris.useTable({
     // request: (params) => entertainApplicationAddList({ ...params }),
-    data: tableData.value,
+    //   data: tableData.value,
     labelWidth: "100px",
     labelPosition: "left",
     title: "aa",

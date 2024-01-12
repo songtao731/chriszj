@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { ElButton } from "element-plus";
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo bl" src="@/assets/logo.svg" width="125" height="125"  />
+    <img
+      alt="Vue logo"
+      class="logo bl"
+      src="@/assets/logo.svg"
+      width="125"
+      height="125"
+    />
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
@@ -21,20 +28,8 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/tableTree">tableTree</RouterLink>
         <RouterLink to="/card">card</RouterLink>
         <RouterLink to="/formvalue">formValue</RouterLink>
-
-
-
-        
-
-
-
-
-
-
-
-      
-
-      
+        <RouterLink to="/tree">Tree</RouterLink>
+        <ElButton type="primary"> 111 </ElButton>
       </nav>
     </div>
   </header>
