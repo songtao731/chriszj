@@ -41,7 +41,7 @@ export default defineComponent({
         const findData = dictData.find((el: any) => {
           return el.value == props.data[prop];
         });
-        result = findData && findData["label"];
+        result = findData && findData["label"]||'--'
       }
       //处理操作按钮
 

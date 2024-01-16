@@ -185,7 +185,6 @@ const formData = ref({
 
 //表格的数据
 const dataList = ref();
-
 watchEffect(() => {
   if (!props.request) {
     dataList.value = props.data;

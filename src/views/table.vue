@@ -54,8 +54,8 @@
 </template>
 
 <script setup lang="ts">
-//import { chris, TableList } from "../../packages";
-import { chris, TableList } from "chriszj";
+import { chris, TableList } from "../../packages";
+//import { chris, TableList } from "chriszj";
 
 import { ref, computed, reactive } from "vue";
 
@@ -90,6 +90,7 @@ const tableData = ref([
     reg: "",
     sel: "",
     contractAmount: "22",
+    sex: "1",
   },
   {
     date: "2016-05-04",
@@ -98,6 +99,7 @@ const tableData = ref([
     reg: "收款",
     sel: "",
     contractAmount: "33",
+    sex: "2",
   },
   {
     date: "2016-05-01",
@@ -105,6 +107,7 @@ const tableData = ref([
     address: "上海市普陀区金沙江路 1519 弄",
     reg: "",
     contractAmount: "44",
+    sex: "3",
   },
   {
     date: "2016-05-03",
@@ -112,6 +115,7 @@ const tableData = ref([
     address: "上海市普陀区金沙江路 1516 弄",
     reg: "",
     contractAmount: "55",
+    sex: "4",
   },
 ]);
 
@@ -192,7 +196,7 @@ let num = ref(100);
 const bind = computed(() => {
   return chris.useTable({
     // request: (params) => entertainApplicationAddList({ ...params }),
-    //   data: tableData.value,
+    data: tableData.value,
     labelWidth: "100px",
     labelPosition: "left",
     title: "aa",
@@ -231,6 +235,15 @@ const bind = computed(() => {
       {
         label: "id",
         prop: "id",
+      },
+      {
+        label: "性别",
+        prop: "sex",
+        dictData: [
+          { label: "男", value: 1 },
+          { label: "女", value: 2 },
+          { label: "女2", value: 3 },
+        ],
       },
       {
         label: "输入框",
