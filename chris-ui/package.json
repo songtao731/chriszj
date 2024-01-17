@@ -1,6 +1,6 @@
 {
   "name": "chriszj",
-  "version": "2.0.6",
+  "version": "2.0.9",
   "description": "",
   "main": "chris-ui.mjs",
   "module": "chris-ui.mjs",
@@ -13,6 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chriszj": "^2.0.6"
+    "chriszj": "^2.0.9"
   }
 }

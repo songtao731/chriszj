@@ -1,7 +1,6 @@
 import { Component, ComputedRef, Ref } from "vue";
 import { SelectNewPorps } from "./selectNews";
 export type opstionsItem = {
-
   [key: string]: any;
 };
 
@@ -10,8 +9,8 @@ export interface SelectPorps extends SelectNewPorps {
   multiple?: boolean;
   ref?: Ref<any>;
   //select opstions
-  options?: opstionsItem[] | ComputedRef;
-  dictOptions?:{label?:string,value?:string,children?:string}
+  options?: opstionsItem[] | ComputedRef | Ref;
+  dictOptions?: { label?: string; value?: string; children?: string };
 
   valueKey?: string;
   size?: "large" | "default" | "small";

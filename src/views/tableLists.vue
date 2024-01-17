@@ -2,10 +2,10 @@
   <TableLists v-bind="bind" ref="tabRef" @tabClick="tabClick"> </TableLists>
 </template>
 <script setup lang="ts">
-// import { chris, TableList, TableLists, Tupload } from "../../packages";
-import { chris, TableList, TableLists, Tupload } from "../../lib/chris-ui.mjs";
+//import { chris, TableList, TableLists, Tupload } from "../../packages";
+//import { chris, TableList, TableLists, Tupload } from "../../lib/chris-ui.mjs";
 
-// import { chris, TableLists } from "chriszj";
+import { chris, TableLists } from "chriszj";
 import { useRoute, useRouter } from "vue-router";
 
 import { ref } from "vue";
@@ -75,6 +75,7 @@ const bind = chris.useTables({
   table: (row) => {
     return {
       request: (params) => request({ ...params, state: row }),
+      path: "data.rows",
       buttons: [
         {
           type: "primary",
@@ -109,6 +110,18 @@ const bind = chris.useTables({
         {
           label: "地址",
           prop: "address",
+          dictData: ref([{ label: "男", value: "1" }]),
+        },
+        {
+          label: "姓名",
+          prop: "sex",
+          filter: {
+            type: "select",
+            select: {
+              options: ref([{ label: "男", value: "1" }]),
+            },
+          },
+          dictData: ref([{ label: "男", value: "1" }]),
         },
         {
           label: "操作",

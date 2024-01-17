@@ -1,5 +1,5 @@
 import type { TableColumnCtx } from "element-plus/es/components/table/src/table-column/defaults";
-import { PropType } from "vue";
+import { PropType, Ref } from "vue";
 import { ComputedRef } from "vue";
 import { ButtonProps } from "./Button";
 import { MainPackage } from "../../BaseComps/index";
@@ -19,7 +19,6 @@ export type FilterType =
   | "custom";
 
 export interface EventFilter {
-
   type?: FilterType;
   input?: MainPackage["input"];
   select?: MainPackage["select"];
@@ -53,7 +52,8 @@ export interface Filter {
         value: string;
         children?: { label: string; value: string }[];
       }[]
-    | ComputedRef<any>;
+    | ComputedRef<any>
+    | Ref<any>;
   showAllLevels?: boolean;
   hide?: boolean;
   deepHide?: boolean;
@@ -91,7 +91,7 @@ export interface Filter {
       value?: any;
       placeholder?: string;
       input?: MainPackage["input"];
-    }
+    },
   ];
 }
 
@@ -106,16 +106,17 @@ interface CustomType {
         value: string | number;
         options?: { label: string; value: string };
       }[]
-    | ComputedRef<any>;
+    | ComputedRef<any>
+    | Ref<any>;
   dictOptions?: { label?: string; value?: string; children?: string };
 
   filter?: string | Filter;
   value?: string | number | (string | number)[] | boolean;
   hide?: boolean;
-  buttons?: ButtonProps[]|((row)=>any[]);
+  buttons?: ButtonProps[] | ((row) => any[]);
   type?: "selection" | "index" | "expand" | "input" | "select";
   rules?: any;
-  event?:EventFilter
+  event?: EventFilter;
 }
 //自定义添加属性
 export const CustomType = {
@@ -153,10 +154,10 @@ export const CustomType = {
     type: Array as PropType<CustomType["buttons"]>,
     default: [],
   },
-  event:{
-    type:Object,
-    default:{}
-  }
+  event: {
+    type: Object,
+    default: {},
+  },
 };
 
 export interface NewTableColumn<T>
