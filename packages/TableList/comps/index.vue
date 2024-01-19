@@ -108,7 +108,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ElTable } from "element-plus";
+import { ElLoading, ElTable } from "element-plus";
 import {
   computed,
   ref,
@@ -193,6 +193,11 @@ watchEffect(() => {
 });
 
 const getDataList = async (data?: any) => {
+  const loading = ElLoading.service({
+    lock: true,
+    text: "Loading",
+    background: "rgba(0, 0, 0, 0.7)",
+  });
   const params = {
     ...data,
     [usePageNum]: currentPage.value,
@@ -204,12 +209,12 @@ const getDataList = async (data?: any) => {
         return res;
       })
       .finally(() => {
-        //  console.log(22)
+        loading.close();
       });
 
     dataList.value = getPath(res, path);
     total.value = getTotalPath(res, totalPath);
-
+    //格式化后端代码
     if (props.parseData) {
       dataList.value = props.parseData(dataList.value);
     }

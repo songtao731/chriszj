@@ -2,11 +2,12 @@
   <TableLists v-bind="bind" ref="tabRef" @tabClick="tabClick"> </TableLists>
 </template>
 <script setup lang="ts">
-//import { chris, TableList, TableLists, Tupload } from "../../packages";
+import { chris, TableList, TableLists, Tupload } from "../../packages";
 //import { chris, TableList, TableLists, Tupload } from "../../lib/chris-ui.mjs";
 
-import { chris, TableLists } from "chriszj";
+//import { chris, TableLists } from "chriszj";
 import { useRoute, useRouter } from "vue-router";
+import { useMockList } from "@/api";
 
 import { ref } from "vue";
 
@@ -50,7 +51,7 @@ const request = (params) => {
   return new Promise((reslove, reject) => {
     setTimeout(() => {
       reslove(tableData);
-    }, 2000);
+    }, 200);
   });
 };
 
@@ -81,12 +82,8 @@ const bind = chris.useTables({
           type: "primary",
           content: "清空全选",
           onClick: () => {
-            console.log(row, 12312);
             activeName.value = row;
-            console.log(
-              "操作成功",
-              tabRef.value.tableRef[activeName.value].tableRef.clearSelection()
-            );
+            console.log("操作成功");
             //   console.log("操作成功",tabRef.value.tableRef[activeName.value].refresh());
           },
         },
@@ -128,19 +125,24 @@ const bind = chris.useTables({
           align: "center",
           fixed: "right",
           width: 240,
-          buttons: () => {
+          buttons: (el) => {
             return [
               {
                 content: "新增",
                 icon: "icon-document-add",
                 link: true,
                 disabled: row.menuType === 2,
-                click: () => true,
+                click(row) {
+                  console.log(1, row);
+                },
               },
               {
                 content: "编辑",
                 icon: "icon-edit",
                 link: true,
+                onClick(row) {
+                  console.log(2, row);
+                },
               },
               {
                 content: "删除",

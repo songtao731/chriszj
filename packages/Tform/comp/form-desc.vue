@@ -1,13 +1,8 @@
 <template>
   <el-descriptions v-bind="props" class="chris-desc">
-    <el-descriptions-item v-for="item in props.dataList"  :span="item.span"
-      >
-      <DescItem :data="item">
-      </DescItem>
-      
-      </el-descriptions-item
-    >
-
+    <el-descriptions-item v-for="item in props.dataList" :span="item.span">
+      <DescItem :data="item"> </DescItem>
+    </el-descriptions-item>
 
     <template #extra>
       <slot name="extra"> </slot>
@@ -22,13 +17,12 @@ import { formProps } from "./form";
 
 import DescItem from "./form-itemTsx";
 const props = defineProps(formProps);
-
 </script>
 
 <style lang="scss" scoped>
 .chris-desc {
   width: 100%;
-  :deep(.el-form-item){
+  :deep(.el-form-item) {
     width: calc(100% - 20px);
   }
 }

@@ -25,12 +25,14 @@
       </ElInput>
     </template>
   </Tform> -->
+
+  <Tform v-bind="bind5"> </Tform>
 </template>
 
 <script setup lang="ts">
 import { computed, reactive, Ref, ref, toRef } from "vue";
-import { chris, Tform } from "../../packages/index";
-//import { chris, Tform } from "chriszj";
+//import { chris, Tform } from "../../packages/index";
+import { chris, Tform } from "chriszj";
 //import { chris, Tform } from "../../lib/chris-ui.mjs";
 
 import {
@@ -41,7 +43,6 @@ import {
 
 import { entertainApplicationAddList } from "@/api/index";
 import { ElLoading, ElInput } from "element-plus";
-import { resolve } from "path";
 
 const url =
   "https://gateway-uat.zhidabl.com" + "/finance-file/fast/file/upload";
@@ -111,7 +112,7 @@ let aa = ref<domain[]>([
         label: "次级联动:",
         type: "cascader",
         prop: "cascader",
-        rules: chris.rulesFn().required(true, "请选择联级"),
+        rules: chris.rulesFn().required(true, "请选择联级", "change"),
         cascader: {
           options: [
             {
@@ -363,6 +364,7 @@ const bind = computed(() => {
         prop: "re",
         type: "input",
         required: true,
+        dictData: ref([{ a: 1 }]),
       },
       {
         label: "姓名速速速度:",
@@ -385,7 +387,7 @@ const bind = computed(() => {
           options: computed(() => bb.value),
           filterable: true,
         },
-        rules: chris.rulesFn().required(true, "ll"),
+        rules: chris.rulesFn().required(true, "ll", "change"),
       },
       {
         type: "domains",
@@ -756,5 +758,55 @@ const btbfn = (val) => {
   console.log(val);
   aa.value.splice(val.index, 1);
 };
+
+const bind5 = chris.useForm({
+  dataList: [
+    {
+      type: "input",
+      prop: "input",
+      label: "年龄(自定义)",
+      rules: chris.rulesFn().required(true, "请输入年龄"),
+    },
+    {
+      type: "input",
+      prop: "number",
+      label: "数字(正则)",
+      rules: chris.rulesFn().pattern(/^\d{4}$/, "请输入四位数字"),
+      input: {
+        placeholder: "请输入四位数字",
+      },
+    },
+    {
+      label: "地址",
+      prop: "address",
+      type: "select",
+      select: {
+        onChange(val) {
+          console.log(val, 123);
+        },
+        options: [],
+      },
+    },
+    {
+      label: "性别",
+      prop: "sex",
+      type: "select",
+      select: {
+        options: [],
+      },
+    },
+  ],
+
+  buttons: [
+    {
+      content: "提交",
+      type: "primary",
+      onClick() {
+        console.log(tForm.value.form.formData);
+      },
+    },
+  ],
+  buttonsAlign: "right",
+});
 </script>
 <style scoped lang="scss"></style>

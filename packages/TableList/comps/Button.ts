@@ -42,7 +42,9 @@ export interface ButtonProps {
   /**
    * 点击事件
    */
-  onClick: (scope: any) => void;
+  onClick?: (scope: any) => void;
+  click?: (scope: any) => void;
+
   /**
    * 是否隐藏
    */
@@ -87,9 +89,10 @@ export const ButtonTypeProps = {
    * 点击事件
    */
   onClick: Function,
+  click: Function,
+
   /**
    * 是否隐藏
    */
-  hidden: [Function,Boolean],
-
+  hidden: [Function, Boolean],
 };

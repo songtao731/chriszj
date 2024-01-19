@@ -5,7 +5,7 @@ export type typeEnum =
   | "span"
   | "prew"
   | "input"
-  |'inputNumber'
+  | "inputNumber"
   | "select"
   | "space"
   | "custom"
@@ -68,7 +68,7 @@ export type NewDataItem = {
       value?: any;
       placeholder?: string;
       input?: MainPackage["input"];
-    }
+    },
   ];
   //图片预览
   prew?: prew;
@@ -160,14 +160,14 @@ export type dataItem = {
       value?: any;
       placeholder?: string;
       input?: MainPackage["input"];
-    }
+    },
   ];
   formatter?: (row: any) => any;
   //图片预览
   prew?: prew;
   //快捷格式化数据
   formatType?: FormatValueType;
-  dictData?: { [key: string]: any }[] | ComputedRef<any>;
+  dictData?: { [key: string]: any }[] | ComputedRef<any> | Ref<any>;
   //配置字典后者枚举的 参数 默认 label value children
   dictOptions?: { label?: string; value?: string; children?: string };
   //input输入框的属性
@@ -193,7 +193,6 @@ export type dataItem = {
   slider?: MainPackage["slider"];
   //数字输入框
   inputNumber?: MainPackage["inputNumber"];
-
 };
 
 export interface Args {

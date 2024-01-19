@@ -1,11 +1,8 @@
 <template>
-  <Tupload v-model:file-list="fileList" list-type="text" :action="url">
-
-  
-  </Tupload> 
+  <Tupload v-model:file-list="fileList" :action="url" :limit="1"> </Tupload>
 
   <Timgs :file-list="fileList2" width="100px" height="100px"></Timgs>
- <!-- <Timgs :file-list="fileList2"> </Timgs>
+  <!-- <Timgs :file-list="fileList2"> </Timgs>
 
 
   <el-button text @click="outerVisible = true">
@@ -31,17 +28,16 @@
     </template>
   </el-dialog>  -->
 
-<ElButton @click="aa"> aa </ElButton>
+  <ElButton @click="aa"> aa </ElButton>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { Tupload,Timgs} from "../../packages/index";
+import { Tupload, Timgs } from "../../packages/index";
 
 import { UploadUserFile } from "element-plus";
 
-const url =
-  "/api/gateway/financial/pay/collectionList/claim/list";
+const url = "/api/gateway/financial/pay/collectionList/claim/list";
 
 const headers = {
   "X-Usertoken": sessionStorage.token,
@@ -85,5 +81,5 @@ const aa = () => {
 };
 const outerVisible = ref(false);
 const innerVisible = ref(false);
-console.log(99)
+console.log(99);
 </script>

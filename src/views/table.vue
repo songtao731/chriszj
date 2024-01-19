@@ -60,7 +60,7 @@ import { chris, TableList } from "../../packages";
 import { ref, computed, reactive } from "vue";
 
 import { ElButton } from "element-plus";
-
+import { useMockList } from "@/api";
 const oneTable = ref();
 
 const ruleForm = ref({
@@ -195,8 +195,8 @@ let num = ref(100);
 
 const bind = computed(() => {
   return chris.useTable({
-    // request: (params) => entertainApplicationAddList({ ...params }),
-    data: tableData.value,
+    request: (params) => useMockList({ ...params }),
+    // data: tableData.value,
     labelWidth: "100px",
     labelPosition: "left",
     title: "aa",
