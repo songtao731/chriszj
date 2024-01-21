@@ -1,78 +1,189 @@
 <template>
-  <div class="">
-    <el-form ref="formRef" :model="formData" :rules="rules" label-width="100px">
-      <el-table
-        ref="tableBox"
-        :data="formData"
-        :row-style="{ height: '70px' }"
-        :cell-style="{ padding: '0px' }"
-      >
-        <el-table-column type="selection" min-width="60"> </el-table-column>
-        <el-table-column
-          prop="province"
-          label="省份"
-          min-width="60"
-          align="center"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="scenicArea"
-          label="景区"
-          min-width="70"
-          align="center"
-        >
-          <template #default="scope">
-            <el-form-item
-              :prop="'formData.' + scope.$index + '.scenicArea'"
-              :rules="rules.scenicArea"
-            >
-              <el-input
-                v-model="scope.row.scenicArea"
-                maxlength="200"
-                oninput="if(value.length > 200) value=value.slice(0, 200)"
-                placeholder="请输入"
-              >
-              </el-input>
-            </el-form-item>
-          </template>
-        </el-table-column>
-      </el-table>
-    </el-form>
-    <el-row style="margin-top: 50px">
-      <el-col :span="24">
-        <el-button type="primary" @click="submit">保存</el-button>
-      </el-col>
-    </el-row>
-  </div>
+  <TableList v-bind="bind" ref="oneTable">
+    <template #footer>
+      <el-button @click="formBtn"> 校验 </el-button>
+    </template>
+  </TableList>
 </template>
 
-<script lang="ts" setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { chris, TableList } from "../../packages/index";
 
-// const formData = ref({
-//   name: '',
-//   age: '',
-//   tableData: [
-//     { index: 0, province: '河南', city: '', scenicArea: '' },
-//     { index: 1, province: '北京', city: '', scenicArea: '' },
-//     { index: 2, province: '广州', city: '', scenicArea: '' }
-//   ]
-// });
-const formData = ref([
-  { index: 0, province: "河南", city: "", scenicArea: "" },
-  { index: 1, province: "北京", city: "", scenicArea: "" },
-  { index: 2, province: "广州", city: "", scenicArea: "" },
+//实际使用是
+//import { chris } from "chriszj";
+//import { chris, TableList } from "../../lib/chris-ui";
+
+import { listRole } from "@/api/index";
+import { ref, computed } from "vue";
+
+const data2 = ref([
+  {
+    value: "zhinan",
+    label: "指南",
+    children: [
+      {
+        value: "layout",
+        label: "Layout 布局",
+        children: [
+          {
+            label: "测试",
+            value: "ceshi",
+          },
+        ],
+      },
+      {
+        value: "color",
+        label: "Color 色彩",
+      },
+      {
+        value: "typography",
+        label: "Typography 字体",
+      },
+      {
+        value: "icon",
+        label: "Icon 图标",
+      },
+      {
+        value: "button",
+        label: "Button 按钮",
+      },
+    ],
+  },
 ]);
-
-const rules = ref({
-  name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
-  age: [{ required: true, message: "请输入年龄", trigger: "blur" }],
-  province: [{ required: true, message: "请输入省份", trigger: "blur" }],
-  city: [{ required: true, message: "请输入城市", trigger: "blur" }],
-  scenicArea: [{ required: true, message: "请输入景区", trigger: "blur" }],
+//模拟表格的数据
+const tableData = {
+  data: {
+    rows: [
+      {
+        name: "王小虎",
+        address: "上海市普陀区金沙江路 1518 弄",
+        sex: "1",
+      },
+      {
+        name: "王小虎",
+        address: "上海市普陀区金沙江路 1517 弄",
+        sex: "2",
+      },
+      {
+        name: "王小虎",
+        address: "上海市普陀区金沙江路 1519 弄",
+        sex: "1",
+      },
+    ],
+    total: 3,
+  },
+  code: 200,
+};
+//自定义查询条件
+const ruleForm = ref({
+  remark: "",
+  region2: "",
 });
+//模拟第一个选择框 异步获取数据
+const data = ref();
 
-const submit = () => {};
+data.value = [
+  { label: "前端", value: "1" },
+  { label: "后端", value: "2" },
+  { label: "运维", value: "3" },
+];
+
+//重置查询条件
+const resetFn = () => {
+  Object.keys(ruleForm.value).forEach((el: any) => {
+    ruleForm.value[el] = "";
+  });
+};
+
+//模拟后端接口
+const request = (params) => {
+  console.log(params);
+  return new Promise((reslove, reject) => {
+    setTimeout(() => {
+      reslove(tableData);
+    }, 100);
+  });
+};
+const bind = chris.useTable({
+  request: (params) => listRole({ ...params, a: 1 }),
+  searchData: ruleForm,
+  pagination: false,
+  columns: [
+    {
+      label: "校验",
+      prop: "dataScope",
+      width: "300px",
+      filter: "input",
+      rules: chris.rulesFn().required(true, "请输入"),
+
+      event: {
+        type: "input",
+        input: {
+          onChange(v) {
+            console.log(v, 999888);
+          },
+        },
+      },
+    },
+    {
+      label: "校验",
+      prop: "remark",
+      rules: chris.rulesFn().required(true, "请输入"),
+      width: "300px",
+      filter: "input",
+      event: {
+        type: "input",
+        input: {
+          onChange(v) {
+            console.log(v, 999888);
+          },
+        },
+      },
+    },
+    {
+      label: "校验",
+      prop: "updatedAt",
+      rules: chris.rulesFn().required(true, "请输入"),
+      width: "300px",
+      filter: "input",
+      event: {
+        type: "input",
+        input: {
+          onChange(v) {
+            console.log(v, 999888);
+          },
+          type: "textarea",
+        },
+      },
+    },
+    {
+      label: "校验",
+      prop: "createdAt",
+      rules: chris.rulesFn().required(true, "请输入"),
+
+      width: "300px",
+      filter: "input",
+      event: {
+        type: "input",
+        input: {
+          onChange(v) {
+            console.log(v, 999888);
+          },
+        },
+      },
+    },
+  ],
+});
+const oneTable = ref();
+
+const formBtn = async () => {
+  console.log(oneTable.value, "oneTable.value");
+  await oneTable.value.formRef.validate((valid, fields) => {
+    if (valid) {
+      console.log("submit!");
+    } else {
+      console.log("error submit!", fields);
+    }
+  });
+};
 </script>
-
-<style lang="scss" scoped></style>

@@ -1,11 +1,8 @@
 <template>
   <TableList v-bind="bind" @resetFn="resetFn" ref="oneTable">
     <template #footer>
-      <el-button @click="formBtn">
-        校验
-      </el-button>
+      <el-button @click="formBtn"> 校验 </el-button>
     </template>
-
   </TableList>
 </template>
 
@@ -13,8 +10,6 @@
 import { chris } from "chriszj";
 //实际使用是 import { chris } from "chriszj";
 import { ref, computed } from "vue";
-
-
 
 const data2 = ref([
   {
@@ -27,9 +22,9 @@ const data2 = ref([
         children: [
           {
             label: "测试",
-            value: 'ceshi'
-          }
-        ]
+            value: "ceshi",
+          },
+        ],
       },
       {
         value: "color",
@@ -49,7 +44,7 @@ const data2 = ref([
       },
     ],
   },
-])
+]);
 //模拟表格的数据
 const tableData = {
   data: {
@@ -80,17 +75,13 @@ const ruleForm = ref({
   region2: "",
 });
 //模拟第一个选择框 异步获取数据
-const data = ref()
+const data = ref();
 
 data.value = [
   { label: "前端", value: "1" },
   { label: "后端", value: "2" },
   { label: "运维", value: "3" },
 ];
-
-
-
-
 
 //重置查询条件
 const resetFn = () => {
@@ -111,7 +102,8 @@ const request = (params) => {
 const bind = chris.useTable({
   request: (params) => request({ ...params, a: 1 }),
   searchData: ruleForm,
-  pagination:false,
+  pagination: false,
+  path: "data.rows",
   columns: [
     {
       label: "姓名简写",
@@ -119,98 +111,90 @@ const bind = chris.useTable({
       filter: "input",
     },
     {
-
       label: "校验",
       prop: "reg",
-      rules: chris.rulesFn().required(true, '请输入').pattern(/^\d{3}$/, '大口大口'),
-      width: '300px',
+      rules: chris
+        .rulesFn()
+        .required(true, "请输入")
+        .pattern(/^\d{3}$/, "大口大口"),
+      width: "300px",
       event: {
         type: "input",
         input: {
           onChange(v) {
-            console.log(v, 999888)
-          }
-
-        }
-      }
-
-
+            console.log(v, 999888);
+          },
+        },
+      },
     },
     {
-
       label: "下拉",
       prop: "sel",
-      rules: chris.rulesFn().required(true, '请选择', 'change'),
+      rules: chris.rulesFn().required(true, "请选择", "change"),
       width: "300px",
       event: {
         type: "select",
         select: {
           onChange(v) {
-            console.log(v, 999888)
+            console.log(v, 999888);
           },
           options: data.value,
-        }
-      }
+        },
+      },
     },
     {
-
       label: "日期",
       prop: "date",
-      rules: chris.rulesFn().required(true, '请选择'),
-      width: '300px',
+      rules: chris.rulesFn().required(true, "请选择"),
+      width: "300px",
       event: {
         type: "date",
         date: {
           onChange(v) {
-            console.log(v, 999888)
+            console.log(v, 999888);
           },
-        }
-      }
+        },
+      },
     },
     {
-
       label: "次级",
       prop: "tree",
-      rules: chris.rulesFn().required(true, '请选择', 'change'),
-      width: '300px',
+      rules: chris.rulesFn().required(true, "请选择", "change"),
+      width: "300px",
       event: {
         type: "cascader",
         cascader: {
           onChange(v) {
-            console.log(v, 999888)
+            console.log(v, 999888);
           },
           options: data2.value,
-
-        }
-      }
+        },
+      },
     },
     {
-
       label: "开关",
       prop: "switch",
-      width: '300px',
+      width: "300px",
       event: {
         type: "switch",
         switch: {
           onChange(v) {
-            console.log(v, 999888)
+            console.log(v, 999888);
           },
-
-        }
-      }
+        },
+      },
     },
   ],
 });
-const oneTable = ref()
+const oneTable = ref();
 
 const formBtn = async () => {
   await oneTable.value.formRef.validate((valid, fields) => {
     if (valid) {
-      console.log('submit!')
+      console.log("submit!");
     } else {
-      console.log('error submit!', fields)
+      console.log("error submit!", fields);
     }
-  })
-}
-
+  });
+};
 </script>

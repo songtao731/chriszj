@@ -6,7 +6,6 @@ import axios, {
   AxiosResponse,
 } from "axios";
 
-
 interface Config extends AxiosRequestConfig {
   cancel?: Canceler;
 }
@@ -32,11 +31,11 @@ interface AxiosInstanceNew extends Axios {
 
 // 基础配置
 const requestConfig: Config = {
-  baseURL: '/api',
+  baseURL: "/api",
   timeout: 600000,
   headers: {
-   " X-UserToken" : `${sessionStorage.getItem("token")}`
-  }
+    Authorization: `${sessionStorage.getItem("token")}`,
+  },
 };
 
 const request: AxiosInstanceNew = axios.create(requestConfig);
@@ -66,7 +65,7 @@ const removePending = (config: Config) => {
 // 请求拦截器
 request.interceptors.request.use(
   (req: any) => {
-    req.headers.token=sessionStorage.token
+    req.headers.token = sessionStorage.token;
     // removePending(req);
     req.cancelToken = new CancelToken((c) => {
       pending.push({
@@ -90,13 +89,12 @@ request.interceptors.response.use(
     const data = response.data;
     if (data) {
       if (!data.code) {
-        return response
+        return response;
       }
       if (data.code) {
         return data;
       } else {
-
-      //  return Promise.reject(data.msg);
+        //  return Promise.reject(data.msg);
       }
     } else {
       // return Promise.reject("接口请求错误");

@@ -8,9 +8,9 @@ export const useMockList = (data: any) => {
   });
 };
 //差旅申请列表
-export const travelAddList = (data: any) => {
+export const listRole = (data: any) => {
   return axios({
-    url: `/financial-center-business/travelApplication/getBasePage`,
+    url: "http://118.184.183.199:9141/system/role/list",
     method: "get",
     params: data,
   });

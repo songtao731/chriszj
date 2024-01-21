@@ -101,12 +101,13 @@ export default defineComponent({
       const { rules, prop, event } = column;
       const { row, $index } = data;
       let result = data[prop] || "--";
+
       switch (event.type) {
         case "input":
           result = (
             <ElFormItem
               prop={"dataList." + $index + "." + prop}
-              rules={rules.rules}
+              rules={rules?rules.rules:[]}
               class={"inline"}
             >
               <ElInput
@@ -121,7 +122,7 @@ export default defineComponent({
           result = (
             <ElFormItem
               prop={"dataList." + $index + "." + prop}
-              rules={rules.rules}
+              rules={rules?rules.rules:[]}
               class={"inline"}
             >
               <ElSelect
@@ -148,7 +149,7 @@ export default defineComponent({
           result = (
             <ElFormItem
               prop={"dataList." + $index + "." + prop}
-              rules={rules.rules}
+              rules={rules?rules.rules:[]}
               class={"inline"}
             >
               <ElDatePicker
@@ -166,7 +167,7 @@ export default defineComponent({
           result = (
             <ElFormItem
               prop={"dataList." + $index + "." + prop}
-              rules={rules.rules}
+              rules={rules?rules.rules:[]}
               class={"inline"}
             >
               <ElCascader
@@ -188,29 +189,7 @@ export default defineComponent({
               <ElSwitch v-model={row[prop]} {...event.switch}></ElSwitch>
             </ElFormItem>
           );
-
           break;
-
-        // case "radio":
-        //   result = (
-        //     <ElFormItem
-        //       prop={"dataList." + $index + "." + prop}
-        //       class={"inline"}
-        //     >
-        //       <ElRadioGroup v-model={row[prop]} {...event.switch}>
-        //         {formatDataFn(column).options.map((ele: RadioItem) => {
-        //           return (
-        //             <ElRadio {...ele} label={ele.value}>
-        //               {ele.label}
-        //             </ElRadio>
-        //           );
-        //         })}
-        //       </ElRadioGroup>
-        //     </ElFormItem>
-        //   );
-
-        //   break;
-
         default:
           break;
       }

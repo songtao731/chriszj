@@ -50,6 +50,20 @@ export default defineComponent({
 
     //初始化数据 对象的
     const requestObj = computed(() => unref(props.request));
+    //初始化静态数据
+   const getData=()=>{
+    if (typeof requestObj === "object") {
+      Object.keys(formData.value).forEach((el) => {
+
+        if (requestObj.value[el] || requestObj.value[el] === 0) {
+          formData.value[el] = requestObj.value[el];
+
+        }
+      });
+
+    }
+
+   }
     watch(requestObj, (newObj: { [key: string]: any }) => {
       if (typeof newObj === "object") {
         Object.keys(formData.value).forEach((el) => {
@@ -308,12 +322,13 @@ export default defineComponent({
 
     //获取屏幕可视化宽度
     onMounted(() => {
-      if (dataList.value.length && !requestObj.value) {
+
+      // console.log(dataList.value,requestObj.value)
+      //dataList.value.length && requestObj.value   这个逻辑代推敲
+      if (dataList.value.length) {
         dataList.value.forEach((el) => {
           //处理栅格布局
-
           resetFn(el);
-
           if (el.type === "range") {
             if (
               (el.columns && el?.columns[0].value) ||
@@ -334,8 +349,11 @@ export default defineComponent({
           }
         });
       }
+
       if (typeof props.request === "function") {
         props.request && getDataList();
+      }else if(typeof props.request === "object"){
+            getData()
       }
       isReset.value = true;
 
@@ -375,6 +393,7 @@ export default defineComponent({
               <ElRow gutter={gutter}>
                 {Array.isArray(dataList.value) &&
                   dataList.value.map((el, index) => {
+
                     let element = null;
                     switch (el.type) {
                       case "space":
