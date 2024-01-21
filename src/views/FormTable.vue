@@ -7,11 +7,11 @@
 </template>
 
 <script setup lang="ts">
-import { chris, TableList } from "../../packages/index";
+//import { chris, TableList } from "../../packages/index";
 
 //实际使用是
 //import { chris } from "chriszj";
-//import { chris, TableList } from "../../lib/chris-ui";
+import { chris, TableList } from "../../lib/chris-ui";
 
 import { listRole } from "@/api/index";
 import { ref, computed } from "vue";
@@ -111,58 +111,11 @@ const bind = chris.useTable({
   columns: [
     {
       label: "校验",
-      prop: "dataScope",
-      width: "300px",
-      filter: "input",
-      rules: chris.rulesFn().required(true, "请输入"),
-
-      event: {
-        type: "input",
-        input: {
-          onChange(v) {
-            console.log(v, 999888);
-          },
-        },
-      },
-    },
-    {
-      label: "校验",
       prop: "remark",
-      rules: chris.rulesFn().required(true, "请输入"),
       width: "300px",
       filter: "input",
-      event: {
-        type: "input",
-        input: {
-          onChange(v) {
-            console.log(v, 999888);
-          },
-        },
-      },
-    },
-    {
-      label: "校验",
-      prop: "updatedAt",
-      rules: chris.rulesFn().required(true, "请输入"),
-      width: "300px",
-      filter: "input",
-      event: {
-        type: "input",
-        input: {
-          onChange(v) {
-            console.log(v, 999888);
-          },
-          type: "textarea",
-        },
-      },
-    },
-    {
-      label: "校验",
-      prop: "createdAt",
       rules: chris.rulesFn().required(true, "请输入"),
 
-      width: "300px",
-      filter: "input",
       event: {
         type: "input",
         input: {
@@ -172,12 +125,59 @@ const bind = chris.useTable({
         },
       },
     },
+    // {
+    //   label: "校验",
+    //   prop: "remark",
+    //   rules: chris.rulesFn().required(true, "请输入"),
+    //   width: "300px",
+    //   filter: "input",
+    //   event: {
+    //     type: "input",
+    //     input: {
+    //       onChange(v) {
+    //         console.log(v, 999888);
+    //       },
+    //     },
+    //   },
+    // },
+    // {
+    //   label: "校验",
+    //   prop: "updatedAt",
+    //   rules: chris.rulesFn().required(true, "请输入"),
+    //   width: "300px",
+    //   filter: "input",
+    //   event: {
+    //     type: "input",
+    //     input: {
+    //       onChange(v) {
+    //         console.log(v, 999888);
+    //       },
+    //       type: "textarea",
+    //     },
+    //   },
+    // },
+    // {
+    //   label: "校验",
+    //   prop: "createdAt",
+    //   rules: chris.rulesFn().required(true, "请输入"),
+
+    //   width: "300px",
+    //   filter: "input",
+    //   event: {
+    //     type: "input",
+    //     input: {
+    //       onChange(v) {
+    //         console.log(v, 999888);
+    //       },
+    //     },
+    //   },
+    // },
   ],
 });
 const oneTable = ref();
 
 const formBtn = async () => {
-  console.log(oneTable.value, "oneTable.value");
+  console.log(oneTable.value, "oneTable.value", oneTable.value.tableRef.data);
   await oneTable.value.formRef.validate((valid, fields) => {
     if (valid) {
       console.log("submit!");

@@ -106,12 +106,12 @@ export default defineComponent({
         case "input":
           result = (
             <ElFormItem
-              prop={"dataList." + $index + "." + prop}
+              prop={"dataList." + data.$index + "." + prop}
               rules={rules?rules.rules:[]}
               class={"inline"}
             >
               <ElInput
-                v-model={row[prop]}
+                v-model={data.row[prop]}
                 {...event.input}
                 placeholder={formatDataFn(column).placeholder}
               />

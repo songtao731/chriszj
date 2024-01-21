@@ -38,7 +38,7 @@
     <Buttons :buttons="props.buttons" :buttonsPosition="props.buttonsPosition">
     </Buttons>
     <!-- {{ formData.dataList }} -->
-    <el-form ref="formRef" :model="formData">
+    <ElForm ref="formRef" :model="formData">
       <ElTable
         v-bind="props"
         :data="formData.dataList"
@@ -91,7 +91,7 @@
           </template>
         </ElTableColumn>
       </ElTable>
-    </el-form>
+    </ElForm>
     <Pagination
       v-show="total > 0 && props.pagination"
       :total="total"
@@ -108,7 +108,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ElLoading, ElTable } from "element-plus";
+import { ElForm, ElLoading, ElTable } from "element-plus";
 import {
   computed,
   ref,
@@ -180,7 +180,7 @@ let path = props.path || "rows";
 let totalPath = props.totalPath || "total";
 
 const formData = ref({
-  dataList: [] as any[],
+  dataList: [],
 });
 
 //表格的数据
