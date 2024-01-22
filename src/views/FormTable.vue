@@ -7,11 +7,11 @@
 </template>
 
 <script setup lang="ts">
-//import { chris, TableList } from "../../packages/index";
+import { chris, TableList } from "../../packages/index";
 
 //实际使用是
 //import { chris } from "chriszj";
-import { chris, TableList } from "../../lib/chris-ui";
+//import { chris, TableList } from "../../lib/chris-ui";
 
 import { listRole } from "@/api/index";
 import { ref, computed } from "vue";
