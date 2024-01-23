@@ -14,6 +14,7 @@ import { chris, TableList } from "../../packages/index";
 //import { chris, TableList } from "../../lib/chris-ui";
 
 import { listRole } from "@/api/index";
+import { roleTypes } from "element-plus";
 import { ref, computed } from "vue";
 
 const data2 = ref([
@@ -106,6 +107,12 @@ const request = (params) => {
 };
 const bind = chris.useTable({
   request: (params) => listRole({ ...params, a: 1 }),
+  parseData: (data) => {
+    data.forEach((ele) => {
+      ele.isEdit = false;
+    });
+    return data;
+  },
   searchData: ruleForm,
   pagination: false,
   columns: [
@@ -116,6 +123,23 @@ const bind = chris.useTable({
       filter: "input",
       rules: chris.rulesFn().required(true, "请输入"),
 
+      event: (rows) => {
+        return {
+          type: "input",
+          input: {
+            onChange(v) {
+              console.log(v, 999888);
+            },
+          },
+        };
+      },
+    },
+    {
+      label: "校验",
+      prop: "remark",
+      rules: chris.rulesFn().required(true, "请输入"),
+      width: "300px",
+      filter: "input",
       event: {
         type: "input",
         input: {
@@ -125,21 +149,21 @@ const bind = chris.useTable({
         },
       },
     },
-    // {
-    //   label: "校验",
-    //   prop: "remark",
-    //   rules: chris.rulesFn().required(true, "请输入"),
-    //   width: "300px",
-    //   filter: "input",
-    //   event: {
-    //     type: "input",
-    //     input: {
-    //       onChange(v) {
-    //         console.log(v, 999888);
-    //       },
-    //     },
-    //   },
-    // },
+    {
+      label: "操作",
+      width: "170",
+      buttons: (rows) => {
+        return [
+          {
+            content: "保存",
+            link: true,
+            type: "primary",
+            click(rows) {},
+            hide: !rows.isEdit,
+          },
+        ];
+      },
+    },
     // {
     //   label: "校验",
     //   prop: "updatedAt",

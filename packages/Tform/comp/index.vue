@@ -28,7 +28,6 @@ import FormDesc from "./form-itemTsx";
 import { formProps } from "./form";
 import { watchEffect } from "vue";
 
-
 const props = defineProps(formProps);
 const formRef = ref();
 //常规插槽
@@ -42,25 +41,27 @@ const dataList = computed(() => {
 const customList = ref([]);
 watchEffect(() => {
   const propDataList = unref(props.dataList);
+
   if (propDataList.length) {
     propDataList
       .filter((ele) => {
         return ele.type === "domains";
       })
       .map((ela) => {
-       
-        return ela.domains||[]
+        return ela.domains || [];
       })
       .map((elb) => {
         return elb.map((elc) => elc.item);
       })
       .map((eld) => {
         eld.map((elf) => {
-          customList.value = elf.filter((elg) => elg.slotName);
+          if (elf) {
+            customList.value = elf.filter((elg) => elg.slotName);
+          }
         });
       });
   }
-})
+});
 
 defineExpose({
   form: formRef,

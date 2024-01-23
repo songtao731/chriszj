@@ -134,6 +134,8 @@ export default defineComponent({
           el.domains &&
             el.domains.forEach((ele, index) => {
               let propKeys: { [key: string]: any } = {};
+              if(ele.item){
+
               ele.item.forEach((els: dataItem) => {
                 if (els.prop) {
                   propKeys[els.prop] = els.value || "";
@@ -160,6 +162,8 @@ export default defineComponent({
                   }
                 }
               });
+            }
+
               formData.value[el.keys as string].push(propKeys);
               formData.value[el.keys as string][index]["chriskey"] =
                 ele.chriskey;
@@ -286,6 +290,7 @@ export default defineComponent({
 
             el.domains &&
               el.domains.forEach((ela) => {
+                if(ela.item){
                 ela.item.forEach((el: any) => {
                   el.nospan =
                     (el.span && +el.span * (24 / +column)) || 24 / +column;
@@ -311,6 +316,7 @@ export default defineComponent({
                     // el.upload.fileList = formData.value[el.prop as string];
                   }
                 });
+              }
               });
           }
           //动态表单处理结束
@@ -422,6 +428,8 @@ export default defineComponent({
                           element =
                             el.domains &&
                             el.domains.map((ela, index) => {
+                               if(ela.item){
+
                               return ela.item.map((ele: dataItem) => {
                                 let newElement = null;
                                 switch (ele.type) {
@@ -1017,6 +1025,8 @@ export default defineComponent({
                                 }
                                 return newElement;
                               });
+                            }
+
                             });
                         }
 
