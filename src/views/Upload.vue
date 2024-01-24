@@ -1,5 +1,20 @@
 <template>
-  <Tupload v-model:file-list="fileList" :action="url" :limit="1"> </Tupload>
+  <Tupload
+    v-model:file-list="fileList"
+    :action="url"
+    :before-upload="beforeAvatarUpload"
+    :on-change="changeFn"
+  >
+  </Tupload>
+  <el-upload
+    v-model:file-list="fileList"
+    :action="url"
+    list-type="picture-card"
+    :before-upload="beforeAvatarUpload"
+    :on-change="changeFn"
+  >
+    <el-icon><Plus /></el-icon>
+  </el-upload>
 
   <Timgs :file-list="fileList2" width="100px" height="100px"></Timgs>
   <!-- <Timgs :file-list="fileList2"> </Timgs>
@@ -35,7 +50,7 @@
 import { ref } from "vue";
 import { Tupload, Timgs } from "../../packages/index";
 
-import { UploadUserFile } from "element-plus";
+import { ElMessage, ElUpload, UploadProps, UploadUserFile } from "element-plus";
 
 const url = "/api/gateway/financial/pay/collectionList/claim/list";
 
@@ -48,6 +63,20 @@ const handlePreview = (files: File[], uploadFiles: UploadUserFile[]) => {
 };
 const fileList = ref<UploadUserFile[]>([]);
 const fileList2 = ref<{ url: string; name?: string }[]>([]);
+
+const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
+  if (!/image\/[png|jpg|jpeg]/.test(rawFile.type)) {
+    ElMessage.error("紧支持JPG,PNG,JPEG");
+    return false;
+  } else if (rawFile.size / 1024 / 1024 > 10) {
+    ElMessage.error("图片不能超过10MB!");
+    return false;
+  }
+  return true;
+};
+const changeFn = (a, b, c) => {
+  console.log(a, b, c);
+};
 
 setTimeout(() => {
   fileList.value = [

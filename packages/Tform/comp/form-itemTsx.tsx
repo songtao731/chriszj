@@ -1160,13 +1160,15 @@ export default defineComponent({
                                 {el.select &&
                                   Array.isArray(unref(el.select.options)) &&
                                   unref(el.select.options).map(
+                                  
                                     (ele: any, index: any) => {
+                                  
                                       return (
                                         <ElOption
                                           key={el.label}
-                                          label={ele.label}
+                                          label={ (el.select?.setOptions?.label)?(ele[el.select?.setOptions?.label]):ele.label}
                                           value={
-                                            el.select?.values ? ele : ele.value
+                                            el.select?.values ? ele :(el.select?.setOptions?.value)?(ele[el.select?.setOptions?.value]):ele.value
                                           }
                                         />
                                       );

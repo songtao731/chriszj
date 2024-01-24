@@ -20,30 +20,6 @@ setTimeout(() => {
     nextPage: "身高2米",
     span: "WOSHI",
     sex: 0,
-    getdomains: [
-      {
-        a: 11,
-        b: "2022-11-22",
-        upload: [
-          {
-            name: "food.jpeg",
-            url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
-          },
-          {
-            url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
-            name: "2.jpg",
-          },
-          {
-            url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.pdf",
-            name: "3.png",
-          },
-        ],
-      },
-      {
-        a: 22,
-        b: "20223-12-24",
-      },
-    ],
     upload: [
       {
         name: "food.jpeg",
@@ -69,59 +45,6 @@ setTimeout(() => {
       value2: 0,
     },
   ];
-  domainsArr.value = [
-    {
-      item: [
-        {
-          label: "测试1",
-          prop: "a",
-          type: "span",
-          formatType: "priceChinese",
-        },
-        {
-          label: "日期",
-          type: "span",
-          prop: "b",
-        },
-        {
-          type: "prew",
-          prop: "upload",
-          label: "图",
-          prew: {
-            width: "100px",
-            height: "100px",
-          },
-          span: 3,
-        },
-      ],
-      chriskey: Math.random(),
-    },
-    {
-      item: [
-        {
-          label: "测试1",
-          prop: "a",
-          type: "span",
-        },
-        {
-          label: "日期",
-          type: "span",
-          prop: "b",
-        },
-        {
-          type: "prew",
-          prop: "upload",
-          label: "图",
-          prew: {
-            width: "100px",
-            height: "100px",
-          },
-          span: 3,
-        },
-      ],
-      chriskey: Math.random(),
-    },
-  ];
 }, 100);
 
 const bind = computed(() => {
@@ -130,11 +53,11 @@ const bind = computed(() => {
     column: "3",
     edit: true,
     dataList: [
-      {
-        type: "domains",
-        keys: "getdomains",
-        domains: domainsArr.value,
-      },
+      // {
+      //   type: "domains",
+      //   keys: "getdomains",
+      //   domains: domainsArr.value,
+      // },
       {
         type: "span",
         prop: "size",

@@ -1,23 +1,43 @@
 <template>
-  <PictureCard v-if="props.listType === 'picture-card'" v-bind="props" :on-exceed="onExceed"
-    :before-upload="beforeAvatarUpload" :on-success="onSuccess" ref="pictureCardRef" v-model:fileList="fileList">
+  <PictureCard
+    v-if="props.listType === 'picture-card'"
+    v-bind="props"
+    :on-exceed="onExceed"
+    :before-upload="beforeUpload"
+    :on-success="onSuccess"
+    ref="pictureCardRef"
+    v-model:fileList="fileList"
+  >
   </PictureCard>
-  <PicturText v-if="props.listType === 'text'" v-bind="props" :on-exceed="onExceed" :before-upload="beforeAvatarUpload"
-    :on-success="onSuccess" ref="pictureCardRef" v-model:fileList="fileList" class="w-full">
+  <PicturText
+    v-if="props.listType === 'text'"
+    v-bind="props"
+    :on-exceed="onExceed"
+    :before-upload="beforeAvatarUpload"
+    :on-success="onSuccess"
+    ref="pictureCardRef"
+    v-model:fileList="fileList"
+    class="w-full"
+  >
     <slot>
       <el-button type="primary" class="min-w-[6em]">上传</el-button>
-
-
     </slot>
     <slot name="file"> </slot>
     <slot name="tip"> </slot>
     <slot name="trigger"> </slot>
   </PicturText>
-  <PictureUpload v-if="props.listType === 'picture'" v-bind="props" :on-exceed="onExceed"
-    :before-upload="beforeAvatarUpload" :on-success="onSuccess" ref="pictureCardRef" v-model:fileList="fileList"
-    class="w-full">
+  <PictureUpload
+    v-if="props.listType === 'picture'"
+    v-bind="props"
+    :on-exceed="onExceed"
+    :before-upload="beforeAvatarUpload"
+    :on-success="onSuccess"
+    ref="pictureCardRef"
+    v-model:fileList="fileList"
+    class="w-full"
+  >
     <slot>
-      <el-button type="primary" class=" min-w-[6em]" >上传</el-button>
+      <el-button type="primary" class="min-w-[6em]">上传</el-button>
     </slot>
     <slot name="file"> </slot>
     <slot name="tip"> </slot>
@@ -40,7 +60,6 @@ import {
 } from "element-plus";
 const props = defineProps(uploadProps);
 
-
 const emit = defineEmits(["update:fileList"]);
 
 const pictureCardRef = ref();
@@ -61,14 +80,14 @@ const onSuccess = (
   uploadFiles: UploadFile[]
 ) => {
   if (props.onSuccess.length) {
-    props.onSuccess(response, uploadFile, uploadFiles);
+    return props.onSuccess(response, uploadFile, uploadFiles);
   } else {
     fileList.value = uploadFiles;
   }
 };
 const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
   if (props.beforeUpload.length) {
-    props.beforeUpload(rawFile);
+    return props.beforeUpload(rawFile);
   } else {
     if (props.accept && rawFile.type !== props.accept) {
       ElMessage.error(`请上传${props.accept}的格式`);
@@ -83,7 +102,7 @@ const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
 
 const onExceed = (files: File[], uploadFiles: UploadUserFile[]) => {
   if (props.onExceed.length) {
-    props.onExceed(files, uploadFiles);
+    return props.onExceed(files, uploadFiles);
   } else {
     ElMessage.error("已超出文件上传数量");
   }

@@ -26,7 +26,7 @@
     </template>
   </Tform> -->
 
-  <Tform v-bind="bind5"> </Tform>
+  <Tform v-bind="bind5" ref="tForm"> </Tform>
 </template>
 
 <script setup lang="ts">
@@ -842,7 +842,17 @@ const bind5 = chris.useForm({
       prop: "sex",
       type: "select",
       select: {
-        options: [],
+        options: [
+          {
+            dictValue: "我是value",
+            dictLabel: "我是label",
+          },
+          {
+            dictValue: "我是value2",
+            dictLabel: "我是label2",
+          },
+        ],
+        setOptions: { label: "dictLabel", value: "dictValue" },
       },
     },
   ],
