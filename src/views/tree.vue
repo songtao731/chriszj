@@ -1,89 +1,288 @@
 <template>
-  <el-button @click="dialogChange"> 点击 </el-button>
-  <el-dialog
-    v-model="dialogVisible"
-    title="知识库搜索设置"
-    width="800px"
-    :before-close="handleClose"
-    :destroy-on-close="true"
-    :close-on-click-modal="false"
-  >
-    <Tform v-bind="bind" ref="formRef">
-      <template #buttons>
-        <el-button type="primary" @click="addFn">新增搜索设置</el-button>
-      </template>
-      <template #btn="{ scope }">
-        <el-button @click="delFn(scope)" type="primary"> 删除 </el-button>
-      </template>
-    </Tform>
-  </el-dialog>
-  <el-dialog
-    v-model="dialogVisible2"
-    title="选择知识库"
-    width="600px"
-    :before-close="handleClose2"
-    :destroy-on-close="true"
-    :close-on-click-modal="false"
-  >
-    <Tform v-bind="bind" ref="formRef"> </Tform>
-  </el-dialog>
+  <Card>
+    <TableList v-bind="bind" tooltip-effect="light"></TableList>
+
+    <el-dialog
+      v-model="dialogVisible"
+      :title="title"
+      width="800px"
+      :before-close="handleClose"
+      :destroy-on-close="true"
+      :close-on-click-modal="false"
+    >
+      <Tform v-bind="bind2" ref="tForm"> </Tform>
+    </el-dialog>
+  </Card>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
-//import { chris, Tform } from "chriszj";
+import router from "../../../router";
+//import { chris, TableList, Tform } from "chriszj";
 import { chris, Tform } from "../../packages/index";
 
-import { domain } from "chriszj/Tform/comp/useForm";
-
-//弹窗启动 弹框1
+import { listRole } from "@/api";
+import { ref, computed } from "vue";
+import { UploadProps, ElMessage, ElMessageBox } from "element-plus";
+//弹框 显示隐藏
 const dialogVisible = ref(false);
-const dialogVisible2 = ref(false);
-
-//弹框1关闭前的操作
+//Form的 id
+const tForm = ref();
+//弹框的标题
+const title = ref("新增广告位");
+//弹框关闭前的操作
 const handleClose = () => {
   dialogVisible.value = false;
-  // domainsArr.value = [];
+};
+//列表
+const bind = chris.useTable({
+  request: (params) => listRole({ ...params, a: 1 }),
+  buttons: [
+    {
+      type: "primary",
+      content: "新增",
+      onClick: () => {
+        title.value = "新增广告位";
+        dialogVisible.value = true;
+        cc.value = {};
+      },
+    },
+  ],
 
-  console.log(domainsArr, "domains");
-};
-//弹框2关闭前的操作
+  columns: [
+    {
+      label: "企业名称",
+      prop: "roleName",
+      filter: {
+        type: "select",
+        options: [],
+      },
+    },
+    {
+      label: "景点名称",
+      prop: "remark",
+      filter: {
+        type: "select",
+        options: [],
+      },
+    },
+    {
+      label: "位置",
+      prop: "address",
+      filter: {
+        type: "select",
+        options: [],
+      },
+    },
+    {
+      label: "状态",
+      prop: "address",
+      filter: {
+        type: "select",
+        options: [],
+      },
+    },
+    {
+      label: "图片尺寸",
+      prop: "address",
+    },
+    {
+      label: "广告图片",
+      prop: "address",
+    },
+    {
+      label: "创建人",
+      prop: "address",
+    },
+    {
+      label: "创建时间",
+      prop: "address",
+    },
+    {
+      label: "编辑人",
+      prop: "address",
+    },
+    {
+      label: "编辑时间",
+      prop: "address",
+    },
+    {
+      label: "操作",
+      width: "170",
+      buttons: [
+        {
+          content: "查看",
+          link: true,
+          type: "primary",
+          click(rows) {
+            title.value = "查看广告位";
+            dialogVisible.value = true;
+          },
+        },
+        {
+          content: "编辑",
+          link: true,
+          type: "primary",
+          click(rows) {
+            title.value = "编辑广告位";
+            dialogVisible.value = true;
+            setTimeout(() => {
+              cc.value = {
+                sex2: "sskksksk",
+                sex: "时刻开始看看书",
+                input: "",
+                skks: "",
+                sl: "",
+                input2: "888",
+              };
+            }, 100);
+          },
+        },
+        {
+          content: "删除",
+          type: "primary",
+          link: true,
+          click(row) {
+            ElMessageBox.confirm("确认删除要删除广告位吗？", "删除", {
+              confirmButtonText: "确认",
+              cancelButtonText: "取消",
+              closeOnClickModal: false,
+              type: "warning",
+            }).then(() => {
+              ElMessage({
+                type: "success",
+                message: "删除成功",
+              });
+            });
+          },
+        },
+      ],
+    },
+  ],
+});
 
-const handleClose2 = () => {
-  dialogVisible2.value = false;
+const cc = ref({});
+
+// const request = (params) => {
+//   return new Promise((reslove, reject) => {
+//     setTimeout(() => {
+//       reslove(cc);
+//     }, 100);
+//   });
+// };
+
+//弹框的表单
+
+const checkUpload = (rule: any, value: any, callback: any) => {
+  if (!value.length) {
+    callback(new Error("请上传"));
+  } else {
+    callback();
+  }
 };
-const dialogChange = () => {
-  dialogVisible.value = true;
+const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
+  if (!/image\/[png|jpg|jpeg]/.test(rawFile.type)) {
+    ElMessage.error("紧支持JPG,PNG,JPEG");
+    return false;
+  } else if (rawFile.size / 1024 / 1024 > 10) {
+    ElMessage.error("图片不能超过10MB!");
+    return false;
+  }
+  return true;
 };
-const formRef = ref();
-const bind = computed(() => {
+
+const isSee = () => {
+  return /查看/.test(title.value);
+};
+const bind2 = computed(() => {
   return chris.useForm({
-    edit: true,
+    request: computed(() => cc.value),
+    labelWidth: "94px",
     dataList: [
       {
-        type: "domains",
-        keys: "getdomains",
-        domains: domainsArr.value,
+        type: "span",
+        prop: "input",
+        label: "企业名称",
+        rules: isSee() ? [] : chris.rulesFn().required(true, "请选择企业名称"),
+        select: {
+          options: [],
+        },
+      },
+
+      {
+        type: isSee() ? "span" : "select",
+        prop: "input3",
+        label: "景区名称",
+        rules: isSee() ? [] : chris.rulesFn().required(true, "请选择景区名称"),
+        select: {
+          options: [],
+        },
+      },
+      {
+        type: isSee() ? "span" : "select",
+        prop: "input2",
+        label: "位置",
+        select: {
+          options: [],
+        },
+      },
+      {
+        type: isSee() ? "span" : "select",
+        prop: "input2",
+        label: "状态",
+        rules: isSee() ? [] : chris.rulesFn().required(true, "请选择景状态"),
+        select: {
+          options: [],
+        },
+      },
+
+      {
+        label: "图片尺寸",
+        prop: "sex",
+        type: isSee() ? "span" : "input",
+      },
+      {
+        type: "space",
+      },
+      {
+        label: "推荐位图片",
+        type: isSee() ? "prew" : "upload",
+        prop: "upload",
+        span: 2,
+        upload: {
+          action:
+            "https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15",
+          limit: 1,
+          beforeUpload: beforeAvatarUpload,
+        },
+        rules: isSee()
+          ? []
+          : chris.rulesFn().required(true, "请上传").validator(checkUpload),
+      },
+      {
+        type: isSee() ? "span" : "select",
+        prop: "input2",
+        label: "跳转地址",
+        select: {
+          options: [],
+        },
       },
     ],
+
     buttons: [
       {
-        content: "提交",
+        content: "关闭",
+        onClick() {
+          dialogVisible.value = false;
+        },
+      },
+      {
+        content: "保存",
         type: "primary",
         onClick() {
-          console.log(
-            formRef.value.form.formData,
-            "formdata",
-            formRef.value.form.formRef.validate
-          );
-          formRef.value.form.formRef.validate((valid) => {
+          tForm.value.form.formRef.validate((valid) => {
             console.log(valid);
-
             if (valid) {
               console.log("submit!");
-            } else {
-              console.log("error submit!");
-              return false;
             }
           });
         },
@@ -92,66 +291,6 @@ const bind = computed(() => {
     buttonsAlign: "right",
   });
 });
-
-const options = ref();
-setTimeout(() => {
-  options.value = [
-    {
-      lable: 1,
-      value: "1",
-    },
-    {
-      lable: 2,
-      value: "2",
-    },
-    {
-      lable: 3,
-      value: "3",
-    },
-  ];
-  options.value.forEach((ele) => {
-    addFn();
-  });
-
-  console.log(bind, "999999");
-}, 100);
-
-const domainsArr = ref<domain[]>([]);
-const addFn = () => {
-  domainsArr.value.push({
-    item: [
-      {
-        label: "触发条件",
-        prop: "a",
-        type: "select",
-        rules: chris.rulesFn().required(true, "请输入测试1"),
-        select: {
-          options: options.value,
-        },
-      },
-      {
-        slotName: "btn",
-        type: "custom",
-      },
-      {
-        label: "日期",
-        type: "date",
-        prop: "daterange",
-        rules: chris.rulesFn().required(true, "请输入日期"),
-        date: {
-          type: "daterange",
-        },
-      },
-      {
-        type: "space",
-      },
-    ],
-    chriskey: Math.random(),
-  });
-};
-const delFn = (val) => {
-  domainsArr.value.splice(val.index, 1);
-};
 </script>
 
 <style lang="scss" scoped></style>

@@ -16,6 +16,7 @@ export type ButtonType =
   | "text"
   | "";
 export interface ButtonProps {
+  hide?: boolean;
   size?: "large" | "default" | "small";
   type?: ButtonType;
   disabled?: boolean;
@@ -34,8 +35,7 @@ export interface ButtonProps {
   tag?: string | Component;
   color?: string;
   dark?: boolean;
-  ref?:any
-
+  ref?: any;
 
   /**
    * 按钮内容
@@ -93,7 +93,7 @@ export const ButtonTypeProps = {
   /**
    * 是否隐藏
    */
-  hidden: Boolean,
+  hide: Boolean,
 
   click: Function,
 };

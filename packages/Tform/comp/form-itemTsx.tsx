@@ -54,7 +54,6 @@ export default defineComponent({
    const getData=()=>{
     if (typeof requestObj === "object") {
       Object.keys(formData.value).forEach((el) => {
-
         if (requestObj.value[el] || requestObj.value[el] === 0) {
           formData.value[el] = requestObj.value[el];
 
@@ -1368,7 +1367,7 @@ export default defineComponent({
               </ElRow>
               <ElFormItem>
                 <div style={`width:100%;text-align:${props.buttonsAlign}`}>
-                  {buttons.value.map((el) => {
+                  {buttons.value.filter(el=>!el.hide).map((el) => {
                     return <ElButton {...el}>{el.content}</ElButton>;
                   })}
                 </div>

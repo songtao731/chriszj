@@ -855,6 +855,15 @@ const bind5 = chris.useForm({
         console.log(tForm.value.form.formData);
       },
     },
+    {
+      content: "关闭",
+      type: "primary",
+      hide: true,
+      hidden: true,
+      onClick() {
+        console.log(tForm.value.form.formData);
+      },
+    },
   ],
   buttonsAlign: "right",
 });
