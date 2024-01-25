@@ -53,6 +53,7 @@
           <slot name="append"></slot>
         </template>
         <ElTableColumn
+          align="center"
           type="index"
           :index="indexMethod"
           :label="typeof props.index === 'object' && props.index.label"
@@ -65,6 +66,7 @@
         <ElTableColumn
           v-for="(item, index) in columnsFilter"
           :key="item"
+          align="center"
           v-bind="item"
         >
           <template #header="scope" v-if="item.header">

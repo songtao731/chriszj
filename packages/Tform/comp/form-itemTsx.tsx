@@ -1166,9 +1166,9 @@ export default defineComponent({
                                       return (
                                         <ElOption
                                           key={el.label}
-                                          label={ (el.select?.setOptions?.label)?(ele[el.select?.setOptions?.label]):ele.label}
+                                          label={ (el.select?.dictOptions?.label)?(ele[el.select?.dictOptions?.label]):ele.label}
                                           value={
-                                            el.select?.values ? ele :(el.select?.setOptions?.value)?(ele[el.select?.setOptions?.value]):ele.value
+                                            el.select?.values ? ele :(el.select?.dictOptions?.value)?(ele[el.select?.dictOptions?.value]):ele.value
                                           }
                                         />
                                       );
