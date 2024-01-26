@@ -18,7 +18,7 @@ export default defineComponent({
     const handleCurrentChange = (val: number): void => {
       currentPage.value = val;
 
-      console.log(pageSize,'....')
+
       emit('getPage', { pageSize, currentPage });
     };
     watchEffect(()=>{

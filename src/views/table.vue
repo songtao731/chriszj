@@ -197,6 +197,7 @@ const bind = computed(() => {
   return chris.useTable({
     request: (params) => useMockList({ ...params }),
     // data: tableData.value,
+    column: 2,
     labelWidth: "100px",
     labelPosition: "left",
     title: "aa",
@@ -631,6 +632,7 @@ const getSummaries = (param) => {
 };
 
 const formBtn = async () => {
+  oneTable.value.refresh({ ksksksksssss: 2222 });
   await oneTable.value.formRef.validate((valid, fields) => {
     if (valid) {
       console.log("submit!");

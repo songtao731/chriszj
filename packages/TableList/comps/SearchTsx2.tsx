@@ -51,7 +51,7 @@ export default defineComponent({
 
   setup(props, { emit, expose, slots }) {
     //filter:过滤条件,searchSize:查询条件框的大小 labelPosition:查询条件label的位置
-    const { column, labelPosition } = props;
+    const { column, labelPosition} = props;
 
     //搜索条件的表单数据
     const formData: any = reactive({});
@@ -104,6 +104,9 @@ export default defineComponent({
         isShow.value = num > 4;
       } else {
         isShow.value = num > 3;
+      }
+      if(props.column){
+        isShow.value=num>props.column
       }
     };
 

@@ -68,7 +68,7 @@ const bind = chris.useTables({
     activeValue: activeName.value,
     tabsList: [
       { label: "待审核", value: "1" },
-      { label: "审核中", value: "2" },
+      { label: "审核中", value: "kk" },
       { label: "已审核", value: "3" },
     ],
     isRoute: true,
@@ -77,14 +77,19 @@ const bind = chris.useTables({
     return {
       request: (params) => request({ ...params, state: row }),
       path: "data.rows",
+      column: 2,
       buttons: [
         {
           type: "primary",
           content: "清空全选",
           onClick: () => {
             activeName.value = row;
-            console.log("操作成功");
-            //   console.log("操作成功",tabRef.value.tableRef[activeName.value].refresh());
+            console.log(
+              "操作成功",
+              tabRef.value.tableRef[activeName.value].refresh,
+              tabRef.value
+            );
+            tabRef.value.tableRef[activeName.value].refresh();
           },
         },
         {
@@ -103,10 +108,18 @@ const bind = chris.useTables({
           label: "姓名",
           prop: "name",
           filter: "input",
+          align: "left",
         },
         {
           label: "地址",
           prop: "address",
+          filter: "input",
+          dictData: ref([{ label: "男", value: "1" }]),
+        },
+        {
+          label: "地址",
+          prop: "address",
+          filter: "input",
           dictData: ref([{ label: "男", value: "1" }]),
         },
         {
@@ -120,6 +133,7 @@ const bind = chris.useTables({
           },
           dictData: ref([{ label: "男", value: "1" }]),
         },
+
         {
           label: "操作",
           fixed: "right",

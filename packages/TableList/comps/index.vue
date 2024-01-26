@@ -273,7 +273,9 @@ const resetFn = () => {
 defineExpose({
   tableRef,
   formRef,
-  refresh: getParams,
+  refresh: (data) => {
+    getParams({ ...searchRef.value.newFormData, ...data });
+  },
   params: searchRef,
 });
 </script>
