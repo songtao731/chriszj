@@ -23,8 +23,7 @@ export interface UploadBaseProps {
   drag?: boolean;
   accept?: string;
   withCredentials?: boolean;
-  ref?:any
-
+  ref?: any;
 
   onPreview?: (uploadFile: UploadFile) => void;
   onRemove?: (uploadFile: UploadFile, uploadFiles: UploadFiles) => void;
@@ -54,10 +53,13 @@ export interface UploadBaseProps {
     uploadFiles: UploadFiles
   ) => Awaitable<boolean>;
   listType?: "text" | "picture" | "picture-card";
-  autoUpload?:boolean
-  httpRequest?:(options: UploadRequestOptions) => XMLHttpRequest | Promise<unknown>
-  disabled?:boolean
-  limit?:number
-  fileList?:UploadUserFile[]
-
+  autoUpload?: boolean;
+  httpRequest?: (
+    options: UploadRequestOptions
+  ) => XMLHttpRequest | Promise<unknown>;
+  disabled?: boolean;
+  limit?: number;
+  fileList?: UploadUserFile[];
+  buttonTest?: string;
+  slotText?: string;
 }

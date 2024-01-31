@@ -3,7 +3,6 @@
     v-model:file-list="fileList"
     :action="url"
     :before-upload="beforeAvatarUpload"
-    :on-change="changeFn"
   >
   </Tupload>
   <el-upload
@@ -17,6 +16,14 @@
   </el-upload>
 
   <Timgs :file-list="fileList2" width="100px" height="100px"></Timgs>
+
+  <Tupload
+    v-model:file-list="fileList"
+    :action="url"
+    :before-upload="beforeAvatarUpload"
+    list-type="text"
+  >
+  </Tupload>
   <!-- <Timgs :file-list="fileList2"> </Timgs>
 
 

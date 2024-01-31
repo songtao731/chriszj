@@ -9,7 +9,7 @@
         <slot name="search"> </slot>
       </template>
     </Search> -->
-    <div class="mb-5 font-bold text-[16px]">
+    <div class="mb-5 font-bold text-[16px]" v-if="props.title">
       {{ props.title }}
     </div>
     <Search2

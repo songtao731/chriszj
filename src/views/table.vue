@@ -200,7 +200,6 @@ const bind = computed(() => {
     column: 2,
     labelWidth: "100px",
     labelPosition: "left",
-    title: "aa",
     buttons: [
       {
         type: "primary",

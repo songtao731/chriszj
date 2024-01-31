@@ -5,10 +5,16 @@ import {
   UploadRequestHandler,
   UploadUserFile,
 } from "element-plus";
-import { ajaxUpload, UploadAjaxError } from "element-plus/es/components/upload/src/ajax";
+import {
+  ajaxUpload,
+  UploadAjaxError,
+} from "element-plus/es/components/upload/src/ajax";
 import { PropType } from "vue";
-import { definePropType, mutable, NOOP } from "../../../node_modules/element-plus/es/utils";
-
+import {
+  definePropType,
+  mutable,
+  NOOP,
+} from "../../../node_modules/element-plus/es/utils";
 
 export interface UploadBaseProps {
   action: string;
@@ -21,6 +27,8 @@ export interface UploadBaseProps {
   onProgress: (evt: UploadProgressEvent) => void;
   onSuccess: (response: any) => void;
   withCredentials: boolean;
+  buttonTest: string;
+  slotText: string;
 }
 
 export const uploadBaseProps = {
@@ -74,8 +82,8 @@ export const uploadBaseProps = {
     default: () => mutable([] as const),
   },
   listType: {
-    type: String as PropType< "text" | "picture" | "picture-card">,
-    default: "picture-card"
+    type: String as PropType<"text" | "picture" | "picture-card">,
+    default: "picture-card",
   },
   httpRequest: {
     type: definePropType<UploadRequestHandler>(Function),
@@ -83,7 +91,12 @@ export const uploadBaseProps = {
   },
   disabled: Boolean,
   limit: Number,
-  size:Number
+  size: Number,
+  buttonTest: {
+    type: String,
+    default: "上传",
+  },
+  slotText: String,
 };
 
 export const uploadProps = {
@@ -123,5 +136,5 @@ export const uploadProps = {
     type: definePropType<UploadHooks["onExceed"]>(Function),
     default: NOOP,
   },
-  class:String
+  class: String,
 };

@@ -20,7 +20,12 @@
     class="w-full"
   >
     <slot>
-      <el-button type="primary" class="min-w-[6em]">上传</el-button>
+      <el-button type="primary" class="min-w-[6em]" v-if="!props.slotText">{{
+        props.buttonTest
+      }}</el-button>
+      <span v-else>
+        {{ props.slotText }}
+      </span>
     </slot>
     <slot name="file"> </slot>
     <slot name="tip"> </slot>
@@ -37,7 +42,12 @@
     class="w-full"
   >
     <slot>
-      <el-button type="primary" class="min-w-[6em]">上传</el-button>
+      <el-button type="primary" class="min-w-[6em]" v-if="!props.slotText">{{
+        props.buttonTest
+      }}</el-button>
+      <span v-else>
+        {{ props.slotText }}
+      </span>
     </slot>
     <slot name="file"> </slot>
     <slot name="tip"> </slot>

@@ -855,6 +855,17 @@ const bind5 = chris.useForm({
         setOptions: { label: "dictLabel", value: "dictValue" },
       },
     },
+    {
+      label: "上传",
+      type: "upload",
+      upload: {
+        listType: "text",
+        showFileList: true,
+        drag: true,
+        action: "",
+        slotText: "i9929299",
+      },
+    },
   ],
 
   buttons: [
