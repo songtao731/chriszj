@@ -863,7 +863,7 @@ const bind5 = chris.useForm({
         showFileList: true,
         drag: true,
         action: "",
-        slotText: "i9929299",
+        slotText: "<p>111</p><p>22</p>",
       },
     },
   ],

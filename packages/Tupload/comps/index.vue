@@ -23,9 +23,7 @@
       <el-button type="primary" class="min-w-[6em]" v-if="!props.slotText">{{
         props.buttonTest
       }}</el-button>
-      <span v-else>
-        {{ props.slotText }}
-      </span>
+      <span v-else v-html="props.slotText"> </span>
     </slot>
     <slot name="file"> </slot>
     <slot name="tip"> </slot>
@@ -45,9 +43,7 @@
       <el-button type="primary" class="min-w-[6em]" v-if="!props.slotText">{{
         props.buttonTest
       }}</el-button>
-      <span v-else>
-        {{ props.slotText }}
-      </span>
+      <span v-else v-html="props.slotText"> </span>
     </slot>
     <slot name="file"> </slot>
     <slot name="tip"> </slot>

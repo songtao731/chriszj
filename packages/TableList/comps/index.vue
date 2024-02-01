@@ -35,7 +35,7 @@
     <slot name="centerheader"> </slot>
 
     <!-- 右上插槽 -->
-    <Buttons :buttons="props.buttons" :buttonsPosition="props.buttonsPosition">
+    <Buttons :buttons="buttonsGet" :buttonsPosition="props.buttonsPosition">
     </Buttons>
     <!-- {{ formData.dataList }} -->
     <ElForm ref="formRef" :model="formData">
@@ -65,7 +65,7 @@
         </ElTableColumn>
         <ElTableColumn
           v-for="(item, index) in columnsFilter"
-          :key="item"
+          :key="item.label"
           align="center"
           v-bind="item"
         >
@@ -192,6 +192,10 @@ watchEffect(() => {
     dataList.value = props.data;
     formData.value.dataList = dataList.value;
   }
+});
+//右上角按钮动态传参
+const buttonsGet = computed(() => {
+  return props.buttons;
 });
 
 const getDataList = async (data?: any) => {

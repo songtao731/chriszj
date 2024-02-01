@@ -8,12 +8,14 @@
     </template>
     1
     <el-input-number v-model="a" @change="aa"> </el-input-number>
+
+    <Timgs> </Timgs>
   </Card>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { Card } from "../../packages/index";
+import { Card, Timgs } from "../../packages/index";
 
 const a = ref();
 const aa = () => {

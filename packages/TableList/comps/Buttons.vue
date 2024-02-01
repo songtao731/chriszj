@@ -8,7 +8,7 @@
       type="primary"
       v-bind="item"
       v-for="(item, index) in buttonList"
-      :key="index"
+      :key="item.content"
     >
       {{ item.content }}
     </ElButton>
@@ -19,13 +19,16 @@ import { ElButton } from "element-plus";
 import { NewTableCtx } from "./TableNew";
 
 import { PropType } from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
   buttons: Array as PropType<NewTableCtx["buttons"]>,
   buttonsPosition: String as PropType<NewTableCtx["buttonsPosition"]>,
 });
 
-const buttonList = props.buttons;
+const buttonList = computed(() => {
+  return props.buttons;
+});
 </script>
 <script lang="ts">
 export default {

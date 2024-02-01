@@ -6,9 +6,12 @@
       ref="oneTable"
       show-summary
       :summaryMethod="getSummaries"
+      @selection-change="handleSelectionChange"
     >
       <template #topheader> 最上部</template>
-      <template #centerheader> 中间 </template>
+      <template #centerheader>
+        <ElButton type="primary" :disabled="!aa.length"> ssssss </ElButton>
+      </template>
       <template #footer> 尾部 </template>
 
       <template #append> </template>
@@ -64,8 +67,15 @@
 import { chris, TableList, TableLists, Tupload } from "../../packages/index";
 
 import { ref, computed, nextTick } from "vue";
-import { entertainApplicationAddList } from "@/api/index";
+import { listRole } from "@/api/index";
 import { ElButton } from "element-plus";
+
+const aa = ref([]);
+const handleSelectionChange = (val) => {
+  aa.value = val;
+
+  console.log(aa.value, "aa");
+};
 
 const oneTable = ref();
 const ruleForm = ref({
@@ -164,143 +174,135 @@ const fn = () => {
 };
 fn();
 
-const bind = chris.useTable({
-  searchData: ruleForm,
-  request: (params) => entertainApplicationAddList({ ...params }),
-  path: "data.list",
-  totalPath: "data.total",
-  pageNum: "pageIndex",
+const bind = computed(() => {
+  return chris.useTable({
+    searchData: ruleForm,
+    request: (params) => listRole({ ...params }),
 
-  buttons: [
-    {
-      type: "primary",
-      content: "新增",
-      onClick: () => {
-        //   oneTable.value.tableRef.refresh()
+    buttons: [
+      {
+        type: "primary",
+        content: "新增",
+        disabled: aa.value.length ? false : true,
 
-        console.log("操作成功", oneTable.value.refresh());
-      },
-    },
-    {
-      type: "success",
-      content: "删除",
-      onClick: () => {
-        console.log("删除操作成功");
-      },
-    },
-  ],
-  // data: [
-  //   {
-  //     name: "开始看",
-  //     age: "33",
-  //     price: 1000221,
-  //     date: "1689065097440",
-  //     dateTime: "1689065097440",
-  //     emun: "1",
-  //   },
-  //   { name: "算了算了了", age: "29", price: 8382.272, emun: "2" },
-  //   { name: "金额", age: "29", price: 0, emun: "3" },
-  // ],
-  columns: [
-    {
-      type: "selection",
-      width: "200px",
-    },
-    {
-      label: "姓名",
-      prop: "id",
-      formatter(row, column, cellValue, index) {
-        return cellValue + index;
-      },
-      filter: {
-        type: "input",
-        placeholder: "流程编号/申请人",
-        prop: "processNo",
-        label: "姓名:",
-        input: {
-          showWordLimit: true,
-          maxlength: 10,
-          suffixIcon: "Calendar",
+        onClick: () => {
+          //   oneTable.value.tableRef.refresh()
+
+          console.log("操作成功", oneTable.value.refresh());
         },
       },
-    },
-    {
-      label: "年龄送水",
-      prop: "promoter",
-      slotName: "age",
-      sortable: true,
-      value: ["zhinan", "typography"],
-      filter: {
-        type: "cascader",
-        prop: ["one", "two", "three"],
-        options: computed(() => data2.value),
+      {
+        type: "success",
+        content: "删除",
+        onClick: () => {
+          console.log("删除操作成功");
+        },
       },
-    },
-    {
-      label: "身价",
-      prop: "place",
-
-      filter: {
-        type: "dateRange",
-        prop: ["sTime", "eTime"],
+    ],
+    columns: [
+      {
+        type: "selection",
+        width: "200px",
       },
-    },
-    {
-      label: "日期送水",
-      prop: "date",
-      width: "120",
-      filter: "input",
-    },
-    {
-      label: "千分位上",
-      prop: "updateTime",
-      formatter(row, column, cellValue, index) {
-        return cellValue && cellValue.split(" ")[0];
-      },
-      filter: {
-        prop: ["min", "max"],
-        type: "inputrange",
-      },
-    },
-    {
-      label: "时间",
-      prop: "applicationTime",
-      formatType: "dateTime",
-      filter: {
-        type: "date",
-        hide: true,
-      },
-    },
-    {
-      label: "枚举",
-      prop: "status",
-      dictData: computed(() => data.value),
-      filter: {
-        type: "select",
-        options: computed(() => data.value),
-      },
-      buttons: [
-        {
-          content: "新增",
-          link: true,
-          type: "primary",
-          click(rows) {
-            console.log(rows, "新增");
+      {
+        label: "姓名",
+        prop: "id",
+        formatter(row, column, cellValue, index) {
+          return cellValue + index;
+        },
+        filter: {
+          type: "input",
+          placeholder: "流程编号/申请人",
+          prop: "processNo",
+          label: "姓名:",
+          input: {
+            showWordLimit: true,
+            maxlength: 10,
+            suffixIcon: "Calendar",
           },
         },
-        {
-          content: "删除",
-          link: true,
-          type: "success",
-          icon: "Delete",
-          click(row) {
-            console.log("删除", oneTable.value.params.newFormData);
-            //  oneTable.value.tableRef.setCurrentRow(row);
-          },
+      },
+      {
+        label: "年龄送水",
+        prop: "promoter",
+        slotName: "age",
+        sortable: true,
+        value: ["zhinan", "typography"],
+        filter: {
+          type: "cascader",
+          prop: ["one", "two", "three"],
+          options: computed(() => data2.value),
         },
-      ],
-    },
-  ],
+      },
+      {
+        label: "身价",
+        prop: "place",
+
+        filter: {
+          type: "dateRange",
+          prop: ["sTime", "eTime"],
+        },
+      },
+      {
+        label: "日期送水",
+        prop: "date",
+        width: "120",
+        filter: "input",
+      },
+      {
+        label: "千分位上",
+        prop: "updateTime",
+        formatter(row, column, cellValue, index) {
+          return cellValue && cellValue.split(" ")[0];
+        },
+        filter: {
+          prop: ["min", "max"],
+          type: "inputrange",
+        },
+      },
+      {
+        label: "时间",
+        prop: "applicationTime",
+        formatType: "dateTime",
+        filter: {
+          type: "date",
+          hide: true,
+        },
+      },
+      {
+        label: "枚举",
+        prop: "status",
+        dictData: computed(() => data.value),
+        filter: {
+          type: "select",
+          options: computed(() => data.value),
+        },
+        buttons: [
+          {
+            content: "新增",
+            link: true,
+            type: "primary",
+            disabled: aa.value.length ? false : true,
+
+            click(rows) {
+              console.log(rows, "新增");
+            },
+          },
+          {
+            content: "删除",
+            link: true,
+            type: "success",
+
+            icon: "Delete",
+            click(row) {
+              console.log("删除", oneTable.value.params.newFormData);
+              //  oneTable.value.tableRef.setCurrentRow(row);
+            },
+          },
+        ],
+      },
+    ],
+  });
 });
 
 let currentRow = ref();
