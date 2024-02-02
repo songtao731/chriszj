@@ -26,7 +26,7 @@ export const entertainApplicationAddList = (data: any) => {
 //团建申请列表
 export const teamBuildingApplicationAddList = (data: any) => {
   return axios({
-    url: `/financial-center-business/teamBuildingApplication/getBasePage`,
+    url: `http://118.184.183.199:9141/poiInfo/findCustomerReviewsOne/114`,
     method: "get",
     params: data,
   });

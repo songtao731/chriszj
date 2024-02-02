@@ -99,11 +99,11 @@ export type domain = {
   item: NewDataItem[];
   chriskey: string | number;
 };
-import { prew } from "chriszj/Tdescriptions/comps/useDescriptions";
+import { prew } from "../../Tdescriptions/comps/useDescriptions";
 import { MainPackage } from "../../BaseComps/index";
 // import  { RuleCreater } from "../../utils/index";
 import { ComputedRef, Ref } from "vue";
-import { FormatValueType } from "chriszj/TableList/comps/TableColumnItem";
+import { FormatValueType } from "../../TableList/comps/TableColumnItem";
 
 export type dataItem = {
   ref?: Ref<any>;

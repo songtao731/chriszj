@@ -1,5 +1,5 @@
 <template>
-  <Tupload
+  <!-- <Tupload
     v-model:file-list="fileList"
     :action="url"
     :before-upload="beforeAvatarUpload"
@@ -13,17 +13,18 @@
     :on-change="changeFn"
   >
     <el-icon><Plus /></el-icon>
-  </el-upload>
+  </el-upload> -->
+  <Tform v-bind="bind"> </Tform>
 
-  <Timgs :file-list="fileList2" width="100px" height="100px"></Timgs>
+  <!-- <Timgs :file-list="formData.imgs" width="100px" height="100px"></Timgs> -->
 
-  <Tupload
+  <!-- <Tupload
     v-model:file-list="fileList"
     :action="url"
     :before-upload="beforeAvatarUpload"
-    list-type="text"
+    list-type="picture"
   >
-  </Tupload>
+  </Tupload> -->
   <!-- <Timgs :file-list="fileList2"> </Timgs>
 
 
@@ -54,10 +55,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { Tupload, Timgs } from "../../packages/index";
+import { computed, ref } from "vue";
+import { Tupload, Timgs, chris, Tform } from "../../packages/index";
 
 import { ElMessage, ElUpload, UploadProps, UploadUserFile } from "element-plus";
+import { teamBuildingApplicationAddList } from "@/api/index";
 
 const url = "/api/gateway/financial/pay/collectionList/claim/list";
 
@@ -97,10 +99,42 @@ setTimeout(() => {
     },
   ];
 }, 1000);
+
+const formData = ref({});
 setTimeout(() => {
   fileList2.value = [
     {
-      name: "food.jpeg",
+      name: "fod929929299292992929292999.jpeg",
+      url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+    },
+    {
+      url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+    },
+    {
+      url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.pdf",
+    },
+    {
+      name: "fod929929299292992929292999.jpeg",
+      url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+    },
+    {
+      url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+    },
+    {
+      url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.pdf",
+    },
+    {
+      name: "fod929929299292992929292999.jpeg",
+      url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+    },
+    {
+      url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+    },
+    {
+      url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.pdf",
+    },
+    {
+      name: "fod929929299292992929292999.jpeg",
       url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
     },
     {
@@ -110,7 +144,17 @@ setTimeout(() => {
       url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.pdf",
     },
   ];
-}, 1000);
+  teamBuildingApplicationAddList().then((res) => {
+    console.log(res, "22");
+    res.data.imgList.forEach((el, index) => {
+      el.name = "img漱口水看看书看看书口算卡" + index + ".png";
+    });
+    formData.value = {
+      //  imgs: fileList2.value,
+      imgs: res.data.imgList,
+    };
+  });
+}, 100);
 const uploadRef = ref();
 const aa = () => {
   console.log(fileList.value);
@@ -118,4 +162,17 @@ const aa = () => {
 const outerVisible = ref(false);
 const innerVisible = ref(false);
 console.log(99);
+
+const bind = computed(() => {
+  return chris.useForm({
+    request: formData.value,
+    dataList: [
+      {
+        type: "prew",
+        prop: "imgs",
+        prew: {},
+      },
+    ],
+  });
+});
 </script>

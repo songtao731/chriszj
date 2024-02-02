@@ -4,11 +4,12 @@ import { FormatValueType } from "../../TableList/comps/TableColumnItem";
 export type direction = "vertical" | "horizontal";
 export type size = "large" | "default" | "small";
 export type align = "left" | "center" | "right";
-export type type="space"|"prew"
-export type prew={
-  width?:string
-  height?:string
-}
+export type type = "space" | "prew";
+export type prew = {
+  width?: string;
+  height?: string;
+  showName?: boolean;
+};
 
 export type desItem = {
   //标签文本
@@ -20,7 +21,7 @@ export type desItem = {
   //列的数量 1
   span?: number;
   width?: string | number;
-  minWidth?:string|number
+  minWidth?: string | number;
   align?: align;
   labelAlign?: align;
   className?: string;
@@ -36,11 +37,11 @@ export type desItem = {
   //自己格式化数据展示
   formatter?: (data: any) => any;
   //type 占位符和图片模式
-  type?:string,
+  type?: string;
   //当图片时 设置宽高
-  prew?:prew,
+  prew?: prew;
   //图片预览的宽 高 对齐方式
-  slotName?:string
+  slotName?: string;
 };
 
 export interface Args {

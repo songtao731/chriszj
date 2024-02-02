@@ -1,15 +1,35 @@
 <template>
-  <div v-for="(item, index) in srcList" :key="index" class="inline-block relative mr-[10px] border border-solid border-inherit overflow-hidden rounded-sm" :style="`width:${props.width};height:${props.height}`">
-    <el-image
-      v-bind="props"
-      :src="getUrl(item).url"
-      :preview-src-list="getImgList(index, item)"
-      ref="imgPrew"
-      @click="!getUrl(item).isImg && downFn(item)"
-      :style="`width:${props.width};height:${props.height}`"
-   
+  <div
+    v-for="(item, index) in srcList"
+    :key="item.url"
+    :style="`width:${props.width}`"
+    class="flex mr-2 items-start"
+  >
+    <div
+      class="flex flex-col items-center flex-shrink-0 min-h-[160px] relative"
     >
-    </el-image>
+      <el-image
+        v-bind="props"
+        :src="getUrl(item).url"
+        :preview-src-list="newImgList"
+        ref="imgPrew"
+        @click="!getUrl(item).isImg && downFn(item)"
+        :style="`width:${props.width};height:${props.height}`"
+        :initial-index="index"
+      >
+      </el-image>
+
+      <div
+        v-if="item.name && props.showName"
+        class="text-sm mt-2 h-6 text-center break-words truncate cursor-pointer tooltip"
+        :style="`width:${props.width}`"
+        @click="downFn(item)"
+        :data-name="item.name"
+      >
+        {{ item.name }}
+      </div>
+      <div v-else class="text-sm mt-2 h-6"></div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -25,13 +45,10 @@ import { imageProps } from "./imagePrew";
 import { handleDownload } from "../../utils/index";
 import { UploadFile } from "element-plus/es/components/upload/src/upload";
 
-
 //图片Ref
 const imgPrew = ref();
 
 const props = defineProps(imageProps);
-
-
 
 const srcList = computed(() => props.fileList);
 
@@ -76,34 +93,35 @@ const getUrl = (filename: { name?: string; url: string } | undefined) => {
   return { url, isImg };
 };
 
-const newImgList = computed(() =>
-  srcList.value.filter((el) => getUrl(el).isImg).map((el) => el.url)
-);
-
-const getImgList = (index, item) => {
-  if (getUrl(item).isImg) {
-    let arr = [];
-    let i = 0;
-    for (i; i < newImgList.value.length; i++) {
-      arr.push(newImgList.value[i + index]);
-      if (i + index >= newImgList.value.length - 1) {
-        index = 0 - (i + 1);
-      }
-    }
- 
-    return arr;
-  }
-};
+const newImgList = computed(() => srcList.value.map((el) => el.url));
 
 //下载
-const downFn = (file: {url:string,name?:string}) => {
-  handleDownload(file)
+const downFn = (file: { url: string; name?: string }) => {
+  handleDownload(file);
 };
 </script>
-<script lang="ts" >
-
+<script lang="ts">
 export default {
   name: "Timgs",
 };
 </script>
+<style lang="scss" scoped>
+.tooltip:hover::after {
+  content: attr(data-name); /* 使用data-name属性作为内容 */
+  position: absolute;
+  white-space: nowrap; /* 防止文本换行 */
+  overflow: hidden;
+  background-color: #666;
+  color: white;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  z-index: 1;
 
+  /* 调整位置使得tooltip更接近文本上方 */
+  left: 0px;
+  bottom: 20px;
+
+  margin-bottom: 10px; /* 增加文本与tooltip之间的距离 */
+}
+</style>
