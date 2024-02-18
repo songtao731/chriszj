@@ -106,6 +106,8 @@ import { ComputedRef, Ref } from "vue";
 import { FormatValueType } from "../../TableList/comps/TableColumnItem";
 
 export type dataItem = {
+  //select禁用
+  disabled?: boolean;
   ref?: Ref<any>;
 
   //标签文本

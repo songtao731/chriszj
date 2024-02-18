@@ -816,6 +816,7 @@ const bind5 = chris.useForm({
       prop: "input",
       label: "年龄(自定义)",
       rules: chris.rulesFn().required(true, "请输入年龄"),
+      placeholder: "222",
     },
     {
       type: "input",
@@ -844,15 +845,15 @@ const bind5 = chris.useForm({
       select: {
         options: [
           {
-            dictValue: "我是value",
-            dictLabel: "我是label",
+            label: "我是value",
+            value: "我是label",
           },
           {
-            dictValue: "我是value2",
-            dictLabel: "我是label2",
+            label: "我是value2",
+            value: "我是label2",
+            disabled: true,
           },
         ],
-        setOptions: { label: "dictLabel", value: "dictValue" },
       },
     },
     {

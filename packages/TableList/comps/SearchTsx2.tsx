@@ -201,8 +201,10 @@ export default defineComponent({
                 return {
                   label: el[data.select?.dictOptions?.label as string],
                   value: el[data.select?.dictOptions?.value as string],
+                  disabled:el.disabled
                 };
               });
+
             }
           }
           break;
@@ -445,6 +447,7 @@ export default defineComponent({
                                         value={
                                           el.select?.values ? ele : ele.value
                                         }
+                                        disabled={ele.disabled}
                                       />
                                     );
                                   }

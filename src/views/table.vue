@@ -131,7 +131,7 @@ const data3 = ref();
 const fn = () => {
   setTimeout(() => {
     data.value = [
-      { label2: "前端", value2: "1" },
+      { label2: "前端", value2: "1", disabled: true },
       { label2: "后端", value2: "2" },
       { label2: "运维", value2: "3" },
     ];
@@ -200,32 +200,32 @@ const bind = computed(() => {
     column: 2,
     labelWidth: "100px",
     labelPosition: "left",
-    buttons: [
-      {
-        type: "primary",
-        content: "新增",
-        onClick: () => {
-          //   oneTable.value.tableRef.refresh()
-          tableData.value.push({
-            date: "2016-05-04",
-            name: "王小虎",
-            address: "上海市普陀区金沙江路 1517 弄",
-            reg: "收款",
-            sel: "",
-            contractAmount: (num.value += 10),
-          });
+    // buttons: [
+    //   {
+    //     type: "primary",
+    //     content: "新增",
+    //     onClick: () => {
+    //       //   oneTable.value.tableRef.refresh()
+    //       tableData.value.push({
+    //         date: "2016-05-04",
+    //         name: "王小虎",
+    //         address: "上海市普陀区金沙江路 1517 弄",
+    //         reg: "收款",
+    //         sel: "",
+    //         contractAmount: (num.value += 10),
+    //       });
 
-          console.log("操作成功");
-        },
-      },
-      {
-        type: "success",
-        content: "删除",
-        onClick: () => {
-          console.log("删除操作成功");
-        },
-      },
-    ],
+    //       console.log("操作成功");
+    //     },
+    //   },
+    //   {
+    //     type: "success",
+    //     content: "删除",
+    //     onClick: () => {
+    //       console.log("删除操作成功");
+    //     },
+    //   },
+    // ],
     buttonsPosition: "left",
     columns: [
       {

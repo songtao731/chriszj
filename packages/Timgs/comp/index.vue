@@ -3,10 +3,10 @@
     v-for="(item, index) in srcList"
     :key="item.url"
     :style="`width:${props.width}`"
-    class="flex mr-2 items-start"
+    class="flex mr-3 items-start"
   >
     <div
-      class="flex flex-col items-center flex-shrink-0 min-h-[160px] relative"
+      class="flex flex-col items-center flex-shrink-0 min-h-[160px] overflow-hidden relative"
     >
       <el-image
         v-bind="props"
@@ -16,6 +16,7 @@
         @click="!getUrl(item).isImg && downFn(item)"
         :style="`width:${props.width};height:${props.height}`"
         :initial-index="index"
+        class="border border-solid border-inherit"
       >
       </el-image>
 

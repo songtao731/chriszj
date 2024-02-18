@@ -27,7 +27,7 @@ const props = defineProps({
 });
 
 const buttonList = computed(() => {
-  return props.buttons;
+  return Array.isArray(props.buttons) && props.buttons.filter((el) => !el.hide);
 });
 </script>
 <script lang="ts">

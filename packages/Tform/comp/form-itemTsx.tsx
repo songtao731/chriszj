@@ -592,6 +592,8 @@ export default defineComponent({
                                                           ? els
                                                           : els.value
                                                       }
+                                                      disabled={ele.disabled}
+
                                                     />
                                                   );
                                                 }
@@ -1162,7 +1164,6 @@ export default defineComponent({
                                   unref(el.select.options).map(
                                   
                                     (ele: any, index: any) => {
-                                  
                                       return (
                                         <ElOption
                                           key={el.label}
@@ -1170,6 +1171,7 @@ export default defineComponent({
                                           value={
                                             el.select?.values ? ele :(el.select?.dictOptions?.value)?(ele[el.select?.dictOptions?.value]):ele.value
                                           }
+                                          disabled={ele.disabled}
                                         />
                                       );
                                     }

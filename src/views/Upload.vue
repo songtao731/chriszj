@@ -145,9 +145,8 @@ setTimeout(() => {
     },
   ];
   teamBuildingApplicationAddList().then((res) => {
-    console.log(res, "22");
     res.data.imgList.forEach((el, index) => {
-      el.name = "img漱口水看看书看看书口算卡" + index + ".png";
+      el.name = "22" + index + ".png";
     });
     formData.value = {
       //  imgs: fileList2.value,
