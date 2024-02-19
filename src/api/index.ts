@@ -15,6 +15,14 @@ export const listRole = (data: any) => {
     params: data,
   });
 };
+export const uolodfFn = (data: any) => {
+  return axios({
+    url: "http://118.184.183.199:9141/system/file/upload",
+    method: "get",
+    params: data,
+  });
+};
+
 //招待申请列表
 export const entertainApplicationAddList = (data: any) => {
   return axios({

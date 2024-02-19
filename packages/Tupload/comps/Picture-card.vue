@@ -10,7 +10,7 @@
     <template #file="{ file }">
       <div>
         <Picprew
-          :file="{...file,loadProgress}"
+          :file="{ ...file, loadProgress }"
           @remove="handleRemove(file)"
           @download="downFn(file)"
         ></Picprew>
@@ -23,7 +23,7 @@ import { ref, computed } from "vue";
 import { Plus } from "@element-plus/icons-vue";
 import Picprew from "./picprew.vue";
 
-import { UploadFile } from "element-plus";
+import { ElProgress, UploadFile } from "element-plus";
 import { uploadProps } from "./upload";
 import { handleDownload } from "../../utils/index";
 
@@ -40,7 +40,7 @@ const fileList = computed({
   },
 });
 const loadProgress = ref(0);
-const uploadVideoProcess = (event:any) => {
+const uploadVideoProcess = (event: any) => {
   loadProgress.value = parseInt(event.percent); // 动态获取文件上传进度
 };
 
@@ -53,19 +53,17 @@ const handleRemove = (file: UploadFile) => {
 };
 
 const downFn = (file: UploadFile) => {
-  handleDownload(file)
+  handleDownload(file);
 };
 </script>
 
 <style scoped lang="scss">
-.el-upload-list--picture-card{
-    display: none !important;
-  }
-.chris-prew{
-  :deep(.el-upload-list--picture-card .el-upload-list__item){
+.el-upload-list--picture-card {
+  display: none !important;
+}
+.chris-prew {
+  :deep(.el-upload-list--picture-card .el-upload-list__item) {
     overflow: inherit;
   }
-
-
 }
 </style>

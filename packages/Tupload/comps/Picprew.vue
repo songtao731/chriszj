@@ -1,5 +1,12 @@
 <template>
-  <el-image :zoom-rate="1.2" :initial-index="4" fit="fill" :src="url" :preview-src-list="srcList" ref="imgPrew">
+  <el-image
+    :zoom-rate="1.2"
+    :initial-index="4"
+    fit="fill"
+    :src="url"
+    :preview-src-list="srcList"
+    ref="imgPrew"
+  >
   </el-image>
   <span class="el-upload-list__item-actions">
     <span
@@ -18,13 +25,7 @@
   </span>
 
   <el-progress
-    v-if="
-      percentage &&
-      percentage > 0 &&
-      percentage < 100 &&
-      props.file &&
-      props.file.status === 'uploading'
-    "
+    v-if="percentage && percentage > 0 && upLoadStatus !== 'success'"
     :percentage="percentage"
     :show-text="false"
     :indeterminate="false"
@@ -58,7 +59,13 @@ const handlePictureCardPreview = () => {
   imgPrew.value.$el.children[0].click();
 };
 //上传的进度条
-const percentage = computed(() => props.file && props.file.percentage);
+const percentage = computed(() => {
+  return props.file && props.file.percentage;
+});
+//上传状态
+const upLoadStatus = computed(() => {
+  return props.file && props.file.status;
+});
 
 srcList.value.push((props.file && props.file.url) || "");
 

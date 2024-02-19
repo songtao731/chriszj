@@ -163,14 +163,13 @@ let aa = ref<domain[]>([
         },
       },
       {
-        label: "上传",
+        label: "上传22",
         type: "upload",
         prop: "upload",
         required: true,
         value: [],
-
         upload: {
-          action: "/api/gateway/financial/pay/collectionList/claim/list",
+          action: "http://118.184.183.199:9141/system/file/upload",
           headers: {
             token: sessionStorage.token,
           },
@@ -859,12 +858,15 @@ const bind5 = chris.useForm({
     {
       label: "上传",
       type: "upload",
+      prop: "aa",
       upload: {
-        listType: "text",
-        showFileList: true,
-        drag: true,
-        action: "",
-        slotText: "<p>111</p><p>22</p>",
+        action: "http://118.184.183.199:9141/system/file/upload",
+        headers: {
+          Authorization: sessionStorage.token,
+        },
+        multiple: true,
+
+        onChange() {},
       },
     },
   ],
