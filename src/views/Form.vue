@@ -759,137 +759,141 @@ const btbfn = (val) => {
 };
 
 const tableData = {
-  data: {
-    rows: {
-      input: "19",
-      number: 1234,
-      one: 123,
-      two: 123,
-      select: "2",
-      radio: "2",
-      checkbox: ["1", "2"],
-      min: 22,
-      max: 33,
-      cascader: ["resource", "sketch"],
-      switch: "100",
-      slider: 30,
-      rate: 2.5,
-      remark: "我是备注",
-      date: "2023-11-22",
-      dateTime: ["2023-11-22", "2023-11-30"],
-
-      upload: [
-        {
-          name: "food.jpeg",
-          url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
-        },
-        {
-          name: "",
-          url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
-        },
-      ],
+  input: "19",
+  number: 1234,
+  one: 123,
+  two: 123,
+  select: "2",
+  radio: "2",
+  checkbox: ["1", "2"],
+  min: 22,
+  max: 33,
+  cascader: ["resource", "sketch"],
+  switch: "100",
+  slider: 30,
+  rate: 2.5,
+  remark: "我是备注",
+  date: "2023-11-22",
+  dateTime: ["2023-11-22", "2023-11-30"],
+  show: 2,
+  upload: [
+    {
+      name: "food.jpeg",
+      url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
     },
-    total: 3,
-  },
-  code: 200,
+    {
+      name: "",
+      url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+    },
+  ],
 };
 const request = (params) => {
   return new Promise((reslove, reject) => {
     setTimeout(() => {
       reslove(tableData);
+      formData.value = tableData;
     }, 100);
   });
 };
 const abc = ref({ number: "ksksk" });
+
+setTimeout(() => {
+  formData.value = tableData;
+}, 1000);
+const formData = ref({
+  show: 1,
+});
 // setTimeout(() => {
 //   abc.value = {
 //     number: 2222,
 //   };
 // }, 1);
-const bind5 = chris.useForm({
-  request: request,
-  path: "data.rows",
-  dataList: [
-    {
-      type: "input",
-      prop: "input",
-      label: "年龄(自定义)",
-      rules: chris.rulesFn().required(true, "请输入年龄"),
-      placeholder: "222",
-    },
-    {
-      type: "input",
-      prop: "number",
-      label: "数字(正则)",
-      rules: chris.rulesFn().pattern(/^\d{4}$/, "请输入四位数字"),
-      input: {
-        placeholder: "请输入四位数字",
+const bind5 = computed(() => {
+  return chris.useForm({
+    request: formData.value,
+    dataList: [
+      {
+        type: "input",
+        prop: "input",
+        label: "年龄(自定义)",
+        rules: chris.rulesFn().required(true, "请输入年龄"),
+        placeholder: "222",
       },
-    },
-    {
-      label: "地址",
-      prop: "address",
-      type: "select",
-      select: {
-        onChange(val) {
-          console.log(val, 123);
+      {
+        type: "input",
+        prop: "number",
+        label: "数字(正则)",
+        rules: chris.rulesFn().pattern(/^\d{4}$/, "请输入四位数字"),
+        input: {
+          placeholder: "请输入四位数字",
         },
-        options: [],
+        hide: formData.value.show === 1,
       },
-    },
-    {
-      label: "性别",
-      prop: "sex",
-      type: "select",
-      select: {
-        options: [
-          {
-            label: "我是value",
-            value: "我是label",
+      {
+        label: "地址",
+        prop: "address",
+        type: "select",
+        select: {
+          onChange(val) {
+            console.log(val, 123);
           },
-          {
-            label: "我是value2",
-            value: "我是label2",
-            disabled: true,
-          },
-        ],
-      },
-    },
-    {
-      label: "上传",
-      type: "upload",
-      prop: "aa",
-      upload: {
-        action: "http://118.184.183.199:9141/system/file/upload",
-        headers: {
-          Authorization: sessionStorage.token,
+          options: [],
         },
-        multiple: true,
+      },
+      {
+        label: "性别",
+        prop: "sex",
+        type: "select",
+        select: {
+          options: [
+            {
+              label: "我是value",
+              value: "我是label",
+            },
+            {
+              label: "我是value2",
+              value: "我是label2",
+              disabled: true,
+            },
+          ],
+        },
+      },
+      {
+        label: "上传",
+        type: "upload",
+        prop: "aa",
+        upload: {
+          action: "http://118.184.183.199:9141/system/file/upload",
+          headers: {
+            Authorization: sessionStorage.token,
+          },
+          multiple: true,
 
-        onChange() {},
+          onChange() {},
+        },
       },
-    },
-  ],
+    ],
 
-  buttons: [
-    {
-      content: "提交",
-      type: "primary",
-      onClick() {
-        console.log(tForm.value.form.formData);
+    buttons: [
+      {
+        content: "提交",
+        type: "primary",
+        onClick() {
+          console.log(tForm.value.form.formData);
+        },
       },
-    },
-    {
-      content: "关闭",
-      type: "primary",
-      hide: true,
-      hidden: true,
-      onClick() {
-        console.log(tForm.value.form.formData);
+      {
+        content: "关闭",
+        type: "primary",
+        hide: true,
+        hidden: true,
+        onClick() {
+          console.log(tForm.value.form.formData);
+        },
       },
-    },
-  ],
-  buttonsAlign: "right",
+    ],
+    buttonsAlign: "right",
+  });
 });
 </script>
 <style scoped lang="scss"></style>
