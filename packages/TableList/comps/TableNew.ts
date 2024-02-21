@@ -5,7 +5,7 @@ export type NewTableCtx = Args;
 
 export const NewTable = {
   request: Function,
-  title:String,
+  title: String,
   column: {
     type: Number,
     default: 0,
@@ -36,8 +36,8 @@ export const NewTable = {
   },
   buttons: Array as PropType<NewTableCtx["buttons"]>,
   buttonsPosition: {
-    type:String,
-    default: "right",
+    type: String,
+    default: "left",
   },
 
   pagination: {
@@ -46,7 +46,7 @@ export const NewTable = {
   },
   paginationPosition: {
     type: String,
-    default: 'center',
+    default: "right",
   },
   searchData: Object,
   layout: {

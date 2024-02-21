@@ -1,6 +1,6 @@
 <template>
   <div
-    class="chris-buttons px-5"
+    class="chris-buttons"
     v-if="buttonList?.length"
     :style="'text-align:' + props.buttonsPosition"
   >
@@ -39,6 +39,6 @@ export default {
 <style scoped lang="scss">
 .chris-buttons {
   text-align: right;
-  margin-bottom: 20px;
+  margin: 10px 0;
 }
 </style>

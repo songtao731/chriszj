@@ -119,6 +119,7 @@ TTable/tableprop
 | pageSizes | 分页切换的数目 同 Pagination 的属性 pageSizes | Arrary | [5,10,20,30] |
 | index | 开启关闭索引 | Object%%Blooean | true |
 | pagination | 开启关闭分页| Blooean | true |
+| paginationPosition | 分页的位置| left,center,right | right |
 |parseData|格式化后端数据|Function|-|
 |searchData|自定义查询条件|Object|-|
 

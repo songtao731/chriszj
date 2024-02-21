@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <Card>
     <TableList
       v-bind="bind"
       ref="oneTable"
@@ -48,13 +48,13 @@
         </el-select>
       </template>
     </TableList>
+  </Card>
 
-    <!-- <TableList v-bind="bind2" @resetFn="resetFn"> </TableList> -->
-  </div>
+  <!-- <TableList v-bind="bind2" @resetFn="resetFn"> </TableList> -->
 </template>
 
 <script setup lang="ts">
-import { chris, TableList } from "../../packages";
+import { chris, TableList, Card } from "../../packages";
 //import { chris, TableList } from "chriszj";
 
 import { ref, computed, reactive } from "vue";
@@ -197,35 +197,34 @@ const bind = computed(() => {
   return chris.useTable({
     request: (params) => useMockList({ ...params }),
     // data: tableData.value,
-    column: 2,
     labelWidth: "100px",
-    labelPosition: "left",
-    // buttons: [
-    //   {
-    //     type: "primary",
-    //     content: "新增",
-    //     onClick: () => {
-    //       //   oneTable.value.tableRef.refresh()
-    //       tableData.value.push({
-    //         date: "2016-05-04",
-    //         name: "王小虎",
-    //         address: "上海市普陀区金沙江路 1517 弄",
-    //         reg: "收款",
-    //         sel: "",
-    //         contractAmount: (num.value += 10),
-    //       });
+    labelPosition: "right",
+    buttons: [
+      {
+        type: "primary",
+        content: "新增",
+        onClick: () => {
+          //   oneTable.value.tableRef.refresh()
+          tableData.value.push({
+            date: "2016-05-04",
+            name: "王小虎",
+            address: "上海市普陀区金沙江路 1517 弄",
+            reg: "收款",
+            sel: "",
+            contractAmount: (num.value += 10),
+          });
 
-    //       console.log("操作成功");
-    //     },
-    //   },
-    //   {
-    //     type: "success",
-    //     content: "删除",
-    //     onClick: () => {
-    //       console.log("删除操作成功");
-    //     },
-    //   },
-    // ],
+          console.log("操作成功");
+        },
+      },
+      {
+        type: "success",
+        content: "删除",
+        onClick: () => {
+          console.log("删除操作成功");
+        },
+      },
+    ],
     buttonsPosition: "left",
     columns: [
       {

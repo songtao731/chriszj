@@ -15,7 +15,8 @@ setTimeout(() => {
     startRow: "1",
     pages: "99",
     check: [],
-    radio: "1",
+    radio:
+      "128828288282828828812881882888182181ssllssklkkskkskskskskkskskskskkskskksks22222212821389218321873127381273821738912738127389127381927398",
     rate: 1,
     nextPage: "身高2米",
     span: "WOSHI",
@@ -75,9 +76,7 @@ const bind = computed(() => {
         type: "span",
         prop: "radio",
         label: "raido",
-        formatter(row) {
-          return row.radio * 20;
-        },
+        class: "abc",
       },
       {
         type: "span",
@@ -115,4 +114,10 @@ const bind = computed(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.el-form-item {
+  :deep(.el-form-item__content) {
+    word-break: break-all;
+  }
+}
+</style>

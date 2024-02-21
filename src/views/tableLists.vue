@@ -1,5 +1,12 @@
 <template>
-  <TableLists v-bind="bind" ref="tabRef" @tabClick="tabClick"> </TableLists>
+  <TableLists
+    v-bind="bind"
+    border
+    ref="tabRef"
+    :row-class-name="tableRowClassName"
+    @tabClick="tabClick"
+  >
+  </TableLists>
 </template>
 <script setup lang="ts">
 import { chris, TableList, TableLists, Tupload } from "../../packages";
@@ -10,6 +17,20 @@ import { useRoute, useRouter } from "vue-router";
 import { useMockList } from "@/api";
 
 import { ref } from "vue";
+const tableRowClassName = ({
+  row,
+  rowIndex,
+}: {
+  row: User;
+  rowIndex: number;
+}) => {
+  if (rowIndex === 1) {
+    return "warning-row";
+  } else if (rowIndex === 3) {
+    return "success-row";
+  }
+  return "";
+};
 
 const tableData = {
   data: {
@@ -171,3 +192,11 @@ const bind = chris.useTables({
   },
 });
 </script>
+<style>
+.el-table .warning-row {
+  --el-table-tr-bg-color: var(--el-color-warning-light-9);
+}
+.el-table .success-row {
+  --el-table-tr-bg-color: var(--el-color-success-light-9);
+}
+</style>

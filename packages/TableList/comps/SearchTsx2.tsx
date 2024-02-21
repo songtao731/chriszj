@@ -294,7 +294,8 @@ export default defineComponent({
     return () => (
       <>
         {Array.isArray(searchList.value) && searchList.value.length ? (
-          <div class="chris-table-search bg-[#F8F8F8] p-[20px] mb-[20px]">
+          //chris-table-search 原样式   bg-[#F8F8F8] p-[20px] mb-[20px]
+          <div class="chris-table-search">
             <ElForm
               ref={formRef}
               {...props}
@@ -615,17 +616,19 @@ export default defineComponent({
             </ElForm>
             {searchList.value.length ? (
               <div class="chris-table-search-btns">
-                <ElButton type="primary" onClick={getParams} size={props.size}>
+                <ElButton type="primary" icon="Search" onClick={getParams} size={props.size}>
                   查询
                 </ElButton>
-                <ElButton onClick={resetFn} size={props.size}>
+                <ElButton icon="Refresh" onClick={resetFn} size={props.size}>
                   重置
                 </ElButton>
                 {isShow.value && (
                   <ElButton
-                    type="success"
+                  type="info"
+                  plain
                     onClick={changeName}
                     size={props.size}
+                   icon="Sort"
                   >
                     {showName.value}
                   </ElButton>
