@@ -1355,7 +1355,7 @@ export default defineComponent({
                             <ElFormItem
                               {...el}
                               rules={el.rules?.rules}
-                              class="w-full"
+                              class="w-full breakall"
                             >
                               <DesItemValue
                                 item={el}
