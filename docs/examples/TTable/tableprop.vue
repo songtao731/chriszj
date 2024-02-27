@@ -1,5 +1,12 @@
 <template>
-  <TableList v-bind="bind" ref="oneTable" @selection-change="handleSelectionChange" highlight-current-row   @current-change="handleCurrentChange"> </TableList>
+  <TableList
+    v-bind="bind"
+    ref="oneTable"
+    @selection-change="handleSelectionChange"
+    highlight-current-row
+    @current-change="handleCurrentChange"
+  >
+  </TableList>
 </template>
 
 <script setup lang="ts">
@@ -8,39 +15,37 @@ import { chris } from "chriszj";
 import { ref, computed } from "vue";
 
 const tableData = {
-  data: {
-    rows: [
-      {
-        date: "2016-05-02",
-        date2: "2016-05-02",
-        date3: "2016-05-02",
-        date4: "2016-05-02",
+  rows: [
+    {
+      date: "2016-05-02",
+      date2: "2016-05-02",
+      date3: "2016-05-02",
+      date4: "2016-05-02",
 
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄",
-        sex: "1",
-      },
-      {
-        date: "2016-05-04",
-        date2: "2016-05-02",
-        date3: "2016-05-02",
-        date4: "2016-05-02",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1517 弄",
-        sex: "2",
-      },
-      {
-        date: "2016-05-01",
-        date2: "2016-05-02",
-        date3: "2016-05-02",
-        date4: "2016-05-02",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1519 弄",
-        sex: "1",
-      },
-    ],
-    total: 3,
-  },
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1518 弄",
+      sex: "1",
+    },
+    {
+      date: "2016-05-04",
+      date2: "2016-05-02",
+      date3: "2016-05-02",
+      date4: "2016-05-02",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1517 弄",
+      sex: "2",
+    },
+    {
+      date: "2016-05-01",
+      date2: "2016-05-02",
+      date3: "2016-05-02",
+      date4: "2016-05-02",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1519 弄",
+      sex: "1",
+    },
+  ],
+  total: 3,
   code: 200,
 };
 
@@ -87,7 +92,7 @@ const request = (params) => {
     }, 100);
   });
 };
-const  oneTable=ref()
+const oneTable = ref();
 const bind = chris.useTable({
   request: (params) => request({ ...params, a: 1 }),
   buttons: [
@@ -95,7 +100,7 @@ const bind = chris.useTable({
       type: "primary",
       content: "新增后刷新列表",
       onClick: () => {
-        oneTable.value.refresh()
+        oneTable.value.refresh();
 
         console.log("刷新成功");
       },
@@ -110,18 +115,14 @@ const bind = chris.useTable({
       type: "success",
       content: "清空多选",
       onClick: () => {
-        
-        console.log("清空成功",oneTable.value.tableRef.clearSelection());
+        console.log("清空成功", oneTable.value.tableRef.clearSelection());
       },
-    }
-
+    },
   ],
-
-
 
   columns: [
     {
-      type:'selection'
+      type: "selection",
     },
     {
       label: "姓名简写",
@@ -146,31 +147,28 @@ const bind = chris.useTable({
       },
     },
     {
-       label:'操作',
-       buttons:[
+      label: "操作",
+      buttons: [
         {
-          type:'primary',
-          content:"单选",
-          onClick(row){
-
-              console.log(row,'22')
-          }
-        }
-       ]
-    }
+          type: "primary",
+          content: "单选",
+          onClick(row) {
+            console.log(row, "22");
+          },
+        },
+      ],
+    },
   ],
 });
 //单选
 let currentRow = ref();
 const handleCurrentChange = (val) => {
-console.log(val,'我是单选')
+  console.log(val, "我是单选");
   currentRow.value = val;
 };
-const multipleSelection = ref([])
+const multipleSelection = ref([]);
 const handleSelectionChange = (val) => {
-  console.log(val,'我是多选')
-  multipleSelection.value = val
-}
-
- 
+  console.log(val, "我是多选");
+  multipleSelection.value = val;
+};
 </script>

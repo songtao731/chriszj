@@ -24,7 +24,7 @@
     "async-validator": "^4.2.5",
     "axios": "^1.4.0",
     "chalk": "4.1.2",
-    "chriszj": "^2.1.6",
+    "chriszj": "^2.3.8",
     "consola": "^3.2.3",
     "element-plus": "^2.3.9",
     "escape-html": "^1.0.3",
@@ -37,7 +37,7 @@
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vitepress": "^1.0.0-beta.6",
     "vue": "^3.3.4",
-    "vue-router": "4.2.4"
+    "vue-router": "4.2.5"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.0",

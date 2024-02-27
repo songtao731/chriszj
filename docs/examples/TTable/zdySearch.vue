@@ -1,12 +1,21 @@
 <template>
   <TableList v-bind="bind" @resetFn="resetFn">
     <template #zds="{ scope }">
-        <el-select v-model="scope.dd" placeholder="请选择活动区域" @change="getForm" clearable class="w-full">
-          <el-option v-for="item in data" :key="item" :label="item.label" :value="item.value"></el-option>
-        </el-select>
-        
-      </template>
-
+      <el-select
+        v-model="scope.dd"
+        placeholder="请选择活动区域"
+        @change="getForm"
+        clearable
+        class="w-full"
+      >
+        <el-option
+          v-for="item in data"
+          :key="item"
+          :label="item.label"
+          :value="item.value"
+        ></el-option>
+      </el-select>
+    </template>
   </TableList>
 </template>
 
@@ -16,26 +25,25 @@ import { chris } from "chriszj";
 import { ref, computed } from "vue";
 //模拟表格的数据
 const tableData = {
-  data: {
-    rows: [
-      {
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄",
-        sex: "1",
-      },
-      {
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1517 弄",
-        sex: "2",
-      },
-      {
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1519 弄",
-        sex: "1",
-      },
-    ],
-    total: 3,
-  },
+  rows: [
+    {
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1518 弄",
+      sex: "1",
+    },
+    {
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1517 弄",
+      sex: "2",
+    },
+    {
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1519 弄",
+      sex: "1",
+    },
+  ],
+  total: 3,
+
   code: 200,
 };
 //自定义查询条件
@@ -44,14 +52,14 @@ const ruleForm = ref({
   region2: "",
 });
 //模拟第一个选择框 异步获取数据
-const data = ref()
+const data = ref();
 setTimeout(() => {
   data.value = [
     { label: "前端", value: "1" },
     { label: "后端", value: "2" },
     { label: "运维", value: "3" },
   ];
-}, 300)
+}, 300);
 
 const data12 = ref();
 //模拟异步获取第二个选择框数据
@@ -67,7 +75,6 @@ const getForm = (val) => {
     ];
   }, 2000);
 };
-
 
 //重置查询条件
 const resetFn = () => {
@@ -95,17 +102,13 @@ const bind = chris.useTable({
       filter: "input",
     },
     {
-
       label: "自定义查询",
       prop: "processNo",
       filter: {
         type: "custom",
-        slotName: 'zds',
-
-      }
+        slotName: "zds",
+      },
     },
   ],
 });
-
-
 </script>

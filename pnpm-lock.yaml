@@ -30,8 +30,8 @@ dependencies:
     specifier: 4.1.2
     version: 4.1.2
   chriszj:
-    specifier: ^2.1.6
-    version: 2.1.6
+    specifier: ^2.3.8
+    version: 2.3.8
   consola:
     specifier: ^3.2.3
     version: 3.2.3
@@ -1708,8 +1708,8 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /chriszj@2.1.6:
-    resolution: {integrity: sha512-W4DVp+hOqSLhWMjilGWKmR4kwYtQcid/K4pZTBJiBelqQlaaedbYSnjvE/ytPgeMeVY7ADjFBd3qy0P5zxKCOQ==}
+  /chriszj@2.3.8:
+    resolution: {integrity: sha512-frrDcD7W9SJxL3uVYcfDUb0y3HSEjOGwM+q1iFIKDsf7Vt0Ah28qlKFFVoiQW8hBv2/bqFxR9qS61jumpI8sxg==}
     dev: false
 
   /color-convert@1.9.3:

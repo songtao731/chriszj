@@ -8,39 +8,38 @@ import { chris } from "chriszj";
 import { ref, computed } from "vue";
 
 const tableData = {
-  data: {
-    rows: [
-      {
-        date: "2016-05-02",
-        date2: "2016-05-02",
-        date3: "2016-05-02",
-        date4: "2016-05-02",
+  rows: [
+    {
+      date: "2016-05-02",
+      date2: "2016-05-02",
+      date3: "2016-05-02",
+      date4: "2016-05-02",
 
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄",
-        sex: "1",
-      },
-      {
-        date: "2016-05-04",
-        date2: "2016-05-02",
-        date3: "2016-05-02",
-        date4: "2016-05-02",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1517 弄",
-        sex: "2",
-      },
-      {
-        date: "2016-05-01",
-        date2: "2016-05-02",
-        date3: "2016-05-02",
-        date4: "2016-05-02",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1519 弄",
-        sex: "1",
-      },
-    ],
-    total: 3,
-  },
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1518 弄",
+      sex: "1",
+    },
+    {
+      date: "2016-05-04",
+      date2: "2016-05-02",
+      date3: "2016-05-02",
+      date4: "2016-05-02",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1517 弄",
+      sex: "2",
+    },
+    {
+      date: "2016-05-01",
+      date2: "2016-05-02",
+      date3: "2016-05-02",
+      date4: "2016-05-02",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1519 弄",
+      sex: "1",
+    },
+  ],
+  total: 3,
+
   code: 200,
 };
 
@@ -108,12 +107,12 @@ const bind = chris.useTable({
       prop: "sex",
       filter: {
         type: "select",
-        select:{
+        select: {
           options: [
-          { label: "男", value: "1" },
-          { label: "女", value: "2" },
-        ],
-        }
+            { label: "男", value: "1" },
+            { label: "女", value: "2" },
+          ],
+        },
       },
     },
     {
@@ -121,10 +120,9 @@ const bind = chris.useTable({
       prop: "tree",
       filter: {
         type: "cascader",
-        cascader:{
-        options: computed(() => data2.value),
-
-        }
+        cascader: {
+          options: computed(() => data2.value),
+        },
       },
     },
     {
@@ -141,9 +139,9 @@ const bind = chris.useTable({
       filter: {
         type: "date",
         prop: ["minTime", "maxTime"],
-        date:{
-          type:'daterange'
-        }
+        date: {
+          type: "daterange",
+        },
       },
     },
     {
@@ -151,9 +149,9 @@ const bind = chris.useTable({
       prop: "date3",
       filter: {
         type: "date",
-        date:{
-          type:'datetime'
-        }
+        date: {
+          type: "datetime",
+        },
       },
     },
     {
@@ -162,9 +160,9 @@ const bind = chris.useTable({
       filter: {
         type: "date",
         prop: ["minTimeRange", "maxTimeRange"],
-        date:{
-          type:'datetimerange'
-        }
+        date: {
+          type: "datetimerange",
+        },
       },
     },
     {
@@ -186,15 +184,15 @@ const bind = chris.useTable({
               label: "测试",
               value: "3",
             },
-          ]
+          ],
         },
       },
     },
     {
-      label: '单选',
-      prop: 'radio',
+      label: "单选",
+      prop: "radio",
       filter: {
-        type: 'radio',
+        type: "radio",
         radio: {
           options: [
             {
@@ -211,46 +209,42 @@ const bind = chris.useTable({
             },
           ],
           onChange() {
-            console.log(1)
-          }
-        }
-      }
+            console.log(1);
+          },
+        },
+      },
     },
     {
-      label: '星星',
-      prop: 'xingxing',
+      label: "星星",
+      prop: "xingxing",
       filter: {
-        type: 'rate',
-
-      }
+        type: "rate",
+      },
     },
     {
-      label: '开关',
-      prop: 'switch',
+      label: "开关",
+      prop: "switch",
       filter: {
-        type: 'switch'
-      }
+        type: "switch",
+      },
     },
     {
-      label: '数值',
-      prop: 'slider',
+      label: "数值",
+      prop: "slider",
       filter: {
-        type: 'slider'
-      }
+        type: "slider",
+      },
     },
     {
       label: "范围",
       prop: "updateTime",
       filter: {
-        type: 'inputrange',
+        type: "inputrange",
         columns: [
           {
             prop: "min",
             placeholder: "请输入最小值",
-            input: {
-
-            },
-
+            input: {},
           },
           {
             prop: "max",
@@ -261,6 +255,4 @@ const bind = chris.useTable({
     },
   ],
 });
-
- 
 </script>

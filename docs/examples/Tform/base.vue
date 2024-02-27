@@ -7,7 +7,7 @@
 import { chris, Tform } from "chriszj";
 import { ref } from "vue";
 
-const tForm=ref()
+const tForm = ref();
 
 const bind = chris.useForm({
   title: "表单",
@@ -17,7 +17,7 @@ const bind = chris.useForm({
       type: "input",
       prop: "input",
       label: "输入框",
-      required: true
+      required: true,
     },
     {
       type: "select",
@@ -35,7 +35,7 @@ const bind = chris.useForm({
           },
         ],
         onChange(val) {
-          console.log(val)
+          console.log(val);
         },
       },
     },
@@ -103,15 +103,14 @@ const bind = chris.useForm({
             value: "3",
             disabled: true,
           },
-        ]
-
+        ],
       },
       value: "2",
     },
     {
-      type: 'checkBox',
-      label: '多选',
-      prop: 'checkbox',
+      type: "checkBox",
+      label: "多选",
+      prop: "checkbox",
       checkBox: {
         options: [
           {
@@ -125,23 +124,22 @@ const bind = chris.useForm({
           {
             label: "测试",
             value: "3",
-
           },
         ],
-      }
+      },
     },
     {
-      type: 'rate',
-      label: '打分',
-      prop: 'rate',
+      type: "rate",
+      label: "打分",
+      prop: "rate",
       rate: {
         texts: ["oops", "disappointed", "normal", "good", "great"],
         showText: true,
         allowHalf: true,
         onChange(val) {
-          console.log(1)
+          console.log(1);
         },
-      }
+      },
     },
     {
       label: "开关",
@@ -150,7 +148,7 @@ const bind = chris.useForm({
       value: "1",
       switch: {
         onChange(val) {
-          console.log(val)
+          console.log(val);
         },
         activeValue: "100",
         inactiveValue: "8",
@@ -160,7 +158,7 @@ const bind = chris.useForm({
       label: "滑块",
       prop: "slider",
       type: "slider",
-      value:20,
+      value: 20,
       slider: {
         onChange(val) {
           console.log(val);
@@ -182,38 +180,32 @@ const bind = chris.useForm({
       ],
     },
     {
-      type: 'input',
-      label: '备注:',
-      prop: 'remark',
+      type: "input",
+      label: "备注:",
+      prop: "remark",
       input: {
-        type: 'textarea'
+        type: "textarea",
       },
-      span: 3
+      span: 3,
     },
     {
       label: "上传",
       type: "upload",
       prop: "upload",
       upload: {
-        action: "https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+        action: "https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15",
+        tip: "<span>请穿入xxx</span>",
       },
     },
-
   ],
   buttons: [
     {
-
       content: "提交",
       type: "primary",
       onClick() {
-        console.log(
-          tForm.value.form.formData,
-        );
-
-      }
-    }
-
-
-  ]
+        console.log(tForm.value.form.formData);
+      },
+    },
+  ],
 });
 </script>

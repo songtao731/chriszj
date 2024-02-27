@@ -1,51 +1,48 @@
 <template>
-  <TableLists v-bind="bind" ref="tabRef">
-  </TableLists>
+  <TableLists v-bind="bind" ref="tabRef"> </TableLists>
 </template>
 <script setup lang="ts">
-import { chris ,TableLists} from "chriszj";
+import { chris, TableLists } from "chriszj";
 //实际使用是 import { chris } from "chriszj";
 
 import { ref } from "vue";
 
 const tableData = {
-  data: {
-    rows: [
-      {
-        date: "2016-05-02",
-        date2: "2016-05-02",
-        date3: "2016-05-02",
-        date4: "2016-05-02",
+  rows: [
+    {
+      date: "2016-05-02",
+      date2: "2016-05-02",
+      date3: "2016-05-02",
+      date4: "2016-05-02",
 
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄",
-        sex: "1",
-      },
-      {
-        date: "2016-05-04",
-        date2: "2016-05-02",
-        date3: "2016-05-02",
-        date4: "2016-05-02",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1517 弄",
-        sex: "2",
-      },
-      {
-        date: "2016-05-01",
-        date2: "2016-05-02",
-        date3: "2016-05-02",
-        date4: "2016-05-02",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1519 弄",
-        sex: "1",
-      },
-    ],
-    total: 3,
-  },
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1518 弄",
+      sex: "1",
+    },
+    {
+      date: "2016-05-04",
+      date2: "2016-05-02",
+      date3: "2016-05-02",
+      date4: "2016-05-02",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1517 弄",
+      sex: "2",
+    },
+    {
+      date: "2016-05-01",
+      date2: "2016-05-02",
+      date3: "2016-05-02",
+      date4: "2016-05-02",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1519 弄",
+      sex: "1",
+    },
+  ],
+  total: 3,
+
   code: 200,
 };
 const request = (params) => {
- 
   return new Promise((reslove, reject) => {
     setTimeout(() => {
       reslove(tableData);
@@ -55,7 +52,7 @@ const request = (params) => {
 
 const activeName = ref("1");
 
-const tabRef=ref()
+const tabRef = ref();
 
 const bind = chris.useTables({
   tabs: {
@@ -93,17 +90,17 @@ const bind = chris.useTables({
       ],
       columns: [
         {
-          type:'selection'
+          type: "selection",
         },
         {
           label: "姓名",
           prop: "name",
-          filter:'input'
+          filter: "input",
         },
         {
           label: "地址",
           prop: "address",
-        }
+        },
       ],
     };
   },

@@ -8,44 +8,34 @@ import { chris } from "chriszj";
 import { ref, computed } from "vue";
 
 const tableData = {
-  data: {
-    rows: [
-      {
+  rows: [
+    {
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1518 弄",
+      sex: "1",
+      job: "1",
+      money: "1202020",
+      time: "1690440269140",
+    },
+    {
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1517 弄",
+      sex: "2",
+      job: "2",
+      money: "3122324",
+      time: "1690430269140",
+    },
+    {
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1519 弄",
+      sex: "1",
+      job: "2",
+      money: "545202023",
+      time: "1690442269140",
+    },
+  ],
+  total: 3,
 
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄",
-        sex: "1",
-        job: "1",
-        money:'1202020',
-        time:'1690440269140'
-
-      },
-      {
-
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1517 弄",
-        sex: "2",
-        job: "2",
-        money:'3122324',
-        time:'1690430269140'
-
-
-
-      },
-      {
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1519 弄",
-        sex: "1",
-        job: "2",
-        money:'545202023',
-        time:'1690442269140'
-
-
-
-      },
-    ],
-    total: 3,
-  },
   code: 200,
 };
 
@@ -86,12 +76,12 @@ const bind = chris.useTable({
       prop: "sex",
       filter: {
         type: "select",
-        select:{
+        select: {
           options: [
-          { label: "男", value: "1" },
-          { label: "女", value: "2" },
-        ],
-        }
+            { label: "男", value: "1" },
+            { label: "女", value: "2" },
+          ],
+        },
       },
       dictData: [
         { label: "男", value: "1" },
@@ -103,35 +93,32 @@ const bind = chris.useTable({
       prop: "job",
       filter: {
         type: "select",
-        select:{
-        options:computed(()=>data.value),
-
-        }
+        select: {
+          options: computed(() => data.value),
+        },
       },
-      dictData: computed(()=>data.value),
+      dictData: computed(() => data.value),
     },
     {
       label: "金钱",
       prop: "money",
-      formatType:'price'
+      formatType: "price",
     },
     {
       label: "金钱(汉字)",
       prop: "money",
-      formatType:'priceChinese'
+      formatType: "priceChinese",
     },
     {
       label: "格式化日期",
       prop: "time",
-      formatType:'date'
+      formatType: "date",
     },
     {
       label: "格式化日期时间",
       prop: "time",
-      formatType:'dateTime'
-    }
+      formatType: "dateTime",
+    },
   ],
 });
-
- 
 </script>

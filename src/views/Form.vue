@@ -915,42 +915,8 @@ const bind5 = computed(() => {
               url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
             },
           ],
-          tip: "<div style='color:red'>229292992299</div>",
 
           onChange() {},
-        },
-      },
-      {
-        label: "地址",
-        prop: "address",
-        type: "select",
-        select: {
-          onChange(val) {
-            console.log(val, 123);
-          },
-          options: [],
-        },
-      },
-      {
-        label: "地址",
-        prop: "address",
-        type: "select",
-        select: {
-          onChange(val) {
-            console.log(val, 123);
-          },
-          options: [],
-        },
-      },
-      {
-        label: "地址",
-        prop: "address",
-        type: "select",
-        select: {
-          onChange(val) {
-            console.log(val, 123);
-          },
-          options: [],
         },
       },
     ],
