@@ -8,11 +8,13 @@
     <slot> </slot>
     <slot name="file"> </slot> <slot name="tip"> </slot>
     <slot name="trigger"> </slot>
+    <template #tip>
+      <div v-if="props.tip" v-html="props.tip"></div>
+    </template>
   </el-upload>
 </template>
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-
 
 import { uploadProps } from "./upload";
 
@@ -35,13 +37,10 @@ const uploadVideoProcess = (event: any) => {
 
 //上传Ref
 const pictureUpload = ref();
-
-
-
 </script>
 
 <style scoped lang="scss">
-:deep(.el-upload.el-upload--text){
+:deep(.el-upload.el-upload--text) {
   display: block;
 }
 </style>

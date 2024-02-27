@@ -197,7 +197,6 @@ export default defineComponent({
 
       if (dataList.value.length) {
         dataList.value.forEach((el) => {
-          resetFn(el);
           el.nospan = (el.span && +el.span * (24 / +column)) || 24 / +column;
           el.nospan = el.nospan && el.nospan > 24 ? 24 : el.nospan;
 

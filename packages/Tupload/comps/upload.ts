@@ -29,6 +29,7 @@ export interface UploadBaseProps {
   withCredentials: boolean;
   buttonTest: string;
   slotText: string;
+  tip: string;
 }
 
 export const uploadBaseProps = {
@@ -97,6 +98,7 @@ export const uploadBaseProps = {
     default: "上传",
   },
   slotText: String,
+  tip: String,
 };
 
 export const uploadProps = {

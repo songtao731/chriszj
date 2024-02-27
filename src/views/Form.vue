@@ -25,6 +25,8 @@
       </ElInput>
     </template>
   </Tform> -->
+  <span @click="title = '编辑'">编辑 </span>
+  <span @click="title = '查看'">查看 </span>
 
   <Tform v-bind="bind5" ref="tForm"> </Tform>
 </template>
@@ -798,16 +800,50 @@ const request = (params) => {
 const abc = ref({ number: "ksksk" });
 
 setTimeout(() => {
-  formData.value = tableData;
+  formData.value = {
+    input: "19",
+    number: 1234,
+    one: 123,
+    two: 123,
+    select: "2",
+    radio: "2",
+    checkbox: ["1", "2"],
+    min: 22,
+    max: 33,
+    cascader: ["resource", "sketch"],
+    switch: "100",
+    slider: 30,
+    rate: 2.5,
+    remark: "我是备注",
+    date: "2023-11-22",
+    dateTime: ["2023-11-22", "2023-11-30"],
+    show: 1,
+    upload: [
+      {
+        name: "food.jpeg",
+        url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+      },
+      {
+        name: "",
+        url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+      },
+    ],
+  };
 }, 1000);
 const formData = ref({
-  show: 1,
+  show: 0,
 });
 // setTimeout(() => {
 //   abc.value = {
 //     number: 2222,
 //   };
 // }, 1);
+
+const title = ref("查看");
+
+const isSee = () => {
+  return /查看/.test(title.value);
+};
 const bind5 = computed(() => {
   return chris.useForm({
     request: formData.value,
@@ -820,6 +856,7 @@ const bind5 = computed(() => {
         placeholder: "222",
       },
       {
+        // type: isSee() ? "span" : "input",
         type: "input",
         prop: "number",
         label: "数字(正则)",
@@ -861,15 +898,59 @@ const bind5 = computed(() => {
       {
         label: "上传",
         type: "upload",
-        prop: "aa",
+        prop: "upload",
         upload: {
           action: "http://118.184.183.199:9141/system/file/upload",
           headers: {
             Authorization: sessionStorage.token,
           },
           multiple: true,
+          fileList: [
+            {
+              name: "food.jpeg",
+              url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+            },
+            {
+              name: "222",
+              url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+            },
+          ],
+          tip: "<div style='color:red'>229292992299</div>",
 
           onChange() {},
+        },
+      },
+      {
+        label: "地址",
+        prop: "address",
+        type: "select",
+        select: {
+          onChange(val) {
+            console.log(val, 123);
+          },
+          options: [],
+        },
+      },
+      {
+        label: "地址",
+        prop: "address",
+        type: "select",
+        select: {
+          onChange(val) {
+            console.log(val, 123);
+          },
+          options: [],
+        },
+      },
+      {
+        label: "地址",
+        prop: "address",
+        type: "select",
+        select: {
+          onChange(val) {
+            console.log(val, 123);
+          },
+          options: [],
         },
       },
     ],

@@ -16,12 +16,15 @@
         ></Picprew>
       </div>
     </template>
+    <template #tip>
+      <div v-if="props.tip" v-html="props.tip"></div>
+    </template>
   </el-upload>
 </template>
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import { Plus } from "@element-plus/icons-vue";
-import Picprew from "./picprew.vue";
+import Picprew from "./Picprew.vue";
 
 import { ElProgress, UploadFile } from "element-plus";
 import { uploadProps } from "./upload";

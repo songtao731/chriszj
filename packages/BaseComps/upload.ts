@@ -24,7 +24,7 @@ export interface UploadBaseProps {
   accept?: string;
   withCredentials?: boolean;
   ref?: any;
-
+  tip?: string;
   onPreview?: (uploadFile: UploadFile) => void;
   onRemove?: (uploadFile: UploadFile, uploadFiles: UploadFiles) => void;
 
