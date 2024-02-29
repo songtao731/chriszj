@@ -199,11 +199,15 @@ const buttonsGet = computed(() => {
 });
 
 const getDataList = async (data?: any) => {
-  const loading = ElLoading.service({
-    lock: true,
-    text: "Loading",
-    background: "rgba(0, 0, 0, 0.7)",
-  });
+  let loading = null;
+  if (!props.hideLoading) {
+    loading = ElLoading.service({
+      lock: true,
+      text: "Loading",
+      background: "rgba(0, 0, 0, 0.7)",
+    });
+  }
+
   const params = {
     ...data,
     [usePageNum]: currentPage.value,
@@ -215,7 +219,9 @@ const getDataList = async (data?: any) => {
         return res;
       })
       .finally(() => {
-        loading.close();
+        if (loading) {
+          loading.close();
+        }
       });
 
     dataList.value = getPath(res, path);

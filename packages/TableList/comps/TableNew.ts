@@ -65,4 +65,8 @@ export const NewTable = {
     type: Number,
     default: 10,
   },
+  hideLoading: {
+    type: Boolean,
+    default: false,
+  },
 };

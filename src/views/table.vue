@@ -199,6 +199,7 @@ const bind = computed(() => {
     // data: tableData.value,
     labelWidth: "100px",
     labelPosition: "right",
+    hideLoading: true,
     buttons: [
       {
         type: "primary",
