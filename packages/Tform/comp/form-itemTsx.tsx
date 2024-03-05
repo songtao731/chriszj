@@ -71,7 +71,7 @@ export default defineComponent({
           }
         });
       }
-    });
+    },{deep:true});
 
     //初始化函数的
     let path = props.path || "data";

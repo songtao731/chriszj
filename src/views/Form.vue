@@ -761,7 +761,7 @@ const btbfn = (val) => {
 };
 
 const tableData = {
-  input: "19",
+  input: "20",
   number: 1234,
   one: 123,
   two: 123,
@@ -793,43 +793,46 @@ const request = (params) => {
   return new Promise((reslove, reject) => {
     setTimeout(() => {
       reslove(tableData);
-      formData.value = tableData;
+      formData.value.input = 2222;
+      // formData.value = tableData;
+      console.log(formData.value, "777777");
     }, 100);
   });
 };
 const abc = ref({ number: "ksksk" });
+request();
 
-setTimeout(() => {
-  formData.value = {
-    input: "19",
-    number: 1234,
-    one: 123,
-    two: 123,
-    select: "2",
-    radio: "2",
-    checkbox: ["1", "2"],
-    min: 22,
-    max: 33,
-    cascader: ["resource", "sketch"],
-    switch: "100",
-    slider: 30,
-    rate: 2.5,
-    remark: "我是备注",
-    date: "2023-11-22",
-    dateTime: ["2023-11-22", "2023-11-30"],
-    show: 1,
-    upload: [
-      {
-        name: "food.jpeg",
-        url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
-      },
-      {
-        name: "",
-        url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
-      },
-    ],
-  };
-}, 1000);
+// setTimeout(() => {
+//   formData.value = {
+//     input: "19",
+//     number: 1234,
+//     one: 123,
+//     two: 123,
+//     select: "2",
+//     radio: "2",
+//     checkbox: ["1", "2"],
+//     min: 22,
+//     max: 33,
+//     cascader: ["resource", "sketch"],
+//     switch: "100",
+//     slider: 30,
+//     rate: 2.5,
+//     remark: "我是备注",
+//     date: "2023-11-22",
+//     dateTime: ["2023-11-22", "2023-11-30"],
+//     show: 1,
+//     upload: [
+//       {
+//         name: "food.jpeg",
+//         url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+//       },
+//       {
+//         name: "",
+//         url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+//       },
+//     ],
+//   };
+// }, 1000);
 const formData = ref({
   show: 0,
 });
