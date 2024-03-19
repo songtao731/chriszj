@@ -1,5 +1,7 @@
 <template>
   <div class="about">
+    <img :src="logo" alt="" width="100" />
+
     <TableList
       v-bind="bind"
       @resetFn="resetFn"
@@ -69,6 +71,8 @@ import { chris, TableList, TableLists, Tupload } from "../../packages/index";
 import { ref, computed, nextTick } from "vue";
 import { listRole } from "@/api/index";
 import { ElButton } from "element-plus";
+import dt from "@/assets/dt.svg";
+import logo from "@/assets/logo.svg";
 
 const aa = ref([]);
 const handleSelectionChange = (val) => {

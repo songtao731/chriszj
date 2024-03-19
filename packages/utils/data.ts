@@ -7,8 +7,8 @@ export const valueFormat={
   week:'YYYY-MM-DD',
   monthrange:'YYYY-MM',
 
-  datetime:'YYYY-MM-DD hh:mm:ss',
-  datetimerange:'YYYY-MM-DD hh:mm:ss',
+  datetime:'YYYY-MM-DD HH:mm:ss',
+  datetimerange:'YYYY-MM-DD HH:mm:ss',
 
 
 

@@ -71,6 +71,7 @@ let aa = ref<domain[]>([
         type: "input",
         rules: chris.rulesFn().required(true, "请输入测试12"),
       },
+
       {
         label: "测试2",
         prop: "b",
@@ -89,6 +90,7 @@ let aa = ref<domain[]>([
           type: "daterange",
         },
       },
+
       {
         type: "range",
         label: "range",
@@ -847,6 +849,14 @@ const title = ref("查看");
 const isSee = () => {
   return /查看/.test(title.value);
 };
+const mm = ref([]);
+
+setTimeout(() => {
+  aa.value = [
+    { label: "男", value: "1" },
+    { label: "女", value: "2" },
+  ];
+}, 1000);
 const bind5 = computed(() => {
   return chris.useForm({
     request: formData.value,
@@ -857,6 +867,14 @@ const bind5 = computed(() => {
         label: "年龄(自定义)",
         rules: chris.rulesFn().required(true, "请输入年龄"),
         placeholder: "222",
+      },
+      {
+        label: "多选",
+        prop: "a",
+        type: "checkBox",
+        checkBox: {
+          options: computed(() => aa.value).value,
+        },
       },
       {
         // type: isSee() ? "span" : "input",

@@ -364,12 +364,12 @@ const bind = computed(() => {
         label: "日期时间范围",
         prop: "datetimerange222",
         formatType: "dateTime",
-        value: ["2024-11-18 00:00:11", "2025-11-12 12:00:00"],
         filter: {
           type: "date",
           prop: ["mindatetimerange", "ebddatetimerange"],
           date: {
             type: "datetimerange",
+            format: "YYYY-MM-DD HH:mm:ss",
           },
         },
       },
@@ -413,7 +413,7 @@ const bind = computed(() => {
           checkBox: {
             options: [
               {
-                label2: "前端",
+                label: "前端",
                 value: "1",
               },
               {
