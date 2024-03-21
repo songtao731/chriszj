@@ -1,14 +1,17 @@
 import { ElButton } from "element-plus";
-import { defineComponent } from "vue";
+import { defineComponent, unref } from "vue";
 import { formatPrice, formatTime } from "../utils/format";
 import { ButtonProps } from "./Button";
+import { labelEnum,searchTree } from "../../utils";
+
 
 export default defineComponent({
   props: ["data", "column"],
   setup(props) {
     const parseValue = (data: any, column: any) => {
-      const { formatType, prop, dictData, buttons } = column;
-
+      const { formatType, prop, dictData, buttons,dictOptions } = column;
+  //初始化字典 tree参数
+  const options = labelEnum(dictOptions);
       let result;
       if (props.data[prop] === 0) {
         result = 0;
@@ -37,12 +40,19 @@ export default defineComponent({
         }
       }
       //处理枚举 字典
-      if (dictData && dictData.length) {
-        const findData = dictData.find((el: any) => {
-          return el.value == props.data[prop];
-        });
-        result = findData && findData["label"]||'--'
-      }
+      // if (dictData && dictData.length) {
+      //   console.log(dictData,'ddduu',options)
+      //   const findData = dictData.find((el: any) => {
+      //     return el.value == props.data[prop];
+      //   });
+      //   result = findData && findData["label"]||'--'
+      // }
+        //处理枚举 字典
+  if (dictData && unref(dictData).length) {
+    const findData = searchTree(unref(dictData), result, options);
+    result = (findData && findData[options.useDictLabel]) || "--";
+
+  }
       //处理操作按钮
 
 

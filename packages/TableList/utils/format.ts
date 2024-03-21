@@ -35,15 +35,32 @@ export const formatTime = (number: number, format = 'Y-M-D h:m:s') => {
   return format;
 };
 
+
+function formatNumberWithCommasAndDecimal(n) {
+  // 将输入转换为数值，以确保操作的一致性
+  const num = Number(n);
+  
+  // 判断是否有小数部分
+  if (num % 1 !== 0) {
+      // 有小数，保留两位小数并转换为字符串
+      return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  } else {
+      // 没有小数，直接转换为字符串
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+}
 //格式化金钱
 export const formatMoney = (value: string | number) => {
   if (!value) return "0";
-  const regex = /\d{1,3}(?=(\d{3})+(\.|$))/g // 替换规则
-  value = String(Math.round(+value * Math.pow(10, 2))) // 乘100 四舍五入
-  let integer = value.substr(0, value.length - 2).replace(regex, '$&,') // 最后两位前的为整数
-  let decimal = value.substr(value.length - 2) // 最后两位为小数
-  let result = `${integer || 0}.${decimal}`
+  // const regex = /\d{1,3}(?=(\d{3})+(\.|$))/g // 替换规则
+  // value = String(Math.round(+value * Math.pow(10, 2))) // 乘100 四舍五入
+  // console.log(regex,value,'888')
+  // let integer = value.substr(0, value.length - 2).replace(regex, '$&,') // 最后两位前的为整数
+  // let decimal = value.substr(value.length - 2) // 最后两位为小数
+  // let result = `${integer || 0}.${decimal}`
 
+  
+  let result = formatNumberWithCommasAndDecimal(value);
   if(result==='N.aN'){
     result ='--'
   }

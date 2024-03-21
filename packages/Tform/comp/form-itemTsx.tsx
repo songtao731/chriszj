@@ -1247,8 +1247,10 @@ export default defineComponent({
                                   unref(el!.checkBox!.options).map(
                                     (ele: CheckBoxItem, index: any) => {
                                       return (
-                                        <ElCheckbox {...ele} label={ele.value}>
-                                          {ele.label}
+                                        <ElCheckbox {...ele} label= { (el.checkBox?.dictOptions?.value)?(ele[el.checkBox?.dictOptions?.value]):ele.value}>
+
+                                         { (el.checkBox?.dictOptions?.label)?(ele[el.checkBox?.dictOptions?.label]):ele.label}
+
                                         </ElCheckbox>
                                       );
                                     }

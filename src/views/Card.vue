@@ -9,7 +9,7 @@
         usemap="#image-map"
         alt="Map"
         style="position: absolute; height: 500px; left: 0"
-        width="750"
+        width="860"
         @click="getData"
       />
     </div>
@@ -18,7 +18,7 @@
 
 <script setup>
 import { reactive, ref } from "vue";
-import logo from "@/assets/aaa.png";
+import logo from "@/assets/860.png";
 
 const imageSource = ref(logo);
 

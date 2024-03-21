@@ -41,7 +41,7 @@ const tableData = {
         date3: "2016-05-02",
         date4: "2016-05-02",
 
-        name: "王小虎",
+        name: "2.155",
         address: "上海市普陀区金沙江路 1518 弄",
         sex: "1",
       },
@@ -52,7 +52,7 @@ const tableData = {
         date4: "2016-05-02",
         name: "王小虎",
         address: "上海市普陀区金沙江路 1517 弄",
-        sex: "2",
+        sex: 2,
       },
       {
         date: "2016-05-01",
@@ -61,7 +61,7 @@ const tableData = {
         date4: "2016-05-02",
         name: "王小虎",
         address: "上海市普陀区金沙江路 1519 弄",
-        sex: "1",
+        sex: 1,
       },
     ],
     total: 3,
@@ -130,6 +130,7 @@ const bind = chris.useTables({
           prop: "name",
           filter: "input",
           align: "left",
+          formatType: "price",
         },
         {
           label: "地址",
@@ -138,13 +139,7 @@ const bind = chris.useTables({
           dictData: ref([{ label: "男", value: "1" }]),
         },
         {
-          label: "地址",
-          prop: "address",
-          filter: "input",
-          dictData: ref([{ label: "男", value: "1" }]),
-        },
-        {
-          label: "姓名",
+          label: "性别",
           prop: "sex",
           filter: {
             type: "select",
@@ -152,7 +147,13 @@ const bind = chris.useTables({
               options: ref([{ label: "男", value: "1" }]),
             },
           },
-          dictData: ref([{ label: "男", value: "1" }]),
+          dictData: ref([
+            { label2: "男", value: 1 },
+            { label2: "女", value: 2 },
+          ]).value,
+          dictOptions: {
+            label: "label2",
+          },
         },
 
         {

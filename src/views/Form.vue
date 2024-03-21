@@ -853,8 +853,8 @@ const mm = ref([]);
 
 setTimeout(() => {
   aa.value = [
-    { label: "男", value: "1" },
-    { label: "女", value: "2" },
+    { label2: "男", value2: "1" },
+    { label2: "女", value2: "2" },
   ];
 }, 1000);
 const bind5 = computed(() => {
@@ -873,7 +873,11 @@ const bind5 = computed(() => {
         prop: "a",
         type: "checkBox",
         checkBox: {
-          options: computed(() => aa.value).value,
+          options: aa.value,
+          dictOptions: {
+            label: "label2",
+            value: "value2",
+          },
         },
       },
       {
