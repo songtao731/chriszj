@@ -290,6 +290,7 @@ export default defineComponent({
       slots,
       isShowMax,
       getParams,
+      resetFn
     });
     return () => (
       <>

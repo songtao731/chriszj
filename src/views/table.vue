@@ -6,6 +6,7 @@
       show-summary
       :summaryMethod="getSummaries"
       @getSearchData="aa"
+      @resetFn="resetFn"
     >
       <template #footer>
         <el-button @click="formBtn"> 校验 </el-button>
@@ -645,6 +646,9 @@ const aa = (data) => {
   console.log(data);
 };
 
+const resetFn = () => {
+  console.log(1);
+};
 console.log(oneTable, "oneTable");
 </script>
 

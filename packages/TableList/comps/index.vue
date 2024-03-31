@@ -287,6 +287,7 @@ defineExpose({
     getParams({ ...searchRef.value.newFormData, ...data });
   },
   params: searchRef,
+  resetFn,
 });
 </script>
 <script lang="ts">

@@ -5,11 +5,11 @@
     <div>2k2k2k</div>
     <div class="relative">
       <img
-        src="http://gpt-museum.oss-cn-hangzhou.aliyuncs.com/prd/img/sp.png"
+        src="http://gpt-museum.oss-cn-hangzhou.aliyuncs.com/prd/img/sp3.png"
         usemap="#image-map"
         alt="Map"
         style="position: absolute; height: 500px; left: 0"
-        width="860"
+        width="750"
         @click="getData"
       />
     </div>
