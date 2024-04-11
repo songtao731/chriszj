@@ -24,7 +24,7 @@
     "async-validator": "^4.2.5",
     "axios": "^1.4.0",
     "chalk": "4.1.2",
-    "chriszj": "^2.3.8",
+    "chriszj": "^2.4.4",
     "consola": "^3.2.3",
     "element-plus": "^2.3.9",
     "escape-html": "^1.0.3",

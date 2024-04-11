@@ -1,5 +1,5 @@
 <template>
-  <!-- <Tupload
+  <Tupload
     v-model:file-list="fileList"
     :action="url"
     :before-upload="beforeAvatarUpload"
@@ -13,8 +13,8 @@
     :on-change="changeFn"
   >
     <el-icon><Plus /></el-icon>
-  </el-upload> -->
-  <Tform v-bind="bind"> </Tform>
+  </el-upload>
+  <!-- <Tform v-bind="bind"> </Tform> -->
 
   <!-- <Timgs :file-list="formData.imgs" width="100px" height="100px"></Timgs> -->
 
@@ -61,7 +61,7 @@ import { Tupload, Timgs, chris, Tform } from "../../packages/index";
 import { ElMessage, ElUpload, UploadProps, UploadUserFile } from "element-plus";
 import { teamBuildingApplicationAddList } from "@/api/index";
 
-const url = "/api/gateway/financial/pay/collectionList/claim/list";
+const url = "https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15";
 
 const headers = {
   "X-Usertoken": sessionStorage.token,

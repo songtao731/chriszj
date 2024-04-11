@@ -12,7 +12,6 @@
       :summaryMethod="getSummaries"
       @getSearchData="aa"
       @resetFn="resetFn"
-      empty-text="11"
     >
       <template #footer>
         <el-button @click="formBtn"> 校验 </el-button>

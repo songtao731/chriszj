@@ -92,7 +92,7 @@ const getUrl = (
     if (/blob:/.test(filename.url || "")) {
       urlType = (filename.name && filename.name.split(".").pop()) || "";
 
-      if (/png|jpg|jpeg|bmp/gi.test(urlType)) {
+      if (/png|jpg|jpeg|bmp|gif|svg/gi.test(urlType)) {
         url = filename.url || "";
         isImg = true;
       } else {
@@ -100,7 +100,7 @@ const getUrl = (
       }
     } else if (/https?:/.test(filename.url || "")) {
       urlType = (filename.url && filename.url.split(".").pop()) || "";
-      if (/png|jpg|jpeg|bmp/gi.test(urlType)) {
+      if (/png|jpg|jpeg|bmp|gif|svg/gi.test(urlType)) {
         url = filename.url || "";
         isImg = true;
       } else {
