@@ -47,7 +47,7 @@
         ref="tableRef"
       >
         <template #empty>
-          <slot name="empty"> 暂无数据 </slot>
+          <slot name="empty"> {{ props.emptyText }} </slot>
         </template>
         <template #append>
           <slot name="append"></slot>

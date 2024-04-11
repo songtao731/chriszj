@@ -5,10 +5,10 @@
     <div>2k2k2k</div>
     <div class="relative">
       <img
-        src="http://gpt-museum.oss-cn-hangzhou.aliyuncs.com/prd/img/sp3.png"
+        src="http://gpt-museum.oss-cn-hangzhou.aliyuncs.com/prd/img/sp5.png"
         usemap="#image-map"
         alt="Map"
-        style="position: absolute; height: 500px; left: 0"
+        style="position: absolute; height: 1000px; left: 0"
         width="750"
         @click="getData"
       />

@@ -13,6 +13,7 @@ declare module 'vue' {
     ElOption: typeof import('element-plus/es')['ElOption']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']

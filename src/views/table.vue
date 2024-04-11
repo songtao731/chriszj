@@ -1,5 +1,10 @@
 <template>
   <Card>
+    <el-table :data="[]" style="width: 100%" empty-text="11">
+      <el-table-column prop="date" label="Date" width="180" />
+      <el-table-column prop="name" label="Name" width="180" />
+      <el-table-column prop="address" label="Address" />
+    </el-table>
     <TableList
       v-bind="bind"
       ref="oneTable"
@@ -7,6 +12,7 @@
       :summaryMethod="getSummaries"
       @getSearchData="aa"
       @resetFn="resetFn"
+      empty-text="11"
     >
       <template #footer>
         <el-button @click="formBtn"> 校验 </el-button>
