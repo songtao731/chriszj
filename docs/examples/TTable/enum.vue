@@ -39,7 +39,6 @@ const tableData = {
   code: 200,
 };
 
-const data2 = ref();
 const data = ref();
 
 const fn = () => {
@@ -94,10 +93,10 @@ const bind = chris.useTable({
       filter: {
         type: "select",
         select: {
-          options: computed(() => data.value),
+          options: computed(() => data.value).value,
         },
       },
-      dictData: computed(() => data.value),
+      dictData: computed(() => data.value).value,
     },
     {
       label: "金钱",

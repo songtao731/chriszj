@@ -12,10 +12,12 @@
     <div class="mb-5 font-bold text-[16px]" v-if="props.title">
       {{ props.title }}
     </div>
+
     <Search2
       ref="searchRef"
       :labelWidth="props.labelWidth"
       :filter="columnsFilter"
+      :showSearch="props.showSearch"
       :size="props.size"
       v-if="columnsFilter && columnsFilter.length"
       :labelPosition="props.labelPosition"

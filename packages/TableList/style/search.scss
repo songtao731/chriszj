@@ -59,6 +59,10 @@
       }
     }
   }
+  .el-col-5 {
+    max-width: 20%;
+    flex: 0 0 20%;
+  }
 }
 
 .paginaton {

@@ -57,6 +57,7 @@ export interface Args {
   currentPage?: number;
   currentPageSize?: number;
   hideLoading?: boolean;
+  showSearch?:boolean
 }
 
 export const useTable = (args: Args) => {

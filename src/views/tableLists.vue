@@ -98,7 +98,7 @@ const bind = chris.useTables({
     return {
       request: (params) => request({ ...params, state: row }),
       path: "data.rows",
-      column: 2,
+      column: 4,
       buttons: [
         {
           type: "primary",
@@ -124,6 +124,20 @@ const bind = chris.useTables({
       columns: [
         {
           type: "selection",
+        },
+        {
+          label: "姓名",
+          prop: "name",
+          filter: "input",
+          align: "left",
+          formatType: "price",
+        },
+        {
+          label: "姓名",
+          prop: "name",
+          filter: "input",
+          align: "left",
+          formatType: "price",
         },
         {
           label: "姓名",

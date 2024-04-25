@@ -46,12 +46,13 @@ export default defineComponent({
     "gutter",
     "column",
     "labelWidth",
+    "showSearch",
   ],
   emits: ["getParams", "resetFn"],
 
   setup(props, { emit, expose, slots }) {
     //filter:过滤条件,searchSize:查询条件框的大小 labelPosition:查询条件label的位置
-    const { column, labelPosition} = props;
+    const { column, labelPosition } = props;
 
     //搜索条件的表单数据
     const formData: any = reactive({});
@@ -83,15 +84,15 @@ export default defineComponent({
     //表格的可视宽度
     const screenWidth = ref();
     //是否展示 展开 按钮
-    const isShow = ref(false);
-    const showName = ref("展开");
+    const isShow = ref(props.showSearch);
+    const showName = ref(props.showSearch ? "收起" : "展开");
     //可视搜索条件宽度大于1800就展示4个
     const isShowMax = ref(false);
 
     //一行展示几个
     const span = computed(() => {
       if (column) {
-        return 24 / column;
+        return Math.round(24 / column);
       }
 
       return screenWidth.value > 1800 ? 6 : 8;
@@ -105,8 +106,8 @@ export default defineComponent({
       } else {
         isShow.value = num > 3;
       }
-      if(props.column){
-        isShow.value=num>props.column
+      if (props.column) {
+        isShow.value = num > props.column;
       }
     };
 
@@ -114,9 +115,8 @@ export default defineComponent({
     onMounted(() => {
       //   screenWidth.value = document.body.clientWidth;
       //搜索条件展示几个
-      screenWidth.value = document.querySelector(
-        ".chris-table-search"
-      )?.clientWidth;
+      screenWidth.value = document.querySelector(".chris-table-search")
+        ?.clientWidth;
       getNum(screenWidth.value, searchList.value.length);
       //回显值
       searchList.value.forEach((el: any) => {
@@ -126,9 +126,8 @@ export default defineComponent({
       // //实时改变浏览器宽度和高度
       window.onresize = () => {
         return (() => {
-          screenWidth.value = document.querySelector(
-            ".chris-table-search"
-          )?.clientWidth;
+          screenWidth.value = document.querySelector(".chris-table-search")
+            ?.clientWidth;
           getNum(screenWidth.value, searchList.value.length);
         })();
       };
@@ -155,6 +154,18 @@ export default defineComponent({
             value: el.value,
           };
         }
+      });
+      searchList.value = searchList.value.sort((a, b) => {
+        const hasASort = a.hasOwnProperty("sort");
+        const hasBSort = b.hasOwnProperty("sort");
+        if (hasASort && hasBSort) {
+          return a.sort - b.sort;
+        } else if (hasASort) {
+          return -1;
+        } else if (hasBSort) {
+          return 1;
+        }
+        return 0;
       });
     });
 
@@ -201,10 +212,9 @@ export default defineComponent({
                 return {
                   label: el[data.select?.dictOptions?.label as string],
                   value: el[data.select?.dictOptions?.value as string],
-                  disabled:el.disabled
+                  disabled: el.disabled,
                 };
               });
-
             }
           }
           break;
@@ -290,7 +300,7 @@ export default defineComponent({
       slots,
       isShowMax,
       getParams,
-      resetFn
+      resetFn,
     });
     return () => (
       <>
@@ -617,7 +627,12 @@ export default defineComponent({
             </ElForm>
             {searchList.value.length ? (
               <div class="chris-table-search-btns">
-                <ElButton type="primary" icon="Search" onClick={getParams} size={props.size}>
+                <ElButton
+                  type="primary"
+                  icon="Search"
+                  onClick={getParams}
+                  size={props.size}
+                >
                   查询
                 </ElButton>
                 <ElButton icon="Refresh" onClick={resetFn} size={props.size}>
@@ -625,11 +640,11 @@ export default defineComponent({
                 </ElButton>
                 {isShow.value && (
                   <ElButton
-                  type="info"
-                  plain
+                    type="info"
+                    plain
                     onClick={changeName}
                     size={props.size}
-                   icon="Sort"
+                    icon="Sort"
                   >
                     {showName.value}
                   </ElButton>

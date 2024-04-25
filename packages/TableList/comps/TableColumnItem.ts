@@ -93,6 +93,8 @@ export interface Filter {
       input?: MainPackage["input"];
     },
   ];
+  //排序
+  sort?:number
 }
 
 //原有的TableColumnCtx和新添加的cloumn 合并
@@ -117,6 +119,7 @@ interface CustomType {
   type?: "selection" | "index" | "expand" | "input" | "select";
   rules?: any;
   event?: EventFilter;
+
 }
 //自定义添加属性
 export const CustomType = {
@@ -157,7 +160,7 @@ export const CustomType = {
   event: {
     type: Object,
     default: {},
-  },
+  }
 };
 
 export interface NewTableColumn<T>

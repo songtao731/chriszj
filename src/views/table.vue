@@ -1,10 +1,10 @@
 <template>
   <Card>
-    <el-table :data="[]" style="width: 100%" empty-text="11">
+    <!-- <el-table :data="[]" style="width: 100%" empty-text="11">
       <el-table-column prop="date" label="Date" width="180" />
       <el-table-column prop="name" label="Name" width="180" />
       <el-table-column prop="address" label="Address" />
-    </el-table>
+    </el-table> -->
     <TableList
       v-bind="bind"
       ref="oneTable"
@@ -202,7 +202,10 @@ let num = ref(100);
 const bind = computed(() => {
   return chris.useTable({
     request: (params) => useMockList({ ...params }),
+    showSearch: true,
+
     // data: tableData.value,
+
     labelWidth: "100px",
     labelPosition: "right",
     hideLoading: true,
@@ -304,6 +307,7 @@ const bind = computed(() => {
               console.log("slecs", isShow.value);
             },
           },
+          sort: 1,
         },
       },
       {

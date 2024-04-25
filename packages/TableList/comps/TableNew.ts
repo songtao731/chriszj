@@ -69,4 +69,8 @@ export const NewTable = {
     type: Boolean,
     default: false,
   },
+  showSearch:{
+    type:Boolean,
+    default:false
+  }
 };

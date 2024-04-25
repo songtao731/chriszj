@@ -107,12 +107,15 @@ const bind = chris.useTable({
       prop: "sex",
       filter: {
         type: "select",
+
         select: {
           options: [
             { label: "男", value: "1" },
             { label: "女", value: "2" },
           ],
+          placeholder: "添加sort排序",
         },
+        sort: 1,
       },
     },
     {
