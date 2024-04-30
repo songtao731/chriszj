@@ -16,7 +16,7 @@ import { chris, TableList, TableLists, Tupload } from "../../packages";
 import { useRoute, useRouter } from "vue-router";
 import { useMockList } from "@/api";
 
-import { ref } from "vue";
+import { computed, ref } from "vue";
 const tableRowClassName = ({
   row,
   rowIndex,
@@ -68,6 +68,7 @@ const tableData = {
   },
   code: 200,
 };
+const arr = ref([]);
 const request = (params) => {
   return new Promise((reslove, reject) => {
     setTimeout(() => {
@@ -75,6 +76,18 @@ const request = (params) => {
     }, 200);
   });
 };
+const request2 = (params) => {
+  return new Promise((reslove, reject) => {
+    setTimeout(() => {
+      arr.value = [
+        { label: "男", value: 1 },
+        { label: "女", value: 2 },
+      ];
+      reslove(arr);
+    }, 3000);
+  });
+};
+request2();
 
 const activeName = ref("1");
 
@@ -84,127 +97,109 @@ const tabClick = (val) => {
   console.log(val, "tab", activeName.value);
 };
 
-const bind = chris.useTables({
-  tabs: {
-    activeValue: activeName.value,
-    tabsList: [
-      { label: "待审核", value: "1" },
-      { label: "审核中", value: "kk" },
-      { label: "已审核", value: "3" },
-    ],
-    isRoute: true,
-  },
-  table: (row) => {
-    return {
-      request: (params) => request({ ...params, state: row }),
-      path: "data.rows",
-      column: 4,
-      buttons: [
-        {
-          type: "primary",
-          content: "清空全选",
-          onClick: () => {
-            activeName.value = row;
-            console.log(
-              "操作成功",
-              tabRef.value.tableRef[activeName.value].refresh,
-              tabRef.value
-            );
-            tabRef.value.tableRef[activeName.value].refresh();
-          },
-        },
-        {
-          type: "success",
-          content: "获取每个表格的全局方法",
-          onClick: () => {
-            console.log("获取成功", tabRef.value.tableRef[activeName.value]);
-          },
-        },
+const bind = computed(() => {
+  return chris.useTables({
+    tabs: {
+      activeValue: activeName.value,
+      tabsList: [
+        { label: "待审核", value: "1" },
+        { label: "审核中", value: "kk" },
+        { label: "已审核", value: "3" },
       ],
-      columns: [
-        {
-          type: "selection",
-        },
-        {
-          label: "姓名",
-          prop: "name",
-          filter: "input",
-          align: "left",
-          formatType: "price",
-        },
-        {
-          label: "姓名",
-          prop: "name",
-          filter: "input",
-          align: "left",
-          formatType: "price",
-        },
-        {
-          label: "姓名",
-          prop: "name",
-          filter: "input",
-          align: "left",
-          formatType: "price",
-        },
-        {
-          label: "地址",
-          prop: "address",
-          filter: "input",
-          dictData: ref([{ label: "男", value: "1" }]),
-        },
-        {
-          label: "性别",
-          prop: "sex",
-          filter: {
-            type: "select",
-            select: {
-              options: ref([{ label: "男", value: "1" }]),
+      isRoute: true,
+    },
+    table: (row) => {
+      return {
+        request: (params) => request({ ...params, state: row }),
+        path: "data.rows",
+        column: 4,
+        buttons: [
+          {
+            type: "primary",
+            content: "清空全选",
+            onClick: () => {
+              activeName.value = row;
+              console.log(
+                "操作成功",
+                tabRef.value.tableRef[activeName.value].refresh,
+                tabRef.value
+              );
+              tabRef.value.tableRef[activeName.value].refresh();
             },
           },
-          dictData: ref([
-            { label2: "男", value: 1 },
-            { label2: "女", value: 2 },
-          ]).value,
-          dictOptions: {
-            label: "label2",
+          {
+            type: "success",
+            content: "获取每个表格的全局方法",
+            onClick: () => {
+              console.log("获取成功", tabRef.value.tableRef[activeName.value]);
+            },
           },
-        },
+        ],
+        columns: [
+          {
+            type: "selection",
+          },
+          {
+            label: "姓名",
+            prop: "name",
+            filter: "input",
+            align: "left",
+          },
 
-        {
-          label: "操作",
-          fixed: "right",
-          width: 240,
-          buttons: (el) => {
-            return [
-              {
-                content: "新增",
-                icon: "icon-document-add",
-                link: true,
-                disabled: row.menuType === 2,
-                click(row) {
-                  console.log(1, row);
-                },
-              },
-              {
-                content: "编辑",
-                icon: "icon-edit",
-                link: true,
-                onClick(row) {
-                  console.log(2, row);
-                },
-              },
-              {
-                content: "删除",
-                icon: "icon-delete",
-                link: true,
-                disabled: Array.isArray(row.children) && !!row.children.length,
-              },
-            ];
+          {
+            label: "地址",
+            prop: "address",
+            filter: "input",
           },
-        },
-      ],
-    };
-  },
+          {
+            label: "性别",
+            prop: "sex",
+            filter: {
+              type: "select",
+              select: {
+                options: arr.value,
+              },
+            },
+            dictData: arr.value,
+          },
+
+          {
+            label: "操作",
+            fixed: "right",
+            width: 240,
+            buttons: (el) => {
+              return [
+                {
+                  content: "新增",
+                  icon: "icon-document-add",
+                  link: true,
+                  disabled: row.menuType === 2,
+                  click(row) {
+                    console.log(1, row);
+                  },
+                },
+                {
+                  content: "编辑",
+                  icon: "icon-edit",
+                  link: true,
+                  onClick(row) {
+                    console.log(2, row);
+                  },
+                },
+                {
+                  content: "删除",
+                  icon: "icon-delete",
+                  link: true,
+                  disabled:
+                    Array.isArray(row.children) && !!row.children.length,
+                },
+              ];
+            },
+          },
+        ],
+      };
+    },
+  });
 });
 </script>
 <style>

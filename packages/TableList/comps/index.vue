@@ -83,6 +83,7 @@
               "
               :data="scope?.row"
               :column="item"
+              :columnsFilter="columnsFilter"
             >
             </TableColumnTsx>
             <FormColumnTsx

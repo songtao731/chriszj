@@ -4,10 +4,11 @@ import { formatPrice, formatTime } from "../utils/format";
 import { ButtonProps } from "./Button";
 import { labelEnum,searchTree } from "../../utils";
 
-
+//引入columnsFilter 可以触发响应式,不引入不触发 我也不知道为什么
 export default defineComponent({
-  props: ["data", "column"],
+  props: ["data", "column",'columnsFilter'],
   setup(props) {
+
     const parseValue = (data: any, column: any) => {
       const { formatType, prop, dictData, buttons,dictOptions } = column;
   //初始化字典 tree参数
@@ -48,10 +49,10 @@ export default defineComponent({
       //   result = findData && findData["label"]||'--'
       // }
         //处理枚举 字典
+  
   if (dictData && unref(dictData).length) {
     const findData = searchTree(unref(dictData), result, options);
     result = (findData && findData[options.useDictLabel]) || "--";
-
   }
       //处理操作按钮
 
