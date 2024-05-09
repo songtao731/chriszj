@@ -4,6 +4,7 @@
     :key="item.url"
     :style="`width:${props.width}`"
     class="flex mr-3 items-start"
+    v-if="srcList.length"
   >
     <div
       class="flex flex-col items-center flex-shrink-0 min-h-[160px] overflow-hidden relative"
@@ -32,6 +33,7 @@
       <div v-else class="text-sm mt-2 h-6"></div>
     </div>
   </div>
+  <div v-else>--</div>
 </template>
 <script lang="ts" setup>
 import { ref, computed } from "vue";
