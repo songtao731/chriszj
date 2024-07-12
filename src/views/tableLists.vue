@@ -1,11 +1,5 @@
 <template>
-  <TableLists
-    v-bind="bind"
-    border
-    ref="tabRef"
-    :row-class-name="tableRowClassName"
-    @tabClick="tabClick"
-  >
+  <TableLists v-bind="bind" border ref="tabRef" @tabClick="tabClick">
   </TableLists>
 </template>
 <script setup lang="ts">
@@ -17,6 +11,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useMockList } from "@/api";
 
 import { computed, ref } from "vue";
+const route = useRoute();
 const tableRowClassName = ({
   row,
   rowIndex,
@@ -70,6 +65,7 @@ const tableData = {
 };
 const arr = ref([]);
 const request = (params) => {
+  console.log(params, "9999");
   return new Promise((reslove, reject) => {
     setTimeout(() => {
       reslove(tableData);
@@ -89,12 +85,13 @@ const request2 = (params) => {
 };
 request2();
 
-const activeName = ref("1");
+const activeName = ref("all");
 
 const tabRef = ref();
 
 const tabClick = (val) => {
   console.log(val, "tab", activeName.value);
+  activeName.value = val.activeValue;
 };
 
 const bind = computed(() => {
@@ -102,17 +99,17 @@ const bind = computed(() => {
     tabs: {
       activeValue: activeName.value,
       tabsList: [
-        { label: "待审核", value: "1" },
-        { label: "审核中", value: "kk" },
-        { label: "已审核", value: "3" },
+        { label: "待审核", value: "all" },
+        { label: "审核中", value: "available" },
+        { label: "已审核", value: "unavailable" },
       ],
       isRoute: true,
     },
     table: (row) => {
       return {
-        request: (params) => request({ ...params, state: row }),
-        path: "data.rows",
+        request: (params) => useMockList({ ...params, tabsType: row }),
         column: 4,
+        hideLoading: false,
         buttons: [
           {
             type: "primary",
@@ -131,7 +128,13 @@ const bind = computed(() => {
             type: "success",
             content: "获取每个表格的全局方法",
             onClick: () => {
-              console.log("获取成功", tabRef.value.tableRef[activeName.value]);
+              console.log(
+                "获取成功",
+                tabRef.value.tableRef[
+                  route.query.routeName || activeName.value
+                ].refresh(),
+                tabRef.value.tableRef
+              );
             },
           },
         ],
@@ -141,7 +144,7 @@ const bind = computed(() => {
           },
           {
             label: "姓名",
-            prop: "name",
+            prop: "grantCreditNo",
             filter: "input",
             align: "left",
           },
@@ -173,6 +176,7 @@ const bind = computed(() => {
                   content: "新增",
                   icon: "icon-document-add",
                   link: true,
+                  type: "primary",
                   disabled: row.menuType === 2,
                   click(row) {
                     console.log(1, row);

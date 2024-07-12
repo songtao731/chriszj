@@ -34,7 +34,7 @@ const requestConfig: Config = {
   baseURL: "/api",
   timeout: 600000,
   headers: {
-    Authorization: `${sessionStorage.getItem("token")}`,
+    Financeauth: `${localStorage.getItem("token")}`,
   },
 };
 

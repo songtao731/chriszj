@@ -316,7 +316,6 @@ const bind = computed(() => {
         value: ["zhinan", "typography"],
         hide: isShow.value,
         filter: {
-          type: "cascader",
           prop: ["one", "two", "three"],
           hide: isShow.value,
 

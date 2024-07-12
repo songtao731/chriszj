@@ -2,7 +2,7 @@ import axios from "@/util/axios";
 
 export const useMockList = (data: any) => {
   return axios({
-    url: `https://dev.usemock.com/64c71d4d9da07a32750363e5/dataList`,
+    url: `http://120.136.158.148:28440/finance-cloud-credit/grantCredit/getListAuto`,
     method: "get",
     params: data,
   });

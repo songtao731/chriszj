@@ -47,6 +47,7 @@
         style="width: 100%"
         v-on="tableEvents"
         ref="tableRef"
+        v-loading="loading"
       >
         <template #empty>
           <slot name="empty"> {{ props.emptyText }} </slot>
@@ -180,7 +181,7 @@ const pageSize = ref(props.currentPageSize);
 //初始化数目
 const total = ref(0);
 //初始化获取数据格式
-let path = props.path || "rows";
+let path = props.path || "data.rows";
 //初始化获取total的位置
 let totalPath = props.totalPath || "total";
 
@@ -201,14 +202,10 @@ const buttonsGet = computed(() => {
   return props.buttons;
 });
 
+const loading = ref(false);
 const getDataList = async (data?: any) => {
-  let loading = null;
   if (!props.hideLoading) {
-    loading = ElLoading.service({
-      lock: true,
-      text: "Loading",
-      background: "rgba(0, 0, 0, 0.7)",
-    });
+    loading.value = true;
   }
 
   const params = {
@@ -223,7 +220,7 @@ const getDataList = async (data?: any) => {
       })
       .finally(() => {
         if (loading) {
-          loading.close();
+          loading.value = false;
         }
       });
 

@@ -3,13 +3,21 @@
     <a href=""></a>
     <div>sakkdska</div>
     <div>2k2k2k</div>
-    <div class="relative">
-      <img
+    <div class="relative aa">
+      <!-- <img
         src="http://gpt-museum.oss-cn-hangzhou.aliyuncs.com/prd/img/sp5.png"
         usemap="#image-map"
         alt="Map"
         style="position: absolute; height: 1000px; left: 0"
         width="750"
+        @click="getData"
+      /> -->
+      <img
+        src="http://gpt-museum.oss-cn-hangzhou.aliyuncs.com/prd/kunming/km.png"
+        usemap="#image-map"
+        alt="Map"
+        style="position: absolute; height: 1822px; left: 0"
+        width="3000"
         @click="getData"
       />
     </div>
@@ -57,10 +65,24 @@ const toggleHighlight = (region) => {
 const getData = (e) => {
   console.log(e.offsetX, e.offsetY, "x,y");
 };
+const getKey = (obj) => {
+  const newobj = {};
+  Object.keys(obj).forEach((el) => {
+    if (typeof obj[el] === "object") {
+      getKey(obj[el]);
+    } else {
+      newobj[el] = obj[el];
+    }
+  });
+  return newobj;
+};
 </script>
 
 <style>
 .highlight {
   /* Other styles if needed */
+}
+.aa {
+  width: 3000px;
 }
 </style>
