@@ -64,6 +64,7 @@
           v-if="
             typeof props.index === 'boolean' ? props.index : !props.index.hide
           "
+          fixed="left"
         >
         </ElTableColumn>
         <ElTableColumn
@@ -183,7 +184,7 @@ const total = ref(0);
 //初始化获取数据格式
 let path = props.path || "data.rows";
 //初始化获取total的位置
-let totalPath = props.totalPath || "total";
+let totalPath = props.totalPath || "data.total";
 
 const formData = ref({
   dataList: [],
