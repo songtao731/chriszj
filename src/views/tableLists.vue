@@ -1,5 +1,13 @@
 <template>
-  <TableLists v-bind="bind" border ref="tabRef" @tabClick="tabClick">
+  <ElButton
+    type="primary"
+    icon="Search"
+    onClick="{getParams}"
+    size="{props.size}"
+  >
+    查询
+  </ElButton>
+  <TableLists v-bind="bind2" border ref="tabRef" @tabClick="tabClick">
   </TableLists>
 </template>
 <script setup lang="ts">
@@ -90,7 +98,6 @@ const activeName = ref("all");
 const tabRef = ref();
 
 const tabClick = (val) => {
-  console.log(val, "tab", activeName.value);
   activeName.value = val.activeValue;
 };
 
@@ -196,6 +203,145 @@ const bind = computed(() => {
                   link: true,
                   disabled:
                     Array.isArray(row.children) && !!row.children.length,
+                },
+              ];
+            },
+          },
+        ],
+      };
+    },
+  });
+});
+
+enum Status {
+  ALL = "all",
+  AVAILABLE = "available",
+  UNAVAILABLE = "unavailable",
+}
+const bind2 = computed(() => {
+  return chris.useTables({
+    tabs: {
+      activeValue: activeName.value,
+      tabsList: [
+        { label: "全部", value: Status.ALL },
+        { label: "可用授信", value: Status.AVAILABLE },
+        { label: "不可用授信", value: Status.UNAVAILABLE },
+      ],
+    },
+    table: (row) => {
+      return {
+        request: (params) => useMockList({ ...params, tabsType: row }),
+        buttons: [
+          {
+            type: "primary",
+            content: "清空全选",
+            onClick: () => {
+              activeName.value = row;
+              console.log(
+                "操作成功",
+                tabRef.value.tableRef[activeName.value].refresh,
+                tabRef.value
+              );
+              tabRef.value.tableRef[activeName.value].refresh();
+            },
+          },
+          {
+            type: "success",
+            content: "获取每个表格的全局方法",
+            onClick: () => {
+              console.log(
+                "获取成功",
+                tabRef.value.tableRef[
+                  route.query.routeName || activeName.value
+                ].refresh(),
+                tabRef.value.tableRef
+              );
+            },
+          },
+        ],
+
+        columns: [
+          {
+            label: "授信编号",
+            prop: "grantCreditNo",
+            fixed: "left",
+            minWidth: 150,
+            filter: "input",
+          },
+          {
+            label: "授信名称",
+            prop: "name",
+            fixed: "left",
+            minWidth: 150,
+            filter: "input",
+          },
+          {
+            label: "授信名称",
+            prop: "name",
+            fixed: "left",
+            minWidth: 150,
+            filter: "input",
+          },
+          {
+            label: "授信名称",
+            prop: "name",
+            fixed: "left",
+            minWidth: 150,
+            filter: "input",
+          },
+
+          {
+            label: "授信额度(元)",
+            prop: "amount",
+            minWidth: 120,
+            formatType: "price",
+            filter: {
+              label: "授信额度",
+              type: "inputrange",
+              columns: [
+                {
+                  prop: "amountMin",
+                },
+                {
+                  prop: "amountMax",
+                },
+              ],
+            },
+          },
+          {
+            label: "授信额度2(元)",
+            prop: "amount2",
+            minWidth: 120,
+            formatType: "price",
+            filter: {
+              label: "授信额度",
+              type: "inputrange",
+              columns: [
+                {
+                  prop: "amountMin",
+                },
+                {
+                  prop: "amountMax",
+                },
+              ],
+            },
+          },
+
+          {
+            label: "操作",
+            fixed: "right",
+            width: 240,
+            buttons: (el) => {
+              return [
+                {
+                  content: "新增",
+                  icon: "icon-document-add",
+                  link: true,
+                  type: "primary",
+                  disabled: row.menuType === 2,
+                  click(row) {
+                    console.log(1, row);
+                  },
                 },
               ];
             },

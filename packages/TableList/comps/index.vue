@@ -130,7 +130,7 @@ import Search2 from "./SearchTsx2";
 import Pagination from "./Pagination";
 import Buttons from "./Buttons.vue";
 import { vepTableEmits, TableProps } from "./Table";
-import { getPath, getTotalPath } from "../utils/index";
+import { getPath, getTotalPath, isEmptyObject } from "../utils/index";
 
 import TableColumnTsx from "./TableColumnTsx";
 import FormColumnTsx from "./FormColumnTsx";
@@ -148,7 +148,7 @@ const props = defineProps(TableProps);
 const columnsFilter = computed(
   () =>
     props.columns?.filter((el) => {
-      return !unref(el.hide);
+      return !unref(el.hide) && !isEmptyObject(el);
     })
 );
 //控制展示显示隐藏 某些列

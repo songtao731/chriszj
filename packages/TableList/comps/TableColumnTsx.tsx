@@ -2,17 +2,16 @@ import { ElButton } from "element-plus";
 import { defineComponent, unref } from "vue";
 import { formatPrice, formatTime } from "../utils/format";
 import { ButtonProps } from "./Button";
-import { labelEnum,searchTree } from "../../utils";
+import { labelEnum, searchTree } from "../../utils";
 
 //引入columnsFilter 可以触发响应式,不引入不触发 我也不知道为什么
 export default defineComponent({
-  props: ["data", "column",'columnsFilter'],
+  props: ["data", "column", "columnsFilter"],
   setup(props) {
-
     const parseValue = (data: any, column: any) => {
-      const { formatType, prop, dictData, buttons,dictOptions } = column;
-  //初始化字典 tree参数
-  const options = labelEnum(dictOptions);
+      const { formatType, prop, dictData, buttons, dictOptions } = column;
+      //初始化字典 tree参数
+      const options = labelEnum(dictOptions);
       let result;
       if (props.data[prop] === 0) {
         result = 0;
@@ -48,14 +47,13 @@ export default defineComponent({
       //   });
       //   result = findData && findData["label"]||'--'
       // }
-        //处理枚举 字典
-  
-  if (dictData && unref(dictData).length) {
-    const findData = searchTree(unref(dictData), result, options);
-    result = (findData && findData[options.useDictLabel]) || "--";
-  }
-      //处理操作按钮
+      //处理枚举 字典
 
+      if (dictData && unref(dictData).length) {
+        const findData = searchTree(unref(dictData), result, options);
+        result = (findData && findData[options.useDictLabel]) || "--";
+      }
+      //处理操作按钮
 
       if (buttons && typeof buttons === "object" && buttons.length) {
         result = buttons
@@ -69,13 +67,11 @@ export default defineComponent({
                 {...el}
                 onClick={(e: any) => {
                   e.stopPropagation();
-                  if(el.onClick){
-                     el.onClick(data);
-
-                  }else if( el.click){
+                  if (el.onClick) {
+                    el.onClick(data);
+                  } else if (el.click) {
                     el.click(data);
                   }
-           
                 }}
               >
                 {el.content}
@@ -83,10 +79,8 @@ export default defineComponent({
             );
           });
       } else if (buttons && typeof buttons === "function") {
-
         const buttonsList = buttons(data);
-        if (buttonsList  && buttonsList.length) {
-
+        if (buttonsList && buttonsList.length) {
           result = buttonsList
             .filter((ele: ButtonProps) => {
               return typeof ele.hide === "function"
@@ -99,13 +93,11 @@ export default defineComponent({
                   {...el}
                   onClick={(e: any) => {
                     e.stopPropagation();
-                    if(el.onClick){
-                       el.onClick(data);
-  
-                    }else if( el.click){
+                    if (el.onClick) {
+                      el.onClick(data);
+                    } else if (el.click) {
                       el.click(data);
                     }
-             
                   }}
                 >
                   {el.content}

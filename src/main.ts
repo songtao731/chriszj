@@ -7,7 +7,7 @@ import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import router from "./router";
 
 import chriszj from "chriszj";
-import "chriszj/style.css";
+// import "chriszj/style.css";
 //import './assets/tailMain.css'
 
 import Schema from "async-validator";

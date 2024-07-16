@@ -2,7 +2,7 @@
 
 export const getPath = (value: any, path: string) => {
   if (!value) {
-    return []
+    return [];
   }
   const arr = path.split(".");
 
@@ -13,7 +13,7 @@ export const getPath = (value: any, path: string) => {
 };
 export const getTotalPath = (value: any, path: string) => {
   if (!value) {
-    return 0
+    return 0;
   }
   const arr = path.split(".");
 
@@ -22,4 +22,8 @@ export const getTotalPath = (value: any, path: string) => {
   });
 
   return value;
+};
+
+export const isEmptyObject = (obj) => {
+  return Object.keys(obj).length === 0;
 };

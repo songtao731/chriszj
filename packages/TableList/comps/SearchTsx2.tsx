@@ -339,384 +339,378 @@ export default defineComponent({
       <>
         {Array.isArray(searchList.value) && searchList.value.length ? (
           //chris-table-search 原样式   bg-[#F8F8F8] p-[20px] mb-[20px]
-          <div>
-            <div class="chris-table-search">
-              <ElForm
-                ref={formRef}
-                {...props}
-                model={formData}
-                class={[
-                  {
-                    // "h-[40px] overflow-hidden":
-                    //   labelPosition !== "top" && showName.value === "展开",
-                    // "h-[70px] overflow-hidden":
-                    //   labelPosition === "top" && showName.value === "展开",
 
-                    "w-full": true,
-                  },
-                ]}
-              >
-                <ElRow gutter={props.gutter}>
-                  {Array.isArray(searchList.value) &&
-                    searchList.value
-                      .map((el, index) => {
-                        let element = null;
-                        switch (el.type) {
-                          case "space":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                <ElFormItem></ElFormItem>
-                              </ElCol>
-                            );
-                            break;
-                          case "custom":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
+          <div class="chris-table-search">
+            <ElForm
+              ref={formRef}
+              {...props}
+              model={formData}
+              class={[
+                {
+                  // "h-[40px] overflow-hidden":
+                  //   labelPosition !== "top" && showName.value === "展开",
+                  // "h-[70px] overflow-hidden":
+                  //   labelPosition === "top" && showName.value === "展开",
+
+                  "w-full": true,
+                },
+                "overflow-hidden",
+              ]}
+            >
+              <ElRow gutter={props.gutter}>
+                {Array.isArray(searchList.value) &&
+                  searchList.value
+                    .map((el, index) => {
+                      let element = null;
+                      switch (el.type) {
+                        case "space":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem></ElFormItem>
+                            </ElCol>
+                          );
+                          break;
+                        case "custom":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem
+                                {...el}
+                                rules={el.rules?.rules}
+                                class="w-full"
+                              >
+                                {slots[el.slotName as string] &&
+                                  slots[el.slotName]({ scope: formData })}
+                              </ElFormItem>
+                            </ElCol>
+                          );
+
+                          break;
+                        case "input":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem
+                                {...el}
+                                prop={el.prop}
+                                rules={el.rules?.rules}
+                                class="w-full"
+                              >
+                                <ElInput
+                                  clearable={true}
+                                  v-model={formData[el.prop as string]}
+                                  {...el.input}
+                                  placeholder={formatDataFn(el).placeholder}
+                                />
+                              </ElFormItem>
+                            </ElCol>
+                          );
+
+                          break;
+                        case "inputrange":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              {el.columns && (
                                 <ElFormItem
+                                  label={el.label}
                                   {...el}
-                                  rules={el.rules?.rules}
                                   class="w-full"
                                 >
-                                  {slots[el.slotName as string] &&
-                                    slots[el.slotName]({ scope: formData })}
-                                </ElFormItem>
-                              </ElCol>
-                            );
-
-                            break;
-                          case "input":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                <ElFormItem
-                                  {...el}
-                                  prop={el.prop}
-                                  rules={el.rules?.rules}
-                                  class="w-full"
-                                >
-                                  <ElInput
-                                    clearable={true}
-                                    v-model={formData[el.prop as string]}
-                                    {...el.input}
-                                    placeholder={formatDataFn(el).placeholder}
-                                  />
-                                </ElFormItem>
-                              </ElCol>
-                            );
-
-                            break;
-                          case "inputrange":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                {el.columns && (
-                                  <ElFormItem
-                                    label={el.label}
-                                    {...el}
-                                    class="w-full"
+                                  <ElCol
+                                    span={11}
+                                    class="!pr-0 !pl-0 !inline-block w-full"
                                   >
-                                    <ElCol
-                                      span={11}
-                                      class="!pr-0 !pl-0 !inline-block w-full"
+                                    <ElFormItem
+                                      rules={el.columns[0].rules?.rules}
+                                      prop={el.columns[0].prop}
+                                      class={"inline-block!"}
                                     >
-                                      <ElFormItem
-                                        rules={el.columns[0].rules?.rules}
-                                        prop={el.columns[0].prop}
-                                        class={"inline-block!"}
-                                      >
-                                        <ElInput
-                                          clearable={true}
-                                          v-model={
-                                            formData[
-                                              el.columns[0]!.prop as string
-                                            ]
-                                          }
-                                          placeholder={
-                                            el.columns[0].placeholder ||
-                                            `请输入${el.label}最小值`
-                                          }
-                                          {...el.columns[0]!.input}
-                                        />
-                                      </ElFormItem>
-                                    </ElCol>
-                                    <ElCol
-                                      class="text-center !pr-0 !pl-0 !inline-block w-full"
-                                      span={1}
-                                    >
-                                      <span class="text-gray-500">-</span>
-                                    </ElCol>
-                                    <ElCol
-                                      span={12}
-                                      class="!pr-0 !pl-0 !inline-block w-full"
-                                    >
-                                      <ElFormItem
-                                        rules={
-                                          el.columns &&
-                                          el.columns[1].rules?.rules
+                                      <ElInput
+                                        clearable={true}
+                                        v-model={
+                                          formData[
+                                            el.columns[0]!.prop as string
+                                          ]
                                         }
-                                        prop={el.columns && el.columns[1].prop}
-                                      >
-                                        <ElInput
-                                          clearable={true}
-                                          v-model={
-                                            formData[
-                                              el.columns[1]!.prop as string
-                                            ]
+                                        placeholder={
+                                          el.columns[0].placeholder ||
+                                          `请输入${el.label}最小值`
+                                        }
+                                        {...el.columns[0]!.input}
+                                      />
+                                    </ElFormItem>
+                                  </ElCol>
+                                  <ElCol
+                                    class="text-center !pr-0 !pl-0 !inline-block w-full"
+                                    span={1}
+                                  >
+                                    <span class="text-gray-500">-</span>
+                                  </ElCol>
+                                  <ElCol
+                                    span={12}
+                                    class="!pr-0 !pl-0 !inline-block w-full"
+                                  >
+                                    <ElFormItem
+                                      rules={
+                                        el.columns && el.columns[1].rules?.rules
+                                      }
+                                      prop={el.columns && el.columns[1].prop}
+                                    >
+                                      <ElInput
+                                        clearable={true}
+                                        v-model={
+                                          formData[
+                                            el.columns[1]!.prop as string
+                                          ]
+                                        }
+                                        placeholder={
+                                          el.columns[1].placeholder ||
+                                          `请输入${el.label}最大值`
+                                        }
+                                        {...el.columns[1]!.input}
+                                      />
+                                    </ElFormItem>
+                                  </ElCol>
+                                </ElFormItem>
+                              )}
+                            </ElCol>
+                          );
+
+                          break;
+                        case "select":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem
+                                {...el}
+                                rules={el.rules?.rules}
+                                class="w-full"
+                              >
+                                <ElSelect
+                                  clearable={true}
+                                  v-model={formData[el.prop as string]}
+                                  class="w-full"
+                                  {...el.select}
+                                  placeholder={formatDataFn(el).placeholder}
+                                >
+                                  {formatDataFn(el).options.map(
+                                    (ele: any, index: any) => {
+                                      return (
+                                        <ElOption
+                                          key={index}
+                                          label={ele.label}
+                                          value={
+                                            el.select?.values ? ele : ele.value
                                           }
-                                          placeholder={
-                                            el.columns[1].placeholder ||
-                                            `请输入${el.label}最大值`
-                                          }
-                                          {...el.columns[1]!.input}
+                                          disabled={ele.disabled}
                                         />
-                                      </ElFormItem>
-                                    </ElCol>
-                                  </ElFormItem>
-                                )}
-                              </ElCol>
-                            );
-
-                            break;
-                          case "select":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                <ElFormItem
-                                  {...el}
-                                  rules={el.rules?.rules}
-                                  class="w-full"
-                                >
-                                  <ElSelect
-                                    clearable={true}
-                                    v-model={formData[el.prop as string]}
-                                    class="w-full"
-                                    {...el.select}
-                                    placeholder={formatDataFn(el).placeholder}
-                                  >
-                                    {formatDataFn(el).options.map(
-                                      (ele: any, index: any) => {
-                                        return (
-                                          <ElOption
-                                            key={index}
-                                            label={ele.label}
-                                            value={
-                                              el.select?.values
-                                                ? ele
-                                                : ele.value
-                                            }
-                                            disabled={ele.disabled}
-                                          />
-                                        );
-                                      }
-                                    )}
-                                  </ElSelect>
-                                </ElFormItem>
-                              </ElCol>
-                            );
-
-                            break;
-                          case "date":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                <ElFormItem
-                                  {...el}
-                                  rules={el.rules?.rules}
-                                  class="w-full"
-                                >
-                                  <ElDatePicker
-                                    clearable={true}
-                                    class="!w-full"
-                                    valueFormat={
-                                      valueFormat[el.date?.type as string]
+                                      );
                                     }
-                                    editable={false}
-                                    placeholder={formatDataFn(el).placeholder}
-                                    {...el.date}
-                                    v-model={formData[el.prop as string]}
-                                  ></ElDatePicker>
-                                </ElFormItem>
-                              </ElCol>
-                            );
+                                  )}
+                                </ElSelect>
+                              </ElFormItem>
+                            </ElCol>
+                          );
 
-                            break;
-                          case "cascader":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                <ElFormItem
-                                  {...el}
-                                  rules={el.rules?.rules}
-                                  class=" w-full"
-                                >
-                                  <ElCascader
-                                    clearable={true}
-                                    class="w-full"
-                                    v-model={formData[el.prop as string]}
-                                    placeholder={formatDataFn(el).placeholder}
-                                    {...el.cascader}
-                                  ></ElCascader>
-                                </ElFormItem>
-                              </ElCol>
-                            );
+                          break;
+                        case "date":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem
+                                {...el}
+                                rules={el.rules?.rules}
+                                class="w-full"
+                              >
+                                <ElDatePicker
+                                  clearable={true}
+                                  class="!w-full"
+                                  valueFormat={
+                                    valueFormat[el.date?.type as string]
+                                  }
+                                  editable={false}
+                                  placeholder={formatDataFn(el).placeholder}
+                                  {...el.date}
+                                  v-model={formData[el.prop as string]}
+                                ></ElDatePicker>
+                              </ElFormItem>
+                            </ElCol>
+                          );
 
-                            break;
-                          case "checkBox":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                <ElFormItem
-                                  {...el}
-                                  rules={el.rules?.rules}
+                          break;
+                        case "cascader":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem
+                                {...el}
+                                rules={el.rules?.rules}
+                                class=" w-full"
+                              >
+                                <ElCascader
+                                  clearable={true}
                                   class="w-full"
-                                >
-                                  <ElCheckboxGroup
-                                    v-model={formData[el.prop as string]}
-                                    {...el.checkBox}
-                                  >
-                                    {formatDataFn(el).options.map(
-                                      (ele: CheckBoxItem) => {
-                                        return (
-                                          <ElCheckbox
-                                            {...ele}
-                                            label={ele.value}
-                                          >
-                                            {ele.label}
-                                          </ElCheckbox>
-                                        );
-                                      }
-                                    )}
-                                  </ElCheckboxGroup>
-                                </ElFormItem>
-                              </ElCol>
-                            );
+                                  v-model={formData[el.prop as string]}
+                                  placeholder={formatDataFn(el).placeholder}
+                                  {...el.cascader}
+                                ></ElCascader>
+                              </ElFormItem>
+                            </ElCol>
+                          );
 
-                            break;
-                          case "radio":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                <ElFormItem
-                                  {...el}
-                                  rules={el.rules?.rules}
-                                  class="w-full"
+                          break;
+                        case "checkBox":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem
+                                {...el}
+                                rules={el.rules?.rules}
+                                class="w-full"
+                              >
+                                <ElCheckboxGroup
+                                  v-model={formData[el.prop as string]}
+                                  {...el.checkBox}
                                 >
-                                  <ElRadioGroup
-                                    v-model={formData[el.prop as string]}
-                                    {...el.radio}
-                                  >
-                                    {formatDataFn(el).options.map(
-                                      (ele: RadioItem) => {
-                                        return (
-                                          <ElRadio {...ele} label={ele.value}>
-                                            {ele.label}
-                                          </ElRadio>
-                                        );
-                                      }
-                                    )}
-                                  </ElRadioGroup>
-                                </ElFormItem>
-                              </ElCol>
-                            );
+                                  {formatDataFn(el).options.map(
+                                    (ele: CheckBoxItem) => {
+                                      return (
+                                        <ElCheckbox {...ele} label={ele.value}>
+                                          {ele.label}
+                                        </ElCheckbox>
+                                      );
+                                    }
+                                  )}
+                                </ElCheckboxGroup>
+                              </ElFormItem>
+                            </ElCol>
+                          );
 
-                            break;
-                          case "rate":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                <ElFormItem
-                                  {...el}
-                                  rules={el.rules?.rules}
-                                  class="w-full"
+                          break;
+                        case "radio":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem
+                                {...el}
+                                rules={el.rules?.rules}
+                                class="w-full"
+                              >
+                                <ElRadioGroup
+                                  v-model={formData[el.prop as string]}
+                                  {...el.radio}
                                 >
-                                  <ElRate
-                                    v-model={formData[el.prop as string]}
-                                    clearable={true}
-                                    {...el.rate}
-                                  ></ElRate>
-                                </ElFormItem>
-                              </ElCol>
-                            );
+                                  {formatDataFn(el).options.map(
+                                    (ele: RadioItem) => {
+                                      return (
+                                        <ElRadio {...ele} label={ele.value}>
+                                          {ele.label}
+                                        </ElRadio>
+                                      );
+                                    }
+                                  )}
+                                </ElRadioGroup>
+                              </ElFormItem>
+                            </ElCol>
+                          );
 
-                            break;
-                          case "switch":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                <ElFormItem
-                                  {...el}
-                                  rules={el.rules?.rules}
-                                  class="w-full"
-                                >
-                                  <ElSwitch
-                                    v-model={formData[el.prop as string]}
-                                    {...el.switch}
-                                  ></ElSwitch>
-                                </ElFormItem>
-                              </ElCol>
-                            );
+                          break;
+                        case "rate":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem
+                                {...el}
+                                rules={el.rules?.rules}
+                                class="w-full"
+                              >
+                                <ElRate
+                                  v-model={formData[el.prop as string]}
+                                  clearable={true}
+                                  {...el.rate}
+                                ></ElRate>
+                              </ElFormItem>
+                            </ElCol>
+                          );
 
-                            break;
-                          case "slider":
-                            element = (
-                              <ElCol span={span.value} key={el.label}>
-                                <ElFormItem
-                                  {...el}
-                                  rules={el.rules?.rules}
-                                  class="w-full"
-                                >
-                                  <ElSlider
-                                    v-model={formData[el.prop as string]}
-                                    {...el.slider}
-                                  ></ElSlider>
-                                </ElFormItem>
-                              </ElCol>
-                            );
+                          break;
+                        case "switch":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem
+                                {...el}
+                                rules={el.rules?.rules}
+                                class="w-full"
+                              >
+                                <ElSwitch
+                                  v-model={formData[el.prop as string]}
+                                  {...el.switch}
+                                ></ElSwitch>
+                              </ElFormItem>
+                            </ElCol>
+                          );
 
-                            break;
-                        }
-                        return element;
-                      })
-                      .filter((ele, ids) => {
-                        if (
-                          showName.value === "展开" &&
-                          ids < Math.round(24 / span.value)
-                        ) {
-                          return ele;
-                        } else if (showName.value === "收起") {
-                          return ele;
-                        }
-                      })}
-                  {Array.isArray(searchList.value) && (
-                    <ElCol span={colSpan.value}>
-                      {searchList.value.length ? (
-                        <div class="chris-table-search-btns">
+                          break;
+                        case "slider":
+                          element = (
+                            <ElCol span={span.value} key={el.label}>
+                              <ElFormItem
+                                {...el}
+                                rules={el.rules?.rules}
+                                class="w-full"
+                              >
+                                <ElSlider
+                                  v-model={formData[el.prop as string]}
+                                  {...el.slider}
+                                ></ElSlider>
+                              </ElFormItem>
+                            </ElCol>
+                          );
+
+                          break;
+                      }
+                      return element;
+                    })
+                    .filter((ele, ids) => {
+                      if (
+                        showName.value === "展开" &&
+                        ids < Math.round(24 / span.value)
+                      ) {
+                        return ele;
+                      } else if (showName.value === "收起") {
+                        return ele;
+                      }
+                    })}
+                {Array.isArray(searchList.value) && (
+                  <ElCol span={colSpan.value}>
+                    {searchList.value.length ? (
+                      <div class="chris-table-search-btns">
+                        <ElButton
+                          type="primary"
+                          icon="Search"
+                          onClick={getParams}
+                          size={props.size}
+                        >
+                          查询
+                        </ElButton>
+                        <ElButton
+                          icon="Refresh"
+                          onClick={resetFn}
+                          size={props.size}
+                        >
+                          重置
+                        </ElButton>
+                        {isShow.value && (
                           <ElButton
-                            type="primary"
-                            icon="Search"
-                            onClick={getParams}
+                            type="info"
+                            plain
+                            onClick={changeName}
                             size={props.size}
+                            icon="Sort"
                           >
-                            查询
+                            {showName.value}
                           </ElButton>
-                          <ElButton
-                            icon="Refresh"
-                            onClick={resetFn}
-                            size={props.size}
-                          >
-                            重置
-                          </ElButton>
-                          {isShow.value && (
-                            <ElButton
-                              type="info"
-                              plain
-                              onClick={changeName}
-                              size={props.size}
-                              icon="Sort"
-                            >
-                              {showName.value}
-                            </ElButton>
-                          )}
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                    </ElCol>
-                  )}
-                </ElRow>
-              </ElForm>
-            </div>
+                        )}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </ElCol>
+                )}
+              </ElRow>
+            </ElForm>
           </div>
         ) : (
           ""
