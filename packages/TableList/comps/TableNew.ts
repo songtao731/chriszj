@@ -37,7 +37,7 @@ export const NewTable = {
   buttons: Array as PropType<NewTableCtx["buttons"]>,
   buttonsPosition: {
     type: String,
-    default: "left",
+    default: "right",
   },
 
   pagination: {
@@ -69,8 +69,8 @@ export const NewTable = {
     type: Boolean,
     default: false,
   },
-  showSearch:{
-    type:Boolean,
-    default:false
-  }
+  showSearch: {
+    type: Boolean,
+    default: false,
+  },
 };

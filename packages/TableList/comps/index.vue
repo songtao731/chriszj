@@ -148,7 +148,7 @@ const props = defineProps(TableProps);
 const columnsFilter = computed(
   () =>
     props.columns?.filter((el) => {
-      return !unref(el.hide) && !isEmptyObject(el);
+      return el && !unref(el.hide) && !isEmptyObject(el);
     })
 );
 //控制展示显示隐藏 某些列

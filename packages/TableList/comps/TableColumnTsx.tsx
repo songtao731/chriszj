@@ -13,10 +13,10 @@ export default defineComponent({
       //初始化字典 tree参数
       const options = labelEnum(dictOptions);
       let result;
-      if (props.data[prop] === 0) {
+      if (props?.data[prop] === 0) {
         result = 0;
-      } else if (props.data[prop]) {
-        result = props.data[prop];
+      } else if (props?.data[prop]) {
+        result = props?.data[prop];
       } else {
         result = "_ _";
       }
@@ -109,6 +109,6 @@ export default defineComponent({
 
       return result;
     };
-    return () => <>{parseValue(props.data, props.column)}</>;
+    return () => <>{parseValue(props?.data, props?.column)}</>;
   },
 });

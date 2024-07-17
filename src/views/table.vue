@@ -245,6 +245,8 @@ const bind = computed(() => {
         label: "id",
         prop: "id",
       },
+      {},
+      {},
       {
         label: "性别",
         prop: "sex",
