@@ -1,3 +1,4 @@
+import { isNumber } from "@vueuse/core";
 import { type } from "os";
 
 /**
@@ -5,16 +6,21 @@ import { type } from "os";
  * @param {String} format 格式 'Y/M/D h:m:s'
  * @return {String} 格式化后时间 '2020/02/02 12:12:00'
  */
-export const formatTime = (number: number, format = 'Y-M-D h:m:s') => {
+export const formatTime = (number: number, format = "Y-M-D h:m:s") => {
   const formatNumber = (n: number | string) => {
     n = n.toString();
     return n[1] ? n : `0${n}`;
   };
 
-  const formateArr = ['Y', 'M', 'D', 'h', 'm', 's'];
+  const formateArr = ["Y", "M", "D", "h", "m", "s"];
   const returnArr = [];
-
-  const date = new Date(Number(number));
+  if (!number) {
+    return "--";
+  }
+  if (isNumber(+number) && !isNaN(+number)) {
+    number = +number;
+  }
+  const date = new Date(number);
 
   returnArr.push(date.getFullYear());
   returnArr.push(formatNumber(date.getMonth() + 1));
@@ -25,28 +31,25 @@ export const formatTime = (number: number, format = 'Y-M-D h:m:s') => {
   returnArr.push(formatNumber(date.getSeconds()));
 
   for (const i in returnArr) {
- 
     format = format.replace(formateArr[i], returnArr[i] as string);
-    
   }
-   if(/NaN/.test(format)){
-    format='--'
-   }
+  if (/NaN/.test(format)) {
+    format = "--";
+  }
   return format;
 };
-
 
 function formatNumberWithCommasAndDecimal(n) {
   // 将输入转换为数值，以确保操作的一致性
   const num = Number(n);
-  
+
   // 判断是否有小数部分
   if (num % 1 !== 0) {
-      // 有小数，保留两位小数并转换为字符串
-      return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // 有小数，保留两位小数并转换为字符串
+    return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   } else {
-      // 没有小数，直接转换为字符串
-      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // 没有小数，直接转换为字符串
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 }
 //格式化金钱
@@ -59,45 +62,44 @@ export const formatMoney = (value: string | number) => {
   // let decimal = value.substr(value.length - 2) // 最后两位为小数
   // let result = `${integer || 0}.${decimal}`
 
-  
   let result = formatNumberWithCommasAndDecimal(value);
-  if(result==='N.aN'){
-    result ='--'
+  if (result === "NaN") {
+    result = "--";
   }
-  return result
-}
+  return result;
+};
 
 //金额转大写
 export const formatPriceToChinese = (currencyDigits: string | number) => {
   // Constants:
   const MAXIMUM_NUMBER = 99999999999.99;
   // Predefine the radix characters and currency symbols for output:
-  const CN_ZERO = '零';
-  const CN_ONE = '壹';
-  const CN_TWO = '贰';
-  const CN_THREE = '叁';
-  const CN_FOUR = '肆';
-  const CN_FIVE = '伍';
-  const CN_SIX = '陆';
-  const CN_SEVEN = '柒';
-  const CN_EIGHT = '捌';
-  const CN_NINE = '玖';
-  const CN_TEN = '拾';
-  const CN_HUNDRED = '佰';
-  const CN_THOUSAND = '仟';
-  const CN_TEN_THOUSAND = '万';
-  const CN_HUNDRED_MILLION = '亿';
-  const CN_SYMBOL = '';
-  const CN_DOLLAR = '元';
-  const CN_TEN_CENT = '角';
-  const CN_CENT = '分';
-  const CN_INTEGER = '整';
+  const CN_ZERO = "零";
+  const CN_ONE = "壹";
+  const CN_TWO = "贰";
+  const CN_THREE = "叁";
+  const CN_FOUR = "肆";
+  const CN_FIVE = "伍";
+  const CN_SIX = "陆";
+  const CN_SEVEN = "柒";
+  const CN_EIGHT = "捌";
+  const CN_NINE = "玖";
+  const CN_TEN = "拾";
+  const CN_HUNDRED = "佰";
+  const CN_THOUSAND = "仟";
+  const CN_TEN_THOUSAND = "万";
+  const CN_HUNDRED_MILLION = "亿";
+  const CN_SYMBOL = "";
+  const CN_DOLLAR = "元";
+  const CN_TEN_CENT = "角";
+  const CN_CENT = "分";
+  const CN_INTEGER = "整";
 
   // Variables:
   let integral; // Represent integral part of digit number.
   let decimal; // Represent decimal part of digit number.
   let outputCharacters;
-  let parts: string | any[] = '';
+  let parts: string | any[] = "";
   let zeroCount;
   let i;
   let p;
@@ -106,8 +108,8 @@ export const formatPriceToChinese = (currencyDigits: string | number) => {
   let quotient;
   let modulus;
 
-  const radices = ['', CN_TEN, CN_HUNDRED, CN_THOUSAND];
-  const bigRadices = ['', CN_TEN_THOUSAND, CN_HUNDRED_MILLION];
+  const radices = ["", CN_TEN, CN_HUNDRED, CN_THOUSAND];
+  const bigRadices = ["", CN_TEN_THOUSAND, CN_HUNDRED_MILLION];
   const decimals = [CN_TEN_CENT, CN_CENT];
 
   const digits = [
@@ -120,36 +122,36 @@ export const formatPriceToChinese = (currencyDigits: string | number) => {
     CN_SIX,
     CN_SEVEN,
     CN_EIGHT,
-    CN_NINE
+    CN_NINE,
   ];
 
   // Validate input string:
   currencyDigits = currencyDigits.toString();
-  if (currencyDigits === '') {
-    return '';
+  if (currencyDigits === "") {
+    return "";
   }
   if (currencyDigits.match(/[^,.\d]/) !== null) {
-    return '';
+    return "";
   }
   if (
     currencyDigits.match(
       /^((\d{1,3}(,\d{3})*(.((\d{3},)*\d{1,3}))?)|(\d+(.\d+)?))$/
     ) == null
   ) {
-    return '';
+    return "";
   }
 
   // Normalize the format of input digits:
-  currencyDigits = currencyDigits.replace(/,/g, ''); // Remove comma delimiters.
-  currencyDigits = currencyDigits.replace(/^0+/, ''); // Trim zeros at the beginning.
+  currencyDigits = currencyDigits.replace(/,/g, ""); // Remove comma delimiters.
+  currencyDigits = currencyDigits.replace(/^0+/, ""); // Trim zeros at the beginning.
   // Assert the number is not greater than the maximum number.
   if (+currencyDigits > MAXIMUM_NUMBER) {
-    return '';
+    return "";
   }
 
   // Process the coversion from currency digits to characters:
   // Separate integral and decimal parts before processing coversion:
-  parts = currencyDigits.split('.');
+  parts = currencyDigits.split(".");
   if (parts.length > 1) {
     // eslint-disable-next-line prefer-destructuring
     integral = parts[0];
@@ -160,10 +162,10 @@ export const formatPriceToChinese = (currencyDigits: string | number) => {
   } else {
     // eslint-disable-next-line prefer-destructuring
     integral = parts[0];
-    decimal = '';
+    decimal = "";
   }
   // Start processing:
-  outputCharacters = '';
+  outputCharacters = "";
   // Process integral part if it is larger than 0:
   if (+integral > 0) {
     zeroCount = 0;
@@ -188,13 +190,13 @@ export const formatPriceToChinese = (currencyDigits: string | number) => {
     outputCharacters += CN_DOLLAR;
   }
   // Process decimal part if there is:
-  if (decimal !== '') {
+  if (decimal !== "") {
     for (i = 0; i < decimal.length; i += 1) {
       d = decimal.substr(i, 1);
       ds = decimal.substr(-1, 1);
       if (+d === 0) {
         if (+ds === 0) {
-          outputCharacters += '';
+          outputCharacters += "";
         } else {
           outputCharacters += digits[Number(d)];
         }
@@ -204,10 +206,10 @@ export const formatPriceToChinese = (currencyDigits: string | number) => {
     }
   }
   // Confirm and return the final output string:
-  if (outputCharacters === '') {
+  if (outputCharacters === "") {
     outputCharacters = CN_ZERO + CN_DOLLAR;
   }
-  if (decimal === '') {
+  if (decimal === "") {
     outputCharacters += CN_INTEGER;
   }
   outputCharacters = CN_SYMBOL + outputCharacters;
@@ -215,26 +217,22 @@ export const formatPriceToChinese = (currencyDigits: string | number) => {
 };
 
 interface FormatPrice {
-  thousands?: boolean,
-  number?: number,
-  chinaPrice?:boolean
+  thousands?: boolean;
+  number?: number;
+  chinaPrice?: boolean;
 }
-
 
 export const formatPrice = (number: number | string, format: FormatPrice) => {
-
-  let result:string|number=''
+  let result: string | number = "";
   if (format.thousands) {
-    result = formatMoney(number)||'--'
+    result = formatMoney(number) || "--";
   }
-  if(format.number){
-    result = (+number).toFixed(2)
+  if (format.number) {
+    result = (+number).toFixed(2);
   }
-  if(format.chinaPrice){
-    result =number&&formatPriceToChinese(number)||'--'
-
+  if (format.chinaPrice) {
+    result = (number && formatPriceToChinese(number)) || "--";
   }
 
-
-  return result
-}
+  return result;
+};

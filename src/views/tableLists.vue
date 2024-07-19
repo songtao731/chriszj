@@ -1,12 +1,4 @@
 <template>
-  <ElButton
-    type="primary"
-    icon="Search"
-    onClick="{getParams}"
-    size="{props.size}"
-  >
-    查询
-  </ElButton>
   <TableLists v-bind="bind2" border ref="tabRef" @tabClick="tabClick">
   </TableLists>
 </template>
@@ -107,14 +99,14 @@ const bind = computed(() => {
       activeValue: activeName.value,
       tabsList: [
         { label: "待审核", value: "all" },
-        { label: "审核中", value: "available" },
+        { label: "审核中", value: "historyPass" },
         { label: "已审核", value: "unavailable" },
       ],
       isRoute: true,
     },
     table: (row) => {
       return {
-        request: (params) => useMockList({ ...params, tabsType: row }),
+        request: (params) => useMockList({ ...params, approveListType: row }),
         column: 4,
         hideLoading: false,
         buttons: [
@@ -263,14 +255,14 @@ const bind2 = computed(() => {
         columns: [
           {
             label: "授信编号",
-            prop: "grantCreditNo",
+            prop: "approveTime",
             fixed: "left",
             minWidth: 150,
-            filter: "input",
+            formatType: "date",
           },
           {
             label: "授信名称",
-            prop: "name",
+            prop: "approveTime",
             fixed: "left",
             minWidth: 150,
             filter: "input",

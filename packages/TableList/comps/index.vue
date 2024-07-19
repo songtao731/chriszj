@@ -289,6 +289,7 @@ defineExpose({
   },
   params: searchRef,
   resetFn,
+  total,
 });
 </script>
 <script lang="ts">
