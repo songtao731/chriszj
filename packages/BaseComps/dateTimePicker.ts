@@ -1,9 +1,9 @@
-import { Component,Ref } from "vue";
+import { Component, Ref } from "vue";
 
 export interface DateTimePickerPorps {
   readonly?: boolean;
   disabled?: boolean;
-  ref?:any
+  ref?: any;
 
   size?: "large" | "default" | "small";
   editable?: boolean;
@@ -11,7 +11,7 @@ export interface DateTimePickerPorps {
   placeholder?: string;
   startPlaceholder?: string;
   endPlaceholder?: string;
-  timeArrowControl?:boolean
+  timeArrowControl?: boolean;
   type?:
     | "year"
     | "month"
@@ -19,7 +19,7 @@ export interface DateTimePickerPorps {
     | "week"
     | "datetime"
     | "datetimerange"
-    | "daterange"
+    | "daterange";
   format?: string;
   popperClass?: string;
   rangeSeparator?: string;
@@ -32,7 +32,7 @@ export interface DateTimePickerPorps {
   prefixIcon?: string | Component;
   clearIcon?: string | Component;
   validateEvent?: boolean;
-  disabledDate?: () => void;
+  disabledDate?: () => boolean;
   shortcuts?: Array<{ text: string; value: Date | Function }>;
   cellClassName?: (Date: Date) => void;
   teleported?: boolean;

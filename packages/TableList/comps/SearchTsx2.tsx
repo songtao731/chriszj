@@ -97,6 +97,10 @@ export default defineComponent({
       } else {
         isShow.value = num > 3;
       }
+      if (screenWidth.value < 800) {
+        isShow.value = true;
+      }
+
       if (props.column) {
         isShow.value = num > props.column;
       }
@@ -159,12 +163,16 @@ export default defineComponent({
         if (screenWidth.value > 1800) {
           fixedColumn = 4;
           getColSpan(fixedColumn);
+        } else if (screenWidth.value < 800) {
+          fixedColumn = 1;
+          getColSpan(fixedColumn);
         } else {
           fixedColumn = 3;
 
           getColSpan(fixedColumn);
         }
-        return screenWidth.value > 1800 ? 6 : 8;
+
+        return screenWidth.value > 1800 ? 6 : screenWidth.value < 800 ? 24 : 8;
       }
     });
     //初始化新的传参

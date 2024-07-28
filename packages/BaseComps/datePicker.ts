@@ -32,11 +32,11 @@ export interface DatePickerPorps {
   prefixIcon?: string | Component;
   clearIcon?: string | Component;
   validateEvent?: boolean;
-  disabledDate?: () => void;
+  disabledDate?: () => boolean;
   shortcuts?: Array<{ text: string; value: Date | Function }>;
   cellClassName?: (Date: Date) => void;
   teleported?: boolean;
-  ref?:any
+  ref?: any;
 
   onChange?: <T>(val: T) => void;
   onFocus?: <T>(val: T) => void;
