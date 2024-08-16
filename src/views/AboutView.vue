@@ -180,9 +180,8 @@ fn();
 
 const bind = computed(() => {
   return chris.useTable({
-    searchData: ruleForm,
-    request: (params) => listRole({ ...params }),
-
+    // request: (params) => listRole({ ...params }),
+    data: [{ a: 1 }],
     buttons: [
       {
         type: "primary",
@@ -214,17 +213,7 @@ const bind = computed(() => {
         formatter(row, column, cellValue, index) {
           return cellValue + index;
         },
-        filter: {
-          type: "input",
-          placeholder: "流程编号/申请人",
-          prop: "processNo",
-          label: "姓名:",
-          input: {
-            showWordLimit: true,
-            maxlength: 10,
-            suffixIcon: "Calendar",
-          },
-        },
+        filter: "input",
       },
       {
         label: "年龄送水",
@@ -232,18 +221,14 @@ const bind = computed(() => {
         slotName: "age",
         sortable: true,
         value: ["zhinan", "typography"],
-        filter: {
-          type: "cascader",
-          prop: ["one", "two", "three"],
-          options: computed(() => data2.value),
-        },
+        filter: "input",
       },
       {
         label: "身价",
         prop: "place",
 
         filter: {
-          type: "dateRange",
+          type: "date",
           prop: ["sTime", "eTime"],
         },
       },
@@ -251,17 +236,12 @@ const bind = computed(() => {
         label: "日期送水",
         prop: "date",
         width: "120",
-        filter: "input",
       },
       {
         label: "千分位上",
         prop: "updateTime",
         formatter(row, column, cellValue, index) {
           return cellValue && cellValue.split(" ")[0];
-        },
-        filter: {
-          prop: ["min", "max"],
-          type: "inputrange",
         },
       },
       {
@@ -276,11 +256,7 @@ const bind = computed(() => {
       {
         label: "枚举",
         prop: "status",
-        dictData: computed(() => data.value),
-        filter: {
-          type: "select",
-          options: computed(() => data.value),
-        },
+
         buttons: [
           {
             content: "新增",

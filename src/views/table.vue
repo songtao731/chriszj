@@ -202,13 +202,14 @@ let num = ref(100);
 const bind = computed(() => {
   return chris.useTable({
     request: (params) => useMockList({ ...params }),
-    showSearch: true,
 
     // data: tableData.value,
 
     labelWidth: "100px",
     labelPosition: "right",
     hideLoading: true,
+    path: "rows",
+    totalPath: "total",
     buttons: [
       {
         type: "primary",
@@ -245,8 +246,7 @@ const bind = computed(() => {
         label: "id",
         prop: "id",
       },
-      {},
-      {},
+
       {
         label: "性别",
         prop: "sex",
@@ -295,31 +295,31 @@ const bind = computed(() => {
           label: "name",
         },
         value: "1",
-        filter: {
-          type: "select",
-          select: {
-            options: data.value,
-            dictOptions: {
-              value: "value2",
-              label: "label2",
-            },
-            onChange(val) {
-              isShow.value = val == "2" ? true : false;
+        // filter: {
+        //   type: "select",
+        //   select: {
+        //     options: data.value,
+        //     dictOptions: {
+        //       value: "value2",
+        //       label: "label2",
+        //     },
+        //     onChange(val) {
+        //       isShow.value = val == "2" ? true : false;
 
-              console.log("slecs", isShow.value);
-            },
-          },
-          sort: 1,
-        },
+        //       console.log("slecs", isShow.value);
+        //     },
+        //   },
+        //   sort: 1,
+        // },
       },
       {
         label: "树形是上课时开始看看是",
         prop: "promoter",
         value: ["zhinan", "typography"],
-        hide: isShow.value,
+
         filter: {
           prop: ["one", "two", "three"],
-          hide: isShow.value,
+          type: "cascader",
 
           cascader: {
             options: computed(() => data2.value),

@@ -1,50 +1,39 @@
 <template>
-  <TableList v-bind="bind"> </TableList>
+  <div class="container">
+    <div class="item ac">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item ac">Item 3</div>
+    <div class="item h-200">Item 4</div>
+    <div class="item">Item 5</div>
+    <div class="item">Item 6</div>
+    <div class="item">Item 7</div>
+    <div class="item">Item 8</div>
+    <div class="item">Item 9</div>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { entertainApplicationAddList } from "@/api/index";
-import { ElMessageBox } from "element-plus";
-import { reactive, ref } from "vue";
+<script setup lang="ts"></script>
 
-//import { chris, TableList } from "../../packages";
-import { chris, TableList } from "chriszj";
+<style lang="scss" scoped>
+body {
+  font-family: Arial, sans-serif;
+}
 
-// 表格数据
-const tableData = ref([]);
+.container {
+  width: 420px;
+}
 
-const bind = chris.useTable({
-  request: (params) => entertainApplicationAddList(params),
-  columns: [
-    {
-      label: "名称",
-      prop: "name",
-    },
-    {
-      label: "备注",
-      prop: "remark",
-    },
-    {
-      label: "创建时间",
-      prop: "createTime",
-    },
-    {
-      label: "操作",
-      buttons: (row) => {
-        return [
-          {
-            content: "编辑",
-            link: true,
-          },
-          {
-            content: "删除",
-            link: true,
-          },
-        ];
-      },
-    },
-  ],
-});
-</script>
-
-<style lang="scss" scoped></style>
+.item {
+  background-color: #f0f0f0;
+  padding: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  float: left;
+  width: 200px;
+  height: 100px;
+  &.ac {
+    height: 200px;
+  }
+}
+</style>

@@ -141,6 +141,12 @@ export default defineComponent({
           colSpan.value = 24;
         } else {
           colSpan.value = Math.round(24 / column);
+
+          if (searchList.value.length < column) {
+            colSpan.value =
+              Math.round(24 / column) *
+              (column - (searchList.value.length % column));
+          }
         }
       } else if (showName.value === "收起") {
         if (searchList.value.length % column === 0) {

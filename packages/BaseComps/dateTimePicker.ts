@@ -32,7 +32,7 @@ export interface DateTimePickerPorps {
   prefixIcon?: string | Component;
   clearIcon?: string | Component;
   validateEvent?: boolean;
-  disabledDate?: () => boolean;
+  disabledDate?: (time) => boolean;
   shortcuts?: Array<{ text: string; value: Date | Function }>;
   cellClassName?: (Date: Date) => void;
   teleported?: boolean;

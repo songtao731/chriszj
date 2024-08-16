@@ -768,7 +768,7 @@ const tableData = {
   one: 123,
   two: 123,
   select: "2",
-  radio: "2",
+  radio: "1",
   checkbox: ["1", "2"],
   min: 22,
   max: 33,
@@ -837,6 +837,7 @@ request();
 // }, 1000);
 const formData = ref({
   show: 0,
+  radio: "1",
 });
 // setTimeout(() => {
 //   abc.value = {
@@ -867,6 +868,27 @@ const bind5 = computed(() => {
         label: "年龄(自定义)",
         rules: chris.rulesFn().required(true, "请输入年龄"),
         placeholder: "222",
+      },
+      {
+        prop: "radio",
+        label: "定制产品名",
+        type: "radio",
+        radio: {
+          options: [
+            {
+              dictLabel: "好",
+              dictValue: "1",
+            },
+            {
+              dictLabel: "坏",
+              dictValue: "2",
+            },
+          ],
+          dictOptions: {
+            label: "dictLabel",
+            value: "dictValue",
+          },
+        },
       },
       {
         label: "多选",

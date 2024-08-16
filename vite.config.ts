@@ -65,7 +65,7 @@ export default defineConfig({
         "vue",
         "vue-router",
         "element-plus",
-        "element-plus/lib/theme-chalk/index.css",
+        "element-plus/theme-chalk/index.css",
         "element-plus/dist/index.css",
       ],
       output: {

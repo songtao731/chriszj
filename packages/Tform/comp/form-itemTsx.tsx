@@ -51,27 +51,28 @@ export default defineComponent({
     //初始化数据 对象的
     const requestObj = computed(() => unref(props.request));
     //初始化静态数据
-   const getData=()=>{
-    if (typeof requestObj === "object") {
-      Object.keys(formData.value).forEach((el) => {
-        if (requestObj.value[el] || requestObj.value[el] === 0) {
-          formData.value[el] = requestObj.value[el];
-
-        }
-      });
-
-    }
-
-   }
-    watch(requestObj, (newObj: { [key: string]: any }) => {
-      if (typeof newObj === "object") {
+    const getData = () => {
+      if (typeof requestObj === "object") {
         Object.keys(formData.value).forEach((el) => {
-          if (newObj[el] || newObj[el] === 0) {
-            formData.value[el] = newObj[el];
+          if (requestObj.value[el] || requestObj.value[el] === 0) {
+            formData.value[el] = requestObj.value[el];
           }
         });
       }
-    },{deep:true});
+    };
+    watch(
+      requestObj,
+      (newObj: { [key: string]: any }) => {
+        if (typeof newObj === "object") {
+          Object.keys(formData.value).forEach((el) => {
+            if (newObj[el] || newObj[el] === 0) {
+              formData.value[el] = newObj[el];
+            }
+          });
+        }
+      },
+      { deep: true }
+    );
 
     //初始化函数的
     let path = props.path || "data";
@@ -133,35 +134,34 @@ export default defineComponent({
           el.domains &&
             el.domains.forEach((ele, index) => {
               let propKeys: { [key: string]: any } = {};
-              if(ele.item){
-
-              ele.item.forEach((els: dataItem) => {
-                if (els.prop) {
-                  propKeys[els.prop] = els.value || "";
-                  switch (els.type) {
-                    case "checkBox":
-                      propKeys[els.prop] = els.value || [];
-                      break;
-                    case "upload":
-                      propKeys[els.prop] = els.value || [];
-                      break;
-                    case "rate":
-                      propKeys[els.prop] = els.value || 0;
-                      break;
-                    case "switch":
-                      propKeys[els.prop] = els.value || true;
-                      break;
-                    case "slider":
-                      propKeys[els.prop] = els.value || 0;
-                      break;
-                    case "inputNumber":
-                      propKeys[els.prop] = els.value || 0;
-                      break;
-                    default:
+              if (ele.item) {
+                ele.item.forEach((els: dataItem) => {
+                  if (els.prop) {
+                    propKeys[els.prop] = els.value || "";
+                    switch (els.type) {
+                      case "checkBox":
+                        propKeys[els.prop] = els.value || [];
+                        break;
+                      case "upload":
+                        propKeys[els.prop] = els.value || [];
+                        break;
+                      case "rate":
+                        propKeys[els.prop] = els.value || 0;
+                        break;
+                      case "switch":
+                        propKeys[els.prop] = els.value || true;
+                        break;
+                      case "slider":
+                        propKeys[els.prop] = els.value || 0;
+                        break;
+                      case "inputNumber":
+                        propKeys[els.prop] = els.value || 0;
+                        break;
+                      default:
+                    }
                   }
-                }
-              });
-            }
+                });
+              }
 
               formData.value[el.keys as string].push(propKeys);
               formData.value[el.keys as string][index]["chriskey"] =
@@ -289,33 +289,33 @@ export default defineComponent({
 
             el.domains &&
               el.domains.forEach((ela) => {
-                if(ela.item){
-                ela.item.forEach((el: any) => {
-                  el.nospan =
-                    (el.span && +el.span * (24 / +column)) || 24 / +column;
-                  el.nospan = el.nospan && el.nospan > 24 ? 24 : el.nospan;
+                if (ela.item) {
+                  ela.item.forEach((el: any) => {
+                    el.nospan =
+                      (el.span && +el.span * (24 / +column)) || 24 / +column;
+                    el.nospan = el.nospan && el.nospan > 24 ? 24 : el.nospan;
 
-                  el.placeholder = el.placeholder
-                    ? el.placeholder
-                    : el.label && el.label.replace(":", "");
-                  //单独处理日期范围
-                  if (el?.date) {
-                    el.date.startPlaceholder =
-                      el.date.startPlaceholder || "请选择开始时间";
-                    el.date.endPlaceholder =
-                      el.date.endPlaceholder || "请选择结束时间";
-                  }
-                  if (Array.isArray(el.columns)) {
-                    el.columns[0].placeholder =
-                      el.columns[0]?.placeholder || "请输入最小值";
-                    el.columns[1].placeholder =
-                      el.columns[1]?.placeholder || "请输入最大值";
-                  }
-                  if (el.type === "upload" && el.upload) {
-                    // el.upload.fileList = formData.value[el.prop as string];
-                  }
-                });
-              }
+                    el.placeholder = el.placeholder
+                      ? el.placeholder
+                      : el.label && el.label.replace(":", "");
+                    //单独处理日期范围
+                    if (el?.date) {
+                      el.date.startPlaceholder =
+                        el.date.startPlaceholder || "请选择开始时间";
+                      el.date.endPlaceholder =
+                        el.date.endPlaceholder || "请选择结束时间";
+                    }
+                    if (Array.isArray(el.columns)) {
+                      el.columns[0].placeholder =
+                        el.columns[0]?.placeholder || "请输入最小值";
+                      el.columns[1].placeholder =
+                        el.columns[1]?.placeholder || "请输入最大值";
+                    }
+                    if (el.type === "upload" && el.upload) {
+                      // el.upload.fileList = formData.value[el.prop as string];
+                    }
+                  });
+                }
               });
           }
           //动态表单处理结束
@@ -327,7 +327,6 @@ export default defineComponent({
 
     //获取屏幕可视化宽度
     onMounted(() => {
-
       // console.log(dataList.value,requestObj.value)
       //dataList.value.length && requestObj.value   这个逻辑代推敲
       if (dataList.value.length) {
@@ -357,8 +356,8 @@ export default defineComponent({
 
       if (typeof props.request === "function") {
         props.request && getDataList();
-      }else if(typeof props.request === "object"){
-            getData()
+      } else if (typeof props.request === "object") {
+        getData();
       }
       isReset.value = true;
 
@@ -398,7 +397,6 @@ export default defineComponent({
               <ElRow gutter={gutter}>
                 {Array.isArray(dataList.value) &&
                   dataList.value.map((el, index) => {
-
                     let element = null;
                     switch (el.type) {
                       case "space":
@@ -427,383 +425,391 @@ export default defineComponent({
                           element =
                             el.domains &&
                             el.domains.map((ela, index) => {
-                               if(ela.item){
-
-                              return ela.item.map((ele: dataItem) => {
-                                let newElement = null;
-                                switch (ele.type) {
-                                  case "space":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={ela.chriskey + "chris"}
-                                      >
-                                        <ElFormItem></ElFormItem>
-                                      </ElCol>
-                                    );
-                                    break;
-                                  case "custom":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={ela.chriskey + "chris"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          rules={ele.rules?.rules}
-                                          class="w-full"
+                              if (ela.item) {
+                                return ela.item.map((ele: dataItem) => {
+                                  let newElement = null;
+                                  switch (ele.type) {
+                                    case "space":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={ela.chriskey + "chris"}
                                         >
-                                          {slots[ele.slotName] &&
-                                            slots[ele.slotName]({
-                                              scope: {
-                                                ...formData.value[el.keys][
-                                                  index
-                                                ],
-                                                index,
-                                              },
-                                            })}
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-                                    break;
-
-                                  case "input":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "input"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
+                                          <ElFormItem></ElFormItem>
+                                        </ElCol>
+                                      );
+                                      break;
+                                    case "custom":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={ela.chriskey + "chris"}
                                         >
-                                          <ElInput
-                                            clearable={true}
-                                            placeholder={changePlaceHolderFn(
-                                              props.closePlaceholder,
-                                              ele.showPlaceholder,
-                                              "请输入" + ele.placeholder
-                                            )}
-                                            {...ele.input}
-                                            v-model={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
-                                            }
-                                          />
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-                                    break;
-                                  case "inputNumber":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={
-                                          +ela.chriskey + index + "inputNumber"
-                                        }
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
-                                        >
-                                          <ElInputNumber
-                                            class="w-full"
-                                            placeholder={changePlaceHolderFn(
-                                              props.closePlaceholder,
-                                              ele.showPlaceholder,
-                                              "请输入" + ele.placeholder
-                                            )}
-                                            {...ele.inputNumber}
-                                            v-model={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
-                                            }
-                                          />
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-                                    break;
-                                  case "select":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "select"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
-                                        >
-                                          <ElSelect
-                                            clearable={true}
-                                            v-model={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
-                                            }
-                                            placeholder={changePlaceHolderFn(
-                                              props.closePlaceholder,
-                                              ele.showPlaceholder,
-                                              "请选择" + ele.placeholder
-                                            )}
-                                            class="w-full"
-                                            {...ele.select}
-                                          >
-                                            {ele.select &&
-                                              Array.isArray(
-                                                unref(ele.select.options)
-                                              ) &&
-                                              unref(ele.select.options).map(
-                                                (els: any, index: any) => {
-                                                  return (
-                                                    <ElOption
-                                                      key={el.label}
-                                                      label={els.label}
-                                                      value={
-                                                        ele.select?.values
-                                                          ? els
-                                                          : els.value
-                                                      }
-                                                      disabled={ele.disabled}
-
-                                                    />
-                                                  );
-                                                }
-                                              )}
-                                          </ElSelect>
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-
-                                    break;
-                                  case "date":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "date"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
-                                        >
-                                          <ElDatePicker
-                                            clearable={true}
-                                            class="!w-full"
-                                            v-model={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
-                                            }
-                                            value-format="YYYY-MM-DD"
-                                            placeholder={changePlaceHolderFn(
-                                              props.closePlaceholder,
-                                              ele.showPlaceholder,
-                                              "请选择" + ele.placeholder
-                                            )}
-                                            {...ele.date}
-                                          ></ElDatePicker>
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-
-                                    break;
-                                  case "range":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "range"}
-                                      >
-                                        {ele.columns && (
                                           <ElFormItem
-                                            label={ele.label}
-                                            key={ela.chriskey + "chris2"}
                                             {...ele}
+                                            rules={ele.rules?.rules}
                                             class="w-full"
                                           >
-                                            <ElCol span={11}>
-                                              <ElFormItem
-                                                rules={
-                                                  ele.columns[0].rules?.rules
-                                                }
-                                                prop={
-                                                  el.keys +
-                                                  "." +
-                                                  index +
-                                                  "." +
-                                                  ele.columns[0].prop
-                                                }
-                                                class="w-full"
-                                              >
-                                                <ElInput
-                                                  clearable={true}
-                                                  v-model={
-                                                    formData.value[
-                                                      el.keys as string
-                                                    ][index][
-                                                      ele.columns[0]!
-                                                        .prop as string
-                                                    ]
-                                                  }
-                                                  placeholder={changePlaceHolderFn(
-                                                    props.closePlaceholder,
-                                                    ele.showPlaceholder,
-                                                    ele.columns[0].placeholder
-                                                  )}
-                                                  {...ele.columns[0]!.input}
-                                                />
-                                              </ElFormItem>
-                                            </ElCol>
-                                            <ElCol class="text-center" span={2}>
-                                              <span class="text-gray-500">
-                                                -
-                                              </span>
-                                            </ElCol>
-                                            <ElCol span={11}>
-                                              <ElFormItem
-                                                rules={
-                                                  ele.columns[1].rules?.rules
-                                                }
-                                                prop={
-                                                  el.keys +
-                                                  "." +
-                                                  index +
-                                                  "." +
-                                                  ele.columns[1].prop
-                                                }
-                                                class="w-full"
-                                              >
-                                                <ElInput
-                                                  clearable={true}
-                                                  v-model={
-                                                    formData.value[
-                                                      el.keys as string
-                                                    ][index][
-                                                      ele.columns[1]!
-                                                        .prop as string
-                                                    ]
-                                                  }
-                                                  placeholder={changePlaceHolderFn(
-                                                    props.closePlaceholder,
-                                                    ele.showPlaceholder,
-                                                    ele.columns[1].placeholder
-                                                  )}
-                                                  {...ele.columns[1]!.input}
-                                                />
-                                              </ElFormItem>
-                                            </ElCol>
+                                            {slots[ele.slotName] &&
+                                              slots[ele.slotName]({
+                                                scope: {
+                                                  ...formData.value[el.keys][
+                                                    index
+                                                  ],
+                                                  index,
+                                                },
+                                              })}
                                           </ElFormItem>
-                                        )}
-                                      </ElCol>
-                                    );
+                                        </ElCol>
+                                      );
+                                      break;
 
-                                    break;
-                                  case "cascader":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "cascader"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
+                                    case "input":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={+ela.chriskey + index + "input"}
                                         >
-                                          <ElCascader
-                                            clearable={true}
-                                            v-model={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
                                             }
-                                            placeholder={changePlaceHolderFn(
-                                              props.closePlaceholder,
-                                              ele.showPlaceholder,
-                                              "请选择" + ele.placeholder
-                                            )}
                                             class="w-full"
-                                            {...ele.cascader}
-                                          ></ElCascader>
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-
-                                    break;
-                                  case "checkBox":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "checkBox"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
-                                        >
-                                          <ElCheckboxGroup
-                                            v-model={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
-                                            }
-                                            {...ele.checkBox}
                                           >
-                                            {unref(ele!.checkBox!.options)
-                                              .length &&
-                                              unref(ele!.checkBox!.options).map(
-                                                (elc: CheckBoxItem) => {
+                                            <ElInput
+                                              clearable={true}
+                                              placeholder={changePlaceHolderFn(
+                                                props.closePlaceholder,
+                                                ele.showPlaceholder,
+                                                "请输入" + ele.placeholder
+                                              )}
+                                              {...ele.input}
+                                              v-model={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                            />
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+                                      break;
+                                    case "inputNumber":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={
+                                            +ela.chriskey +
+                                            index +
+                                            "inputNumber"
+                                          }
+                                        >
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
+                                            }
+                                            class="w-full"
+                                          >
+                                            <ElInputNumber
+                                              class="w-full"
+                                              placeholder={changePlaceHolderFn(
+                                                props.closePlaceholder,
+                                                ele.showPlaceholder,
+                                                "请输入" + ele.placeholder
+                                              )}
+                                              {...ele.inputNumber}
+                                              v-model={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                            />
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+                                      break;
+                                    case "select":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={+ela.chriskey + index + "select"}
+                                        >
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
+                                            }
+                                            class="w-full"
+                                          >
+                                            <ElSelect
+                                              clearable={true}
+                                              v-model={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                              placeholder={changePlaceHolderFn(
+                                                props.closePlaceholder,
+                                                ele.showPlaceholder,
+                                                "请选择" + ele.placeholder
+                                              )}
+                                              class="w-full"
+                                              {...ele.select}
+                                            >
+                                              {ele.select &&
+                                                Array.isArray(
+                                                  unref(ele.select.options)
+                                                ) &&
+                                                unref(ele.select.options).map(
+                                                  (els: any, index: any) => {
+                                                    return (
+                                                      <ElOption
+                                                        key={el.label}
+                                                        label={els.label}
+                                                        value={
+                                                          ele.select?.values
+                                                            ? els
+                                                            : els.value
+                                                        }
+                                                        disabled={ele.disabled}
+                                                      />
+                                                    );
+                                                  }
+                                                )}
+                                            </ElSelect>
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+
+                                      break;
+                                    case "date":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={+ela.chriskey + index + "date"}
+                                        >
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
+                                            }
+                                            class="w-full"
+                                          >
+                                            <ElDatePicker
+                                              clearable={true}
+                                              class="!w-full"
+                                              v-model={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                              value-format="YYYY-MM-DD"
+                                              placeholder={changePlaceHolderFn(
+                                                props.closePlaceholder,
+                                                ele.showPlaceholder,
+                                                "请选择" + ele.placeholder
+                                              )}
+                                              {...ele.date}
+                                            ></ElDatePicker>
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+
+                                      break;
+                                    case "range":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={+ela.chriskey + index + "range"}
+                                        >
+                                          {ele.columns && (
+                                            <ElFormItem
+                                              label={ele.label}
+                                              key={ela.chriskey + "chris2"}
+                                              {...ele}
+                                              class="w-full"
+                                            >
+                                              <ElCol span={11}>
+                                                <ElFormItem
+                                                  rules={
+                                                    ele.columns[0].rules?.rules
+                                                  }
+                                                  prop={
+                                                    el.keys +
+                                                    "." +
+                                                    index +
+                                                    "." +
+                                                    ele.columns[0].prop
+                                                  }
+                                                  class="w-full"
+                                                >
+                                                  <ElInput
+                                                    clearable={true}
+                                                    v-model={
+                                                      formData.value[
+                                                        el.keys as string
+                                                      ][index][
+                                                        ele.columns[0]!
+                                                          .prop as string
+                                                      ]
+                                                    }
+                                                    placeholder={changePlaceHolderFn(
+                                                      props.closePlaceholder,
+                                                      ele.showPlaceholder,
+                                                      ele.columns[0].placeholder
+                                                    )}
+                                                    {...ele.columns[0]!.input}
+                                                  />
+                                                </ElFormItem>
+                                              </ElCol>
+                                              <ElCol
+                                                class="text-center"
+                                                span={2}
+                                              >
+                                                <span class="text-gray-500">
+                                                  -
+                                                </span>
+                                              </ElCol>
+                                              <ElCol span={11}>
+                                                <ElFormItem
+                                                  rules={
+                                                    ele.columns[1].rules?.rules
+                                                  }
+                                                  prop={
+                                                    el.keys +
+                                                    "." +
+                                                    index +
+                                                    "." +
+                                                    ele.columns[1].prop
+                                                  }
+                                                  class="w-full"
+                                                >
+                                                  <ElInput
+                                                    clearable={true}
+                                                    v-model={
+                                                      formData.value[
+                                                        el.keys as string
+                                                      ][index][
+                                                        ele.columns[1]!
+                                                          .prop as string
+                                                      ]
+                                                    }
+                                                    placeholder={changePlaceHolderFn(
+                                                      props.closePlaceholder,
+                                                      ele.showPlaceholder,
+                                                      ele.columns[1].placeholder
+                                                    )}
+                                                    {...ele.columns[1]!.input}
+                                                  />
+                                                </ElFormItem>
+                                              </ElCol>
+                                            </ElFormItem>
+                                          )}
+                                        </ElCol>
+                                      );
+
+                                      break;
+                                    case "cascader":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={
+                                            +ela.chriskey + index + "cascader"
+                                          }
+                                        >
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
+                                            }
+                                            class="w-full"
+                                          >
+                                            <ElCascader
+                                              clearable={true}
+                                              v-model={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                              placeholder={changePlaceHolderFn(
+                                                props.closePlaceholder,
+                                                ele.showPlaceholder,
+                                                "请选择" + ele.placeholder
+                                              )}
+                                              class="w-full"
+                                              {...ele.cascader}
+                                            ></ElCascader>
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+
+                                      break;
+                                    case "checkBox":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={
+                                            +ela.chriskey + index + "checkBox"
+                                          }
+                                        >
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
+                                            }
+                                            class="w-full"
+                                          >
+                                            <ElCheckboxGroup
+                                              v-model={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                              {...ele.checkBox}
+                                            >
+                                              {unref(ele!.checkBox!.options)
+                                                .length &&
+                                                unref(
+                                                  ele!.checkBox!.options
+                                                ).map((elc: CheckBoxItem) => {
                                                   return (
                                                     <ElCheckbox
                                                       {...elc}
@@ -812,222 +818,220 @@ export default defineComponent({
                                                       {elc.label}
                                                     </ElCheckbox>
                                                   );
-                                                }
-                                              )}
-                                          </ElCheckboxGroup>
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
+                                                })}
+                                            </ElCheckboxGroup>
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
 
-                                    break;
+                                      break;
 
-                                  case "radio":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "radio"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
+                                    case "radio":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={+ela.chriskey + index + "radio"}
                                         >
-                                          <ElRadioGroup
-                                            v-model={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
                                             }
-                                            {...ele.radio}
+                                            class="w-full"
                                           >
-                                            {unref(ele!.radio!.options)
-                                              .length &&
-                                              unref(ele!.radio!.options).map(
-                                                (elc: RadioItem) => {
-                                                  return (
-                                                    <ElRadio
-                                                      {...elc}
-                                                      label={elc.value}
-                                                    >
-                                                      {elc.label}
-                                                    </ElRadio>
-                                                  );
-                                                }
-                                              )}
-                                          </ElRadioGroup>
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-                                    break;
+                                            <ElRadioGroup
+                                              v-model={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                              {...ele.radio}
+                                            >
+                                              {unref(ele!.radio!.options)
+                                                .length &&
+                                                unref(ele!.radio!.options).map(
+                                                  (elc: RadioItem) => {
+                                                    return (
+                                                      <ElRadio
+                                                        {...elc}
+                                                        label={elc.value}
+                                                      >
+                                                        {elc.label}
+                                                      </ElRadio>
+                                                    );
+                                                  }
+                                                )}
+                                            </ElRadioGroup>
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+                                      break;
 
-                                  case "upload":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "upload"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
+                                    case "upload":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={+ela.chriskey + index + "upload"}
                                         >
-                                          <Tupload
-                                            v-model:fileList={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
                                             }
-                                            {...ele.upload}
-                                          ></Tupload>
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-                                    break;
-                                  case "rate":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "rate"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
+                                            class="w-full"
+                                          >
+                                            <Tupload
+                                              v-model:fileList={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                              {...ele.upload}
+                                            ></Tupload>
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+                                      break;
+                                    case "rate":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={+ela.chriskey + index + "rate"}
                                         >
-                                          <ElRate
-                                            v-model={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
                                             }
-                                            clearable={true}
-                                            {...ele.rate}
-                                          ></ElRate>
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-                                    break;
-                                  case "switch":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "switch"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
+                                            class="w-full"
+                                          >
+                                            <ElRate
+                                              v-model={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                              clearable={true}
+                                              {...ele.rate}
+                                            ></ElRate>
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+                                      break;
+                                    case "switch":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={+ela.chriskey + index + "switch"}
                                         >
-                                          <ElSwitch
-                                            v-model={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
                                             }
-                                            {...ele.switch}
-                                          ></ElSwitch>
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-                                    break;
-                                  case "slider":
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "slider"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          key={ela.chriskey + "chris2"}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
+                                            class="w-full"
+                                          >
+                                            <ElSwitch
+                                              v-model={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                              {...ele.switch}
+                                            ></ElSwitch>
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+                                      break;
+                                    case "slider":
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={+ela.chriskey + index + "slider"}
                                         >
-                                          <ElSlider
-                                            v-model={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ][ele.prop as string]
+                                          <ElFormItem
+                                            {...ele}
+                                            key={ela.chriskey + "chris2"}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
                                             }
-                                            {...ele.slider}
-                                          ></ElSlider>
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-                                    break;
-                                  default:
-                                    newElement = (
-                                      <ElCol
-                                        span={ele.nospan}
-                                        key={+ela.chriskey + index + "span"}
-                                      >
-                                        <ElFormItem
-                                          {...ele}
-                                          rules={ele.rules?.rules}
-                                          prop={
-                                            el.keys +
-                                            "." +
-                                            index +
-                                            "." +
-                                            ele.prop
-                                          }
-                                          class="w-full"
+                                            class="w-full"
+                                          >
+                                            <ElSlider
+                                              v-model={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index][ele.prop as string]
+                                              }
+                                              {...ele.slider}
+                                            ></ElSlider>
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+                                      break;
+                                    default:
+                                      newElement = (
+                                        <ElCol
+                                          span={ele.nospan}
+                                          key={+ela.chriskey + index + "span"}
                                         >
-                                          <DesItemValue
-                                            item={ele}
-                                            formData={
-                                              formData.value[el.keys as string][
-                                                index
-                                              ]
+                                          <ElFormItem
+                                            {...ele}
+                                            rules={ele.rules?.rules}
+                                            prop={
+                                              el.keys +
+                                              "." +
+                                              index +
+                                              "." +
+                                              ele.prop
                                             }
-                                          ></DesItemValue>
-                                        </ElFormItem>
-                                      </ElCol>
-                                    );
-                                    break;
-                                }
-                                return newElement;
-                              });
-                            }
-
+                                            class="w-full"
+                                          >
+                                            <DesItemValue
+                                              item={ele}
+                                              formData={
+                                                formData.value[
+                                                  el.keys as string
+                                                ][index]
+                                              }
+                                            ></DesItemValue>
+                                          </ElFormItem>
+                                        </ElCol>
+                                      );
+                                      break;
+                                  }
+                                  return newElement;
+                                });
+                              }
                             });
                         }
 
@@ -1162,14 +1166,26 @@ export default defineComponent({
                                 {el.select &&
                                   Array.isArray(unref(el.select.options)) &&
                                   unref(el.select.options).map(
-                                  
                                     (ele: any, index: any) => {
                                       return (
                                         <ElOption
                                           key={el.label}
-                                          label={ (el.select?.dictOptions?.label)?(ele[el.select?.dictOptions?.label]):ele.label}
+                                          label={
+                                            el.select?.dictOptions?.label
+                                              ? ele[
+                                                  el.select?.dictOptions?.label
+                                                ]
+                                              : ele.label
+                                          }
                                           value={
-                                            el.select?.values ? ele :(el.select?.dictOptions?.value)?(ele[el.select?.dictOptions?.value]):ele.value
+                                            el.select?.values
+                                              ? ele
+                                              : el.select?.dictOptions?.value
+                                                ? ele[
+                                                    el.select?.dictOptions
+                                                      ?.value
+                                                  ]
+                                                : ele.value
                                           }
                                           disabled={ele.disabled}
                                         />
@@ -1247,10 +1263,22 @@ export default defineComponent({
                                   unref(el!.checkBox!.options).map(
                                     (ele: CheckBoxItem, index: any) => {
                                       return (
-                                        <ElCheckbox {...ele} label= { (el.checkBox?.dictOptions?.value)?(ele[el.checkBox?.dictOptions?.value]):ele.value}>
-
-                                         { (el.checkBox?.dictOptions?.label)?(ele[el.checkBox?.dictOptions?.label]):ele.label}
-
+                                        <ElCheckbox
+                                          {...ele}
+                                          label={
+                                            el.checkBox?.dictOptions?.value
+                                              ? ele[
+                                                  el.checkBox?.dictOptions
+                                                    ?.value
+                                                ]
+                                              : ele.value
+                                          }
+                                        >
+                                          {el.checkBox?.dictOptions?.label
+                                            ? ele[
+                                                el.checkBox?.dictOptions?.label
+                                              ]
+                                            : ele.label}
                                         </ElCheckbox>
                                       );
                                     }
@@ -1277,8 +1305,19 @@ export default defineComponent({
                                   unref(el!.radio!.options).map(
                                     (ele: RadioItem, index: any) => {
                                       return (
-                                        <ElRadio {...ele} label={ele.value}>
-                                          {ele.label}
+                                        <ElRadio
+                                          {...ele}
+                                          label={
+                                            el.radio?.dictOptions?.value
+                                              ? ele[
+                                                  el.radio?.dictOptions?.value
+                                                ]
+                                              : ele.value
+                                          }
+                                        >
+                                          {el.radio?.dictOptions?.label
+                                            ? ele[el.radio?.dictOptions?.label]
+                                            : ele.label}
                                         </ElRadio>
                                       );
                                     }
@@ -1373,9 +1412,11 @@ export default defineComponent({
               </ElRow>
               <ElFormItem>
                 <div style={`width:100%;text-align:${props.buttonsAlign}`}>
-                  {buttons.value.filter(el=>!el.hide).map((el) => {
-                    return <ElButton {...el}>{el.content}</ElButton>;
-                  })}
+                  {buttons.value
+                    .filter((el) => !el.hide)
+                    .map((el) => {
+                      return <ElButton {...el}>{el.content}</ElButton>;
+                    })}
                 </div>
               </ElFormItem>
             </ElForm>

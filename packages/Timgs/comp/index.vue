@@ -30,7 +30,7 @@
       >
         {{ item.name }}
       </div>
-      <div v-else class="text-sm mt-2 h-6"></div>
+      <div v-else class="text-sm mt-2 h-0"></div>
     </div>
   </div>
   <div v-else>--</div>
