@@ -932,14 +932,15 @@ const bind5 = computed(() => {
           options: [
             {
               label: "我是value",
-              value: "我是label",
+              value: "1",
             },
             {
               label: "我是value2",
-              value: "我是label2",
+              value: "2",
               disabled: true,
             },
           ],
+          onChange(x) {},
         },
       },
       {

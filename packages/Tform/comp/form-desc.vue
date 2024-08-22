@@ -10,9 +10,6 @@
   </el-descriptions>
 </template>
 <script lang="ts" setup>
-import { ref, reactive, computed, inject } from "vue";
-
-import { newForm } from "./newForm";
 import { formProps } from "./form";
 
 import DescItem from "./form-itemTsx";

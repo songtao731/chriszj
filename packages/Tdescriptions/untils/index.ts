@@ -7,6 +7,7 @@ import { labelEnum, searchTree } from "../../utils";
 export const parseValue = (
   formData: { [key: string]: any },
   item: desItem,
+  resData: { [key: string]: any }
 ) => {
   const { formatType, prop, dictData, dictOptions, value } = item;
 
@@ -30,11 +31,9 @@ export const parseValue = (
 
   //处理枚举 字典
   if (dictData && unref(dictData).length) {
-
     const findData = searchTree(unref(dictData), result, options);
 
     result = (findData && findData[options.useDictLabel]) || "--";
-
   }
   //格式化数字
   if (formatType) {
@@ -56,7 +55,7 @@ export const parseValue = (
   }
 
   if (item.formatter) {
-    result = item.formatter(formData);
+    result = item.formatter(formData, resData);
   }
 
   return result;

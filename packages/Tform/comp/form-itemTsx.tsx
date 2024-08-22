@@ -1401,6 +1401,7 @@ export default defineComponent({
                               <DesItemValue
                                 item={el}
                                 formData={formData.value}
+                                resData={requestObj.value}
                               ></DesItemValue>
                             </ElFormItem>
                           </ElCol>

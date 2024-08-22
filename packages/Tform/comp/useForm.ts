@@ -164,7 +164,7 @@ export type dataItem = {
       input?: MainPackage["input"];
     },
   ];
-  formatter?: (row: any) => any;
+  formatter?: (row: any, resData: any) => any;
   //图片预览
   prew?: prew;
   //快捷格式化数据

@@ -94,6 +94,7 @@ setTimeout(() => {
     total: 27,
     tree: 0,
     age: 20,
+    hoho: "新",
   };
 }, 100);
 const ishide = ref(false);
@@ -104,7 +105,6 @@ const bind = computed(() => {
     request: obj.value,
 
     parseData: (el) => {
-      console.log(el, 9999);
       return {
         ...el,
         imgs: [
@@ -165,7 +165,8 @@ const bind = computed(() => {
       {
         label: "函数",
         prop: "total",
-        formatter(data) {
+        formatter(data, resData) {
+          console.log(data, 998, resData);
           return data.total * 3 || "--";
         },
       },

@@ -11,6 +11,7 @@ const aa = ref();
 const domainsArr = ref();
 setTimeout(() => {
   cc.value = {
+    news: "新",
     size: 1,
     startRow: "1",
     pages: "99",
@@ -98,6 +99,9 @@ const bind = computed(() => {
         type: "span",
         span: 3,
         prop: "span",
+        formatter(row, aa) {
+          console.log(row, "eow", aa);
+        },
       },
       {
         label: "性别",
