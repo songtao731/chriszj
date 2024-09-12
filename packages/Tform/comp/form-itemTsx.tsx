@@ -181,7 +181,28 @@ export default defineComponent({
       return unref(props.dataList).filter((el) => {
         //深度隐藏 清楚数据
         if (el.deepHide) {
-          formData.value[el.prop as string] = "";
+          switch (el.type) {
+            case "checkBox":
+              formData.value[el.prop as string] = [];
+              break;
+            case "upload":
+              formData.value[el.prop as string] = [];
+              break;
+            case "rate":
+              formData.value[el.prop as string] = 0;
+              break;
+            case "switch":
+              formData.value[el.prop as string] = true;
+              break;
+            case "slider":
+              formData.value[el.prop as string] = 0;
+              break;
+            case "inputNumber":
+              formData.value[el.prop as string] = 0;
+              break;
+            default:
+              formData.value[el.prop as string] = "";
+          }
 
           el.columns && (formData.value[el.columns[0].prop as string] = "");
           el.columns && (formData.value[el.columns[1].prop as string] = "");

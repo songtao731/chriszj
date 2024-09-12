@@ -59,10 +59,10 @@ export interface SelectPorps extends SelectNewPorps {
     | "right-start"
     | "right-end";
   maxCollapseTags?: number;
-  onChange?: <T>(x?: T) => void;
-  onFocus?: <T>(x?: T) => void;
-  onBlur?: <T>(x?: T) => void;
+  onChange?: (x: any) => void;
+  onFocus?: (x: any) => void;
+  onBlur?: (x?: any) => void;
   onClear?: () => void;
-  onVisibleChange?: <T>(x?: T) => void;
-  onRemoveTag?: <T>(x?: T) => void;
+  onVisibleChange?: (x: boolean) => void;
+  onRemoveTag?: (x: any) => void;
 }
