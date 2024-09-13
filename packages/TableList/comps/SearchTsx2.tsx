@@ -219,11 +219,12 @@ export default defineComponent({
     const getParams = () => {
       Object.keys(formData).forEach((el) => {
         if (/,/.test(el)) {
+          //类似日期范围处理
           el.split(",").forEach((ele, index) => {
             newFormData.value[ele] = formData[el] ? formData[el][index] : null;
           });
         } else {
-          //处理
+          //处理 比如多选这种 变成,分割
           if (Array.isArray(formData[el])) {
             newFormData.value[el] = formData[el].join(",");
           } else {
