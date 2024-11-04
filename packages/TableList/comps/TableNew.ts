@@ -73,4 +73,8 @@ export const NewTable = {
     type: Boolean,
     default: false,
   },
+  loadlist: {
+    loaddata: Boolean,
+    default: true,
+  },
 };

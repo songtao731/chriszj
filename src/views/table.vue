@@ -210,6 +210,7 @@ const bind = computed(() => {
     hideLoading: true,
     path: "rows",
     totalPath: "total",
+    loadlist: false,
     buttons: [
       {
         type: "primary",

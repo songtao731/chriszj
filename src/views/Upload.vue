@@ -1,12 +1,12 @@
 <template>
   <Tupload
-    v-model:file-list="fileList"
+    :file-list="getFileList['activeLabel']['activeIndex']?.fileList"
     :action="url"
     :before-upload="beforeAvatarUpload"
   >
   </Tupload>
   <el-upload
-    v-model:file-list="fileList"
+    :file-list="getFileList['activeLabel']['activeIndex']?.fileList"
     :action="url"
     list-type="picture-card"
     :before-upload="beforeAvatarUpload"
@@ -66,7 +66,17 @@ const url = "https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15";
 const headers = {
   "X-Usertoken": sessionStorage.token,
 };
-
+const getFileList = ref({
+  activeLabel: {
+    activeIndex: {
+      fileList: [
+        {
+          url: "http://172.31.27.67:9002/finance-file/fast/file/previewFile?filePath=group1/M00/00/08/rB8bN2a8TnKAOKCtABB3eeEW4Ns507.png&FinanceAuth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYjc0OTI5ZWNlNDBmMTA1YjNlZWI2YjhjZGY3YjljYjkiLCJ1c2VyX25hbWUiOiIxNTY3MDAwMDAwMSIsInNjb3BlIjpbImFsbCJdLCJuaWNrX25hbWUiOiLpl6vlub_lhbAiLCJyZWFsX25hbWUiOiLpl6vlub_lhbAiLCJleHAiOjE3MjcxNDI3MjQsImF1dGhvcml0aWVzIjpbIm51bGwiXSwianRpIjoiMmNlMmNkYmQtNWJlNi00NjdhLWI4YjQtNTRmNzA4ZWFjYjViIiwicGxhdGZvcm0iOiIyIiwiY2xpZW50X2lkIjoic2FiZXIifQ.kJVyiz_m6spApj558CeBjIGSikE1CjNDtxznzoRNYFg",
+        },
+      ],
+    },
+  },
+});
 const handlePreview = (files: File[], uploadFiles: UploadUserFile[]) => {
   console.log(uploadFiles, files);
 };

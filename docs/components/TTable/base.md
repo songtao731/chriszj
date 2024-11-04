@@ -123,6 +123,7 @@ TTable/tableprop
 |parseData|格式化后端数据|Function|-|
 |searchData|自定义查询条件|Object|-|
 |showSearch|展开筛选条件|Boolean|false|
+|loadlist|是否自动加载数据|Boolean|true|
 
 ### 3、events 其他事件按照 el-table 直接使用（如 sort-change 排序事件）
 

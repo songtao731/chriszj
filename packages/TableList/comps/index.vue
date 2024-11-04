@@ -272,7 +272,9 @@ const indexMethod = (index: number) => {
 
 onMounted(() => {
   // 在这里可以加判断 第一次进页面 不加载数据,暂时不处理这个逻辑
-  props.request && searchRef.value.getParams(searchRef.value.formData);
+  if (props.loadlist) {
+    props.request && searchRef.value.getParams(searchRef.value.formData);
+  }
 });
 const tableRef = ref();
 const formRef = ref();
